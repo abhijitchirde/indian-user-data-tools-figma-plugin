@@ -4,19 +4,23 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 //Data space containing arrays of data
 const userData = {
     "FirstName" : ["Ram", "Sita", "Shyam", "Bablu"],
+
     "LastName" : ["Shah", "Khanna", "Singh", "Yadav", "Nair", "Murti"],
+
     "EmailDomain" : ["gmail", "example", "company", "bharatmail", "india","networks","university","cafezone", "gamers", "zapak", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "times", "fineschool", "fisa", "yupmail", "toursnation"],
+    
     "EmailEnd" : ["com", "in", "co.in", "net", "org", "net.in", "bharat", "biz", "co", "dev", "io"],
-    "TradAddress" : [],
-    "UrbAddress" : [],
+    
     "City" : ["Pune", "Ner", "Mumbai", "Nagpur"],
+
     "State" : ["Maharashtra", "Karnataka", "Uttar Pradesh"],
+
     "Prof" : ["doctor", "engineer", "teacher"]
 }
 
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 420, height: 455});
+figma.showUI(__html__,{width: 420, height: 490});
 
 
 //Receiving the button inputs from UI
@@ -27,7 +31,7 @@ figma.ui.onmessage = msg => {
 
         //Giving notification if no layer is selected
         if(figma.currentPage.selection.length === 0){
-            figma.notify("Please select a text layer", {timeout: 1.75, error: true});
+            figma.notify("Please select a text layer", {timeout: 2, error: true});
         }
 
         
@@ -36,7 +40,7 @@ figma.ui.onmessage = msg => {
 
             //Giving notification if selected layer is not text
             if(node.type !== 'TEXT'){
-                figma.notify("Please select a text layer", {timeout: 1.75, error: true});
+                figma.notify("Please select a text layer", {timeout: 2, error: true});
             }
 
             //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
@@ -51,7 +55,6 @@ figma.ui.onmessage = msg => {
         //Calling function to create a user data card and append on canvas
         generateCard();
     }  
-
 }
 
 //Setting fontname of selected node
@@ -82,10 +85,27 @@ function mobileNumber(currentNode){
     currentNode.characters = "+91" + number;
 }
 
+//Define function for generating mobile number
+function age(currentNode){
+    let number = numBetween(15,90);         //finding a random 10 digit number for mobile
+    currentNode.characters = `${number}`;
+}
+
 //Define function for generating UID number
 function aadharNumber(currentNode){
-    let number = numBetween(100000000000, 999999999999);    //Finding a random 12 digit number for UID
-    currentNode.characters = `${number}`;
+    let numSet1 = numBetween(1000, 9999);
+    let numSet2 = numBetween(1000, 9999); 
+    let numSet3 = numBetween(1000, 9999);          
+    currentNode.characters = `${numSet1} ${numSet2} ${numSet3}`;        //Finding a random 12 digit number for UID. In 3 parts of 4 digits
+}
+
+//Define function for generating 16digit VID number
+function aadharVirtual(currentNode){
+    let numSet1 = numBetween(1000, 9999);
+    let numSet2 = numBetween(1000, 9999); 
+    let numSet3 = numBetween(1000, 9999);
+    let numSet4 = numBetween(1000, 9999);             
+    currentNode.characters = `${numSet1} ${numSet2} ${numSet3} ${numSet4}`;        //Finding a random 16 digit number for VID. In 4 parts of 4 digits
 }
 
 //Define function for generating email
@@ -116,9 +136,17 @@ function putTextOnLayer(currentNode, input){
         }else if(input === "UID"){
             //Generate aadhar number using function
             aadharNumber(currentNode);
-        }else if(input === "Email"){
+        }else if(input === "VID"){
+            //Generate aadhar-virtual number using function
+            aadharVirtual(currentNode);
+        }
+        else if(input === "Email"){
             //Generate email using function
             randomEmail(currentNode);
+        }
+        else if(input === "Age"){
+            //Generate email using function
+            age(currentNode);
         }else if(input === "PIN"){
             //Generate PIN code using function
             randomPINCode(currentNode);

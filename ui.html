@@ -19,14 +19,16 @@
     <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Age">Age</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="UID">Unique ID (Aadhar)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
   </div>
 
   <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
@@ -69,6 +71,16 @@ document.getElementById('Email').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+document.getElementById('Mobile').onclick = () => {
+  const inputValue = "Mobile";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('Age').onclick = () => {
+  const inputValue = "Age";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
 document.getElementById('TradAddress').onclick = () => {
   const inputValue = "TradAddress";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
@@ -94,13 +106,13 @@ document.getElementById('PIN').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
-document.getElementById('Mobile').onclick = () => {
-  const inputValue = "Mobile";
+document.getElementById('UID').onclick = () => {
+  const inputValue = "UID";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
-document.getElementById('UID').onclick = () => {
-  const inputValue = "UID";
+document.getElementById('VID').onclick = () => {
+  const inputValue = "VID";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
