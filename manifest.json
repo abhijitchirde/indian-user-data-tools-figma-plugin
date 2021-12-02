@@ -1,0 +1,10 @@
+{
+  "name": "Indian User Data Generator",
+  "id": "1046328883372627755",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}

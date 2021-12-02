@@ -1,0 +1,14 @@
+{
+  "name": "Indian-User-Data-Generator",
+  "version": "1.0.0",
+  "description": "Generate sample data for Indian users",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "Abhijit Chirde",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.39.1"
+  }
+}
