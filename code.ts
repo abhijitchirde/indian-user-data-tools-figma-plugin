@@ -15,12 +15,14 @@ const userData = {
 
     "State" : ["Maharashtra", "Karnataka", "Uttar Pradesh"],
 
-    "Prof" : ["doctor", "engineer", "teacher"]
+    "Prof" : ["doctor", "engineer", "teacher"],
+
+    "PassPrefix" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],
 }
 
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 420, height: 490});
+figma.showUI(__html__,{width: 420, height: 550});
 
 
 //Receiving the button inputs from UI
@@ -31,7 +33,7 @@ figma.ui.onmessage = msg => {
 
         //Giving notification if no layer is selected
         if(figma.currentPage.selection.length === 0){
-            figma.notify("Please select a text layer", {timeout: 2, error: true});
+            figma.notify("Please select a text layer", {timeout: 1000});
         }
 
         
@@ -40,7 +42,7 @@ figma.ui.onmessage = msg => {
 
             //Giving notification if selected layer is not text
             if(node.type !== 'TEXT'){
-                figma.notify("Please select a text layer", {timeout: 2, error: true});
+                figma.notify("Please select a text layer", {timeout: 1000});
             }
 
             //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
@@ -86,9 +88,17 @@ function mobileNumber(currentNode){
 }
 
 //Define function for generating mobile number
-function age(currentNode){
-    let number = numBetween(15,90);         //finding a random 10 digit number for mobile
-    currentNode.characters = `${number}`;
+function passport(currentNode){
+    //As per rules seen on https://www.geeksforgeeks.org/how-to-validate-indian-passport-number-using-regular-expression/
+    let prefix = userData["PassPrefix"][Math.floor(Math.random()*(userData["PassPrefix"].length))];
+    let num1 = numBetween(1,9);
+    let num2 = numBetween(0,9);
+    let num3 = numBetween(0,9);
+    let num4 = numBetween(0,9);
+    let num5 = numBetween(0,9);
+    let num6 = numBetween(0,9);
+    let num7 = numBetween(1,9);
+    currentNode.characters = `${prefix}${num1}${num2}${num3}${num4}${num5}${num6}${num7}`;
 }
 
 //Define function for generating UID number
@@ -144,9 +154,9 @@ function putTextOnLayer(currentNode, input){
             //Generate email using function
             randomEmail(currentNode);
         }
-        else if(input === "Age"){
+        else if(input === "Pass"){
             //Generate email using function
-            age(currentNode);
+            passport(currentNode);
         }else if(input === "PIN"){
             //Generate PIN code using function
             randomPINCode(currentNode);
