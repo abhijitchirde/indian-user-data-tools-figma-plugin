@@ -14,25 +14,25 @@
 
   <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
   <div id="generateDiscrete" class="shadow-sm" style="max-width: 100%; margin: 2% 2% 2%; padding: 2% 2% 3%; border-radius: 8px; text-align: center; background-color: #fff;">
-    <p style="color: black; font-size: medium;">Please select a text layer to generate user data</p>
-    <button class="btn btn-outline-dark btn-sm small-button" id="first-name">First Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="last-name">Last Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="full-name">Full Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="email">Email</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="trad-address">Traditional Address</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="urb-address">Urban Address</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="city">City</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="state">State</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="pin">PIN Code</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="mobile">Mobile Number</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="uid">Unique ID (Aadhar)</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="prof">Profession</button>
+    <p style="color: black; font-size: medium;">Please select text layer/s and generate user data</p>
+    <button class="btn btn-outline-dark btn-sm small-button" id="FirstName">First Name</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="UID">Unique ID (Aadhar)</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
   </div>
 
   <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
   <div id="generateCard" class="shadow-sm" style="max-width: 100%; margin: 2% 2% 2%; padding: 2% 2% 2%; border-radius: 8px; text-align: center; background-color: #fff;">
-    <p style="color:black; font-size: medium;">Create a card with user details</p>
-    <button class="btn btn-outline-dark btn-small small-button " id="generate">Generate</button>
+    <p style="color:black; font-size: medium;">Create a user details card and place on canvas</p>
+    <button class="btn btn-outline-dark btn-small small-button " id="Generate">Generate</button>
   </div>
 
   
@@ -40,63 +40,63 @@
 
 <!-- Footer section for credits -->
 <footer style="text-align: center;">
- <p style="font-size: x-small; color: lightsteelblue; margin: 4% 0 0;">Made by Abhijit Chirde</a></p> 
+ <p style="font-size: smaller; color: lightsteelblue; margin: 4% 0 0;">Made by Abhijit Chirde</a></p> 
 </footer>
 
 
 <script>
 
 //Set of button click events for send message to code
-document.getElementById('first-name').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'first-name'} }, '*');
+document.getElementById('FirstName').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'FirstName'} }, '*');
 }
 
-document.getElementById('last-name').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'last-name'} }, '*');
+document.getElementById('LastName').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'LastName'} }, '*');
 }
 
-document.getElementById('full-name').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'full-name'} }, '*');
+document.getElementById('FullName').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'FullName'} }, '*');
 }
 
-document.getElementById('email').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'email'} }, '*');
+document.getElementById('Email').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'Email'} }, '*');
 }
 
-document.getElementById('trad-address').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'trad-address'} }, '*');
+document.getElementById('TradAddress').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'TradAddress'} }, '*');
 }
 
-document.getElementById('urb-address').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'urb-address'} }, '*');
+document.getElementById('UrbAddress').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'UrbAddress'} }, '*');
 }
 
-document.getElementById('city').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'city'} }, '*');
+document.getElementById('City').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'City'} }, '*');
 }
 
-document.getElementById('state').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'state'} }, '*');
+document.getElementById('State').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'State'} }, '*');
 }
 
-document.getElementById('pin').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'pin'} }, '*');
+document.getElementById('PIN').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'PIN'} }, '*');
 }
 
-document.getElementById('mobile').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'mobile'} }, '*');
+document.getElementById('Mobile').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'Mobile'} }, '*');
 }
 
-document.getElementById('uid').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'uid'} }, '*');
+document.getElementById('UID').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'UID'} }, '*');
 }
 
-document.getElementById('prof').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'prof'} }, '*');
+document.getElementById('Prof').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'Prof'} }, '*');
 }
 
-document.getElementById('generate').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'generate'} }, '*');
+document.getElementById('Generate').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'Generate'} }, '*');
 }
 
 </script>
