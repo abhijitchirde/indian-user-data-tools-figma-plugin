@@ -48,51 +48,65 @@
 
 //Set of button click events for send message to code
 document.getElementById('FirstName').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'FirstName'} }, '*');
+  const inputValue = "FirstName";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+
+
 document.getElementById('LastName').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'LastName'} }, '*');
+  const inputValue = "LastName";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('FullName').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'FullName'} }, '*');
+  const inputValue = "FullName";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('Email').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'Email'} }, '*');
+  const inputValue = "Email";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('TradAddress').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'TradAddress'} }, '*');
+  const inputValue = "TradAddress";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('UrbAddress').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'UrbAddress'} }, '*');
+  const inputValue = "UrbAddress";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('City').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'City'} }, '*');
+  const inputValue = "City";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('State').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'State'} }, '*');
+  const inputValue = "State";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('PIN').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'PIN'} }, '*');
+  const inputValue = "PIN";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('Mobile').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'Mobile'} }, '*');
+  const inputValue = "Mobile";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('UID').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'UID'} }, '*');
+  const inputValue = "UID";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('Prof').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'Prof'} }, '*');
+  const inputValue = "Prof";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
 document.getElementById('Generate').onclick = () => {
