@@ -53,7 +53,9 @@ figma.ui.onmessage = msg => {
 
         }
     
-    }else if(msg.type === "Generate"){
+    }
+    
+    if(msg.type === "Generate"){
         //Calling function to create a user data card and append on canvas
         generateCard();
     }  
@@ -172,7 +174,92 @@ function putTextOnLayer(currentNode, input){
 //Function for generating a new card with user details and appending it on the canvas
 function generateCard(){
 
+    const nodes: SceneNode[] = [];
 
+    const newNode = figma.createFrame();
+
+    newNode.resize(300,200);                            //Currently kept the parent frame to 300x200
+
+    //Generate mobile number and add to frame
+    const mobileLabel = figma.createText();
+    mobileLabel.characters = "Mobile Number:";
+    const mobile = figma.createText();
+    mobileNumber(mobile);
+    newNode.appendChild(mobileLabel);
+    newNode.appendChild(mobile);
+
+
+    //Generate aadhar number and add to frame
+    const aadharLabel = figma.createText();
+    aadharLabel.characters = "Aadhar Number (UID):";
+    const aadhar = figma.createText();
+    aadharNumber(aadhar);
+    newNode.appendChild(aadharLabel);
+    newNode.appendChild(aadhar);
+
+    //Generate passport number and add to frame
+    const passLabel = figma.createText();
+    passLabel.characters = "Passport:";
+    const pass = figma.createText();
+    passport(pass);
+    newNode.appendChild(passLabel);
+    newNode.appendChild(pass);
+
+    //Generate name and add to frame
+    const nameLabel = figma.createText();
+    nameLabel.characters = "User name:";
+    const fName = userData["FirstName"][Math.floor(Math.random()*(userData["FirstName"].length))];
+    const lName = userData["LastName"][Math.floor(Math.random()*(userData["LastName"].length))];
+    const name = figma.createText();
+    name.characters = `${fName} ${lName}`;
+    newNode.appendChild(nameLabel);
+    newNode.appendChild(name);
+
+    //Generate email for same name and add to frame
+    const emailLabel = figma.createText();
+    emailLabel.characters = "Email:";
+    const email = figma.createText();
+    let emailDomain = userData["EmailDomain"][Math.floor(Math.random()*(userData["EmailDomain"].length))];
+    let emailEnd = userData["EmailEnd"][Math.floor(Math.random()*(userData["EmailEnd"].length))];
+    email.characters = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+    newNode.appendChild(emailLabel);
+    newNode.appendChild(email);
+
+    //Generate profession and add to frame
+    const profLabel = figma.createText();
+    profLabel.characters = "Profession:";
+    const profession = figma.createText();
+    profession.characters = userData["Prof"][Math.floor(Math.random()*(userData["Prof"].length))];
+    newNode.appendChild(profLabel);
+    newNode.appendChild(profession);
+
+    //Generate city and add to frame
+    const cityLabel = figma.createText();
+    cityLabel.characters = "City:";
+    const city = figma.createText();
+    city.characters = userData["City"][Math.floor(Math.random()*(userData["City"].length))];
+    newNode.appendChild(cityLabel);
+    newNode.appendChild(city);
+
+    //Add address here
+    
+
+
+
+    //Generate state and add to frame
+    const stateLabel = figma.createText();
+    stateLabel.characters = "State:";
+    const state = figma.createText();
+    state.characters = userData["State"][Math.floor(Math.random()*(userData["State"].length))];
+    newNode.appendChild(stateLabel);
+    newNode.appendChild(state);
+
+
+    //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
+    figma.currentPage.appendChild(newNode);
+    nodes.push(newNode);
+    figma.currentPage.selection = nodes;
+    figma.viewport.scrollAndZoomIntoView(nodes);
 }
 
 
