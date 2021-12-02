@@ -7,24 +7,24 @@ const userData = {
 
     "LastName" : ["Shah", "Khanna", "Singh", "Yadav", "Nair", "Murti"],
 
-    "EmailDomain" : ["gmail", "example", "company", "bharatmail", "india","networks","university","cafezone", "gamers", "zapak", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "times", "fineschool", "fisa", "yupmail", "toursnation"],
+    "EmailDomain" : ["gmail", "example", "company", "bharatmail", "india","networks","university","cafezone", "gamers", "zapak", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "times", "hotmail", "msn", "yupmail", "live", "me", "telecom", "mac", "century", "digital", "aim", "skynet", "symbol"],
     
-    "EmailEnd" : ["com", "in", "co.in", "net", "org", "net.in", "bharat", "biz", "co", "dev", "io"],
+    "EmailEnd" : ["com", "in", "co.in", "net", "org", "net.in", "bharat", "biz", "dev", "io", "tech", ""],
     
     "City" : ["Pune", "Ner", "Mumbai", "Nagpur"],
 
-    "State" : ["Maharashtra", "Karnataka", "Uttar Pradesh"],
+    "State" : [ "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Lakshadweep","Puducherry"],
 
-    "Prof" : ["doctor", "engineer", "teacher"],
+    "Prof" : ["Doctor", "Software Engineer", "Designer", "3D Animator", "Politician","Ayurvedic Practitioner","Yoga Teacher","Yoga Practitioner","Gym Instructor","Sports Coach","Nutritionist", "Teacher", "Farmer", "Gardener", "Mechanic", "Musician", "Baker", "Glass Manufacturer", "Beautician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Architect", "Builder", "Masonry Worker", "Cable TV Operator", "Trader", "Marketing Professional", "Salesman", "Cane Work", "Carpet Weaver", "Caterer", "Chikankari Worker", "Painter", "Artist", "Cloth Printer", "Artist", "Canteen Owner", "Bartender", "Coaching Service", "Construction Worker", "Courier Manager", "Store Manager", "Dairy Worker", "Data Entry Operator", "Computer Teacher", "Scientist", "Researcher", "Pharmacist", "Physician", "Chemist", "Electrician", "Firework Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweller", "Goldsmith", "Handloom Worker", "Health Servicec", "Driver", "Bus Conductor", "Ticker Collector", "Hotel Manager", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwalla", "Papad Maker", "Petrol Pump Worker", "Potter", "Sculptor", "Murti maker", "Quary Worker", "Rickshaw Owner", "Sawmill Worker", "Shepherd", "Soap Manufacturer", "Perfume Salesman", "Tailor", "Police", "Army Officer", "Navy Officer", "Airforce Officer", "Social Worker", "NGO Volunteer", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Processing", "Furniture Making", "Toddy Tapping", "Toy Making", "Primary Teacher", "Professor", "Welding Service", "Laundry Service", "Tobacco Processing"],
 
     "PassPrefix" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],
 
-    "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici"]
+    "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "indux", "federal", "uco", "citi", "dbs", "sib", "db", "psb"]
 }
 
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 420, height: 550});
+figma.showUI(__html__,{width: 420, height: 590});
 
 
 //Receiving the button inputs from UI
@@ -142,7 +142,7 @@ function generateUPI(currentNode){
     let fname = userData["FirstName"][Math.floor(Math.random()*(userData["FirstName"].length))];
     let lname = userData["LastName"][Math.floor(Math.random()*(userData["LastName"].length))];
     let upiEnd = userData["UPISuffix"][Math.floor(Math.random()*(userData["UPISuffix"].length))];
-    // let mobile = numBetween(7000000000,9999999999);
+    //let mobile = numBetween(7000000000,9999999999);
     currentNode.characters = `${fname}${lname}@${upiEnd}`.toLowerCase();
 }
 
@@ -179,7 +179,7 @@ function putTextOnLayer(currentNode, input){
             //Generate PIN code using function
             randomPINCode(currentNode);
         }
-        //Otherwise for single piece of data from arry, we can directly call the dataspace array's random element with help of input messsage as string input. That's why we used msg inputs and array names same, and used arrays as a large object of array
+        //Otherwise for single piece of data from array, we can directly call the dataspace array's random element with help of input messsage as string input. That's why we used msg inputs and array names same, and used arrays as a large object of array
         //This can work for firstname, lastname, city, state, profession
         else{
             separateItem(currentNode, input);
@@ -258,10 +258,17 @@ function generateCard(){
     newNode.appendChild(city);
 
     //Add address here
+
     
 
-    //Add UPI here
-
+    //Generate UPI for same name and add to frame
+    const upiLabel = figma.createText();
+    upiLabel.characters = "UPI Address:";
+    const upi = figma.createText();
+    let upiEnd = userData["UPISuffix"][Math.floor(Math.random()*(userData["UPISuffix"].length))];
+    upi.characters = `${fName}${lName}@${upiEnd}`.toLowerCase();
+    newNode.appendChild(upiLabel);
+    newNode.appendChild(upi);
 
     //Generate state and add to frame
     const stateLabel = figma.createText();
