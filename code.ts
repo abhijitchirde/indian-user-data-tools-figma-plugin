@@ -18,6 +18,8 @@ const userData = {
     "Prof" : ["doctor", "engineer", "teacher"],
 
     "PassPrefix" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],
+
+    "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici"]
 }
 
 
@@ -135,6 +137,16 @@ function randomPINCode(currentNode){
     currentNode.characters = `${pinFirst}${pinRemaining}`;
 }
 
+
+function generateUPI(currentNode){
+    let fname = userData["FirstName"][Math.floor(Math.random()*(userData["FirstName"].length))];
+    let lname = userData["LastName"][Math.floor(Math.random()*(userData["LastName"].length))];
+    let upiEnd = userData["UPISuffix"][Math.floor(Math.random()*(userData["UPISuffix"].length))];
+    // let mobile = numBetween(7000000000,9999999999);
+    currentNode.characters = `${fname}${lname}@${upiEnd}`.toLowerCase();
+}
+
+
 function putTextOnLayer(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
@@ -155,6 +167,10 @@ function putTextOnLayer(currentNode, input){
         else if(input === "Email"){
             //Generate email using function
             randomEmail(currentNode);
+        }
+        else if(input === "UPI"){
+            //Generate email using function
+            generateUPI(currentNode);
         }
         else if(input === "Pass"){
             //Generate email using function
@@ -244,6 +260,7 @@ function generateCard(){
     //Add address here
     
 
+    //Add UPI here
 
 
     //Generate state and add to frame
