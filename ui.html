@@ -53,7 +53,7 @@
 
 <!-- Footer section for credits -->
 <footer style="text-align: center;">
- <p style="font-size: x-small; color: #647be2; margin: 3% 0 0;">Made by Abhijit Chirde</a></p> 
+ <p style="font-size: x-small; color: #647be2; margin: 3% 0 0;">From ❤️ Abhijit Chirde</a></p> 
 </footer>
 
 
@@ -128,6 +128,11 @@ document.getElementById('Prof').onclick = () => {
 
 document.getElementById('Pass').onclick = () => {
   const inputValue = "Pass";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('DL').onclick = () => {
+  const inputValue = "DL";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
