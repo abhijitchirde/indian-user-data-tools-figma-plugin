@@ -14,7 +14,7 @@ const dataSet = {
     "UPISuffix": ["jio", "upi", "apl", "okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "indux", "federal", "uco", "citi", "dbs", "sib", "db", "psb"]
 };
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 420, height: 590 });
+figma.showUI(__html__, { width: 420, height: 600 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
@@ -60,7 +60,7 @@ function numBetween(low, high) {
 }
 //Define function for generating mobile number
 function mobileNumber(currentNode) {
-    let number = numBetween(7000000000, 9999999999); //finding a random 10 digit number for mobile
+    let number = numBetween(6000000000, 9999999999); //finding a random 10 digit number for mobile
     currentNode.characters = "+91" + number;
 }
 //Define function for generating mobile number

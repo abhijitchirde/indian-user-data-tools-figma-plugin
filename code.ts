@@ -1,7 +1,6 @@
 //Made by Abhijit Chirde
 //abhijitchirde.com
 
-
 figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 
 //Data space containing arrays of data
@@ -28,7 +27,7 @@ const dataSet = {
 
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 420, height: 590});
+figma.showUI(__html__,{width: 420, height: 600});
 
 
 //Receiving the button inputs from UI
@@ -90,7 +89,7 @@ function numBetween(low, high){
 
 //Define function for generating mobile number
 function mobileNumber(currentNode){
-    let number = numBetween(7000000000,9999999999);         //finding a random 10 digit number for mobile
+    let number = numBetween(6000000000,9999999999);         //finding a random 10 digit number for mobile
     currentNode.characters = "+91" + number;
 }
 
