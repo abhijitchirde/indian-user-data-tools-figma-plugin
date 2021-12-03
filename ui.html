@@ -56,8 +56,6 @@ document.getElementById('FirstName').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
-
-
 document.getElementById('LastName').onclick = () => {
   const inputValue = "LastName";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
@@ -68,6 +66,12 @@ document.getElementById('FullName').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+document.getElementById('DoB').onclick = () => {
+  const inputValue = "DoB";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+
 document.getElementById('Email').onclick = () => {
   const inputValue = "Email";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
@@ -75,11 +79,6 @@ document.getElementById('Email').onclick = () => {
 
 document.getElementById('Mobile').onclick = () => {
   const inputValue = "Mobile";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
-}
-
-document.getElementById('Pass').onclick = () => {
-  const inputValue = "Pass";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
@@ -108,6 +107,21 @@ document.getElementById('PIN').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+document.getElementById('Prof').onclick = () => {
+  const inputValue = "Prof";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('Pass').onclick = () => {
+  const inputValue = "Pass";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('UPI').onclick = () => {
+  const inputValue = "UPI";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
 document.getElementById('UID').onclick = () => {
   const inputValue = "UID";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
@@ -115,16 +129,6 @@ document.getElementById('UID').onclick = () => {
 
 document.getElementById('VID').onclick = () => {
   const inputValue = "VID";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
-}
-
-document.getElementById('Prof').onclick = () => {
-  const inputValue = "Prof";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
-}
-
-document.getElementById('UPI').onclick = () => {
-  const inputValue = "UPI";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 

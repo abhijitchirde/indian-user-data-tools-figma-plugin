@@ -1,10 +1,10 @@
 figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
 //Data space containing arrays of data
-const userData = {
+const dataSet = {
     "FirstName": ["Ram", "Sita", "Shyam", "Bablu"],
     "LastName": ["Shah", "Khanna", "Singh", "Yadav", "Nair", "Murti"],
-    "EmailDomain": ["gmail", "example", "company", "bharatmail", "india", "networks", "university", "cafezone", "gamers", "zapak", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "times", "hotmail", "msn", "yupmail", "live", "me", "telecom", "mac", "century", "digital", "aim", "skynet", "symbol"],
-    "EmailEnd": ["com", "in", "co.in", "net", "org", "net.in", "bharat", "biz", "dev", "io", "tech", ""],
+    "EmailDomain": ["gmail", "example", "company", "mail", "india", "networks", "university", "cafezone", "gamers", "zapak", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "times", "hotmail", "msn", "yupmail", "live", "me", "telecom", "mac", "century", "digital", "aim", "skynet", "symbol"],
+    "EmailEnd": ["com", "in", "co.in", "net", "org", "net.in", "biz", "dev", "io", "tech"],
     "City": ["Pune", "Ner", "Mumbai", "Nagpur"],
     "State": ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Lakshadweep", "Puducherry"],
     "Prof": ["Doctor", "Software Engineer", "Designer", "3D Animator", "Politician", "Ayurvedic Practitioner", "Yoga Teacher", "Yoga Practitioner", "Gym Instructor", "Sports Coach", "Nutritionist", "Teacher", "Farmer", "Gardener", "Mechanic", "Musician", "Baker", "Glass Manufacturer", "Beautician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Architect", "Builder", "Masonry Worker", "Cable TV Operator", "Trader", "Marketing Professional", "Salesman", "Cane Work", "Carpet Weaver", "Caterer", "Chikankari Worker", "Painter", "Artist", "Cloth Printer", "Artist", "Canteen Owner", "Bartender", "Coaching Service", "Construction Worker", "Courier Manager", "Store Manager", "Dairy Worker", "Data Entry Operator", "Computer Teacher", "Scientist", "Researcher", "Pharmacist", "Physician", "Chemist", "Electrician", "Firework Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweller", "Goldsmith", "Handloom Worker", "Health Servicec", "Driver", "Bus Conductor", "Ticker Collector", "Hotel Manager", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwalla", "Papad Maker", "Petrol Pump Worker", "Potter", "Sculptor", "Murti maker", "Quary Worker", "Rickshaw Owner", "Sawmill Worker", "Shepherd", "Soap Manufacturer", "Perfume Salesman", "Tailor", "Police", "Army Officer", "Navy Officer", "Airforce Officer", "Social Worker", "NGO Volunteer", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Processing", "Furniture Making", "Toddy Tapping", "Toy Making", "Primary Teacher", "Professor", "Welding Service", "Laundry Service", "Tobacco Processing"],
@@ -46,11 +46,11 @@ function setFont(currentNode) {
 }
 //Function definition to put individual date item on layer based on random array calling
 function separateItem(currentNode, input) {
-    currentNode.characters = userData[`${input}`][Math.floor(Math.random() * (userData[`${input}`].length))];
+    currentNode.characters = dataSet[`${input}`][Math.floor(Math.random() * (dataSet[`${input}`].length))];
 }
 //Function definition to create a full name by appending first and last name
 function fullName(currentNode) {
-    currentNode.characters = userData["FirstName"][Math.floor(Math.random() * (userData["FirstName"].length))] + " " + userData["LastName"][Math.floor(Math.random() * (userData["LastName"].length))];
+    currentNode.characters = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))] + " " + dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
 }
 //Defining function for finding a number in range
 function numBetween(low, high) {
@@ -64,7 +64,7 @@ function mobileNumber(currentNode) {
 //Define function for generating mobile number
 function passport(currentNode) {
     //As per rules seen on https://www.geeksforgeeks.org/how-to-validate-indian-passport-number-using-regular-expression/
-    let prefix = userData["PassPrefix"][Math.floor(Math.random() * (userData["PassPrefix"].length))];
+    let prefix = dataSet["PassPrefix"][Math.floor(Math.random() * (dataSet["PassPrefix"].length))];
     let num1 = numBetween(1, 9);
     let num2 = numBetween(0, 9);
     let num3 = numBetween(0, 9);
@@ -91,10 +91,10 @@ function aadharVirtual(currentNode) {
 }
 //Define function for generating email
 function randomEmail(currentNode) {
-    let fname = userData["FirstName"][Math.floor(Math.random() * (userData["FirstName"].length))];
-    let lname = userData["LastName"][Math.floor(Math.random() * (userData["LastName"].length))];
-    let email = userData["EmailDomain"][Math.floor(Math.random() * (userData["EmailDomain"].length))];
-    let emailEnd = userData["EmailEnd"][Math.floor(Math.random() * (userData["EmailEnd"].length))];
+    let fname = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))];
+    let lname = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
+    let email = dataSet["EmailDomain"][Math.floor(Math.random() * (dataSet["EmailDomain"].length))];
+    let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random() * (dataSet["EmailEnd"].length))];
     currentNode.characters = `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
 }
 function randomPINCode(currentNode) {
@@ -103,9 +103,9 @@ function randomPINCode(currentNode) {
     currentNode.characters = `${pinFirst}${pinRemaining}`;
 }
 function generateUPI(currentNode) {
-    let fname = userData["FirstName"][Math.floor(Math.random() * (userData["FirstName"].length))];
-    let lname = userData["LastName"][Math.floor(Math.random() * (userData["LastName"].length))];
-    let upiEnd = userData["UPISuffix"][Math.floor(Math.random() * (userData["UPISuffix"].length))];
+    let fname = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))];
+    let lname = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
+    let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random() * (dataSet["UPISuffix"].length))];
     //let mobile = numBetween(7000000000,9999999999);
     currentNode.characters = `${fname}${lname}@${upiEnd}`.toLowerCase();
 }
@@ -180,8 +180,8 @@ function generateCard() {
     //Generate name and add to frame
     const nameLabel = figma.createText();
     nameLabel.characters = "User name:";
-    const fName = userData["FirstName"][Math.floor(Math.random() * (userData["FirstName"].length))];
-    const lName = userData["LastName"][Math.floor(Math.random() * (userData["LastName"].length))];
+    const fName = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))];
+    const lName = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
     const name = figma.createText();
     name.characters = `${fName} ${lName}`;
     newNode.appendChild(nameLabel);
@@ -190,8 +190,8 @@ function generateCard() {
     const emailLabel = figma.createText();
     emailLabel.characters = "Email:";
     const email = figma.createText();
-    let emailDomain = userData["EmailDomain"][Math.floor(Math.random() * (userData["EmailDomain"].length))];
-    let emailEnd = userData["EmailEnd"][Math.floor(Math.random() * (userData["EmailEnd"].length))];
+    let emailDomain = dataSet["EmailDomain"][Math.floor(Math.random() * (dataSet["EmailDomain"].length))];
+    let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random() * (dataSet["EmailEnd"].length))];
     email.characters = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
     newNode.appendChild(emailLabel);
     newNode.appendChild(email);
@@ -199,14 +199,14 @@ function generateCard() {
     const profLabel = figma.createText();
     profLabel.characters = "Profession:";
     const profession = figma.createText();
-    profession.characters = userData["Prof"][Math.floor(Math.random() * (userData["Prof"].length))];
+    profession.characters = dataSet["Prof"][Math.floor(Math.random() * (dataSet["Prof"].length))];
     newNode.appendChild(profLabel);
     newNode.appendChild(profession);
     //Generate city and add to frame
     const cityLabel = figma.createText();
     cityLabel.characters = "City:";
     const city = figma.createText();
-    city.characters = userData["City"][Math.floor(Math.random() * (userData["City"].length))];
+    city.characters = dataSet["City"][Math.floor(Math.random() * (dataSet["City"].length))];
     newNode.appendChild(cityLabel);
     newNode.appendChild(city);
     //Add address here
@@ -214,7 +214,7 @@ function generateCard() {
     const upiLabel = figma.createText();
     upiLabel.characters = "UPI Address:";
     const upi = figma.createText();
-    let upiEnd = userData["UPISuffix"][Math.floor(Math.random() * (userData["UPISuffix"].length))];
+    let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random() * (dataSet["UPISuffix"].length))];
     upi.characters = `${fName}${lName}@${upiEnd}`.toLowerCase();
     newNode.appendChild(upiLabel);
     newNode.appendChild(upi);
@@ -222,7 +222,7 @@ function generateCard() {
     const stateLabel = figma.createText();
     stateLabel.characters = "State:";
     const state = figma.createText();
-    state.characters = userData["State"][Math.floor(Math.random() * (userData["State"].length))];
+    state.characters = dataSet["State"][Math.floor(Math.random() * (dataSet["State"].length))];
     newNode.appendChild(stateLabel);
     newNode.appendChild(state);
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
