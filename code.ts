@@ -1,3 +1,6 @@
+//Made by Abhijit Chirde
+//abhijitchirde.com
+
 
 figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 

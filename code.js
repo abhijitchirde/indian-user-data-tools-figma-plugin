@@ -1,3 +1,5 @@
+//Made by Abhijit Chirde
+//abhijitchirde.com
 figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
 //Data space containing arrays of data
 const dataSet = {
