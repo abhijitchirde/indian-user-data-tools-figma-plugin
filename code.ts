@@ -16,79 +16,81 @@ const dataSet = {
 
     "State" : ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Lakshadweep","Puducherry", "Ladakh"],
 
-    "Andhra Pradesh" : ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Sri Potti Sri Ramulu Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"],
+    //In states arrays: first element is short name useful for driving license. Second element is total number of RTOs to be used for getting max value of driving license RTO. Third element is a postal zone number to use as first letter of that state's PINcode series
 
-    "Arunachal Pradesh" : ["Anjaw", "Changlang", "East", "Siang", "Kurung", "Kumey", "Lohit", "Lower", "Dibang", "Valley", "Lower", "Subansiri", "Papum", "Pare", "Tawang", "Tirap", "Dibang", "Valley", "Upper", "Siang", "Upper", "Subansiri", "West", "Kameng", "West", "Siang"],
+    "Andhra Pradesh" : ["AP","39","5","Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Sri Potti Sri Ramulu Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"],
 
-    "Assam" : ["Baksa", "Barpeta", "Bongaigaon", "Cachar", "Chirang", "Darrang", "Dhemaji", "Dima", "Hasao", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Hailakandi", "Jorhat", "Kamrup", "Kamrup", "Metropolitan", "Karbi", "Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Marigaon", "Nagaon", "Nalbari", "Sibsagar", "Sonitpur", "Tinsukia", "Udalguri"],
+    "Arunachal Pradesh" : ["AR","22","7","Anjaw", "Changlang", "East", "Siang", "Kurung", "Kumey", "Lohit", "Lower", "Dibang", "Valley", "Lower", "Subansiri", "Papum", "Pare", "Tawang", "Tirap", "Dibang", "Valley", "Upper", "Siang", "Upper", "Subansiri", "West", "Kameng", "West", "Siang"],
 
-    "Bihar" : ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East", "Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West", "Champaran", "Chandigarh"],
+    "Assam" : ["AS","34","7","Baksa", "Barpeta", "Bongaigaon", "Cachar", "Chirang", "Darrang", "Dhemaji", "Dima", "Hasao", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Hailakandi", "Jorhat", "Kamrup", "Kamrup", "Metropolitan", "Karbi", "Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Marigaon", "Nagaon", "Nalbari", "Sibsagar", "Sonitpur", "Tinsukia", "Udalguri"],
 
-    "Chhattisgarh" : ["Bastar", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Jashpur", "Janjgir-Champa", "Korba", "Koriya", "Kanker", "Kabirdham", "(Kawardha)", "Mahasamund", "Narayanpur", "Raigarh", "Rajnandgaon", "Raipur", "Surguja"],
+    "Bihar" : ["BR","57","8","Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East", "Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West", "Champaran", "Chandigarh"],
 
-    "Dadra and Nagar Haveli": ["Dadra and Nagar Haveli"],
+    "Chhattisgarh" : ["CG","30","4","Bastar", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Jashpur", "Janjgir-Champa", "Korba", "Koriya", "Kanker", "Kabirdham", "(Kawardha)", "Mahasamund", "Narayanpur", "Raigarh", "Rajnandgaon", "Raipur", "Surguja"],
 
-    "Daman and Diu" : ["Daman", "Diu"],
+    "Dadra and Nagar Haveli": ["DD","1","3","Dadra and Nagar Haveli"],
 
-    "Delhi" : ["Central Delhi","East Delhi","New Delhi","North Delhi","North East Delhi","North West Delhi","South Delhi","South West Delhi","West Delhi"],
+    "Daman and Diu" : ["DD","3","3","Daman", "Diu"],
 
-    "Goa" : ["North Goa", "South Goa"],
+    "Delhi" : ["DL","13","1","Central Delhi","East Delhi","New Delhi","North Delhi","North East Delhi","North West Delhi","South Delhi","South West Delhi","West Delhi"],
 
-    "Gujarat" : ["Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", "Dahod", "The Dangs", "Gandhinagar", "Jamnagar", "Junagadh", "Kutch", "Kheda", "Mehsana", "Narmada", "Navsari", "Patan", "Panchmahal", "Porbandar", "Rajkot", "Sabarkantha", "Surendranagar", "Surat", "Vyara", "Vadodara", "Valsad"],
+    "Goa" : ["GA","12","4","North Goa", "South Goa"],
+
+    "Gujarat" : ["GJ","38","3","Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", "Dahod", "The Dangs", "Gandhinagar", "Jamnagar", "Junagadh", "Kutch", "Kheda", "Mehsana", "Narmada", "Navsari", "Patan", "Panchmahal", "Porbandar", "Rajkot", "Sabarkantha", "Surendranagar", "Surat", "Vyara", "Vadodara", "Valsad"],
     
-    "Haryana" : ["Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurgaon", "Hissar", "Jhajjar", "Jind", "Karnal", "Kaithal", "Kurukshetra", "Mahendragarh", "Mewat", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamuna Nagar"],
+    "Haryana" : ["HR","99","1","Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurgaon", "Hissar", "Jhajjar", "Jind", "Karnal", "Kaithal", "Kurukshetra", "Mahendragarh", "Mewat", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamuna Nagar"],
 
-    "Himachal Pradesh" : ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
+    "Himachal Pradesh" : ["HP","97","1","Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
 
-    "Jammu and Kashmir" : ["Anantnag", "Badgam", "Bandipora", "Baramulla", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kupwara", "Kulgam", "Poonch", "Pulwama", "Rajauri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"],
+    "Jammu and Kashmir" : ["JK","22","1","Anantnag", "Badgam", "Bandipora", "Baramulla", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kupwara", "Kulgam", "Poonch", "Pulwama", "Rajauri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"],
 
-    "Ladakh" : ["Leh", "Kargil"],
+    "Ladakh" : ["LA","2","1","Leh", "Kargil"],
 
-    "Jharkhand" : ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribag", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"],
+    "Jharkhand" : ["JH","24","8","Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribag", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"],
 
-    "Karnataka" : ["Bagalkot", "Bangalore Rural", "Bangalore Urban", "Belgavi", "Bellary", "Bidar", "Bijapur", "Chamarajnagar", "Chikkamagaluru", "Chikkaballapur", "Chitradurga", "Davanagere", "Dharwad", "Dakshina Kannada", "Gadag", "Gulbarga", "Hassan", "Haveri district", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysore", "Raichur", "Shimoga", "Tumkur", "Udupi", "Uttara Kannada", "Ramanagara", "Yadgir"],
+    "Karnataka" : ["KA","71","5","Bagalkot", "Bangalore Rural", "Bangalore Urban", "Belgavi", "Bellary", "Bidar", "Bijapur", "Chamarajnagar", "Chikkamagaluru", "Chikkaballapur", "Chitradurga", "Davanagere", "Dharwad", "Dakshina Kannada", "Gadag", "Gulbarga", "Hassan", "Haveri district", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysore", "Raichur", "Shimoga", "Tumkur", "Udupi", "Uttara Kannada", "Ramanagara", "Yadgir"],
 
-    "Kerala" : ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thrissur", "Thiruvananthapuram", "Wayanad"],
+    "Kerala" : ["KL","99","6","Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thrissur", "Thiruvananthapuram", "Wayanad"],
 
-    "Madhya Pradesh" : ["Alirajpur", "Anuppur", "Ashok Nagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Rewa", "Rajgarh", "Ratlam", "Raisen", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
+    "Madhya Pradesh" : ["MP","74","4","Alirajpur", "Anuppur", "Ashok Nagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Rewa", "Rajgarh", "Ratlam", "Raisen", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
 
-    "Maharashtra" : ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Bhandara", "Beed", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nandurbar", "Nanded", "Nagpur", "Nashik", "Osmanabad", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sindhudurg", "Sangli", "Solapur", "Satara", "Thane", "Wardha", "Washim", "Yavatmal"],
+    "Maharashtra" : ["MH","50","4","Ahmednagar", "Akola", "Amravati", "Aurangabad", "Bhandara", "Beed", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nandurbar", "Nanded", "Nagpur", "Nashik", "Osmanabad", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sindhudurg", "Sangli", "Solapur", "Satara", "Thane", "Wardha", "Washim", "Yavatmal"],
 
-    "Manipur" : ["Bishnupur", "Churachandpur", "Chandel", "Imphal East", "Senapati", "Tamenglong", "Thoubal", "Ukhrul", "Imphal West"],
+    "Manipur" : ["MN","7","7","Bishnupur", "Churachandpur", "Chandel", "Imphal East", "Senapati", "Tamenglong", "Thoubal", "Ukhrul", "Imphal West"],
 
-    "Meghalaya" : ["East Garo Hills", "East Khasi Hills", "Jaintia Hills", "Ri Bhoi", "South Garo Hills", "West Garo Hills", "West Khasi Hills"],
+    "Meghalaya" : ["ML","10","7","East Garo Hills", "East Khasi Hills", "Jaintia Hills", "Ri Bhoi", "South Garo Hills", "West Garo Hills", "West Khasi Hills"],
 
-    "Mizoram" : ["Aizawl", "Champhai", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
+    "Mizoram" : ["MZ","8","7","Aizawl", "Champhai", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
 
-    "Nagaland" : ["Dimapur", "Kohima", "Mokokchung", "Mon", "Phek", "Tuensang", "Wokha", "Zunheboto"],
+    "Nagaland" : ["NL","8","7","Dimapur", "Kohima", "Mokokchung", "Mon", "Phek", "Tuensang", "Wokha", "Zunheboto"],
 
-    "Odisha" : ["Angul", "Boudh", "Bhadrak", "Balangir", "Bargarh", "Balasore", "Cuttack", "Debagarh", "Dhenkanal", "Ganjam", "Gajapati", "Jharsuguda", "Jajpur", "Jagatsinghpur", "Khordha", "Kendujhar", "Kalahandi", "Kandhamal", "Koraput", "Kendrapara", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nuapada", "Nayagarh", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundergarh"],
+    "Odisha" : ["OD","35","7","Angul", "Boudh", "Bhadrak", "Balangir", "Bargarh", "Balasore", "Cuttack", "Debagarh", "Dhenkanal", "Ganjam", "Gajapati", "Jharsuguda", "Jajpur", "Jagatsinghpur", "Khordha", "Kendujhar", "Kalahandi", "Kandhamal", "Koraput", "Kendrapara", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nuapada", "Nayagarh", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundergarh"],
 
-    "Puducherry" : ["Karaikal", "Mahe", "Puducherry", "Yanam"],
+    "Puducherry" : ["PY","5","6","Karaikal", "Mahe", "Puducherry", "Yanam"],
 
-    "Punjab" : ["Amritsar", "Barnala", "Bathinda", "Firozpur", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Sri Muktsar Sahib", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Sangrur", "Nawanshahr", "Tarn Taran"],
+    "Punjab" : ["PB","91","1","Amritsar", "Barnala", "Bathinda", "Firozpur", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Sri Muktsar Sahib", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Sangrur", "Nawanshahr", "Tarn Taran"],
 
-    "Rajasthan" : ["Ajmer", "Alwar", "Bikaner", "Barmer", "Banswara", "Bharatpur", "Baran", "Bundi", "Bhilwara", "Churu", "Chittorgarh", "Dausa", "Dholpur", "Dungapur", "Ganganagar", "Hanumangarh", "Jhunjhunu", "Jalore", "Jodhpur", "Jaipur", "Jaisalmer", "Jhalawar", "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sikar", "SawaiMadhopur", "Sirohi", "Tonk", "Udaipur"],
+    "Rajasthan" : ["RJ","58","3","Ajmer", "Alwar", "Bikaner", "Barmer", "Banswara", "Bharatpur", "Baran", "Bundi", "Bhilwara", "Churu", "Chittorgarh", "Dausa", "Dholpur", "Dungapur", "Ganganagar", "Hanumangarh", "Jhunjhunu", "Jalore", "Jodhpur", "Jaipur", "Jaisalmer", "Jhalawar", "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sikar", "SawaiMadhopur", "Sirohi", "Tonk", "Udaipur"],
 
-    "Sikkim" : ["East Sikkim", "North Sikkim","South Sikkim", "West Sikkim"],
+    "Sikkim" : ["SK","4","7","East Sikkim", "North Sikkim","South Sikkim", "West Sikkim"],
 
-    "Tamilnadu" : ["Ariyalur", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kanchipuram", "Kanyakumari", "Karur", "Madurai", "Nagapattinam", "Nilgiris", "Namakkal", "Perambalur", "Pudukkottai", "Ramanathapuram", "Salem", "Sivaganga", "Tirupur", "Tiruchirappalli", "Theni", "Tirunelveli", "Thanjavur", "Thoothukudi", "Tiruvallur", "Tiruvarur", "Tiruvannamalai", "Vellore", "Viluppuram", "Virudhunagar"],
+    "Tamilnadu" : ["TN","99","6","Ariyalur", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kanchipuram", "Kanyakumari", "Karur", "Madurai", "Nagapattinam", "Nilgiris", "Namakkal", "Perambalur", "Pudukkottai", "Ramanathapuram", "Salem", "Sivaganga", "Tirupur", "Tiruchirappalli", "Theni", "Tirunelveli", "Thanjavur", "Thoothukudi", "Tiruvallur", "Tiruvarur", "Tiruvannamalai", "Vellore", "Viluppuram", "Virudhunagar"],
 
-    "Telangana" : ["Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagitial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal", "Mulugu", "Nagarkurnool", "Narayanpet", "Nalgonda", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal Rural", "Warangal Urban", "Yadadri Bhuvanagiri"],
+    "Telangana" : ["TS","38","5","Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagitial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal", "Mulugu", "Nagarkurnool", "Narayanpet", "Nalgonda", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal Rural", "Warangal Urban", "Yadadri Bhuvanagiri"],
     
-    "Tripura" : ["Dhalai", "North Tripura", "South Tripura", "Khowai", "West Tripura"],
+    "Tripura" : ["TR","8","7","Dhalai", "North Tripura", "South Tripura", "Khowai", "West Tripura"],
 
-    "Uttar Pradesh" : ["Agra", "Prayagraj", "Aligarh", "Ambedkar Nagar", "Auraiya", "Ayodhya", "Azamgarh", "Barabanki", "Budaun", "Bagpat", "Bahraich", "Bijnor", "Ballia", "Banda", "Balrampur", "Bareilly", "Basti", "Bulandshahr", "Chandauli", "Chhatrapati Shahuji Maharaj Nagar", "Chitrakoot", "Deoria", "Etah", "Kanshi Ram Nagar", "Etawah", "Firozabad", "Farrukhabad", "Fatehpur", "Gautam Buddh Nagar", "Gonda", "Ghazipur", "Gorakhpur", "Ghaziabad", "Hamirpur", "Hardoi", "Mahamaya Nagar", "Jhansi", "Jalaun", "Jyotiba Phule Nagar", "Jaunpur", "district", "Ramabai Nagar", "Kannauj", "Kanpur", "Kaushambi", "Kushinagar", "Lalitpur", "Lakhimpur Kheri", "Lucknow", "Mau", "Meerut", "Maharajganj", "Mahoba", "Mirzapur", "Moradabad", "Mainpuri", "Mathura", "Muzaffarnagar", "Panchsheel Nagar", "Pilibhit", "Shamli", "Pratapgarh", "Rampur", "Raebareli", "Saharanpur", "Sitapur", "Shahjahanpur", "Sant Kabir Nagar", "Siddharthnagar", "Sonbhadra", "Sant Ravidas Nagar", "Sultanpur", "Shravasti", "Unnao", "Varanasi"],
+    "Uttar Pradesh" : ["UP","96","2","Agra", "Prayagraj", "Aligarh", "Ambedkar Nagar", "Auraiya", "Ayodhya", "Azamgarh", "Barabanki", "Budaun", "Bagpat", "Bahraich", "Bijnor", "Ballia", "Banda", "Balrampur", "Bareilly", "Basti", "Bulandshahr", "Chandauli", "Chhatrapati Shahuji Maharaj Nagar", "Chitrakoot", "Deoria", "Etah", "Kanshi Ram Nagar", "Etawah", "Firozabad", "Farrukhabad", "Fatehpur", "Gautam Buddh Nagar", "Gonda", "Ghazipur", "Gorakhpur", "Ghaziabad", "Hamirpur", "Hardoi", "Mahamaya Nagar", "Jhansi", "Jalaun", "Jyotiba Phule Nagar", "Jaunpur", "district", "Ramabai Nagar", "Kannauj", "Kanpur", "Kaushambi", "Kushinagar", "Lalitpur", "Lakhimpur Kheri", "Lucknow", "Mau", "Meerut", "Maharajganj", "Mahoba", "Mirzapur", "Moradabad", "Mainpuri", "Mathura", "Muzaffarnagar", "Panchsheel Nagar", "Pilibhit", "Shamli", "Pratapgarh", "Rampur", "Raebareli", "Saharanpur", "Sitapur", "Shahjahanpur", "Sant Kabir Nagar", "Siddharthnagar", "Sonbhadra", "Sant Ravidas Nagar", "Sultanpur", "Shravasti", "Unnao", "Varanasi"],
 
-    "Uttarakhand" : ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
+    "Uttarakhand" : ["UK","20","2","Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
 
-    "West Bengal" : ["Birbhum", "Bankura", "Bardhaman", "Darjeeling", "Dakshin Dinajpur", "Hooghly", "Howrah", "Jalpaiguri", "Cooch Behar", "Kolkata", "Maldah", "Paschim Medinipur", "Purba Medinipur", "Murshidabad", "Nadia", "North 24 Parganas", "South 24 Parganas", "Purulia", "Uttar Dinajpur"],
+    "West Bengal" : ["WB","99","7","Birbhum", "Bankura", "Bardhaman", "Darjeeling", "Dakshin Dinajpur", "Hooghly", "Howrah", "Jalpaiguri", "Cooch Behar", "Kolkata", "Maldah", "Paschim Medinipur", "Purba Medinipur", "Murshidabad", "Nadia", "North 24 Parganas", "South 24 Parganas", "Purulia", "Uttar Dinajpur"],
 
-    "Andaman and Nicobar" : ["Bakultala", "Bambooflat", "Garacharma", "Port Blair", "Prothrapur", "Nicobar"],
+    "Andaman and Nicobar" : ["AN","1","7","Bakultala", "Bambooflat", "Garacharma", "Port Blair", "Prothrapur", "Nicobar"],
 
-    "Lakshadweep" : ["Amini", "Andrott", "Kadmat", "Kalpeni", "Kavaratti", "Minicoy"],
+    "Lakshadweep" : ["LD","9","6","Amini", "Andrott", "Kadmat", "Kalpeni", "Kavaratti", "Minicoy"],
 
-    "Chandigarh" : ["Chandigarh"],
+    "Chandigarh" : ["CH","4","1","Chandigarh"],
     
     "Prof" : ["Doctor", "Software Engineer", "Designer", "3D Animator", "Politician","Ayurvedic Practitioner","Yoga Teacher","Yoga Practitioner","Gym Instructor","Sports Coach","Nutritionist", "Teacher", "Farmer", "Gardener", "Mechanic", "Musician", "Baker", "Glass Manufacturer", "Beautician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Architect", "Builder", "Masonry Worker", "Cable TV Operator", "Trader", "Marketing Professional", "Salesman", "Cane Work", "Carpet Weaver", "Caterer", "Chikankari Worker", "Painter", "Artist", "Cloth Printer", "Artist", "Canteen Owner", "Bartender", "Coaching Service", "Construction Worker", "Courier Manager", "Store Manager", "Dairy Worker", "Data Entry Operator", "Computer Teacher", "Scientist", "Researcher", "Pharmacist", "Physician", "Chemist", "Electrician", "Firework Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweller", "Goldsmith", "Handloom Worker", "Health Servicec", "Driver", "Bus Conductor", "Ticker Collector", "Hotel Manager", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwalla", "Papad Maker", "Petrol Pump Worker", "Potter", "Sculptor", "Murti maker", "Quary Worker", "Rickshaw Owner", "Sawmill Worker", "Shepherd", "Soap Manufacturer", "Perfume Salesman", "Tailor", "Police", "Army Officer", "Navy Officer", "Airforce Officer", "Social Worker", "NGO Volunteer", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Processing", "Furniture Making", "Toddy Tapping", "Toy Making", "Primary Teacher", "Professor", "Welding Service", "Laundry Service", "Tobacco Processing"],
 
@@ -110,7 +112,7 @@ figma.ui.onmessage = msg => {
 
         //Giving notification if no layer is selected
         if(figma.currentPage.selection.length === 0){
-            figma.notify("Please select a text layer", {timeout: 1000});
+            figma.notify("Please select a text layer to add data", {timeout: 1000});
         }
         
         //for all the selected nodes
@@ -118,7 +120,7 @@ figma.ui.onmessage = msg => {
 
             //Giving notification if selected layer is not text
             if(node.type !== 'TEXT'){
-                figma.notify("Please select a text layer", {timeout: 1000});
+                figma.notify("Please select a text layer to add data", {timeout: 1000});
             }
 
             //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
@@ -150,7 +152,7 @@ function separateItem(currentNode, input){
 }
 
 //Function definition to create a full name by appending first and last name
-function fullName(currentNode){
+function generateFullName(currentNode){
     currentNode.characters = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))] + " " + dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
 }
 
@@ -160,13 +162,13 @@ function numBetween(low, high){
 }
 
 //Define function for generating mobile number
-function mobileNumber(currentNode){
+function generateMobileNumber(currentNode){
     let number = numBetween(6000000000,9999999999);         //finding a random 10 digit number for mobile
     currentNode.characters = "+91" + number;
 }
 
 //Define function for generating mobile number
-function passport(currentNode){
+function generatePassport(currentNode){
     //As per rules seen on https://www.geeksforgeeks.org/how-to-validate-indian-passport-number-using-regular-expression/
     let prefix = dataSet["PassPrefix"][Math.floor(Math.random()*(dataSet["PassPrefix"].length))];
     let num1 = numBetween(1,9);
@@ -180,7 +182,7 @@ function passport(currentNode){
 }
 
 //Define function for generating UID number
-function aadharNumber(currentNode){
+function generateAadhar(currentNode){
     let numSet1 = numBetween(1000, 9999);
     let numSet2 = numBetween(1000, 9999); 
     let numSet3 = numBetween(1000, 9999);          
@@ -188,7 +190,7 @@ function aadharNumber(currentNode){
 }
 
 //Define function for generating 16digit VID number
-function aadharVirtual(currentNode){
+function generateAadharVirtual(currentNode){
     let numSet1 = numBetween(1000, 9999);
     let numSet2 = numBetween(1000, 9999); 
     let numSet3 = numBetween(1000, 9999);
@@ -197,7 +199,7 @@ function aadharVirtual(currentNode){
 }
 
 //Define function for generating email
-function randomEmail(currentNode){
+function generateRandomEmail(currentNode){
     let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
     let email = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
@@ -205,7 +207,7 @@ function randomEmail(currentNode){
     currentNode.characters = `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
 }
 
-function randomPINCode(currentNode){
+function generateRandomPINCode(currentNode){
     let pinFirst = Math.floor(Math.random()*8 + 1);
     let pinRemaining = numBetween(10000,99999);             //Finding a random 5 digit number for remaining part of PIN
     currentNode.characters = `${pinFirst}${pinRemaining}`;
@@ -222,16 +224,54 @@ function generateUPI(currentNode){
 
 function generateCity(currentNode){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length))];
+    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
     currentNode.characters = `${city}`;
 }
 
 function generateCityAndState(currentNode){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length))];
+    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
     currentNode.characters = `${city}, ${state}`;
 }
 
+function generateDL(currentNode){
+    let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+    let stateInitials = dataSet[`${state}`][0];
+    let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
+    let year = numBetween(1980,2021);
+    let lastDigits = numBetween(1000000,9999999);
+    if(rtoDigits < 10){
+        currentNode.characters = `${stateInitials}0${rtoDigits}${year}${lastDigits}`;
+    }else{
+        currentNode.characters = `${stateInitials}${rtoDigits}${year}${lastDigits}`;
+    }
+}
+
+function generateDoB(currentNode){
+    let year = numBetween(1950, 2021);
+    let month = numBetween(1, 12);
+    let date = 0;
+    if(month === "02"){
+        if(year % 4 === 0){
+            date = numBetween(1, 29);
+        }else{
+            date = numBetween(1, 28);
+        }
+    }else if(month === 4 || month === 6 || month === 9 || month === 11){
+        date = numBetween(1, 30);
+    }else{
+        date = numBetween(1, 31);
+    } 
+
+    if(month < 10 && date < 10){
+        currentNode.characters = `0${date}/0${month}/${year}`;
+    }else if(month < 10 && date > 10){
+        currentNode.characters = `${date}/0${month}/${year}`;
+    }else if(month > 10 && date > 10){
+        currentNode.characters = `${date}/${month}/${year}`;
+    }
+    
+}
 
 function putTextOnLayer(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
@@ -239,20 +279,26 @@ function putTextOnLayer(currentNode, input){
 
         //If requirement is full-name, we need to attach elements for output
         if(input === "FullName"){
-            fullName(currentNode);
-        }else if(input === "Mobile"){
+            generateFullName(currentNode);
+        }
+        if(input === "DoB"){
+            generateDoB(currentNode);
+        }
+        else if(input === "Mobile"){
             //Generate mobile number using function
-            mobileNumber(currentNode);
-        }else if(input === "UID"){
+            generateMobileNumber(currentNode);
+        }
+        else if(input === "UID"){
             //Generate aadhar number using function
-            aadharNumber(currentNode);
-        }else if(input === "VID"){
+            generateAadhar(currentNode);
+        }
+        else if(input === "VID"){
             //Generate aadhar-virtual number using function
-            aadharVirtual(currentNode);
+            generateAadharVirtual(currentNode);
         }
         else if(input === "Email"){
             //Generate email using function
-            randomEmail(currentNode);
+            generateRandomEmail(currentNode);
         }
         else if(input === "UPI"){
             //Generate email using function
@@ -260,11 +306,17 @@ function putTextOnLayer(currentNode, input){
         }
         else if(input === "Pass"){
             //Generate email using function
-            passport(currentNode);
-        }else if(input === "PIN"){
+            generatePassport(currentNode);
+        }
+        else if(input === "DL"){
+            //Generate email using function
+            generateDL(currentNode);
+        }
+        else if(input === "PIN"){
             //Generate PIN code using function
-            randomPINCode(currentNode);
-        }else if(input === "City"){
+            generateRandomPINCode(currentNode);
+        }
+        else if(input === "City"){
             generateCity(currentNode);
         }
         else if(input === "CityState"){
@@ -284,22 +336,50 @@ function generateCard(){
     const nodes: SceneNode[] = [];
 
     const newNode = figma.createFrame();
-    newNode.resize(300,200);                            //Currently kept the parent frame to 300x200
+
+    //Currently kept the parent frame to 300x200
+    newNode.resize(300,200);                            
+
+
+    //Generate main details of user from arryas and create variables which are dependant on the user names, location (state etc.) to use accross the function
+    const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+    const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    
+    const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
+    const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
+
+    const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+    const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
+
+    const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
+    const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
+    const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+
+    const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+
 
     //Generate mobile number and add to frame
     const mobileLabel = figma.createText();
     mobileLabel.characters = "Mobile Number:";
     const mobile = figma.createText();
-    mobileNumber(mobile);
+    generateMobileNumber(mobile);
     newNode.appendChild(mobileLabel);
     newNode.appendChild(mobile);
+
+    //Generate DoB and add to frame
+    const dobLabel = figma.createText();
+    dobLabel.characters = "Date of Birth:";
+    const dob = figma.createText();
+    generateDoB(dob);
+    newNode.appendChild(dobLabel);
+    newNode.appendChild(dob);
 
 
     //Generate aadhar number and add to frame
     const aadharLabel = figma.createText();
     aadharLabel.characters = "Aadhar Number (UID):";
     const aadhar = figma.createText();
-    aadharNumber(aadhar);
+    generateAadhar(aadhar);
     newNode.appendChild(aadharLabel);
     newNode.appendChild(aadhar);
 
@@ -307,15 +387,13 @@ function generateCard(){
     const passLabel = figma.createText();
     passLabel.characters = "Passport:";
     const pass = figma.createText();
-    passport(pass);
+    generatePassport(pass);
     newNode.appendChild(passLabel);
     newNode.appendChild(pass);
 
     //Generate name and add to frame
     const nameLabel = figma.createText();
-    nameLabel.characters = "User name:";
-    const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    nameLabel.characters = "Name:";
     const name = figma.createText();
     name.characters = `${fName} ${lName}`;
     newNode.appendChild(nameLabel);
@@ -325,9 +403,7 @@ function generateCard(){
     const emailLabel = figma.createText();
     emailLabel.characters = "Email:";
     const email = figma.createText();
-    let emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
-    let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-    email.characters = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+    email.characters = `${userEmail}`;
     newNode.appendChild(emailLabel);
     newNode.appendChild(email);
 
@@ -335,7 +411,7 @@ function generateCard(){
     const profLabel = figma.createText();
     profLabel.characters = "Profession:";
     const profession = figma.createText();
-    profession.characters = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+    profession.characters = `${userProfession}`;
     newNode.appendChild(profLabel);
     newNode.appendChild(profession);
 
@@ -348,8 +424,7 @@ function generateCard(){
     const upiLabel = figma.createText();
     upiLabel.characters = "UPI Address:";
     const upi = figma.createText();
-    let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
-    upi.characters = `${fName}${lName}@${upiEnd}`.toLowerCase();
+    upi.characters = `${userUPI}`;
     newNode.appendChild(upiLabel);
     newNode.appendChild(upi);
 
@@ -357,8 +432,7 @@ function generateCard(){
     const stateLabel = figma.createText();
     stateLabel.characters = "State:";
     const state = figma.createText();
-    const stateText = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-    state.characters = `${stateText}`;
+    state.characters = `${stateName}`;
     newNode.appendChild(stateLabel);
     newNode.appendChild(state);
 
@@ -366,10 +440,22 @@ function generateCard(){
     const cityLabel = figma.createText();
     cityLabel.characters = "City:";
     const city = figma.createText();
-    city.characters = dataSet[`${stateText}`][Math.floor(Math.random()*(dataSet[`${stateText}`].length))];
+    city.characters = `${cityName}`;
     newNode.appendChild(cityLabel);
     newNode.appendChild(city);
 
+    //Generate PIN (random) for user depending on the state and add to card
+    const pinLabel = figma.createText();
+    pinLabel.characters = "PIN Code:";
+    const pin = figma.createText();
+    const pinFirstDigit = dataSet[`${stateName}`][2];
+    const pinRemainingDigits = numBetween(10000,99999);
+    pin.characters = `${pinFirstDigit}${pinRemainingDigits}`;
+    newNode.appendChild(pinLabel);
+    newNode.appendChild(pin);
+
+    //Generate user Driving license
+    
 
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
     figma.currentPage.appendChild(newNode);
