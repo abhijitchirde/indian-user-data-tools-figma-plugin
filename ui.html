@@ -4,7 +4,7 @@
   .small-button {
     font-size: smaller;
     margin: 2% 1% 2%;
-    width: 160px;
+    width: 150px;
     display: inline;
   }
 </style>
@@ -25,10 +25,12 @@
     <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="CityState">City, State (Pair)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Pass">Indian Passport</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI Address (Payment)</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="DL">Driving License</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI (Payment)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
   </div>
@@ -99,6 +101,11 @@ document.getElementById('City').onclick = () => {
 
 document.getElementById('State').onclick = () => {
   const inputValue = "State";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('CityState').onclick = () => {
+  const inputValue = "CityState";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
