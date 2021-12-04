@@ -2,6 +2,7 @@
 //abhijitchirde.com
 
 figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
+figma.loadFontAsync({family: 'Roboto', style: 'Medium'});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -96,7 +97,24 @@ const dataSet = {
 
     "PassPrefix" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],
 
-    "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "indux", "federal", "uco", "citi", "dbs", "sib", "db", "psb"]
+    "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "indux", "federal", "uco", "citi", "dbs", "sib", "db", "psb"],
+
+    "TradSpotNo" : ["House No.", "Plot No.", "Farm No.", "Shop No."],
+
+    "TradLandmark" : ["Hanuman Mandir", "Radhe Shyam mandir", "Life Hospital", "Pipal Tree", "Old Townhall"],
+
+    "LandmarkConjunction" : ["Near", "In front of", "Behind", "Opposite", "Next  to"],
+
+    "TradAddressVillage" : ["Rampur", "Tenali", "Vijayapura", "Ner", "Shamal"],
+
+    "UrbSpotNo" : ["Flat No.", "House No.", "Plot No.", "Shop No.", "Office No."],
+
+    "UrbLandmark" : ["Town Hall", "Devi Temple", "City School", "Metro Station", "Airport", "Empire Mall", "Shopping Complex", "Bakery", "Soap Factory"],
+
+    "UrbAreaNo" : ["Sector", "Ward No.", "Block No.", "Part No.", "Township No.", "Complex No.", "Building No."],
+
+    "UrbAddressSuburb" : ["Airoli", "Kharghar", "Chandni", "Pimpri", "Andheri", "Dumdum", "Marina", "Devghat"],
+
 }
 
 
@@ -148,12 +166,15 @@ function setFont(currentNode){
 
 //Function definition to put individual date item on layer based on random array calling
 function separateItem(currentNode, input){
+
     currentNode.characters = dataSet[`${input}`][Math.floor(Math.random()*(dataSet[`${input}`].length))];
 }
 
 //Function definition to create a full name by appending first and last name
 function generateFullName(currentNode){
-    currentNode.characters = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))] + " " + dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    let first = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+    let last = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    currentNode.characters = `${first} ${last}`;
 }
 
 //Defining function for finding a number in range
@@ -214,7 +235,7 @@ function generateRandomPINCode(currentNode){
 }
 
 
-function generateUPI(currentNode){
+function generateRandomUPI(currentNode){
     let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
     let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
@@ -228,13 +249,62 @@ function generateCity(currentNode){
     currentNode.characters = `${city}`;
 }
 
+function generateState(currentNode){
+    let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+    currentNode.characters = `${state}`;
+}
+
 function generateCityAndState(currentNode){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
     currentNode.characters = `${city}, ${state}`;
 }
 
-function generateDL(currentNode){
+function generateRandomTradAddress(currentNode){
+    let spotNo = dataSet["TradSpotNo"][Math.floor(Math.random()*(dataSet["TradSpotNo"].length))];
+    let num1 = numBetween(1,99);
+    let landmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
+    let landmark = dataSet["TradLandmark"][Math.floor(Math.random()*(dataSet["TradLandmark"].length))];
+    let village = dataSet["TradAddressVillage"][Math.floor(Math.random()*(dataSet["TradAddressVillage"].length))];
+    let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
+    let pinFirstDigit = dataSet[`${state}`][2];
+    let pinRemainingDigits = numBetween(10000,99999);
+    currentNode.characters = `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${village}, Dist. ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
+}
+
+function generateRandomUrbAddress(currentNode){
+    let spotNo = dataSet["UrbSpotNo"][Math.floor(Math.random()*(dataSet["UrbSpotNo"].length))];
+    let num1 = numBetween(1,99);
+    let landmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
+    let landmark = dataSet["UrbLandmark"][Math.floor(Math.random()*(dataSet["UrbLandmark"].length))];
+    let areaNo = dataSet["UrbAreaNo"][Math.floor(Math.random()*(dataSet["UrbAreaNo"].length))];
+    let num2 = numBetween(1,99);
+    let subUrb = dataSet["UrbAddressSuburb"][Math.floor(Math.random()*(dataSet["UrbAddressSuburb"].length))];
+    let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+    let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
+    let pinFirstDigit = dataSet[`${state}`][2];
+    let pinRemainingDigits = numBetween(10000,99999);
+    currentNode.characters = `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${areaNo} ${num2}, ${subUrb}, ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
+}
+
+function generateProf(currentNode){
+    let prof = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+    currentNode.characters = `${prof}`;
+}
+
+function generateFirstName(currentNode){
+    let firstName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+    currentNode.characters = `${firstName}`;
+}
+
+function generateLastName(currentNode){
+    let lastName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    currentNode.characters = `${lastName}`;
+}
+
+
+function generateRandomDL(currentNode){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let stateInitials = dataSet[`${state}`][0];
     let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
@@ -302,7 +372,7 @@ function putTextOnLayer(currentNode, input){
         }
         else if(input === "UPI"){
             //Generate email using function
-            generateUPI(currentNode);
+            generateRandomUPI(currentNode);
         }
         else if(input === "Pass"){
             //Generate email using function
@@ -310,7 +380,7 @@ function putTextOnLayer(currentNode, input){
         }
         else if(input === "DL"){
             //Generate email using function
-            generateDL(currentNode);
+            generateRandomDL(currentNode);
         }
         else if(input === "PIN"){
             //Generate PIN code using function
@@ -319,13 +389,26 @@ function putTextOnLayer(currentNode, input){
         else if(input === "City"){
             generateCity(currentNode);
         }
+        else if(input === "State"){
+            generateState(currentNode);
+        }
+        else if(input === "Prof"){
+            generateProf(currentNode);
+        }
         else if(input === "CityState"){
             generateCityAndState(currentNode);
         }
-        //Otherwise for single piece of data from array, we can directly call the dataspace array's random element with help of input messsage as string input. That's why we used msg inputs and array names same, and used arrays as a large object of array
-        //This can work for firstname, lastname, city, state, profession
-        else{
-            separateItem(currentNode, input);
+        else if(input === "FirstName"){
+            generateFirstName(currentNode);
+        }
+        else if(input === "LastName"){
+            generateLastName(currentNode);
+        }
+        else if(input === "TradAddress"){
+            generateRandomTradAddress(currentNode);
+        }
+        else if(input === "UrbAddress"){
+            generateRandomUrbAddress(currentNode);
         }
     }
 }
@@ -336,9 +419,7 @@ function generateCard(){
     const nodes: SceneNode[] = [];
 
     const newNode = figma.createFrame();
-
-    //Currently kept the parent frame to 300x200
-    newNode.resize(300,200);                            
+    newNode.resize(300,200);                                //Currently kept the parent frame to 300x200        
 
 
     //Generate main details of user from arryas and create variables which are dependant on the user names, location (state etc.) to use accross the function
@@ -363,6 +444,8 @@ function generateCard(){
     mobileLabel.characters = "Mobile Number:";
     const mobile = figma.createText();
     generateMobileNumber(mobile);
+    cardLabelTextStyle(mobileLabel);
+    cardContentTextStyle(mobile);
     newNode.appendChild(mobileLabel);
     newNode.appendChild(mobile);
 
@@ -371,6 +454,8 @@ function generateCard(){
     dobLabel.characters = "Date of Birth:";
     const dob = figma.createText();
     generateDoB(dob);
+    cardLabelTextStyle(dobLabel);
+    cardContentTextStyle(dob);
     newNode.appendChild(dobLabel);
     newNode.appendChild(dob);
 
@@ -380,6 +465,8 @@ function generateCard(){
     aadharLabel.characters = "Aadhar Number (UID):";
     const aadhar = figma.createText();
     generateAadhar(aadhar);
+    cardLabelTextStyle(aadharLabel);
+    cardContentTextStyle(aadhar);
     newNode.appendChild(aadharLabel);
     newNode.appendChild(aadhar);
 
@@ -388,6 +475,8 @@ function generateCard(){
     passLabel.characters = "Passport:";
     const pass = figma.createText();
     generatePassport(pass);
+    cardLabelTextStyle(passLabel);
+    cardContentTextStyle(pass);
     newNode.appendChild(passLabel);
     newNode.appendChild(pass);
 
@@ -396,6 +485,8 @@ function generateCard(){
     nameLabel.characters = "Name:";
     const name = figma.createText();
     name.characters = `${fName} ${lName}`;
+    cardLabelTextStyle(nameLabel);
+    cardContentTextStyle(name);
     newNode.appendChild(nameLabel);
     newNode.appendChild(name);
 
@@ -404,6 +495,8 @@ function generateCard(){
     emailLabel.characters = "Email:";
     const email = figma.createText();
     email.characters = `${userEmail}`;
+    cardLabelTextStyle(emailLabel);
+    cardContentTextStyle(email);
     newNode.appendChild(emailLabel);
     newNode.appendChild(email);
 
@@ -412,11 +505,13 @@ function generateCard(){
     profLabel.characters = "Profession:";
     const profession = figma.createText();
     profession.characters = `${userProfession}`;
+    cardLabelTextStyle(profLabel);
+    cardContentTextStyle(profession);
     newNode.appendChild(profLabel);
     newNode.appendChild(profession);
 
 
-    //Add address here
+    //Add trad and urban address here
 
     
 
@@ -425,6 +520,8 @@ function generateCard(){
     upiLabel.characters = "UPI Address:";
     const upi = figma.createText();
     upi.characters = `${userUPI}`;
+    cardLabelTextStyle(upiLabel);
+    cardContentTextStyle(upi);
     newNode.appendChild(upiLabel);
     newNode.appendChild(upi);
 
@@ -433,6 +530,8 @@ function generateCard(){
     stateLabel.characters = "State:";
     const state = figma.createText();
     state.characters = `${stateName}`;
+    cardLabelTextStyle(stateLabel);
+    cardContentTextStyle(state);
     newNode.appendChild(stateLabel);
     newNode.appendChild(state);
 
@@ -441,6 +540,8 @@ function generateCard(){
     cityLabel.characters = "City:";
     const city = figma.createText();
     city.characters = `${cityName}`;
+    cardLabelTextStyle(cityLabel);
+    cardContentTextStyle(city);
     newNode.appendChild(cityLabel);
     newNode.appendChild(city);
 
@@ -451,10 +552,28 @@ function generateCard(){
     const pinFirstDigit = dataSet[`${stateName}`][2];
     const pinRemainingDigits = numBetween(10000,99999);
     pin.characters = `${pinFirstDigit}${pinRemainingDigits}`;
+    cardLabelTextStyle(pinLabel);
+    cardContentTextStyle(pin);
     newNode.appendChild(pinLabel);
     newNode.appendChild(pin);
 
     //Generate user Driving license
+    const dlLabel = figma.createText();
+    dlLabel.characters = "Driving License:";
+    const dl = figma.createText();
+    const stateInitials = dataSet[`${stateName}`][0];
+    const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
+    const year = numBetween(1980,2021);
+    const lastDigits = numBetween(1000000,9999999);
+    if(rtoDigits < 10){
+        dl.characters = `${stateInitials}0${rtoDigits}${year}${lastDigits}`;
+    }else{
+        dl.characters = `${stateInitials}${rtoDigits}${year}${lastDigits}`;
+    }
+    cardLabelTextStyle(dlLabel);
+    cardContentTextStyle(dl);
+    newNode.appendChild(dlLabel);
+    newNode.appendChild(dl);
     
 
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
@@ -465,6 +584,24 @@ function generateCard(){
 }
 
 
+function cardLabelTextStyle(inputNode){
+    inputNode.fontSize = 10;
+    inputNode.fills = [
+        {
+          type: "SOLID",
+          color: { r: 0.5, g: 0.5, b: 0.5 },
+        }
+      ];
+}
 
+function cardContentTextStyle(inputNode){
+    inputNode.fontSize = 14;
+    inputNode.fills = [
+        {
+          type: "SOLID",
+          color: { r: 0.4, g: 0.6, b: 0.7 },
+        }
+      ];
+}
 
 
