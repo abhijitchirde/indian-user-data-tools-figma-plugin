@@ -49,6 +49,7 @@ const dataSet = {
     "Chandigarh": ["CH", "4", "1", "Chandigarh"],
     "Prof": ["Doctor", "Software Engineer", "Designer", "3D Animator", "Politician", "Ayurvedic Practitioner", "Yoga Teacher", "Yoga Practitioner", "Gym Instructor", "Sports Coach", "Nutritionist", "Teacher", "Farmer", "Gardener", "Mechanic", "Musician", "Baker", "Glass Manufacturer", "Beautician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Architect", "Builder", "Masonry Worker", "Cable TV Operator", "Trader", "Marketing Professional", "Salesman", "Cane Work", "Carpet Weaver", "Caterer", "Chikankari Worker", "Painter", "Artist", "Cloth Printer", "Artist", "Canteen Owner", "Bartender", "Coaching Service", "Construction Worker", "Courier Manager", "Store Manager", "Dairy Worker", "Data Entry Operator", "Computer Teacher", "Scientist", "Researcher", "Pharmacist", "Physician", "Chemist", "Electrician", "Firework Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweller", "Goldsmith", "Handloom Worker", "Health Servicec", "Driver", "Bus Conductor", "Ticker Collector", "Hotel Manager", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwalla", "Papad Maker", "Petrol Pump Worker", "Potter", "Sculptor", "Murti maker", "Quary Worker", "Rickshaw Owner", "Sawmill Worker", "Shepherd", "Soap Manufacturer", "Perfume Salesman", "Tailor", "Police", "Army Officer", "Navy Officer", "Airforce Officer", "Social Worker", "NGO Volunteer", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Processing", "Furniture Making", "Toddy Tapping", "Toy Making", "Primary Teacher", "Professor", "Welding Service", "Laundry Service", "Tobacco Processing"],
     "PassPrefix": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],
+    "Alphabets": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
     "UPISuffix": ["jio", "upi", "apl", "okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "indux", "federal", "uco", "citi", "dbs", "sib", "db", "psb"],
     "TradSpotNo": ["House No.", "Plot No.", "Farm No.", "Shop No."],
     "TradLandmark": ["Hanuman Mandir", "Radhe Shyam mandir", "Life Hospital", "Pipal Tree", "Old Townhall"],
@@ -224,6 +225,20 @@ function generateRandomDL(currentNode) {
         currentNode.characters = `${stateInitials}${rtoDigits}${year}${lastDigits}`;
     }
 }
+function generateRandomRC(currentNode) {
+    let state = dataSet["State"][Math.floor(Math.random() * (dataSet["State"].length))];
+    let stateInitials = dataSet[`${state}`][0];
+    let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
+    let letter1 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    let letter2 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    let lastDigits = numBetween(1000, 9999);
+    if (rtoDigits < 10) {
+        currentNode.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${lastDigits}`;
+    }
+    else {
+        currentNode.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${lastDigits}`;
+    }
+}
 function generateDoB(currentNode) {
     let year = numBetween(1950, 2021);
     let month = numBetween(1, 12);
@@ -289,6 +304,10 @@ function putTextOnLayer(currentNode, input) {
         else if (input === "DL") {
             //Generate email using function
             generateRandomDL(currentNode);
+        }
+        else if (input === "RC") {
+            //Generate email using function
+            generateRandomRC(currentNode);
         }
         else if (input === "PIN") {
             //Generate PIN code using function
@@ -456,6 +475,23 @@ function generateCard() {
     cardContentTextStyle(dl);
     newNode.appendChild(dlLabel);
     newNode.appendChild(dl);
+    //Generate a vehicle registration number
+    const rcLabel = figma.createText();
+    rcLabel.characters = "Vehicle Registration:";
+    const rc = figma.createText();
+    const letter1 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    const letter2 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    const endDigits = numBetween(1000, 9999);
+    if (rtoDigits < 10) {
+        rc.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${endDigits}`;
+    }
+    else {
+        rc.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${endDigits}`;
+    }
+    cardLabelTextStyle(rcLabel);
+    cardContentTextStyle(rc);
+    newNode.appendChild(rcLabel);
+    newNode.appendChild(rc);
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
     figma.currentPage.appendChild(newNode);
     nodes.push(newNode);
