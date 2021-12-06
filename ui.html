@@ -37,6 +37,7 @@
     <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Pass">Indian Passport</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="DL">Driving License</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="RC">Vehicle Registration</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI (Payment)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
@@ -133,6 +134,11 @@ document.getElementById('Pass').onclick = () => {
 
 document.getElementById('DL').onclick = () => {
   const inputValue = "DL";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
+
+document.getElementById('RC').onclick = () => {
+  const inputValue = "RC";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
