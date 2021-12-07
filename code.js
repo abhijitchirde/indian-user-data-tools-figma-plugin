@@ -61,7 +61,7 @@ const dataSet = {
     "UrbAddressSuburb": ["Airoli", "Kharghar", "Chandni", "Pimpri", "Andheri", "Dumdum", "Marina", "Devghat"],
 };
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 580, height: 600 });
+figma.showUI(__html__, { width: 650, height: 620 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
@@ -76,7 +76,6 @@ figma.ui.onmessage = msg => {
             if (node.type !== 'TEXT') {
                 figma.notify("Please select a text layer to add data", { timeout: 1000 });
             }
-            //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
             setFont(node);
             //Calling function to put requested data on text layer
             putTextOnLayer(node, msg.inputValue);
@@ -84,18 +83,16 @@ figma.ui.onmessage = msg => {
     }
     if (msg.type === "Generate") {
         //Calling function to create a user data card and append on canvas
-        generateCard();
+        // generateCard();
+        console.log(msg.chkInput);
     }
 };
 //Setting fontname of selected node
 function setFont(currentNode) {
+    //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
     if (currentNode.type === "TEXT") {
         currentNode.fontName = { family: 'Roboto', style: 'Regular' };
     }
-}
-//Function definition to put individual date item on layer based on random array calling
-function separateItem(currentNode, input) {
-    currentNode.characters = dataSet[`${input}`][Math.floor(Math.random() * (dataSet[`${input}`].length))];
 }
 //Function definition to create a full name by appending first and last name
 function generateFullName(currentNode) {
@@ -351,7 +348,7 @@ function generateCard() {
     const nodes = [];
     const newNode = figma.createFrame();
     newNode.resize(300, 200); //Currently kept the parent frame to 300x200        
-    //Generate main details of user from arryas and create variables which are dependant on the user names, location (state etc.) to use accross the function
+    //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
     const fName = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))];
     const lName = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
     const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random() * (dataSet["UPISuffix"].length))];
@@ -513,6 +510,14 @@ function generateCard() {
     cardContentTextStyle(rc);
     newNode.appendChild(rcLabel);
     newNode.appendChild(rc);
+    //Testing autolayout possibilities. Working!
+    // const newTestNode = figma.createFrame();
+    // newTestNode.appendChild(rcLabel);
+    // newTestNode.appendChild(rc);
+    // newTestNode.layoutMode = "VERTICAL";
+    // newTestNode.itemSpacing = 15;
+    // figma.currentPage.appendChild(newTestNode);
+    // nodes.push(newTestNode);
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
     figma.currentPage.appendChild(newNode);
     nodes.push(newNode);
