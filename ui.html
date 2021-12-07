@@ -26,6 +26,7 @@
     <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="DoB">Date of Birth</button>
+    <button class="btn btn-outline-dark btn-sm small-button" id="Age">Age</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
     <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
@@ -81,6 +82,10 @@ document.getElementById('DoB').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+document.getElementById('Age').onclick = () => {
+  const inputValue = "Age";
+  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+}
 
 document.getElementById('Email').onclick = () => {
   const inputValue = "Email";
