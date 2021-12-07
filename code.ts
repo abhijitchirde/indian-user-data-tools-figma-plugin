@@ -154,8 +154,7 @@ figma.ui.onmessage = msg => {
     
     if(msg.type === "Generate"){
         //Calling function to create a user data card and append on canvas
-        // generateCard();
-        console.log(msg.chkInput);
+        generateCard(msg.chkInput);
     }  
 }
 
@@ -328,7 +327,7 @@ function generateRandomRC(currentNode){
     }
 }
 
-function generateDoB(currentNode){
+function generateRandomDoB(){
     let year = numBetween(1935, 2006);
     let month = numBetween(1, 12);
     let date = 0;
@@ -345,11 +344,11 @@ function generateDoB(currentNode){
     } 
 
     if(month < 10 && date < 10){
-        currentNode.characters = `0${date}/0${month}/${year}`;
+        return `0${date}/0${month}/${year}`;
     }else if(month < 10 && date > 10){
-        currentNode.characters = `${date}/0${month}/${year}`;
+        return `${date}/0${month}/${year}`;
     }else if(month > 10 && date > 10){
-        currentNode.characters = `${date}/${month}/${year}`;
+        return `${date}/${month}/${year}`;
     }
 }
 
@@ -368,7 +367,7 @@ function putTextOnLayer(currentNode, input){
             generateFullName(currentNode);
         }
         else if(input === "DoB"){
-            generateDoB(currentNode);
+            currentNode.characters =  generateRandomDoB();
         }
         else if(input === "Age"){
             generateRandomAge(currentNode);
@@ -437,7 +436,7 @@ function putTextOnLayer(currentNode, input){
 }
 
 //Function for generating a new card with user details and appending it on the canvas
-function generateCard(){
+function generateCard(incomingMsg){
 
     const nodes: SceneNode[] = [];
 
@@ -448,189 +447,245 @@ function generateCard(){
     //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
     const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    
     const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
     const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
-
     const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
-
     const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
     const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
     const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
-
     const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+    const stateInitials = dataSet[`${stateName}`][0];
+    const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
+    const dobText = generateRandomDoB();
 
+    if(incomingMsg.MobileValue === true){
+        //Generate mobile number and add to frame
+        const mobileLabel = figma.createText();
+        mobileLabel.characters = "Mobile Number";
+        const mobile = figma.createText();
+        generateMobileNumber(mobile);
+        cardLabelTextStyle(mobileLabel);
+        cardContentTextStyle(mobile);
+        newNode.appendChild(mobileLabel);
+        newNode.appendChild(mobile);
+    }
+    
 
-    //Generate mobile number and add to frame
-    const mobileLabel = figma.createText();
-    mobileLabel.characters = "Mobile Number:";
-    const mobile = figma.createText();
-    generateMobileNumber(mobile);
-    cardLabelTextStyle(mobileLabel);
-    cardContentTextStyle(mobile);
-    newNode.appendChild(mobileLabel);
-    newNode.appendChild(mobile);
+    if(incomingMsg.DoBValue === true){
+        //Generate date of birth randomly
+        const dob = figma.createText();
+        dob.characters = dobText;
+        const dobLabel = figma.createText();
+        dobLabel.characters = "Date of Birth";
+        cardLabelTextStyle(dobLabel);
+        cardContentTextStyle(dob);
+        newNode.appendChild(dobLabel);
+        newNode.appendChild(dob);
+    }
 
-    //Generate DoB and add to frame
-    const dobLabel = figma.createText();
-    dobLabel.characters = "Date of Birth:";
-    const dob = figma.createText();
-    generateDoB(dob);
-    cardLabelTextStyle(dobLabel);
-    cardContentTextStyle(dob);
-    newNode.appendChild(dobLabel);
-    newNode.appendChild(dob);
+    if(incomingMsg.AgeValue === true){
+        //Generate age from DoB above
+        const ageLabel = figma.createText();
+        ageLabel.characters = "Age";
+        const age = figma.createText();
+        const yearText = dobText[6] + dobText[7] + dobText[8] + dobText[9];
+        const birthYear = parseInt(yearText, 10);
+        const curretTime = new Date();
+        const currentYear = curretTime.getFullYear();
+        const currentAge = currentYear - birthYear;
+        age.characters = `${currentAge}`;
+        cardLabelTextStyle(ageLabel);
+        cardContentTextStyle(age);
+        newNode.appendChild(ageLabel);
+        newNode.appendChild(age);
+    }
+   
 
-    //Generate age from DoB above
-    const ageLabel = figma.createText();
-    ageLabel.characters = "Age:";
-    const yearText = dob.characters[6] + dob.characters[7] + dob.characters[8] + dob.characters[9];
-    const birthYear = parseInt(yearText, 10);
-    const curretTime = new Date();
-    const currentYear = curretTime.getFullYear();
-    const currentAge = currentYear - birthYear;
-    const age = figma.createText();
-    age.characters = `${currentAge}`;
-    cardLabelTextStyle(ageLabel);
-    cardContentTextStyle(age);
-    newNode.appendChild(ageLabel);
-    newNode.appendChild(age);
+    if(incomingMsg.UIDValue === true){
+        //Generate aadhar number and add to frame
+        const aadharLabel = figma.createText();
+        aadharLabel.characters = "Aadhar Number (UID)";
+        const aadhar = figma.createText();
+        generateAadhar(aadhar);
+        cardLabelTextStyle(aadharLabel);
+        cardContentTextStyle(aadhar);
+        newNode.appendChild(aadharLabel);
+        newNode.appendChild(aadhar);
+    }
+   
+    if(incomingMsg.PassValue === true){
+        //Generate passport number and add to frame
+        const passLabel = figma.createText();
+        passLabel.characters = "Passport";
+        const pass = figma.createText();
+        generatePassport(pass);
+        cardLabelTextStyle(passLabel);
+        cardContentTextStyle(pass);
+        newNode.appendChild(passLabel);
+        newNode.appendChild(pass);
+    }
 
+    if(incomingMsg.FullNameValue === true){
+        //Generate fullname and add to frame
+        const nameLabel = figma.createText();
+        nameLabel.characters = "Name";
+        const name = figma.createText();
+        name.characters = `${fName} ${lName}`;
+        cardLabelTextStyle(nameLabel);
+        cardContentTextStyle(name);
+        newNode.appendChild(nameLabel);
+        newNode.appendChild(name);
+    }
 
-    //Generate aadhar number and add to frame
-    const aadharLabel = figma.createText();
-    aadharLabel.characters = "Aadhar Number (UID):";
-    const aadhar = figma.createText();
-    generateAadhar(aadhar);
-    cardLabelTextStyle(aadharLabel);
-    cardContentTextStyle(aadhar);
-    newNode.appendChild(aadharLabel);
-    newNode.appendChild(aadhar);
+    if(incomingMsg.FirstNameValue === true){
+        //Generate firstname and add to frame
+        const firstnameLabel = figma.createText();
+        firstnameLabel.characters = "First Name";
+        const firstname = figma.createText();
+        firstname.characters = `${fName}`;
+        cardLabelTextStyle(firstnameLabel);
+        cardContentTextStyle(firstname);
+        newNode.appendChild(firstnameLabel);
+        newNode.appendChild(firstname);
+    }
 
-    //Generate passport number and add to frame
-    const passLabel = figma.createText();
-    passLabel.characters = "Passport:";
-    const pass = figma.createText();
-    generatePassport(pass);
-    cardLabelTextStyle(passLabel);
-    cardContentTextStyle(pass);
-    newNode.appendChild(passLabel);
-    newNode.appendChild(pass);
+    if(incomingMsg.LastNameValue === true){
+         //Generate firstname and add to frame
+         const lastnameLabel = figma.createText();
+         lastnameLabel.characters = "Last Name";
+         const lastname = figma.createText();
+         lastname.characters = `${lName}`;
+         cardLabelTextStyle(lastnameLabel);
+         cardContentTextStyle(lastname);
+         newNode.appendChild(lastnameLabel);
+         newNode.appendChild(lastname);
+    }
+    
+    if(incomingMsg.EmailValue === true){
+         //Generate email for same name and add to frame
+        const emailLabel = figma.createText();
+        emailLabel.characters = "Email";
+        const email = figma.createText();
+        email.characters = `${userEmail}`;
+        cardLabelTextStyle(emailLabel);
+        cardContentTextStyle(email);
+        newNode.appendChild(emailLabel);
+        newNode.appendChild(email);
+    }
 
-    //Generate name and add to frame
-    const nameLabel = figma.createText();
-    nameLabel.characters = "Name:";
-    const name = figma.createText();
-    name.characters = `${fName} ${lName}`;
-    cardLabelTextStyle(nameLabel);
-    cardContentTextStyle(name);
-    newNode.appendChild(nameLabel);
-    newNode.appendChild(name);
+   if(incomingMsg.ProfValue === true){
+        //Generate profession and add to frame
+        const profLabel = figma.createText();
+        profLabel.characters = "Profession";
+        const profession = figma.createText();
+        profession.characters = `${userProfession}`;
+        cardLabelTextStyle(profLabel);
+        cardContentTextStyle(profession);
+        newNode.appendChild(profLabel);
+        newNode.appendChild(profession);
+   }
 
-    //Generate email for same name and add to frame
-    const emailLabel = figma.createText();
-    emailLabel.characters = "Email:";
-    const email = figma.createText();
-    email.characters = `${userEmail}`;
-    cardLabelTextStyle(emailLabel);
-    cardContentTextStyle(email);
-    newNode.appendChild(emailLabel);
-    newNode.appendChild(email);
-
-    //Generate profession and add to frame
-    const profLabel = figma.createText();
-    profLabel.characters = "Profession:";
-    const profession = figma.createText();
-    profession.characters = `${userProfession}`;
-    cardLabelTextStyle(profLabel);
-    cardContentTextStyle(profession);
-    newNode.appendChild(profLabel);
-    newNode.appendChild(profession);
+    
 
 
     //Add trad and urban address here
 
 
 
+    if(incomingMsg.UPIValue === true){
+        //Generate UPI for same name and add to frame
+        const upiLabel = figma.createText();
+        upiLabel.characters = "UPI Address";
+        const upi = figma.createText();
+        upi.characters = `${userUPI}`;
+        cardLabelTextStyle(upiLabel);
+        cardContentTextStyle(upi);
+        newNode.appendChild(upiLabel);
+        newNode.appendChild(upi);
+    }
+
+    
+    if(incomingMsg.StateValue === true){
+        //Generate state and add to frame
+        const stateLabel = figma.createText();
+        stateLabel.characters = "State";
+        const state = figma.createText();
+        state.characters = `${stateName}`;
+        cardLabelTextStyle(stateLabel);
+        cardContentTextStyle(state);
+        newNode.appendChild(stateLabel);
+        newNode.appendChild(state);
+    }
     
 
-    //Generate UPI for same name and add to frame
-    const upiLabel = figma.createText();
-    upiLabel.characters = "UPI Address:";
-    const upi = figma.createText();
-    upi.characters = `${userUPI}`;
-    cardLabelTextStyle(upiLabel);
-    cardContentTextStyle(upi);
-    newNode.appendChild(upiLabel);
-    newNode.appendChild(upi);
-
-    //Generate state and add to frame
-    const stateLabel = figma.createText();
-    stateLabel.characters = "State:";
-    const state = figma.createText();
-    state.characters = `${stateName}`;
-    cardLabelTextStyle(stateLabel);
-    cardContentTextStyle(state);
-    newNode.appendChild(stateLabel);
-    newNode.appendChild(state);
-
-    //Generate city and add to frame (it depends on the stateText generated above)
-    const cityLabel = figma.createText();
-    cityLabel.characters = "City:";
-    const city = figma.createText();
-    city.characters = `${cityName}`;
-    cardLabelTextStyle(cityLabel);
-    cardContentTextStyle(city);
-    newNode.appendChild(cityLabel);
-    newNode.appendChild(city);
-
-    //Generate PIN (random) for user depending on the state and add to card
-    const pinLabel = figma.createText();
-    pinLabel.characters = "PIN Code:";
-    const pin = figma.createText();
-    const pinFirstDigit = dataSet[`${stateName}`][2];
-    const pinRemainingDigits = numBetween(10000,99999);
-    pin.characters = `${pinFirstDigit}${pinRemainingDigits}`;
-    cardLabelTextStyle(pinLabel);
-    cardContentTextStyle(pin);
-    newNode.appendChild(pinLabel);
-    newNode.appendChild(pin);
-
-    //Generate user Driving license
-    const dlLabel = figma.createText();
-    dlLabel.characters = "Driving License:";
-    const dl = figma.createText();
-    const stateInitials = dataSet[`${stateName}`][0];
-    const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
-    const licenseYear = numBetween(1980,2021);
-    const lastDigits = numBetween(1000000,9999999);
-    if(rtoDigits < 10){
-        dl.characters = `${stateInitials}0${rtoDigits}${licenseYear}${lastDigits}`;
-    }else{
-        dl.characters = `${stateInitials}${rtoDigits}${licenseYear}${lastDigits}`;
+    if(incomingMsg.CityValue === true){
+        //Generate city and add to frame (it depends on the stateText generated above)
+        const cityLabel = figma.createText();
+        cityLabel.characters = "City";
+        const city = figma.createText();
+        city.characters = `${cityName}`;
+        cardLabelTextStyle(cityLabel);
+        cardContentTextStyle(city);
+        newNode.appendChild(cityLabel);
+        newNode.appendChild(city);
     }
-    cardLabelTextStyle(dlLabel);
-    cardContentTextStyle(dl);
-    newNode.appendChild(dlLabel);
-    newNode.appendChild(dl);
 
-    //Generate a vehicle registration number
-    const rcLabel = figma.createText();
-    rcLabel.characters = "Vehicle Registration:";
-    const rc = figma.createText();
-    const letter1 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
-    const letter2 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
-    const endDigits = numBetween(1000,9999);
-    if(rtoDigits < 10){
-        rc.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${endDigits}`;
-    }else{
-        rc.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${endDigits}`;
+    if(incomingMsg.PINValue === true){
+        //Generate PIN (random) for user depending on the state and add to card
+        const pinLabel = figma.createText();
+        pinLabel.characters = "PIN Code";
+        const pin = figma.createText();
+        const pinFirstDigit = dataSet[`${stateName}`][2];
+        const pinRemainingDigits = numBetween(10000,99999);
+        pin.characters = `${pinFirstDigit}${pinRemainingDigits}`;
+        cardLabelTextStyle(pinLabel);
+        cardContentTextStyle(pin);
+        newNode.appendChild(pinLabel);
+        newNode.appendChild(pin);
     }
-    cardLabelTextStyle(rcLabel);
-    cardContentTextStyle(rc);
-    newNode.appendChild(rcLabel);
-    newNode.appendChild(rc);
+    
+
+    if(incomingMsg.DLValue === true){
+        //Generate user Driving license
+        const dlLabel = figma.createText();
+        dlLabel.characters = "Driving License";
+        const dl = figma.createText();    
+        const licenseYear = numBetween(1980,2021);
+        const lastDigits = numBetween(1000000,9999999);
+        if(rtoDigits < 10){
+            dl.characters = `${stateInitials}0${rtoDigits}${licenseYear}${lastDigits}`;
+        }else{
+            dl.characters = `${stateInitials}${rtoDigits}${licenseYear}${lastDigits}`;
+        }
+        cardLabelTextStyle(dlLabel);
+        cardContentTextStyle(dl);
+        newNode.appendChild(dlLabel);
+        newNode.appendChild(dl);
+
+    }
+
+    if(incomingMsg.RCValue === true){
+        //Generate a vehicle registration number
+        const rcLabel = figma.createText();
+        rcLabel.characters = "Vehicle Registration";
+        const rc = figma.createText();
+        const letter1 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
+        const letter2 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
+        const endDigits = numBetween(1000,9999);
+        if(rtoDigits < 10){
+            rc.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${endDigits}`;
+        }else{
+            rc.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${endDigits}`;
+        }
+        cardLabelTextStyle(rcLabel);
+        cardContentTextStyle(rc);
+        newNode.appendChild(rcLabel);
+        newNode.appendChild(rc);
+    }
+
+
+    
 
     
     //Testing autolayout possibilities. Working!
