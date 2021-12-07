@@ -14,156 +14,340 @@
     width: 150px;
     display: inline;
   }
+
+  .tab {
+  overflow: hidden;
+  /* border-bottom: 2px solid #ccc; */
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  margin: 2% 2%;
+}
+
+.tab button {
+  background-color: inherit;
+  /* float: left; */
+  text-align: left;
+  border-bottom: 3px solid rgb(255, 255, 255);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  outline: none;
+  cursor: pointer;
+  padding: 2% 4% 2%;
+  transition: 0.3s;
+  background-color: #fff;
+  text-align: center;
+  font-size: medium;
+}
+
+.tab button:hover {
+  background-color: #fff;
+}
+
+.tab button.active {
+  background-color: #fff;
+  border-bottom: 3px solid darkgrey;
+}
+
+.tabcontent {
+  display: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  /* border: 1px solid #ccc; */
+  border-top: none;
+  border-radius: 12px;
+  background-color: #fcfcfc;
+  margin-left: 20px;
+  margin-right: 20px;
+  align-items: center;
+}
+
+.form-check {
+  width: 170px;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.form-check-input {
+  margin: 1% 1%;
+}
+
 </style>
 
 
 <div id="main" >
 
-  <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
-  <div id="generateDiscrete" class="shadow-sm" style="max-width: 100%; margin: 4% 4% 4%; padding: 2% 2% 3%; border-radius: 12px; text-align: center; background-color: #fcfcfc;">
-    <p style="color: black; font-size: medium;">Please select text layer/s and generate user data</p>
-    <button class="btn btn-outline-dark btn-sm small-button" id="FirstName">First Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="DoB">Date of Birth</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Age">Age</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="CityState">City, State (Pair)</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="Pass">Indian Passport</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="DL">Driving License</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="RC">Vehicle Registration</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI (Payment)</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
-    <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
+   <!-- Tab links -->
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'generateDiscrete')" id="defaultOpen">Add user data</button>
+    <button class="tablinks" onclick="openTab(event, 'generateCard')">Generate user card</button>
+  </div>
+
+    <!-- Tab content -->
+    <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
+  <div id="generateDiscrete" class="tabcontent shadow-sm">
+    <div style="text-align: center;">
+      <p style="color: black; font-size: medium;">Please select text layer/s and generate user data</p>
+      <button class="btn btn-outline-dark btn-sm small-button" id="FirstName">First Name</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="DoB">Date of Birth</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="Age">Age</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="CityState">City, State (Pair)</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="Pass">Indian Passport</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="DL">Driving License</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="RC">Vehicle Registration</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI (Payment)</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
+      <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
+    </div>
   </div>
 
   <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
-  <div id="generateCard" class="shadow-sm" style="max-width: 100%; margin: 4% 4% 4%; padding: 2% 2% 2%; border-radius: 12px; text-align: center; background-color: #fcfcfc;">
-    <p style="color:black; font-size: medium;">Create a user details card and place on canvas</p>
-    <button class="btn btn-outline-dark btn-small small-button " id="Generate">Generate</button>
+  <div  id="generateCard" class="tabcontent shadow-sm">
+    <div>
+
+      <p style="color:black; font-size: medium;">Create a user details card and place on canvas</p>
+    
+      <div>
+        <div class="form-check form-check-inline" style="padding-left: 20px;">
+          <input class="form-check-input" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="form-check-label" for="FirstNameChk">First Name</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="LastNameChk" name="LastNameChk" value="LastNameChk"><label class="form-check-label" for="LastNameChk">Last Name</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="FullNameChk" name="FullNameChk" value="FullNameChk" checked><label class="form-check-label" for="FullNameChk">Full Name</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="DoBChk" name="DoBChk" value="DoBChk" checked><label class="form-check-label" for="DoBChk">Date of Birth</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="EmailChk" name="EmailChk" value="EmailChk" checked><label class="form-check-label" for="EmailChk">Email</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="MobileChk" name="MobileChk" value="MobileChk" checked><label class="form-check-label" for="MobileChk">Mobile</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="TradAddressChk" name="TradAddressChk" value="TradAddressChk"><label class="form-check-label" for="TradAddressChk">Traditional Address</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="UrbAddressChk" name="UrbAddressChk" value="UrbAddressChk" checked><label class="form-check-label" for="UrbAddressChk">Urban Address</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="CityChk" name="CityChk" value="CityChk" checked><label class="form-check-label" for="CityChk">City</label>
+        </div>
+      </div>
+    
+    
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="StateChk" name="StateChk" value="StateChk" checked><label class="form-check-label" for="StateChk">State</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="PINChk" name="PINChk" value="PINChk" checked><label class="form-check-label" for="PINChk">PIN Code</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="ProfChk" name="ProfChk" value="ProfChk" checked><label class="form-check-label" for="ProfChk">Profession</label>
+        </div>
+      </div>
+    
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="PassChk" name="PassChk" value="PassChk"><label class="form-check-label" for="PassChk">Indian Passport</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="form-check-label" for="DLChk">Driving License</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="form-check-label" for="RCChk">Vehicle Registration</label>
+        </div>
+      </div>
+    
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="UPIChk" name="UPIChk" value="UPIChk"><label class="form-check-label" for="UPIChk">UPI (Payment)</label>
+        </div>
+      
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk"><label class="form-check-label" for="UIDChk">UID (Aadhar)</label>
+        </div>
+      
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="VIDChk" name="VIDChk" value="VIDChk"><label class="form-check-label" for="VIDChk">VID (Aadhar Virtual)</label>
+        </div>
+      </div> 
+      
+      
+      <div style="text-align: center;">
+        <button class="btn btn-outline-dark btn-small small-button" id="Generate">Generate</button>
+      </div>
+    </div> 
   </div>
 
-  
 </div>
+
 
 <!-- Footer section for credits -->
 <footer style="text-align: center;">
- <p style="font-size: x-small; color: #647be2; margin: 3% 0 0;">From ❤️ Abhijit Chirde</a></p> 
+ <p style="font-size: x-small; color: #647be2; margin: 3% 0 0;">From 🧡 Abhijit Chirde</a></p> 
 </footer>
+
 
 
 <script>
 
-//Set of button click events for send message to code
+
+//Tabs handling JS code
+function openTab(evt, contentDivID) {
+
+    // Get all elements with class="tabcontent" and hide them
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(contentDivID).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+
+
+
+//Defining button click events to send message to Code
 document.getElementById('FirstName').onclick = () => {
   const inputValue = "FirstName";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('LastName').onclick = () => {
   const inputValue = "LastName";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('FullName').onclick = () => {
   const inputValue = "FullName";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('DoB').onclick = () => {
   const inputValue = "DoB";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('Age').onclick = () => {
   const inputValue = "Age";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('Email').onclick = () => {
   const inputValue = "Email";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('Mobile').onclick = () => {
   const inputValue = "Mobile";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('TradAddress').onclick = () => {
   const inputValue = "TradAddress";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('UrbAddress').onclick = () => {
   const inputValue = "UrbAddress";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('City').onclick = () => {
   const inputValue = "City";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('State').onclick = () => {
   const inputValue = "State";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('CityState').onclick = () => {
   const inputValue = "CityState";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('PIN').onclick = () => {
   const inputValue = "PIN";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('Prof').onclick = () => {
   const inputValue = "Prof";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('Pass').onclick = () => {
   const inputValue = "Pass";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('DL').onclick = () => {
   const inputValue = "DL";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('RC').onclick = () => {
   const inputValue = "RC";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('UPI').onclick = () => {
   const inputValue = "UPI";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('UID').onclick = () => {
   const inputValue = "UID";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
-
 document.getElementById('VID').onclick = () => {
   const inputValue = "VID";
   parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
 }
 
+
 document.getElementById('Generate').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'Generate'} }, '*');
+  const FirstNameValue = FirstNameChk.checked;
+  const LastNameValue = LastNameChk.checked;
+  const FullNameValue = FullNameChk.checked;
+  const DoBValue = DoBChk.checked;
+  const EmailValue = EmailChk.checked;
+  const MobileValue = MobileChk.checked;
+  const TradAddressValue = TradAddressChk.checked;
+  const UrbAddressValue= UrbAddressChk.checked; 
+  const CityValue = CityChk.checked;
+  const StateValue = StateChk.checked;
+  const PINValue = PINChk.checked; 
+  const ProfValue = ProfChk.checked;
+  const PassValue = PassChk.checked;
+  const DLValue = DLChk.checked;
+  const RCValue = RCChk.checked;
+  const UPIValue = UPIChk.checked;
+  const UIDValue = UIDChk.checked;
+  const VIDValue = VIDChk.checked;
+  parent.postMessage({ pluginMessage: { type: 'Generate', chkInput: {FirstNameValue, LastNameValue, FullNameValue, DoBValue, EmailValue, MobileValue, TradAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UPIValue, UIDValue, VIDValue}} }, '*');
 }
 
 </script>
