@@ -240,7 +240,7 @@ function generateRandomRC(currentNode) {
     }
 }
 function generateDoB(currentNode) {
-    let year = numBetween(1950, 2021);
+    let year = numBetween(1935, 2006);
     let month = numBetween(1, 12);
     let date = 0;
     if (month === "02") {
@@ -267,6 +267,10 @@ function generateDoB(currentNode) {
         currentNode.characters = `${date}/${month}/${year}`;
     }
 }
+function generateRandomAge(currentNode) {
+    let age = numBetween(15, 86);
+    currentNode.characters = `${age}`;
+}
 function putTextOnLayer(currentNode, input) {
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if (currentNode.type === "TEXT") {
@@ -274,8 +278,11 @@ function putTextOnLayer(currentNode, input) {
         if (input === "FullName") {
             generateFullName(currentNode);
         }
-        if (input === "DoB") {
+        else if (input === "DoB") {
             generateDoB(currentNode);
+        }
+        else if (input === "Age") {
+            generateRandomAge(currentNode);
         }
         else if (input === "Mobile") {
             //Generate mobile number using function
@@ -373,6 +380,20 @@ function generateCard() {
     cardContentTextStyle(dob);
     newNode.appendChild(dobLabel);
     newNode.appendChild(dob);
+    //Generate age from DoB above
+    const ageLabel = figma.createText();
+    ageLabel.characters = "Age:";
+    const yearText = dob.characters[6] + dob.characters[7] + dob.characters[8] + dob.characters[9];
+    const birthYear = parseInt(yearText, 10);
+    const curretTime = new Date();
+    const currentYear = curretTime.getFullYear();
+    const currentAge = currentYear - birthYear;
+    const age = figma.createText();
+    age.characters = `${currentAge}`;
+    cardLabelTextStyle(ageLabel);
+    cardContentTextStyle(age);
+    newNode.appendChild(ageLabel);
+    newNode.appendChild(age);
     //Generate aadhar number and add to frame
     const aadharLabel = figma.createText();
     aadharLabel.characters = "Aadhar Number (UID):";
@@ -463,13 +484,13 @@ function generateCard() {
     const dl = figma.createText();
     const stateInitials = dataSet[`${stateName}`][0];
     const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
-    const year = numBetween(1980, 2021);
+    const licenseYear = numBetween(1980, 2021);
     const lastDigits = numBetween(1000000, 9999999);
     if (rtoDigits < 10) {
-        dl.characters = `${stateInitials}0${rtoDigits}${year}${lastDigits}`;
+        dl.characters = `${stateInitials}0${rtoDigits}${licenseYear}${lastDigits}`;
     }
     else {
-        dl.characters = `${stateInitials}${rtoDigits}${year}${lastDigits}`;
+        dl.characters = `${stateInitials}${rtoDigits}${licenseYear}${lastDigits}`;
     }
     cardLabelTextStyle(dlLabel);
     cardContentTextStyle(dl);
