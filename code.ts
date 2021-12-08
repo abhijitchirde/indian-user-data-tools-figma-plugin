@@ -121,7 +121,7 @@ const dataSet = {
 
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 650, height: 620});
+figma.showUI(__html__,{width: 610, height: 480});
 
 
 //Receiving the button inputs from UI
@@ -438,26 +438,28 @@ function putTextOnLayer(currentNode, input){
 //Function for generating a new card with user details and appending it on the canvas
 function generateCard(incomingMsg){
 
+     //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
+     const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+     const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+     const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
+     const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
+     const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+     const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
+     const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
+     const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
+     const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+     const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+     const stateInitials = dataSet[`${stateName}`][0];
+     const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
+     const dobText = generateRandomDoB();
+
     const nodes: SceneNode[] = [];
 
     const newNode = figma.createFrame();
     newNode.resize(300,200);                                //Currently kept the parent frame to 300x200        
 
 
-    //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
-    const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
-    const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
-    const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-    const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
-    const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
-    const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-    const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
-    const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
-    const stateInitials = dataSet[`${stateName}`][0];
-    const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
-    const dobText = generateRandomDoB();
+   
 
     if(incomingMsg.MobileValue === true){
         //Generate mobile number and add to frame

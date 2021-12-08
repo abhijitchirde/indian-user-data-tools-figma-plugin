@@ -61,7 +61,7 @@ const dataSet = {
     "UrbAddressSuburb": ["Airoli", "Kharghar", "Chandni", "Pimpri", "Andheri", "Dumdum", "Marina", "Devghat"],
 };
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 650, height: 620 });
+figma.showUI(__html__, { width: 610, height: 480 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
@@ -344,9 +344,6 @@ function putTextOnLayer(currentNode, input) {
 }
 //Function for generating a new card with user details and appending it on the canvas
 function generateCard(incomingMsg) {
-    const nodes = [];
-    const newNode = figma.createFrame();
-    newNode.resize(300, 200); //Currently kept the parent frame to 300x200        
     //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
     const fName = dataSet["FirstName"][Math.floor(Math.random() * (dataSet["FirstName"].length))];
     const lName = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
@@ -361,6 +358,9 @@ function generateCard(incomingMsg) {
     const stateInitials = dataSet[`${stateName}`][0];
     const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
     const dobText = generateRandomDoB();
+    const nodes = [];
+    const newNode = figma.createFrame();
+    newNode.resize(300, 200); //Currently kept the parent frame to 300x200        
     if (incomingMsg.MobileValue === true) {
         //Generate mobile number and add to frame
         const mobileLabel = figma.createText();

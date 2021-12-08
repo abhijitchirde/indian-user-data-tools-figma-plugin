@@ -1,77 +1,157 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-
 <style>
+
+  /* General styling */
+
+
+
+  
   body {
-    font-family: 'Roboto Slab', serif;
+    background-color: #F3F8FF;
+  }
+
+  .text-center {
+    text-align: center;
   }
 
   .small-button {
-    font-size: smaller;
-    margin: 2% 1% 2%;
+    font-size: 0.9rem;
+    margin: 8px 4px 8px;
+    padding: 6px 3px 6px;
     width: 150px;
     display: inline;
+    border: 1px solid black;
+    background-color: #fff;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
   }
 
-  .tab {
+  .small-button:hover, .btn-active {
+    background-color: black;
+    color: #fff;
+  }
+
+
+  /* tabs related styling */
+.tab {
   overflow: hidden;
-  /* border-bottom: 2px solid #ccc; */
-  background-color: #fff;
+  background-color: #F3F8FF;
   width: 100%;
   text-align: center;
-  margin: 2% 2%;
+  margin-top: 2% 2%;
 }
 
 .tab button {
   background-color: inherit;
   /* float: left; */
   text-align: left;
-  border-bottom: 3px solid rgb(255, 255, 255);
+  border-bottom: 3px solid #F3F8FF;
   border-top: none;
   border-right: none;
   border-left: none;
   outline: none;
   cursor: pointer;
-  padding: 2% 4% 2%;
-  transition: 0.3s;
-  background-color: #fff;
+  padding: 2% 6% 2%;
+  background-color: #F3F8FF;
   text-align: center;
-  font-size: medium;
+  font-size: 1.0rem;
 }
 
 .tab button:hover {
-  background-color: #fff;
+  background-color: #F3F8FF;
 }
 
 .tab button.active {
-  background-color: #fff;
-  border-bottom: 3px solid darkgrey;
+  background-color: #F3F8FF;
+  border-bottom: 4px solid #396EB0;
 }
 
 .tabcontent {
   display: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  /* border: 1px solid #ccc; */
   border-top: none;
-  border-radius: 12px;
-  background-color: #fcfcfc;
-  margin-left: 20px;
-  margin-right: 20px;
   align-items: center;
+  background-color: #F3F8FF;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 8px;
+  margin-bottom: 2%;
 }
 
-.form-check {
-  width: 170px;
-  height: 50px;
-  padding-top: 10px;
+
+/* content card styling */
+.card {
+  padding-top: 24px;
+  padding-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(230, 230, 230, 10);
+  background-color: #FCFDFF;
 }
 
-.form-check-input {
+
+
+/* Card label styling */
+.content-label {
+  color: #396EB0;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+
+/* checkbox elements related styling */
+
+.checkbox-div {
+  width: 32%;
+  height: 5%;
+  display: inline-block;
+  margin: 8px 2px 8px;
+  text-align: left;
+}
+
+
+.checkbox {
   margin: 1% 1%;
+}
+
+
+.checkbox-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  
+}
+
+.separate-button-div {
+  display: block;
+}
+
+
+/* Footer styling */
+
+.footer-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-small;
+  color: #647be2;
+  margin: 3% 0 0;
+}
+
+.bottomContainer{
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.bottomItem{
+  background: none repeat scroll 0 0 #F3F8FF;
+  height: 30px;
+  margin: auto;
+  width: 400px;
 }
 
 </style>
@@ -81,147 +161,138 @@
 
    <!-- Tab links -->
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'generateDiscrete')" id="defaultOpen">Add user data</button>
-    <button class="tablinks" onclick="openTab(event, 'generateCard')">Generate user card</button>
+    <button class="tablinks" onclick="openTab(event, 'generateDiscrete')" id="defaultOpen">Add user data to selected text layer/s</button>
+    <button class="tablinks" onclick="openTab(event, 'generateCard')" >Generate user data table</button>
   </div>
 
     <!-- Tab content -->
     <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
-  <div id="generateDiscrete" class="tabcontent shadow-sm">
-    <div style="text-align: center;">
-      <p style="color: black; font-size: medium;">Please select text layer/s and generate user data</p>
-      <button class="btn btn-outline-dark btn-sm small-button" id="FirstName">First Name</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="LastName">Last Name</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="FullName">Full Name</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="DoB">Date of Birth</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="Age">Age</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="Email">Email</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="Mobile">Mobile Number</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="TradAddress">Traditional Address</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="UrbAddress">Urban Address</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="City">City</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="State">State</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="CityState">City, State (Pair)</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="PIN">PIN Code</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="Prof">Profession</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="Pass">Indian Passport</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="DL">Driving License</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="RC">Vehicle Registration</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="UPI">UPI (Payment)</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="UID">UID (Aadhar)</button>
-      <button class="btn btn-outline-dark btn-sm small-button" id="VID">VID (Aadhar Virtual)</button>
+  <div id="generateDiscrete" class="tabcontent">
+    <div class="card text-center">
+      <!-- <p class="content-label">Add user data to selected text layer/s</p> -->
+      <div style="margin-bottom: 13px;">
+        <button class="small-button" id="FirstName">First Name</button>
+        <button class="small-button" id="LastName">Last Name</button>
+        <button class="small-button" id="FullName">Full Name</button>
+        <button class="small-button" id="DoB">Date of Birth</button>
+        <button class="small-button" id="Age">Age</button>
+        <button class="small-button" id="Email">Email</button>
+        <button class="small-button" id="Mobile">Mobile Number</button>
+        <button class="small-button" id="TradAddress">Rural Address</button>
+        <button class="small-button" id="UrbAddress">Urban Address</button>
+        <button class="small-button" id="City">City</button>
+        <button class="small-button" id="State">State</button>
+        <button class="small-button" id="CityState">City, State (Pair)</button>
+        <button class="small-button" id="PIN">PIN Code</button>
+        <button class="small-button" id="Prof">Profession</button>
+        <button class="small-button" id="Pass">Indian Passport</button>
+        <button class="small-button" id="DL">Driving License</button>
+        <button class="small-button" id="RC">Vehicle RC</button>
+        <button class="small-button" id="UPI">UPI (Payment)</button>
+        <button class="small-button" id="UID">UID (Aadhar)</button>
+        <button class="small-button" id="VID">VID (Virtual Aadhar)</button>
+      </div>
+      
     </div>
   </div>
 
   <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
-  <div  id="generateCard" class="tabcontent shadow-sm">
-    <div>
+  <div  id="generateCard" class="tabcontent">
 
-      <p style="color:black; font-size: medium;">Create a user details card and place on canvas</p>
-    
-     
-        <div class="form-check form-check-inline" style="padding-left: 20px;">
-          <input class="form-check-input" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="form-check-label" for="FirstNameChk">First Name</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="LastNameChk" name="LastNameChk" value="LastNameChk"><label class="form-check-label" for="LastNameChk">Last Name</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="FullNameChk" name="FullNameChk" value="FullNameChk" checked><label class="form-check-label" for="FullNameChk">Full Name</label>
-        </div>
-      
+    <div class="card text-center">
 
+      <!-- <p class="content-label">Select user data fields and generate a user card</p> -->
+    
       
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="DoBChk" name="DoBChk" value="DoBChk" checked><label class="form-check-label" for="DoBChk">Date of Birth</label>
+      <div style="margin-bottom: 20px; text-align: left; padding-left: 10%;">
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="checkbox-label" for="FirstNameChk">First Name</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="AgeChk" name="AgeChk" value="AgeChk" checked><label class="form-check-label" for="AgeChk">Age</label>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="LastNameChk" name="LastNameChk" value="LastNameChk"><label class="checkbox-label" for="LastNameChk">Last Name</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="EmailChk" name="EmailChk" value="EmailChk" checked><label class="form-check-label" for="EmailChk">Email</label>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="FullNameChk" name="FullNameChk" value="FullNameChk" checked><label class="checkbox-label" for="FullNameChk">Full Name</label>
+        </div>     
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="DoBChk" name="DoBChk" value="DoBChk" checked><label class="checkbox-label" for="DoBChk">Date of Birth</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="MobileChk" name="MobileChk" value="MobileChk" checked><label class="form-check-label" for="MobileChk">Mobile</label>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="AgeChk" name="AgeChk" value="AgeChk" checked><label class="checkbox-label" for="AgeChk">Age</label>
         </div>
-     
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="EmailChk" name="EmailChk" value="EmailChk" checked><label class="checkbox-label" for="EmailChk">Email</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="MobileChk" name="MobileChk" value="MobileChk" checked><label class="checkbox-label" for="MobileChk">Mobile</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="TradAddressChk" name="TradAddressChk" value="TradAddressChk"><label class="checkbox-label" for="TradAddressChk">Rural Address</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="UrbAddressChk" name="UrbAddressChk" value="UrbAddressChk" checked><label class="checkbox-label" for="UrbAddressChk">Urban Address</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="CityChk" name="CityChk" value="CityChk" checked><label class="checkbox-label" for="CityChk">City</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="StateChk" name="StateChk" value="StateChk" checked><label class="checkbox-label" for="StateChk">State</label>
+        </div>
+        <div class="checkbox-div ">
+          <input class="checkbox" type="checkbox" id="PINChk" name="PINChk" value="PINChk" checked><label class="checkbox-label" for="PINChk">PIN Code</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="ProfChk" name="ProfChk" value="ProfChk" checked><label class="checkbox-label" for="ProfChk">Profession</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="PassChk" name="PassChk" value="PassChk"><label class="checkbox-label" for="PassChk">Indian Passport</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="checkbox-label" for="DLChk">Driving License</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="checkbox-label" for="RCChk">Vehicle RC</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="UPIChk" name="UPIChk" value="UPIChk"><label class="checkbox-label" for="UPIChk">UPI (Payment)</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk"><label class="checkbox-label" for="UIDChk">UID (Aadhar)</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="VIDChk" name="VIDChk" value="VIDChk"><label class="checkbox-label" for="VIDChk">VID (Virtual Aadhar)</label>
+        </div>
+      
+        
 
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="TradAddressChk" name="TradAddressChk" value="TradAddressChk"><label class="form-check-label" for="TradAddressChk">Traditional Address</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="UrbAddressChk" name="UrbAddressChk" value="UrbAddressChk" checked><label class="form-check-label" for="UrbAddressChk">Urban Address</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="CityChk" name="CityChk" value="CityChk" checked><label class="form-check-label" for="CityChk">City</label>
-        </div>
-      
-    
-    
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="StateChk" name="StateChk" value="StateChk" checked><label class="form-check-label" for="StateChk">State</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="PINChk" name="PINChk" value="PINChk" checked><label class="form-check-label" for="PINChk">PIN Code</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ProfChk" name="ProfChk" value="ProfChk" checked><label class="form-check-label" for="ProfChk">Profession</label>
-        </div>
-     
-    
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="PassChk" name="PassChk" value="PassChk"><label class="form-check-label" for="PassChk">Indian Passport</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="form-check-label" for="DLChk">Driving License</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="form-check-label" for="RCChk">Vehicle Registration</label>
-        </div>
-      
-    
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="UPIChk" name="UPIChk" value="UPIChk"><label class="form-check-label" for="UPIChk">UPI (Payment)</label>
-        </div>
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk"><label class="form-check-label" for="UIDChk">UID (Aadhar)</label>
-        </div>
-      
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="VIDChk" name="VIDChk" value="VIDChk"><label class="form-check-label" for="VIDChk">VID (Aadhar Virtual)</label>
-        </div>
-      
-      
-      
-      <div style="text-align: center;">
-        <button class="btn btn-outline-dark btn-small small-button" id="Generate">Generate</button>
       </div>
+
+      <div class="separate-button-div text-center">
+        <button class="small-button" id="Generate">Generate</button>
+      </div>
+        
+
     </div> 
+
+    
+  </div>
+
+  <!-- Footer section for credits -->
+  <div class="bottomContainer">
+    <footer class="bottomItem">
+      <p class="footer-text">From 🧡 Abhijit Chirde</a></p> 
+    </footer>
   </div>
 
 </div>
 
 
-<!-- Footer section for credits -->
-<footer style="text-align: center;">
- <p style="font-size: x-small; color: #647be2; margin: 3% 0 0;">From 🧡 Abhijit Chirde</a></p> 
-</footer>
+
+
 
 
 
 <script>
-
 
 //Tabs handling JS code
 function openTab(evt, contentDivID) {
