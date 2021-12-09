@@ -117,6 +117,9 @@ const dataSet = {
 
     "UrbAddressSuburb" : ["Airoli", "Kharghar", "Chandni", "Pimpri", "Andheri", "Dumdum", "Marina", "Devghat"],
 
+    "dates" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
+
+    "months" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
 }
 
 
@@ -156,6 +159,10 @@ figma.ui.onmessage = msg => {
         //Calling function to create a user data card and append on canvas
         generateCard(msg.chkInput);
     }  
+
+    if(msg.type === 'disclaimer'){
+        figma.notify("This plugin randomly generates sample user data. Any resemblance to a real world entity is just a coincidence.",{timeout:4000});
+      }
 }
 
 //Setting fontname of selected node
@@ -175,7 +182,7 @@ function generateFullName(currentNode){
 
 //Defining function for finding a number in range
 function numBetween(low, high){
-    return Math.floor(Math.random() * (high-low)) + low;
+    return Math.floor(Math.random() * (high-low+1)) + low;
 }
 
 //Define function for generating mobile number
@@ -329,25 +336,22 @@ function generateRandomRC(currentNode){
 
 function generateRandomDoB(){
     let year = numBetween(1935, 2006);
-    let month = numBetween(1, 12);
-    let date = 0;
+    let month = dataSet["months"][Math.floor(Math.random()*12)];
+    let date = "";
+    
     if(month === "02"){
         if(year % 4 === 0){
-            date = numBetween(1, 29);
+            date = dataSet["dates"][Math.floor(Math.random()*29)];
+            return `${date}/${month}/${year}`;
         }else{
-            date = numBetween(1, 28);
+            date = dataSet["dates"][Math.floor(Math.random()*28)];
+            return `${date}/${month}/${year}`;
         }
-    }else if(month === 4 || month === 6 || month === 9 || month === 11){
-        date = numBetween(1, 30);
-    }else{
-        date = numBetween(1, 31);
-    } 
-
-    if(month < 10 && date < 10){
-        return `0${date}/0${month}/${year}`;
-    }else if(month < 10 && date > 10){
-        return `${date}/0${month}/${year}`;
-    }else if(month > 10 && date > 10){
+    }else if(month === "04" || month === "06" || month === "09" || month === "11"){
+        date = dataSet["dates"][Math.floor(Math.random()*30)];
+        return `${date}/${month}/${year}`;
+    }else {
+        date = dataSet["dates"][Math.floor(Math.random()*31)];
         return `${date}/${month}/${year}`;
     }
 }
