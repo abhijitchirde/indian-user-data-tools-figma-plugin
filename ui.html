@@ -1,9 +1,6 @@
 <style>
 
   /* General styling */
-
-
-
   
   body {
     background-color: #F3F8FF;
@@ -87,7 +84,7 @@
   margin-right: 5px;
   margin-top: 15px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(230, 230, 230, 10);
+  box-shadow: 0 4px 8px rgba(212, 230, 255, 50);
   background-color: #FCFDFF;
 }
 
@@ -134,24 +131,43 @@
 
 .footer-text {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: x-small;
+  font-size: 0.7rem;
   color: #647be2;
   margin: 3% 0 0;
+  text-align: right;
+  display: inline-block;
+  padding-left: 63%;
+}
+
+a:link, a:visited {
+  color: #647be2;
+  cursor: pointer;
 }
 
 .bottomContainer{
   background: none repeat scroll 0 0 transparent;
-  bottom: 0;
+  bottom: 15px;
   position: fixed;
-  text-align: center;
   width: 100%;
+  display: block;
+  padding-left: 2%;
 }
 
 .bottomItem{
-  background: none repeat scroll 0 0 #F3F8FF;
   height: 30px;
   margin: auto;
-  width: 400px;
+  width: 100%;
+  display: inline-block;
+}
+
+.disclaimer {
+  border: none;
+  font-size: 0.7rem;
+  text-align: left;
+  background-color: #F3F8FF;
+  color: #647be2;
+  cursor: pointer;
+  
 }
 
 </style>
@@ -280,7 +296,8 @@
   <!-- Footer section for credits -->
   <div class="bottomContainer">
     <footer class="bottomItem">
-      <p class="footer-text">From 🧡 Abhijit Chirde</a></p> 
+      <button class="disclaimer" id="disclaimer" >Disclaimer notice</button>
+      <p class="footer-text">by <a href="https://twitter.com/abhichirde" target="_blank">Abhijit Chirde</a></a></p> 
     </footer>
   </div>
 
@@ -424,5 +441,9 @@ document.getElementById('Generate').onclick = () => {
   const VIDValue = VIDChk.checked;
   parent.postMessage({ pluginMessage: { type: 'Generate', chkInput: {FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, TradAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UPIValue, UIDValue, VIDValue}} }, '*');
 }
+
+document.getElementById('disclaimer').onclick = () => {
+    parent.postMessage({ pluginMessage: {type: 'disclaimer'} },'*')
+  }
 
 </script>
