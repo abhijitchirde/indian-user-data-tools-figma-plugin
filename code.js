@@ -67,7 +67,7 @@ figma.showUI(__html__, { width: 575, height: 480 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
-    if (msg.type === "Random-details") {
+    if (msg.type === "generate-random") {
         //Giving notification if no layer is selected
         if (figma.currentPage.selection.length === 0) {
             figma.notify("Please select a text layer to add data", { timeout: 1000 });
@@ -80,10 +80,10 @@ figma.ui.onmessage = msg => {
             }
             setFont(node);
             //Calling function to put requested data on text layer
-            putTextOnLayer(node, msg.inputValue);
+            generateRandomData(node, msg.inputValue);
         }
     }
-    if (msg.type === "Generate") {
+    if (msg.type === "generate-table") {
         let num = msg.chkInput.noOfUsers;
         if (isNaN(num)) {
             figma.notify("Please enter a number", { timeout: 1000 });
@@ -93,7 +93,7 @@ figma.ui.onmessage = msg => {
         }
         else {
             //Calling function to create a user data card and append on canvas
-            generateCard(msg.chkInput);
+            generateTable(msg.chkInput);
         }
     }
     if (msg.type === 'disclaimer') {
@@ -256,11 +256,11 @@ function generateRandomDoB() {
     if (month === "02") {
         if (year % 4 === 0) {
             date = dataSet["dates"][Math.floor(Math.random() * 29)];
-            return `${date}/${month}/${year}`;
+            return `${date}-${month}-${year}`;
         }
         else {
             date = dataSet["dates"][Math.floor(Math.random() * 28)];
-            return `${date}/${month}/${year}`;
+            return `${date}-${month}-${year}`;
         }
     }
     else if (month === "04" || month === "06" || month === "09" || month === "11") {
@@ -276,7 +276,7 @@ function generateRandomAge(currentNode) {
     let age = numBetween(15, 86);
     currentNode.characters = `${age}`;
 }
-function putTextOnLayer(currentNode, input) {
+function generateRandomData(currentNode, input) {
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if (currentNode.type === "TEXT") {
         //If requirement is full-name, we need to attach elements for output
@@ -352,7 +352,7 @@ function putTextOnLayer(currentNode, input) {
     }
 }
 //Function for generating a new card with user details and appending it on the canvas
-function generateCard(incomingMsg) {
+function generateTable(incomingMsg) {
     const userCount = incomingMsg.noOfUsers;
     //Code block to generate user details labels as it needs to be generated at least once
     if (incomingMsg.FirstNameValue === true) {

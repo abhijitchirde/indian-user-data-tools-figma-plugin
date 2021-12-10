@@ -131,7 +131,7 @@ figma.showUI(__html__,{width: 575, height: 480});
 figma.ui.onmessage = msg => {
 
     //If input button is not generate this flow will work
-    if(msg.type === "Random-details"){
+    if(msg.type === "generate-random"){
 
         //Giving notification if no layer is selected
         if(figma.currentPage.selection.length === 0){
@@ -149,13 +149,13 @@ figma.ui.onmessage = msg => {
             setFont(node);
             
             //Calling function to put requested data on text layer
-            putTextOnLayer(node, msg.inputValue);
+            generateRandomData(node, msg.inputValue);
 
         }
     
     }
     
-    if(msg.type === "Generate"){
+    if(msg.type === "generate-table"){
 
         let num = msg.chkInput.noOfUsers;
         
@@ -165,7 +165,7 @@ figma.ui.onmessage = msg => {
             figma.notify("Please enter a number greater than 0", {timeout:1000});
         }else{
             //Calling function to create a user data card and append on canvas
-            generateCard(msg.chkInput);
+            generateTable(msg.chkInput);
         }                  
     }  
 
@@ -351,10 +351,10 @@ function generateRandomDoB(){
     if(month === "02"){
         if(year % 4 === 0){
             date = dataSet["dates"][Math.floor(Math.random()*29)];
-            return `${date}/${month}/${year}`;
+            return `${date}-${month}-${year}`;
         }else{
             date = dataSet["dates"][Math.floor(Math.random()*28)];
-            return `${date}/${month}/${year}`;
+            return `${date}-${month}-${year}`;
         }
     }else if(month === "04" || month === "06" || month === "09" || month === "11"){
         date = dataSet["dates"][Math.floor(Math.random()*30)];
@@ -371,7 +371,7 @@ function generateRandomAge(currentNode){
 
 }
 
-function putTextOnLayer(currentNode, input){
+function generateRandomData(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
 
@@ -449,7 +449,7 @@ function putTextOnLayer(currentNode, input){
 }
 
 //Function for generating a new card with user details and appending it on the canvas
-function generateCard(incomingMsg){
+function generateTable(incomingMsg){
 
     const userCount = incomingMsg.noOfUsers;
 
