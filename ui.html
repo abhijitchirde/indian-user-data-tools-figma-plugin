@@ -202,13 +202,13 @@ a:link, a:visited {
 
    <!-- Tab links -->
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'generateDiscrete')" >Add data to selected text layers</button>
-    <button class="tablinks" onclick="openTab(event, 'generateCard')" id="defaultOpen">Generate user data table</button>
+    <button class="tablinks" onclick="openTab(event, 'generateRandomData')" >Add data to selected text layers</button>
+    <button class="tablinks" onclick="openTab(event, 'generateTable')" id="defaultOpen">Generate user data table</button>
   </div>
 
     <!-- Tab content -->
     <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
-  <div id="generateDiscrete" class="tabcontent">
+  <div id="generateRandomData" class="tabcontent">
     <div class="card text-center">
       <!-- <p class="content-label">Add user data to selected text layer/s</p> -->
       <div style="padding-bottom: 25px;">
@@ -238,7 +238,7 @@ a:link, a:visited {
   </div>
 
   <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
-  <div  id="generateCard" class="tabcontent">
+  <div  id="generateTable" class="tabcontent">
 
     <div class="card text-center" style="background-color: #fcfcfc;">
 
@@ -314,7 +314,7 @@ a:link, a:visited {
         <label class="input-label" for="noOfUsers">Number of Users</label>
         <input class="user-input" type="text" name="noOfUsers" id="noOfUsers" value="1">
 
-        <button class="small-button" id="Generate">Generate</button>
+        <button class="small-button" id="GenerateTable">Generate</button>
       </div>
         
 
@@ -369,87 +369,87 @@ function openTab(evt, contentDivID) {
 //Defining button click events to send message to Code
 document.getElementById('FirstName').onclick = () => {
   const inputValue = "FirstName";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('LastName').onclick = () => {
   const inputValue = "LastName";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('FullName').onclick = () => {
   const inputValue = "FullName";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('DoB').onclick = () => {
   const inputValue = "DoB";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('Age').onclick = () => {
   const inputValue = "Age";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('Email').onclick = () => {
   const inputValue = "Email";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('Mobile').onclick = () => {
   const inputValue = "Mobile";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('RurAddress').onclick = () => {
   const inputValue = "RurAddress";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('UrbAddress').onclick = () => {
   const inputValue = "UrbAddress";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('City').onclick = () => {
   const inputValue = "City";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('State').onclick = () => {
   const inputValue = "State";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('CityState').onclick = () => {
   const inputValue = "CityState";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('PIN').onclick = () => {
   const inputValue = "PIN";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('Prof').onclick = () => {
   const inputValue = "Prof";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('Pass').onclick = () => {
   const inputValue = "Pass";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('DL').onclick = () => {
   const inputValue = "DL";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('RC').onclick = () => {
   const inputValue = "RC";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('UPI').onclick = () => {
   const inputValue = "UPI";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('UID').onclick = () => {
   const inputValue = "UID";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 document.getElementById('VID').onclick = () => {
   const inputValue = "VID";
-  parent.postMessage({ pluginMessage: { type: 'Random-details', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 
 
-document.getElementById('Generate').onclick = () => {
+document.getElementById('GenerateTable').onclick = () => {
   const FirstNameValue = FirstNameChk.checked;
   const LastNameValue = LastNameChk.checked;
   const FullNameValue = FullNameChk.checked;
@@ -471,7 +471,7 @@ document.getElementById('Generate').onclick = () => {
   const VIDValue = VIDChk.checked;
   const usersInput = document.getElementById('noOfUsers');
   const noOfUsers = parseInt(usersInput.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'Generate', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UPIValue, UIDValue, VIDValue}} }, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UPIValue, UIDValue, VIDValue}} }, '*');
 }
 
 document.getElementById('disclaimer').onclick = () => {
