@@ -136,8 +136,8 @@
 
 .user-input {
   display: inline-block; 
-  height: 6.5%; 
-  width: 8%; 
+  height: 7%; 
+  width: 10%; 
   font-size: 0.9rem; 
   color: black; 
   margin-left: 2%; 
@@ -202,8 +202,8 @@ a:link, a:visited {
 
    <!-- Tab links -->
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'generateRandomData')" >Add data to selected text layers</button>
-    <button class="tablinks" onclick="openTab(event, 'generateTable')" id="defaultOpen">Generate user data table</button>
+    <button class="tablinks" onclick="openTab(event, 'generateRandomData')" id="defaultOpen">Add data to selected text layers</button>
+    <button class="tablinks" onclick="openTab(event, 'generateTable')" >Generate user data table</button>
   </div>
 
     <!-- Tab content -->
@@ -312,7 +312,7 @@ a:link, a:visited {
       <div class="separate-button-div text-center">
 
         <label class="input-label" for="noOfUsers">Number of Users</label>
-        <input class="user-input" type="text" name="noOfUsers" id="noOfUsers" value="1">
+        <input class="user-input" type="number" name="noOfUsers" id="noOfUsers" value="1">
 
         <button class="small-button" id="GenerateTable">Generate</button>
       </div>
