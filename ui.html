@@ -16,15 +16,15 @@
     padding: 6px 1px 6px;
     width: 140px;
     display: inline;
-    border: 1px solid black;
+    border: 1px solid #396EB0;
     background-color: #fff;
     border-radius: 4px;
-    color: black;
+    color: #396EB0;
     cursor: pointer;
   }
 
   .small-button:hover, .btn-active {
-    background-color: black;
+    background-color: #396EB0;
     color: #fff;
   }
 
@@ -59,7 +59,7 @@
 
 .tab button.active {
   background-color: #f4f4f4;
-  border-bottom: 3px solid rgba(137, 190, 255, 40);
+  border-bottom: 3px solid rgba(137, 190, 255, 30);
   color: #396EB0;
   transition-duration: 0.2s;
 }
@@ -83,7 +83,7 @@
   padding-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
-  margin-top: 7px;
+  margin-top: 4px;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(230, 230, 230, 35);
   background-color: #FFF;
@@ -229,9 +229,10 @@ a:link, a:visited {
         <button class="small-button" id="Pass">Indian Passport</button>
         <button class="small-button" id="DL">Driving License</button>
         <button class="small-button" id="RC">Vehicle RC</button>
-        <button class="small-button" id="UPI">UPI (Payment)</button>
         <button class="small-button" id="UID">UID (Aadhar)</button>
-        <button class="small-button" id="VID">VID (Virtual Aadhar)</button>
+        <button class="small-button" id="UPIn">UPI (with name)</button>
+        <button class="small-button" id="UPIm">UPI (with mobile)</button>
+        <button class="small-button" id="PAN">PAN (Tax ID)</button>
       </div>
       
     </div>
@@ -245,7 +246,7 @@ a:link, a:visited {
       <!-- <p class="content-label">Select user data fields and generate a user card</p> -->
     
       
-      <div style="margin-bottom: 10px; text-align: left; padding-left: 10%; ">
+      <div style="margin-bottom: 13px; text-align: left; padding-left: 10%; ">
         <div class="checkbox-div">
           <input class="checkbox" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="checkbox-label" for="FirstNameChk">First Name</label>
         </div>
@@ -295,13 +296,16 @@ a:link, a:visited {
           <input class="checkbox" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="checkbox-label" for="RCChk">Vehicle RC</label>
         </div>
         <div class="checkbox-div">
-          <input class="checkbox" type="checkbox" id="UPIChk" name="UPIChk" value="UPIChk"><label class="checkbox-label" for="UPIChk">UPI (Payment)</label>
-        </div>
-        <div class="checkbox-div">
           <input class="checkbox" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk"><label class="checkbox-label" for="UIDChk">UID (Aadhar)</label>
         </div>
         <div class="checkbox-div">
-          <input class="checkbox" type="checkbox" id="VIDChk" name="VIDChk" value="VIDChk"><label class="checkbox-label" for="VIDChk">VID (Virtual Aadhar)</label>
+          <input class="checkbox" type="checkbox" id="UPInChk" name="UPInChk" value="UPInChk"><label class="checkbox-label" for="UPInChk">UPI (with name)</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="UPImChk" name="UPImChk" value="UPImChk"><label class="checkbox-label" for="UPImChk">UPI (with mobile)</label>
+        </div>
+        <div class="checkbox-div">
+          <input class="checkbox" type="checkbox" id="PANChk" name="PANChk" value="PANChk"><label class="checkbox-label" for="PANChk">PAN (Tax ID)</label>
         </div>
       
         
@@ -435,16 +439,20 @@ document.getElementById('RC').onclick = () => {
   const inputValue = "RC";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
-document.getElementById('UPI').onclick = () => {
-  const inputValue = "UPI";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
-}
 document.getElementById('UID').onclick = () => {
   const inputValue = "UID";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
-document.getElementById('VID').onclick = () => {
-  const inputValue = "VID";
+document.getElementById('UPIn').onclick = () => {
+  const inputValue = "UPIn";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
+document.getElementById('UPIm').onclick = () => {
+  const inputValue = "UPIm";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
+document.getElementById('PAN').onclick = () => {
+  const inputValue = "PAN";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
 
@@ -466,12 +474,13 @@ document.getElementById('GenerateTable').onclick = () => {
   const PassValue = PassChk.checked;
   const DLValue = DLChk.checked;
   const RCValue = RCChk.checked;
-  const UPIValue = UPIChk.checked;
   const UIDValue = UIDChk.checked;
-  const VIDValue = VIDChk.checked;
+  const UPInValue = UPInChk.checked;
+  const UPImValue = UPImChk.checked;
+  const PANValue = PANChk.checked;
   const usersInput = document.getElementById('noOfUsers');
   const noOfUsers = parseInt(usersInput.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UPIValue, UIDValue, VIDValue}} }, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue}} }, '*');
 }
 
 document.getElementById('disclaimer').onclick = () => {
