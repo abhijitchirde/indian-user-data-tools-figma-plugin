@@ -123,6 +123,10 @@ const dataSet = {
 }
 
 
+const generateTableLabelWidth = 100;
+const generateTableDataWidth = 270;
+const generateTableCellHeight = 30;
+
 //Show UI on figma canvas
 figma.showUI(__html__,{width: 575, height: 480});
 
@@ -182,11 +186,14 @@ function setFont(currentNode){
     }
 }
 
-//Function definition to create a full name by appending first and last name
-function generateFullName(currentNode){
-    let first = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    let last = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    currentNode.characters = `${first} ${last}`;
+function generateRandomFirstName(){
+    let firstName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+    return `${firstName}`;
+}
+
+function generateRandomLastName(){
+    let lastName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+    return `${lastName}`;
 }
 
 //Defining function for finding a number in range
@@ -195,13 +202,13 @@ function numBetween(low, high){
 }
 
 //Define function for generating mobile number
-function generateMobileNumber(currentNode){
+function generateMobileNumber(){
     let number = numBetween(6000000000,9999999999);         //finding a random 10 digit number for mobile
-    currentNode.characters = "+91" + number;
+    return `+91-${number}`;
 }
 
 //Define function for generating mobile number
-function generatePassport(currentNode){
+function generatePassport(){
     //As per rules seen on https://www.geeksforgeeks.org/how-to-validate-indian-passport-number-using-regular-expression/
     let prefix = dataSet["PassPrefix"][Math.floor(Math.random()*(dataSet["PassPrefix"].length))];
     let num1 = numBetween(1,9);
@@ -211,68 +218,67 @@ function generatePassport(currentNode){
     let num5 = numBetween(0,9);
     let num6 = numBetween(0,9);
     let num7 = numBetween(1,9);
-    currentNode.characters = `${prefix}${num1}${num2}${num3}${num4}${num5}${num6}${num7}`;
+    return `${prefix}${num1}${num2}${num3}${num4}${num5}${num6}${num7}`;
 }
 
 //Define function for generating UID number
-function generateAadhar(currentNode){
+function generateAadhar(){
     let numSet1 = numBetween(1000, 9999);
     let numSet2 = numBetween(1000, 9999); 
     let numSet3 = numBetween(1000, 9999);          
-    currentNode.characters = `${numSet1} ${numSet2} ${numSet3}`;        //Finding a random 12 digit number for UID. In 3 parts of 4 digits
+    return `${numSet1} ${numSet2} ${numSet3}`;        //Finding a random 12 digit number for UID. In 3 parts of 4 digits
 }
 
 //Define function for generating 16digit VID number
-function generateAadharVirtual(currentNode){
+function generateAadharVirtual(){
     let numSet1 = numBetween(1000, 9999);
     let numSet2 = numBetween(1000, 9999); 
     let numSet3 = numBetween(1000, 9999);
     let numSet4 = numBetween(1000, 9999);             
-    currentNode.characters = `${numSet1} ${numSet2} ${numSet3} ${numSet4}`;        //Finding a random 16 digit number for VID. In 4 parts of 4 digits
+    return `${numSet1} ${numSet2} ${numSet3} ${numSet4}`;        //Finding a random 16 digit number for VID. In 4 parts of 4 digits
 }
 
 //Define function for generating email
-function generateRandomEmail(currentNode){
+function generateRandomEmail(){
     let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
     let email = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
     let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-    currentNode.characters = `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
+    return `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
 }
 
-function generateRandomPINCode(currentNode){
+function generateRandomPINCode(){
     let pinFirst = Math.floor(Math.random()*8 + 1);
     let pinRemaining = numBetween(10000,99999);             //Finding a random 5 digit number for remaining part of PIN
-    currentNode.characters = `${pinFirst}${pinRemaining}`;
+    return `${pinFirst}${pinRemaining}`;
 }
 
 
-function generateRandomUPI(currentNode){
+function generateRandomUPI(){
     let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
     let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
-    //let mobile = numBetween(7000000000,9999999999);
-    currentNode.characters = `${fname}${lname}@${upiEnd}`.toLowerCase();
+    return `${fname}${lname}@${upiEnd}`.toLowerCase();
 }
 
-function generateCity(currentNode){
+function generateRandomCity(){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
-    currentNode.characters = `${city}`;
+    return `${city}`;
 }
 
-function generateState(currentNode){
+function generateRandomState(){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-    currentNode.characters = `${state}`;
+    return `${state}`;
 }
 
-function generateCityAndState(currentNode){
+function generateCityStatePair(){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
-    currentNode.characters = `${city}, ${state}`;
+    return `${city}, ${state}`;
 }
 
-function generateRandomRurAddress(currentNode){
+function generateRandomRurAddress(){
     let spotNo = dataSet["RurSpotNo"][Math.floor(Math.random()*(dataSet["RurSpotNo"].length))];
     let num1 = numBetween(1,99);
     let landmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
@@ -282,10 +288,10 @@ function generateRandomRurAddress(currentNode){
     let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
     let pinFirstDigit = dataSet[`${state}`][2];
     let pinRemainingDigits = numBetween(10000,99999);
-    currentNode.characters = `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${village}, Dist. ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
+    return `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${village}, Dist. ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
 }
 
-function generateRandomUrbAddress(currentNode){
+function generateRandomUrbAddress(){
     let spotNo = dataSet["UrbSpotNo"][Math.floor(Math.random()*(dataSet["UrbSpotNo"].length))];
     let num1 = numBetween(1,99);
     let landmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
@@ -297,39 +303,29 @@ function generateRandomUrbAddress(currentNode){
     let city = dataSet[`${state}`][Math.floor(Math.random()*(dataSet[`${state}`].length-3))+3];
     let pinFirstDigit = dataSet[`${state}`][2];
     let pinRemainingDigits = numBetween(10000,99999);
-    currentNode.characters = `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${areaNo} ${num2}, ${subUrb}, ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
+    return `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${areaNo} ${num2}, ${subUrb}, ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
 }
 
-function generateProf(currentNode){
+function generateRandomProf(){
     let prof = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
-    currentNode.characters = `${prof}`;
-}
-
-function generateFirstName(currentNode){
-    let firstName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    currentNode.characters = `${firstName}`;
-}
-
-function generateLastName(currentNode){
-    let lastName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    currentNode.characters = `${lastName}`;
+    return `${prof}`;
 }
 
 
-function generateRandomDL(currentNode){
+function generateRandomDL(){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let stateInitials = dataSet[`${state}`][0];
     let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
     let year = numBetween(1980,2021);
     let lastDigits = numBetween(1000000,9999999);
     if(rtoDigits < 10){
-        currentNode.characters = `${stateInitials}0${rtoDigits}${year}${lastDigits}`;
+        return `${stateInitials}0${rtoDigits}${year}${lastDigits}`;
     }else{
-        currentNode.characters = `${stateInitials}${rtoDigits}${year}${lastDigits}`;
+        return `${stateInitials}${rtoDigits}${year}${lastDigits}`;
     }
 }
 
-function generateRandomRC(currentNode){
+function generateRandomRC(){
     let state = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
     let stateInitials = dataSet[`${state}`][0];
     let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
@@ -337,9 +333,9 @@ function generateRandomRC(currentNode){
     let letter2 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
     let lastDigits = numBetween(1000,9999);
     if(rtoDigits < 10){
-        currentNode.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${lastDigits}`;
+        return `${stateInitials}0${rtoDigits}${letter1}${letter2}${lastDigits}`;
     }else{
-        currentNode.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${lastDigits}`;
+        return `${stateInitials}${rtoDigits}${letter1}${letter2}${lastDigits}`;
     }
 }
 
@@ -365,10 +361,9 @@ function generateRandomDoB(){
     }
 }
 
-function generateRandomAge(currentNode){
+function generateRandomAge(){
     let age = numBetween(15,86);
-    currentNode.characters = `${age}`;
-
+    return `${age}`;
 }
 
 function generateRandomData(currentNode, input){
@@ -377,73 +372,66 @@ function generateRandomData(currentNode, input){
 
         //If requirement is full-name, we need to attach elements for output
         if(input === "FullName"){
-            generateFullName(currentNode);
+            let first = generateRandomFirstName();
+            let last = generateRandomLastName();
+            currentNode.characters = `${first} ${last}`;
         }
         else if(input === "DoB"){
             currentNode.characters = generateRandomDoB();
         }
         else if(input === "Age"){
-            generateRandomAge(currentNode);
+            currentNode.characters = generateRandomAge();
         }
         else if(input === "Mobile"){
-            //Generate mobile number using function
-            generateMobileNumber(currentNode);
+            currentNode.characters = generateMobileNumber();
         }
         else if(input === "UID"){
-            //Generate aadhar number using function
-            generateAadhar(currentNode);
+            currentNode.characters = generateAadhar();
         }
         else if(input === "VID"){
-            //Generate aadhar-virtual number using function
-            generateAadharVirtual(currentNode);
+            currentNode.characters = generateAadharVirtual();
         }
         else if(input === "Email"){
-            //Generate email using function
-            generateRandomEmail(currentNode);
+            currentNode.characters = generateRandomEmail();
         }
         else if(input === "UPI"){
-            //Generate email using function
-            generateRandomUPI(currentNode);
+            currentNode.characters = generateRandomUPI();
         }
         else if(input === "Pass"){
-            //Generate email using function
-            generatePassport(currentNode);
+            currentNode.characters = generatePassport();
         }
         else if(input === "DL"){
-            //Generate email using function
-            generateRandomDL(currentNode);
+            currentNode.characters = generateRandomDL();
         }
         else if(input === "RC"){
-            //Generate email using function
-            generateRandomRC(currentNode);
+            currentNode.characters = generateRandomRC();
         }
         else if(input === "PIN"){
-            //Generate PIN code using function
-            generateRandomPINCode(currentNode);
+            currentNode.characters = generateRandomPINCode();
         }
         else if(input === "City"){
-            generateCity(currentNode);
+            currentNode.characters = generateRandomCity();
         }
         else if(input === "State"){
-            generateState(currentNode);
+            currentNode.characters = generateRandomState();
         }
         else if(input === "Prof"){
-            generateProf(currentNode);
+            currentNode.characters = generateRandomProf();
         }
         else if(input === "CityState"){
-            generateCityAndState(currentNode);
+            currentNode.characters = generateCityStatePair();
         }
         else if(input === "FirstName"){
-            generateFirstName(currentNode);
+            currentNode.characters = generateRandomFirstName();
         }
         else if(input === "LastName"){
-            generateLastName(currentNode);
+            currentNode.characters = generateRandomLastName();
         }
         else if(input === "RurAddress"){
-            generateRandomRurAddress(currentNode);
+            currentNode.characters = generateRandomRurAddress();
         }
         else if(input === "UrbAddress"){
-            generateRandomUrbAddress(currentNode);
+            currentNode.characters = generateRandomUrbAddress();
         }
     }
 }
@@ -451,333 +439,615 @@ function generateRandomData(currentNode, input){
 //Function for generating a new card with user details and appending it on the canvas
 function generateTable(incomingMsg){
 
-    const userCount = incomingMsg.noOfUsers;
+    const nodes: SceneNode[] = [];
+
+    const userCount = incomingMsg.noOfUsers;        //To be used to create data content in later part
+
+    
+    const tableFrame = figma.createFrame();         //Creating larger table frame
+    tableFrame.layoutMode = "HORIZONTAL";           //Horizontal autolayout
+    tableFrame.itemSpacing = 0;
+    tableFrame.name = "Indian user data";
+    var tableFrameWidth = 0;
+
+    const labelSection = figma.createFrame();       //Section containing labels
+    labelSection.layoutMode = "VERTICAL";           //Vertical autolayout
+    labelSection.itemSpacing = 0;
+    labelSection.name = "Labels";
+
+    var labelSectionHeight = 0;                     //adjusting label section width and height manually. Need more thoughts on this for optimization
 
     //Code block to generate user details labels as it needs to be generated at least once
     if(incomingMsg.FirstNameValue === true){
+        const firstnameLabelFrame = figma.createFrame();
+        formatLabelFrame(firstnameLabelFrame);
         const firstnameLabel = figma.createText();
         firstnameLabel.characters = "First Name";
-        cardLabelTextStyle(firstnameLabel);
+        formatLabelText(firstnameLabel);
+        firstnameLabelFrame.appendChild(firstnameLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(firstnameLabelFrame);
+
     }
 
     if(incomingMsg.LastNameValue === true){
+        const lastnameLabelFrame = figma.createFrame();
+        formatLabelFrame(lastnameLabelFrame);
         const lastnameLabel = figma.createText();
         lastnameLabel.characters = "Last Name";
-        cardLabelTextStyle(lastnameLabel);
+        formatLabelText(lastnameLabel);
+        lastnameLabelFrame.appendChild(lastnameLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(lastnameLabelFrame);
     }
 
     if(incomingMsg.FullNameValue === true){
-        const nameLabel = figma.createText();
-        nameLabel.characters = "Name";
-        cardLabelTextStyle(nameLabel);
+        const fullnameLabelFrame = figma.createFrame();
+        formatLabelFrame(fullnameLabelFrame);
+        const fullnameLabel = figma.createText();
+        fullnameLabel.characters = "Name";
+        formatLabelText(fullnameLabel);
+        fullnameLabelFrame.appendChild(fullnameLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(fullnameLabelFrame);
     }
     
-    if(incomingMsg.MobileValue === true){
-        const mobileLabel = figma.createText();
-        mobileLabel.characters = "Mobile Number";
-        cardLabelTextStyle(mobileLabel);
-    }
-
     if(incomingMsg.DoBValue === true){
+        const dobLabelFrame = figma.createFrame();
+        formatLabelFrame(dobLabelFrame);
         const dobLabel = figma.createText();
         dobLabel.characters = "Date of Birth";
-        cardLabelTextStyle(dobLabel);
+        formatLabelText(dobLabel);
+        dobLabelFrame.appendChild(dobLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(dobLabelFrame);
     }
 
     if(incomingMsg.AgeValue === true){
+        const ageLabelFrame = figma.createFrame();
+        formatLabelFrame(ageLabelFrame);
         const ageLabel = figma.createText();
         ageLabel.characters = "Age";
-        cardLabelTextStyle(ageLabel);
-    }
-
-    if(incomingMsg.UIDValue === true){
-        const aadharLabel = figma.createText();
-        aadharLabel.characters = "Aadhar Number (UID)";
-        cardLabelTextStyle(aadharLabel);
-    }
-
-    if(incomingMsg.PassValue === true){
-        const passLabel = figma.createText();
-        passLabel.characters = "Passport";
-        cardLabelTextStyle(passLabel);
+        formatLabelText(ageLabel);
+        ageLabelFrame.appendChild(ageLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ageLabelFrame);
     }
 
     if(incomingMsg.EmailValue === true){
-       const emailLabel = figma.createText();
-       emailLabel.characters = "Email";
-       cardLabelTextStyle(emailLabel);
+        const emailLabelFrame = figma.createFrame();
+        formatLabelFrame(emailLabelFrame);
+        const emailLabel = figma.createText();
+        emailLabel.characters = "Email";
+        formatLabelText(emailLabel);
+        emailLabelFrame.appendChild(emailLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(emailLabelFrame);
+     }
+
+    if(incomingMsg.MobileValue === true){
+        const mobileLabelFrame = figma.createFrame();
+        formatLabelFrame(mobileLabelFrame);
+        const mobileLabel = figma.createText();
+        mobileLabel.characters = "Mobile Number";
+        formatLabelText(mobileLabel);
+        mobileLabelFrame.appendChild(mobileLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(mobileLabelFrame);
+    }
+
+    if(incomingMsg.RurAddressValue === true){
+        const rurLabelFrame = figma.createFrame();
+        formatLabelFrame(rurLabelFrame);
+        const rurLabel = figma.createText();
+        rurLabel.characters = "Rural Address";
+        formatLabelText(rurLabel);
+        rurLabelFrame.appendChild(rurLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(rurLabelFrame);
+    }
+
+    if(incomingMsg.UrbAddressValue === true){
+        const urbLabelFrame = figma.createFrame();
+        formatLabelFrame(urbLabelFrame);
+        const urbLabel = figma.createText();
+        urbLabel.characters = "Urban Address";
+        formatLabelText(urbLabel);
+        urbLabelFrame.appendChild(urbLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(urbLabelFrame);
+    }
+
+    if(incomingMsg.CityValue === true){
+        const cityLabelFrame = figma.createFrame();
+        formatLabelFrame(cityLabelFrame);
+        const cityLabel = figma.createText();
+        cityLabel.characters = "City";
+        formatLabelText(cityLabel);
+        cityLabelFrame.appendChild(cityLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(cityLabelFrame);
+    }
+
+    if(incomingMsg.StateValue === true){
+        const stateLabelFrame = figma.createFrame();
+        formatLabelFrame(stateLabelFrame);
+        const stateLabel = figma.createText();
+        stateLabel.characters = "State";
+        formatLabelText(stateLabel);
+        stateLabelFrame.appendChild(stateLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(stateLabelFrame);
+    }
+
+    if(incomingMsg.PINValue === true){
+        const pinLabelFrame = figma.createFrame();
+        formatLabelFrame(pinLabelFrame);
+        const pinLabel = figma.createText();
+        pinLabel.characters = "PIN Code";
+        formatLabelText(pinLabel);
+        pinLabelFrame.appendChild(pinLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(pinLabelFrame);
     }
 
     if(incomingMsg.ProfValue === true){
+        const profLabelFrame = figma.createFrame();
+        formatLabelFrame(profLabelFrame);
         const profLabel = figma.createText();
         profLabel.characters = "Profession";
-        cardLabelTextStyle(profLabel);
+        formatLabelText(profLabel);
+        profLabelFrame.appendChild(profLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(profLabelFrame);
     }
 
-    if(incomingMsg.UPIValue === true){
-        const upiLabel = figma.createText();
-        upiLabel.characters = "UPI Address";
-        cardLabelTextStyle(upiLabel);
+    if(incomingMsg.PassValue === true){
+        const passLabelFrame = figma.createFrame();
+        formatLabelFrame(passLabelFrame);
+        const passLabel = figma.createText();
+        passLabel.characters = "Passport";
+        formatLabelText(passLabel);
+        passLabelFrame.appendChild(passLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(passLabelFrame);
     }
     
-    if(incomingMsg.StateValue === true){
-        const stateLabel = figma.createText();
-        stateLabel.characters = "State";
-        cardLabelTextStyle(stateLabel);
-    }
-
-    if(incomingMsg.CityValue === true){
-        const cityLabel = figma.createText();
-        cityLabel.characters = "City";
-        cardLabelTextStyle(cityLabel);
-    }
-
-    if(incomingMsg.PINValue === true){
-        const pinLabel = figma.createText();
-        pinLabel.characters = "PIN Code";
-        cardLabelTextStyle(pinLabel);
-    }
-
     if(incomingMsg.DLValue === true){
+        const dlLabelFrame = figma.createFrame();
+        formatLabelFrame(dlLabelFrame);
         const dlLabel = figma.createText();
         dlLabel.characters = "Driving License";
-        cardLabelTextStyle(dlLabel);
+        formatLabelText(dlLabel);
+        dlLabelFrame.appendChild(dlLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(dlLabelFrame);
     }
 
     if(incomingMsg.RCValue === true){
+        const rcLabelFrame = figma.createFrame();
+        formatLabelFrame(rcLabelFrame);
         const rcLabel = figma.createText();
         rcLabel.characters = "Vehicle Registration";
-        cardLabelTextStyle(rcLabel);
+        formatLabelText(rcLabel);
+        rcLabelFrame.appendChild(rcLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(rcLabelFrame);
     }
 
-    //Add rural and urban address labels here
-
-
-
-
-    for(let i=0; i<userCount; i++){
-
-        //code to generate user details. It will run the total number of times as entered by user for noOfUsers
-
-
-
-    }
-
-
-
-     //Generate main details of user from arryas and create const variables which are dependant on the user names, location (state etc.) to use accross the function
-     const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-     const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-     const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
-     const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
-     const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
-     const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
-     const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
-     const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-     const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
-     const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
-     const stateInitials = dataSet[`${stateName}`][0];
-     const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
-     const dobText = generateRandomDoB();
-
-    const nodes: SceneNode[] = [];
-
-    const newNode = figma.createFrame();
-    newNode.resize(300,200);                                //Currently kept the parent frame to 300x200        
-   
-
-
-
-
-
-    if(incomingMsg.MobileValue === true){
-        //Generate mobile number and add to frame
-        const mobile = figma.createText();
-        generateMobileNumber(mobile);
-        cardContentTextStyle(mobile);
-        newNode.appendChild(mobile);
-    }
     
-
-    if(incomingMsg.DoBValue === true){
-        const dob = figma.createText();
-        dob.characters = dobText;
-        cardContentTextStyle(dob);
-        newNode.appendChild(dob);
+    if(incomingMsg.UPIValue === true){
+        const upiLabelFrame = figma.createFrame();
+        formatLabelFrame(upiLabelFrame);
+        const upiLabel = figma.createText();
+        upiLabel.characters = "UPI Address";
+        formatLabelText(upiLabel);
+        upiLabelFrame.appendChild(upiLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(upiLabelFrame);
     }
 
-    if(incomingMsg.AgeValue === true){
-        const age = figma.createText();
-        const yearText = dobText[6] + dobText[7] + dobText[8] + dobText[9];
-        const birthYear = parseInt(yearText, 10);
+    if(incomingMsg.UIDValue === true){
+        const uidLabelFrame = figma.createFrame();
+        formatLabelFrame(uidLabelFrame);
+        const uidLabel = figma.createText();
+        uidLabel.characters = "Aadhar Number (UID)";
+        formatLabelText(uidLabel);
+        uidLabelFrame.appendChild(uidLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(uidLabelFrame);
+    }
+
+    if(incomingMsg.VIDValue === true){
+        const vidLabelFrame = figma.createFrame();
+        formatLabelFrame(vidLabelFrame);
+        const vidLabel = figma.createText();
+        vidLabel.characters = "Virtual Aadhar (VID)";
+        formatLabelText(vidLabel);
+        vidLabelFrame.appendChild(vidLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(vidLabelFrame);
+    }
+
+    labelSection.resize(generateTableLabelWidth, labelSectionHeight);
+    labelSection.layoutMode = "NONE";               //Removing autolayout from label section before adding to the table
+    tableFrameWidth += generateTableLabelWidth
+    const tableFrameHeight = labelSectionHeight;    //Height of table will be same as that of label or data section which will be same
+    tableFrame.appendChild(labelSection);           //Appending label section to the table frame
+
+
+    //Creating user data content sections using for-loop for number of users requested from input
+    for(let i=1; i<=userCount; i++){ 
+
+        
+        //Generate variables of user data from arryas and create const variables, which are then used in creating data content
+        //Name related
+        const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
+        const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
+        const fullName = `${fName} ${lName}`;
+        //Upi related
+        const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
+        const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
+        //City, state related
+        const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
+        const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
+        const pinFirstDigit = dataSet[`${stateName}`][2];
+        const pinRemainingDigits = numBetween(10000,99999);
+        const pinCode = `${pinFirstDigit}${pinRemainingDigits}`;
+        //Urban Address
+        const urbSpotNo = dataSet["UrbSpotNo"][Math.floor(Math.random()*(dataSet["UrbSpotNo"].length))];
+        const urbNum1 = numBetween(1,99);
+        const urbLandmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
+        const urbLandmark = dataSet["UrbLandmark"][Math.floor(Math.random()*(dataSet["UrbLandmark"].length))];
+        const urbAreaNo = dataSet["UrbAreaNo"][Math.floor(Math.random()*(dataSet["UrbAreaNo"].length))];
+        const urbNum2 = numBetween(1,99);
+        const subUrb = dataSet["UrbAddressSuburb"][Math.floor(Math.random()*(dataSet["UrbAddressSuburb"].length))];
+        const urbanAddress = `${urbSpotNo} ${urbNum1}, ${urbLandmarkConj} ${urbLandmark}, ${urbAreaNo} ${urbNum2}, ${subUrb}, ${cityName}, ${stateName}, Pincode-${pinCode}`;
+        //Rural address
+        const rurSpotNo = dataSet["RurSpotNo"][Math.floor(Math.random()*(dataSet["RurSpotNo"].length))];
+        const rurNum1 = numBetween(1,99);
+        const rurLandmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random()*(dataSet["LandmarkConjunction"].length))];
+        const rurLandmark = dataSet["RurLandmark"][Math.floor(Math.random()*(dataSet["RurLandmark"].length))];
+        const rurVillage = dataSet["RurAddressVillage"][Math.floor(Math.random()*(dataSet["RurAddressVillage"].length))];
+        const ruralAddress = `${rurSpotNo} ${rurNum1}, ${rurLandmarkConj} ${rurLandmark}, ${rurVillage}, Dist. ${cityName}, ${stateName}, Pincode-${pinCode}`;
+        //Email
+        const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
+        const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
+        const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+        // Dob and age
+        const dobContent = generateRandomDoB();
+        const yearContent = dobContent[6] + dobContent[7] + dobContent[8] + dobContent[9];
+        const birthYear = parseInt(yearContent, 10);
         const curretTime = new Date();
         const currentYear = curretTime.getFullYear();
         const currentAge = currentYear - birthYear;
-        age.characters = `${currentAge}`;
-        cardContentTextStyle(age);
-        newNode.appendChild(age);
-    }
-   
-
-    if(incomingMsg.UIDValue === true){
-        const aadhar = figma.createText();
-        generateAadhar(aadhar);
-        cardContentTextStyle(aadhar);
-        newNode.appendChild(aadhar);
-    }
-   
-    if(incomingMsg.PassValue === true){
-        const pass = figma.createText();
-        generatePassport(pass);
-        cardContentTextStyle(pass);
-        newNode.appendChild(pass);
-    }
-
-    if(incomingMsg.FullNameValue === true){
-        const name = figma.createText();
-        name.characters = `${fName} ${lName}`;
-        cardContentTextStyle(name);
-        newNode.appendChild(name);
-    }
-
-    if(incomingMsg.FirstNameValue === true){
-        const firstname = figma.createText();
-        firstname.characters = `${fName}`;
-        cardContentTextStyle(firstname);
-        newNode.appendChild(firstname);
-    }
-
-    if(incomingMsg.LastNameValue === true){
-         const lastname = figma.createText();
-         lastname.characters = `${lName}`;
-         cardContentTextStyle(lastname);
-         newNode.appendChild(lastname);
-    }
-    
-    if(incomingMsg.EmailValue === true){
-        const email = figma.createText();
-        email.characters = `${userEmail}`;
-        cardContentTextStyle(email);
-        newNode.appendChild(email);
-    }
-
-   if(incomingMsg.ProfValue === true){
-        const profession = figma.createText();
-        profession.characters = `${userProfession}`;
-        cardContentTextStyle(profession);
-        newNode.appendChild(profession);
-   }
-
-    
+        //Profession
+        const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+        //DL, RC related
+        const stateInitials = dataSet[`${stateName}`][0];
+        const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
+        const dlYear = numBetween(1980,2021);
+        const dlLastDigits = numBetween(1000000,9999999);
+        const rcLetter1 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
+        const rcLetter2 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
+        const rcEndDigits = numBetween(1000,9999);
+        //Passport
+        const passport = generatePassport();
+        //Mobile
+        const mobile = generateMobileNumber();
+        //UID, VID
+        const UID = generateAadhar();
+        const VID = generateAadharVirtual();
 
 
-    //Add Rur and urban address here
+        const dataSection = figma.createFrame();       //Section containing data items
+        dataSection.layoutMode = "VERTICAL";           //Vertical autolayout
+        dataSection.itemSpacing = 0;
+        dataSection.name = `User ${i}`;
 
-
-
-    if(incomingMsg.UPIValue === true){
-        const upi = figma.createText();
-        upi.characters = `${userUPI}`;
-        cardContentTextStyle(upi);
-        newNode.appendChild(upi);
-    }
-
-    
-    if(incomingMsg.StateValue === true){
-        const state = figma.createText();
-        state.characters = `${stateName}`;
-        cardContentTextStyle(state);
-        newNode.appendChild(state);
-    }
-    
-
-    if(incomingMsg.CityValue === true){
-        const city = figma.createText();
-        city.characters = `${cityName}`;
-        cardContentTextStyle(city);
-        newNode.appendChild(city);
-    }
-
-    if(incomingMsg.PINValue === true){
-        const pin = figma.createText();
-        const pinFirstDigit = dataSet[`${stateName}`][2];
-        const pinRemainingDigits = numBetween(10000,99999);
-        pin.characters = `${pinFirstDigit}${pinRemainingDigits}`;
-        cardContentTextStyle(pin);
-        newNode.appendChild(pin);
-    }
-    
-
-    if(incomingMsg.DLValue === true){
-        const dl = figma.createText();    
-        const licenseYear = numBetween(1980,2021);
-        const lastDigits = numBetween(1000000,9999999);
-        if(rtoDigits < 10){
-            dl.characters = `${stateInitials}0${rtoDigits}${licenseYear}${lastDigits}`;
-        }else{
-            dl.characters = `${stateInitials}${rtoDigits}${licenseYear}${lastDigits}`;
+        if(incomingMsg.FirstNameValue === true){
+            const firstnameTextFrame = figma.createFrame();
+            formatContentFrame(firstnameTextFrame);
+            const firstnameText = figma.createText();
+            firstnameText.characters = `${fName}`;
+            formatContentText(firstnameText);
+            firstnameTextFrame.appendChild(firstnameText);
+            dataSection.appendChild(firstnameTextFrame);
         }
-        cardContentTextStyle(dl);
-        newNode.appendChild(dl);
 
-    }
+        if(incomingMsg.LastNameValue === true){
+            const lastnameTextFrame = figma.createFrame();
+            formatContentFrame(lastnameTextFrame);
+            const lastnameText = figma.createText();
+            lastnameText.characters = `${lName}`;
+            formatContentText(lastnameText);
+            lastnameTextFrame.appendChild(lastnameText);
+            dataSection.appendChild(lastnameTextFrame);
+       }
 
-    if(incomingMsg.RCValue === true){
-        const rc = figma.createText();
-        const letter1 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
-        const letter2 = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
-        const endDigits = numBetween(1000,9999);
-        if(rtoDigits < 10){
-            rc.characters = `${stateInitials}0${rtoDigits}${letter1}${letter2}${endDigits}`;
-        }else{
-            rc.characters = `${stateInitials}${rtoDigits}${letter1}${letter2}${endDigits}`;
+        if(incomingMsg.FullNameValue === true){
+            const fullnameTextFrame = figma.createFrame();
+            formatContentFrame(fullnameTextFrame);
+            const fullnameText = figma.createText();
+            fullnameText.characters = `${fullName}`;
+            formatContentText(fullnameText);
+            fullnameTextFrame.appendChild(fullnameText);
+            dataSection.appendChild(fullnameTextFrame);
         }
-        cardContentTextStyle(rc);
-        newNode.appendChild(rc);
+
+        if(incomingMsg.DoBValue === true){
+            const dobTextFrame = figma.createFrame();
+            formatContentFrame(dobTextFrame);
+            const dobText = figma.createText();
+            dobText.characters = `${dobContent}`;
+            formatContentText(dobText);
+            dobTextFrame.appendChild(dobText);
+            dataSection.appendChild(dobTextFrame);
+        }
+
+        if(incomingMsg.AgeValue === true){
+            const ageTextFrame = figma.createFrame();
+            formatContentFrame(ageTextFrame);
+            const ageText = figma.createText();        
+            ageText.characters = `${currentAge}`;
+            formatContentText(ageText);
+            ageTextFrame.appendChild(ageText);
+            dataSection.appendChild(ageTextFrame);
+        }
+
+        if(incomingMsg.EmailValue === true){
+            const emailTextFrame = figma.createFrame();
+            formatContentFrame(emailTextFrame);
+            const emailText = figma.createText();
+            emailText.characters = `${userEmail}`;
+            formatContentText(emailText);
+            emailTextFrame.appendChild(emailText);
+            dataSection.appendChild(emailTextFrame);
+        }
+
+        if(incomingMsg.MobileValue === true){
+            const mobileTextFrame = figma.createFrame();
+            formatContentFrame(mobileTextFrame);
+            const mobileText = figma.createText();
+            mobileText.characters = `${mobile}`;
+            formatContentText(mobileText);
+            mobileTextFrame.appendChild(mobileText);
+            dataSection.appendChild(mobileTextFrame);
+        }
+
+        if(incomingMsg.RurAddressValue === true){
+            const rurAddressTextFrame = figma.createFrame();
+            formatContentFrame(rurAddressTextFrame);
+            const rurAddressText = figma.createText();
+            rurAddressText.characters = `${ruralAddress}`;
+            formatContentText(rurAddressText);
+            rurAddressTextFrame.appendChild(rurAddressText);
+            dataSection.appendChild(rurAddressTextFrame);
+        }
+
+        if(incomingMsg.UrbAddressValue === true){
+            const urbAddressTextFrame = figma.createFrame();
+            formatContentFrame(urbAddressTextFrame);
+            const urbAddressText = figma.createText();
+            urbAddressText.characters = `${urbanAddress}`;
+            formatContentText(urbAddressText);
+            urbAddressTextFrame.appendChild(urbAddressText);
+            dataSection.appendChild(urbAddressTextFrame);
+        }
+
+        if(incomingMsg.CityValue === true){
+            const cityTextFrame = figma.createFrame();
+            formatContentFrame(cityTextFrame);
+            const cityText = figma.createText();
+            cityText.characters = `${cityName}`;
+            formatContentText(cityText);
+            cityTextFrame.appendChild(cityText);
+            dataSection.appendChild(cityTextFrame);
+        }
+
+        
+        if(incomingMsg.StateValue === true){
+            const stateTextFrame = figma.createFrame();
+            formatContentFrame(stateTextFrame);
+            const stateText = figma.createText();
+            stateText.characters = `${stateName}`;
+            formatContentText(stateText);
+            stateTextFrame.appendChild(stateText);
+            dataSection.appendChild(stateTextFrame);
+        }
+
+        if(incomingMsg.PINValue === true){
+            const pinTextFrame = figma.createFrame();
+            formatContentFrame(pinTextFrame);
+            const pinText = figma.createText();
+            pinText.characters = `${pinCode}`;
+            formatContentText(pinText);
+            pinTextFrame.appendChild(pinText);
+            dataSection.appendChild(pinTextFrame);
+        }
+
+        if(incomingMsg.ProfValue === true){
+            const professionTextFrame = figma.createFrame();
+            formatContentFrame(professionTextFrame);
+            const professionText = figma.createText();
+            if(currentAge <= 19){
+                professionText.characters = "Student";
+            }else{
+                professionText.characters = `${userProfession}`;
+            }
+            formatContentText(professionText);
+            professionTextFrame.appendChild(professionText);
+            dataSection.appendChild(professionTextFrame);
+        }
+
+        if(incomingMsg.PassValue === true){
+            const passTextFrame = figma.createFrame();
+            formatContentFrame(passTextFrame);
+            const passText = figma.createText();
+            passText.characters = `${passport}`;
+            formatContentText(passText);
+            passTextFrame.appendChild(passText);
+            dataSection.appendChild(passTextFrame);
+        }
+
+        if(incomingMsg.DLValue === true){
+            const dlTextFrame = figma.createFrame();
+            formatContentFrame(dlTextFrame);
+            const dlText = figma.createText();    
+            if(currentAge < 18){
+                dlText.characters = `Not elligible due to age`;
+            }else if(rtoDigits < 10){
+                dlText.characters = `${stateInitials}0${rtoDigits}${dlYear}${dlLastDigits}`;
+            }else{
+                dlText.characters = `${stateInitials}${rtoDigits}${dlYear}${dlLastDigits}`;
+            }
+            formatContentText(dlText);
+            dlTextFrame.appendChild(dlText);
+            dataSection.appendChild(dlTextFrame);
+        }
+
+        if(incomingMsg.RCValue === true){
+            const rcTextFrame = figma.createFrame();
+            formatContentFrame(rcTextFrame);
+            const rcText = figma.createText();
+            
+            if(currentAge < 18){
+                rcText.characters = `Not elligible due to age`;
+            }else if(rtoDigits < 10){
+                rcText.characters = `${stateInitials}0${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
+            }else{
+                rcText.characters = `${stateInitials}${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
+            }
+            formatContentText(rcText);
+            rcTextFrame.appendChild(rcText);
+            dataSection.appendChild(rcTextFrame);
+        }
+
+        if(incomingMsg.UPIValue === true){
+            const upiTextFrame = figma.createFrame();
+            formatContentFrame(upiTextFrame);
+            const upiText = figma.createText();
+            upiText.characters = `${userUPI}`;
+            formatContentText(upiText);
+            upiTextFrame.appendChild(upiText);
+            dataSection.appendChild(upiTextFrame);
+        }
+
+        if(incomingMsg.UIDValue === true){
+            const uidTextFrame = figma.createFrame();
+            formatContentFrame(uidTextFrame);
+            const uidText = figma.createText();
+            uidText.characters = `${UID}`;
+            formatContentText(uidText);
+            uidTextFrame.appendChild(uidText);
+            dataSection.appendChild(uidTextFrame);
+        }
+
+        
+        if(incomingMsg.VIDValue === true){
+            const vidTextFrame = figma.createFrame();
+            formatContentFrame(vidTextFrame);
+            const vidText = figma.createText();
+            vidText.characters = `${VID}`;
+            formatContentText(vidText);
+            vidTextFrame.appendChild(vidText);
+            dataSection.appendChild(vidTextFrame);
+        }
+        
+        const dataSectionWidth = generateTableDataWidth;               //Constant already defined initially
+        const dataSectionHeight = labelSectionHeight;                   //Already calculated in the label section
+
+        dataSection.resize(dataSectionWidth, dataSectionHeight);
+        dataSection.layoutMode = "NONE";               //Removing autolayout from data section before adding to the table
+        
+        tableFrameWidth += dataSectionWidth
+        tableFrame.appendChild(dataSection);           //Appending label section to the table frame
+
     }
 
-
-    
-
-    
-    //Testing autolayout possibilities. Working!
-    // const newTestNode = figma.createFrame();
-    // newTestNode.appendChild(rcLabel);
-    // newTestNode.appendChild(rc);
-    // newTestNode.layoutMode = "VERTICAL";
-    // newTestNode.itemSpacing = 15;
-    // figma.currentPage.appendChild(newTestNode);
-    // nodes.push(newTestNode);
-
-
+    tableFrame.resize(tableFrameWidth, tableFrameHeight); 
+    tableFrame.layoutMode = "NONE";                        //Removing autolayout from main table frame before adding to canvas
 
 
     //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
-    figma.currentPage.appendChild(newNode);
-    nodes.push(newNode);
+    figma.currentPage.appendChild(tableFrame);
+    nodes.push(tableFrame);
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
 }
 
 
-function cardLabelTextStyle(inputNode){
-    inputNode.fontSize = 10;
-    inputNode.fills = [
+function formatLabelText(inputTextNode){
+    setFont(inputTextNode);
+    inputTextNode.fontSize = 9;
+    inputTextNode.fills = [
         {
           type: "SOLID",
-          color: { r: 0.5, g: 0.5, b: 0.5 },
+          color: { r: 0.3, g: 0.3, b: 0.3},
         }
       ];
+    inputTextNode.x += 4
+    inputTextNode.resize (generateTableLabelWidth, generateTableCellHeight);
+    inputTextNode.textAlignHorizontal = "LEFT";
+    inputTextNode.textAlignVertical = "CENTER";
 }
 
-function cardContentTextStyle(inputNode){
-    inputNode.fontSize = 14;
-    inputNode.fills = [
+function formatContentText(inputTextNode){
+    setFont(inputTextNode);
+    inputTextNode.fontSize = 9;
+    inputTextNode.fills = [
         {
           type: "SOLID",
-          color: { r: 0.4, g: 0.6, b: 0.7 },
+          color: { r: 0, g: 0, b: 0 },
         }
       ];
+    inputTextNode.x += 4
+    inputTextNode.resize (generateTableDataWidth-4, generateTableCellHeight);
+    inputTextNode.textAlignHorizontal = "LEFT";
+    inputTextNode.textAlignVertical = "CENTER";
+    
+
+}
+
+function formatLabelFrame(inputFrameNode){
+    if(inputFrameNode.type === 'FRAME'){
+
+        inputFrameNode.resize(generateTableLabelWidth, generateTableCellHeight);
+        inputFrameNode.fills = [
+            {
+            type: "SOLID",
+            color: { r: 0.96, g: 0.96, b: 0.96 },
+            }
+        ];
+        inputFrameNode.strokes = [
+            {
+            type: "SOLID",
+            color: { r: 0.6, g: 0.6, b: 0.6 },
+            }
+        ];
+        inputFrameNode.strokeWeight = 0.25;
+        inputFrameNode.strokeAlign = "CENTER";
+    }else{
+        console.log("No frame error");
+    }
+    
+}
+
+function formatContentFrame(inputFrameNode){
+    if(inputFrameNode.type === 'FRAME'){
+        inputFrameNode.resize(generateTableDataWidth, generateTableCellHeight);
+        inputFrameNode.strokes = [
+            {
+            type: "SOLID",
+            color: { r: 0.6, g: 0.6, b: 0.6},
+            }
+        ];
+        inputFrameNode.strokeWeight = 0.25;
+        inputFrameNode.strokeAlign = "CENTER";
+    }else{
+        console.log("No frame error");
+    }
+    
 }
 
 
