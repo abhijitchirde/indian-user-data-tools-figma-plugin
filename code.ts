@@ -2,7 +2,7 @@
 //abhijitchirde.com
 
 figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
-figma.loadFontAsync({family: 'Roboto', style: 'Medium'});
+figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -123,12 +123,13 @@ const dataSet = {
 }
 
 
-const generateTableLabelWidth = 100;
+const generateTableLabelWidth = 95;
 const generateTableDataWidth = 270;
-const generateTableCellHeight = 30;
+const generateTableCellHeight = 26;
+const generateTableHeaderHeight = 16;
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 575, height: 480});
+figma.showUI(__html__,{width: 575, height: 470});
 
 
 //Receiving the button inputs from UI
@@ -144,16 +145,11 @@ figma.ui.onmessage = msg => {
         
         //for all the selected nodes
         for(const node of figma.currentPage.selection){
-
             //Giving notification if selected layer is not text
             if(node.type !== 'TEXT'){
                 figma.notify("Please select a text layer to add data", {timeout: 1000});
             }
-
-            setFont(node);
-            
-            //Calling function to put requested data on text layer
-            generateRandomData(node, msg.inputValue);
+            generateRandomData(node, msg.inputValue);       //Calling function to put requested data on text layer
 
         }
     
@@ -168,8 +164,7 @@ figma.ui.onmessage = msg => {
         }else if(num <= 0){
             figma.notify("Please enter a number greater than 0", {timeout:1000});
         }else{
-            //Calling function to create a user data card and append on canvas
-            generateTable(msg.chkInput);
+            generateTable(msg.chkInput);    //Calling function to create a user data table and append on canvas
         }                  
     }  
 
@@ -183,6 +178,13 @@ function setFont(currentNode){
     //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
     if(currentNode.type === "TEXT"){
         currentNode.fontName = {family: 'Roboto', style: 'Regular'};
+    }
+}
+
+function setFontLight(currentNode){
+    //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
+    if(currentNode.type === "TEXT"){
+        currentNode.fontName = {family: 'Roboto', style: 'Light'};
     }
 }
 
@@ -204,7 +206,7 @@ function numBetween(low, high){
 //Define function for generating mobile number
 function generateMobileNumber(){
     let number = numBetween(6000000000,9999999999);         //finding a random 10 digit number for mobile
-    return `+91-${number}`;
+    return `${number}`;
 }
 
 //Define function for generating mobile number
@@ -230,12 +232,10 @@ function generateAadhar(){
 }
 
 //Define function for generating 16digit VID number
-function generateAadharVirtual(){
-    let numSet1 = numBetween(1000, 9999);
-    let numSet2 = numBetween(1000, 9999); 
-    let numSet3 = numBetween(1000, 9999);
-    let numSet4 = numBetween(1000, 9999);             
-    return `${numSet1} ${numSet2} ${numSet3} ${numSet4}`;        //Finding a random 16 digit number for VID. In 4 parts of 4 digits
+function generateRandomUPIm(){
+    let mobileNum = numBetween(6000000000,9999999999); 
+    let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];     
+    return `${mobileNum}@${upiEnd}`.toLowerCase();
 }
 
 //Define function for generating email
@@ -254,7 +254,7 @@ function generateRandomPINCode(){
 }
 
 
-function generateRandomUPI(){
+function generateRandomUPIn(){
     let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
     let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
     let upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
@@ -366,9 +366,17 @@ function generateRandomAge(){
     return `${age}`;
 }
 
+function generateRandomPAN(){
+
+    return "Need to work on PAN function";
+
+}
+
 function generateRandomData(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
+
+        setFont(currentNode);
 
         //If requirement is full-name, we need to attach elements for output
         if(input === "FullName"){
@@ -383,19 +391,19 @@ function generateRandomData(currentNode, input){
             currentNode.characters = generateRandomAge();
         }
         else if(input === "Mobile"){
-            currentNode.characters = generateMobileNumber();
+            currentNode.characters = "+91-" + generateMobileNumber();
         }
         else if(input === "UID"){
             currentNode.characters = generateAadhar();
         }
-        else if(input === "VID"){
-            currentNode.characters = generateAadharVirtual();
+        else if(input === "UPIm"){
+            currentNode.characters = generateRandomUPIm();
         }
         else if(input === "Email"){
             currentNode.characters = generateRandomEmail();
         }
-        else if(input === "UPI"){
-            currentNode.characters = generateRandomUPI();
+        else if(input === "UPIn"){
+            currentNode.characters = generateRandomUPIn();
         }
         else if(input === "Pass"){
             currentNode.characters = generatePassport();
@@ -433,6 +441,9 @@ function generateRandomData(currentNode, input){
         else if(input === "UrbAddress"){
             currentNode.characters = generateRandomUrbAddress();
         }
+        else if(input === "PAN"){
+            currentNode.characters = generateRandomPAN();
+        }
     }
 }
 
@@ -457,11 +468,25 @@ function generateTable(incomingMsg){
 
     var labelSectionHeight = 0;                     //adjusting label section width and height manually. Need more thoughts on this for optimization
 
+
+    //Add header for label section
+    const labelHeaderFrame = figma.createFrame();
+    formatLabelHeaderFrame(labelHeaderFrame);
+    const labelHeaderText = figma.createText();
+    setFont(labelHeaderText);
+    labelHeaderText.characters = "Details";
+    formatLabelHeaderText(labelHeaderText);
+    labelHeaderFrame.appendChild(labelHeaderText);
+    labelSectionHeight += generateTableHeaderHeight;
+    labelSection.appendChild(labelHeaderFrame);
+
+
     //Code block to generate user details labels as it needs to be generated at least once
     if(incomingMsg.FirstNameValue === true){
         const firstnameLabelFrame = figma.createFrame();
         formatLabelFrame(firstnameLabelFrame);
         const firstnameLabel = figma.createText();
+        setFont(firstnameLabel);
         firstnameLabel.characters = "First Name";
         formatLabelText(firstnameLabel);
         firstnameLabelFrame.appendChild(firstnameLabel);
@@ -474,6 +499,7 @@ function generateTable(incomingMsg){
         const lastnameLabelFrame = figma.createFrame();
         formatLabelFrame(lastnameLabelFrame);
         const lastnameLabel = figma.createText();
+        setFont(lastnameLabel);
         lastnameLabel.characters = "Last Name";
         formatLabelText(lastnameLabel);
         lastnameLabelFrame.appendChild(lastnameLabel);
@@ -485,7 +511,8 @@ function generateTable(incomingMsg){
         const fullnameLabelFrame = figma.createFrame();
         formatLabelFrame(fullnameLabelFrame);
         const fullnameLabel = figma.createText();
-        fullnameLabel.characters = "Name";
+        setFont(fullnameLabel);
+        fullnameLabel.characters = "Full Name";
         formatLabelText(fullnameLabel);
         fullnameLabelFrame.appendChild(fullnameLabel);
         labelSectionHeight += generateTableCellHeight;
@@ -496,6 +523,7 @@ function generateTable(incomingMsg){
         const dobLabelFrame = figma.createFrame();
         formatLabelFrame(dobLabelFrame);
         const dobLabel = figma.createText();
+        setFont(dobLabel);
         dobLabel.characters = "Date of Birth";
         formatLabelText(dobLabel);
         dobLabelFrame.appendChild(dobLabel);
@@ -507,6 +535,7 @@ function generateTable(incomingMsg){
         const ageLabelFrame = figma.createFrame();
         formatLabelFrame(ageLabelFrame);
         const ageLabel = figma.createText();
+        setFont(ageLabelFrame);
         ageLabel.characters = "Age";
         formatLabelText(ageLabel);
         ageLabelFrame.appendChild(ageLabel);
@@ -518,6 +547,7 @@ function generateTable(incomingMsg){
         const emailLabelFrame = figma.createFrame();
         formatLabelFrame(emailLabelFrame);
         const emailLabel = figma.createText();
+        setFont(emailLabel);
         emailLabel.characters = "Email";
         formatLabelText(emailLabel);
         emailLabelFrame.appendChild(emailLabel);
@@ -529,6 +559,7 @@ function generateTable(incomingMsg){
         const mobileLabelFrame = figma.createFrame();
         formatLabelFrame(mobileLabelFrame);
         const mobileLabel = figma.createText();
+        setFont(mobileLabel);
         mobileLabel.characters = "Mobile Number";
         formatLabelText(mobileLabel);
         mobileLabelFrame.appendChild(mobileLabel);
@@ -540,6 +571,7 @@ function generateTable(incomingMsg){
         const rurLabelFrame = figma.createFrame();
         formatLabelFrame(rurLabelFrame);
         const rurLabel = figma.createText();
+        setFont(rurLabel);
         rurLabel.characters = "Rural Address";
         formatLabelText(rurLabel);
         rurLabelFrame.appendChild(rurLabel);
@@ -551,6 +583,7 @@ function generateTable(incomingMsg){
         const urbLabelFrame = figma.createFrame();
         formatLabelFrame(urbLabelFrame);
         const urbLabel = figma.createText();
+        setFont(urbLabel);
         urbLabel.characters = "Urban Address";
         formatLabelText(urbLabel);
         urbLabelFrame.appendChild(urbLabel);
@@ -562,6 +595,7 @@ function generateTable(incomingMsg){
         const cityLabelFrame = figma.createFrame();
         formatLabelFrame(cityLabelFrame);
         const cityLabel = figma.createText();
+        setFont(cityLabel);
         cityLabel.characters = "City";
         formatLabelText(cityLabel);
         cityLabelFrame.appendChild(cityLabel);
@@ -573,6 +607,7 @@ function generateTable(incomingMsg){
         const stateLabelFrame = figma.createFrame();
         formatLabelFrame(stateLabelFrame);
         const stateLabel = figma.createText();
+        setFont(stateLabel);
         stateLabel.characters = "State";
         formatLabelText(stateLabel);
         stateLabelFrame.appendChild(stateLabel);
@@ -584,6 +619,7 @@ function generateTable(incomingMsg){
         const pinLabelFrame = figma.createFrame();
         formatLabelFrame(pinLabelFrame);
         const pinLabel = figma.createText();
+        setFont(pinLabel);
         pinLabel.characters = "PIN Code";
         formatLabelText(pinLabel);
         pinLabelFrame.appendChild(pinLabel);
@@ -595,6 +631,7 @@ function generateTable(incomingMsg){
         const profLabelFrame = figma.createFrame();
         formatLabelFrame(profLabelFrame);
         const profLabel = figma.createText();
+        setFont(profLabel);
         profLabel.characters = "Profession";
         formatLabelText(profLabel);
         profLabelFrame.appendChild(profLabel);
@@ -606,6 +643,7 @@ function generateTable(incomingMsg){
         const passLabelFrame = figma.createFrame();
         formatLabelFrame(passLabelFrame);
         const passLabel = figma.createText();
+        setFont(passLabel);
         passLabel.characters = "Passport";
         formatLabelText(passLabel);
         passLabelFrame.appendChild(passLabel);
@@ -617,6 +655,7 @@ function generateTable(incomingMsg){
         const dlLabelFrame = figma.createFrame();
         formatLabelFrame(dlLabelFrame);
         const dlLabel = figma.createText();
+        setFont(dlLabel);
         dlLabel.characters = "Driving License";
         formatLabelText(dlLabel);
         dlLabelFrame.appendChild(dlLabel);
@@ -628,6 +667,7 @@ function generateTable(incomingMsg){
         const rcLabelFrame = figma.createFrame();
         formatLabelFrame(rcLabelFrame);
         const rcLabel = figma.createText();
+        setFont(rcLabel);
         rcLabel.characters = "Vehicle Registration";
         formatLabelText(rcLabel);
         rcLabelFrame.appendChild(rcLabel);
@@ -635,22 +675,11 @@ function generateTable(incomingMsg){
         labelSection.appendChild(rcLabelFrame);
     }
 
-    
-    if(incomingMsg.UPIValue === true){
-        const upiLabelFrame = figma.createFrame();
-        formatLabelFrame(upiLabelFrame);
-        const upiLabel = figma.createText();
-        upiLabel.characters = "UPI Address";
-        formatLabelText(upiLabel);
-        upiLabelFrame.appendChild(upiLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(upiLabelFrame);
-    }
-
     if(incomingMsg.UIDValue === true){
         const uidLabelFrame = figma.createFrame();
         formatLabelFrame(uidLabelFrame);
         const uidLabel = figma.createText();
+        setFont(uidLabel);
         uidLabel.characters = "Aadhar Number (UID)";
         formatLabelText(uidLabel);
         uidLabelFrame.appendChild(uidLabel);
@@ -658,15 +687,41 @@ function generateTable(incomingMsg){
         labelSection.appendChild(uidLabelFrame);
     }
 
-    if(incomingMsg.VIDValue === true){
-        const vidLabelFrame = figma.createFrame();
-        formatLabelFrame(vidLabelFrame);
-        const vidLabel = figma.createText();
-        vidLabel.characters = "Virtual Aadhar (VID)";
-        formatLabelText(vidLabel);
-        vidLabelFrame.appendChild(vidLabel);
+    
+    if(incomingMsg.UPInValue === true){
+        const upinLabelFrame = figma.createFrame();
+        formatLabelFrame(upinLabelFrame);
+        const upinLabel = figma.createText();
+        setFont(upinLabel);
+        upinLabel.characters = "UPI with name";
+        formatLabelText(upinLabel);
+        upinLabelFrame.appendChild(upinLabel);
         labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(vidLabelFrame);
+        labelSection.appendChild(upinLabelFrame);
+    }
+
+    if(incomingMsg.UPImValue === true){
+        const upimLabelFrame = figma.createFrame();
+        formatLabelFrame(upimLabelFrame);
+        const upimLabel = figma.createText();
+        setFont(upimLabel);
+        upimLabel.characters = "UPI with mobile";
+        formatLabelText(upimLabel);
+        upimLabelFrame.appendChild(upimLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(upimLabelFrame);
+    }
+
+    if(incomingMsg.PANValue === true){
+        const panLabelFrame = figma.createFrame();
+        formatLabelFrame(panLabelFrame);
+        const panLabel = figma.createText();
+        setFont(panLabel);
+        panLabel.characters = "PAN";
+        formatLabelText(panLabel);
+        panLabelFrame.appendChild(panLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(panLabelFrame);
     }
 
     labelSection.resize(generateTableLabelWidth, labelSectionHeight);
@@ -685,9 +740,14 @@ function generateTable(incomingMsg){
         const fName = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
         const lName = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
         const fullName = `${fName} ${lName}`;
+        //Mobile
+        const mobileDigits = generateMobileNumber();
+        const mobile = `+91-${mobileDigits}`;
         //Upi related
-        const upiEnd = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
-        const userUPI = `${fName}${lName}@${upiEnd}`.toLowerCase();
+        const upiEnd1 = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
+        const upiEnd2 = dataSet["UPISuffix"][Math.floor(Math.random()*(dataSet["UPISuffix"].length))];
+        const upin = `${fName}${lName}@${upiEnd1}`.toLowerCase();
+        const upim = `${mobileDigits}@${upiEnd2}`.toLowerCase();
         //City, state related
         const stateName = dataSet["State"][Math.floor(Math.random()*(dataSet["State"].length))];
         const cityName = dataSet[`${stateName}`][Math.floor(Math.random()*(dataSet[`${stateName}`].length-3))+3];
@@ -733,22 +793,32 @@ function generateTable(incomingMsg){
         const rcEndDigits = numBetween(1000,9999);
         //Passport
         const passport = generatePassport();
-        //Mobile
-        const mobile = generateMobileNumber();
-        //UID, VID
+        //UID
         const UID = generateAadhar();
-        const VID = generateAadharVirtual();
-
+        //PAN
+        const pan = generateRandomPAN();
 
         const dataSection = figma.createFrame();       //Section containing data items
         dataSection.layoutMode = "VERTICAL";           //Vertical autolayout
         dataSection.itemSpacing = 0;
         dataSection.name = `User ${i}`;
 
+        //Add header for data sections
+        const userHeaderFrame = figma.createFrame();
+        formatUserHeaderFrame(userHeaderFrame);
+        const userHeaderText = figma.createText();
+        setFont(userHeaderText);
+        userHeaderText.characters = `User ${i}`;
+        formatUserHeaderText(userHeaderText);
+        userHeaderFrame.appendChild(userHeaderText);
+        dataSection.appendChild(userHeaderFrame);
+
+
         if(incomingMsg.FirstNameValue === true){
             const firstnameTextFrame = figma.createFrame();
             formatContentFrame(firstnameTextFrame);
             const firstnameText = figma.createText();
+            setFont(firstnameText);
             firstnameText.characters = `${fName}`;
             formatContentText(firstnameText);
             firstnameTextFrame.appendChild(firstnameText);
@@ -759,6 +829,7 @@ function generateTable(incomingMsg){
             const lastnameTextFrame = figma.createFrame();
             formatContentFrame(lastnameTextFrame);
             const lastnameText = figma.createText();
+            setFont(lastnameText);
             lastnameText.characters = `${lName}`;
             formatContentText(lastnameText);
             lastnameTextFrame.appendChild(lastnameText);
@@ -769,6 +840,7 @@ function generateTable(incomingMsg){
             const fullnameTextFrame = figma.createFrame();
             formatContentFrame(fullnameTextFrame);
             const fullnameText = figma.createText();
+            setFont(fullnameText);
             fullnameText.characters = `${fullName}`;
             formatContentText(fullnameText);
             fullnameTextFrame.appendChild(fullnameText);
@@ -779,6 +851,7 @@ function generateTable(incomingMsg){
             const dobTextFrame = figma.createFrame();
             formatContentFrame(dobTextFrame);
             const dobText = figma.createText();
+            setFont(dobText);
             dobText.characters = `${dobContent}`;
             formatContentText(dobText);
             dobTextFrame.appendChild(dobText);
@@ -788,7 +861,8 @@ function generateTable(incomingMsg){
         if(incomingMsg.AgeValue === true){
             const ageTextFrame = figma.createFrame();
             formatContentFrame(ageTextFrame);
-            const ageText = figma.createText();        
+            const ageText = figma.createText();   
+            setFont(ageText);     
             ageText.characters = `${currentAge}`;
             formatContentText(ageText);
             ageTextFrame.appendChild(ageText);
@@ -799,6 +873,7 @@ function generateTable(incomingMsg){
             const emailTextFrame = figma.createFrame();
             formatContentFrame(emailTextFrame);
             const emailText = figma.createText();
+            setFont(emailText);  
             emailText.characters = `${userEmail}`;
             formatContentText(emailText);
             emailTextFrame.appendChild(emailText);
@@ -809,6 +884,7 @@ function generateTable(incomingMsg){
             const mobileTextFrame = figma.createFrame();
             formatContentFrame(mobileTextFrame);
             const mobileText = figma.createText();
+            setFont(mobileText); 
             mobileText.characters = `${mobile}`;
             formatContentText(mobileText);
             mobileTextFrame.appendChild(mobileText);
@@ -819,6 +895,7 @@ function generateTable(incomingMsg){
             const rurAddressTextFrame = figma.createFrame();
             formatContentFrame(rurAddressTextFrame);
             const rurAddressText = figma.createText();
+            setFont(rurAddressText); 
             rurAddressText.characters = `${ruralAddress}`;
             formatContentText(rurAddressText);
             rurAddressTextFrame.appendChild(rurAddressText);
@@ -829,6 +906,7 @@ function generateTable(incomingMsg){
             const urbAddressTextFrame = figma.createFrame();
             formatContentFrame(urbAddressTextFrame);
             const urbAddressText = figma.createText();
+            setFont(urbAddressText); 
             urbAddressText.characters = `${urbanAddress}`;
             formatContentText(urbAddressText);
             urbAddressTextFrame.appendChild(urbAddressText);
@@ -839,6 +917,7 @@ function generateTable(incomingMsg){
             const cityTextFrame = figma.createFrame();
             formatContentFrame(cityTextFrame);
             const cityText = figma.createText();
+            setFont(cityText); 
             cityText.characters = `${cityName}`;
             formatContentText(cityText);
             cityTextFrame.appendChild(cityText);
@@ -850,6 +929,7 @@ function generateTable(incomingMsg){
             const stateTextFrame = figma.createFrame();
             formatContentFrame(stateTextFrame);
             const stateText = figma.createText();
+            setFont(stateText); 
             stateText.characters = `${stateName}`;
             formatContentText(stateText);
             stateTextFrame.appendChild(stateText);
@@ -860,6 +940,7 @@ function generateTable(incomingMsg){
             const pinTextFrame = figma.createFrame();
             formatContentFrame(pinTextFrame);
             const pinText = figma.createText();
+            setFont(pinText); 
             pinText.characters = `${pinCode}`;
             formatContentText(pinText);
             pinTextFrame.appendChild(pinText);
@@ -870,6 +951,7 @@ function generateTable(incomingMsg){
             const professionTextFrame = figma.createFrame();
             formatContentFrame(professionTextFrame);
             const professionText = figma.createText();
+            setFont(professionText); 
             if(currentAge <= 19){
                 professionText.characters = "Student";
             }else{
@@ -884,6 +966,7 @@ function generateTable(incomingMsg){
             const passTextFrame = figma.createFrame();
             formatContentFrame(passTextFrame);
             const passText = figma.createText();
+            setFont(passText); 
             passText.characters = `${passport}`;
             formatContentText(passText);
             passTextFrame.appendChild(passText);
@@ -893,7 +976,8 @@ function generateTable(incomingMsg){
         if(incomingMsg.DLValue === true){
             const dlTextFrame = figma.createFrame();
             formatContentFrame(dlTextFrame);
-            const dlText = figma.createText();    
+            const dlText = figma.createText();   
+            setFont(dlText);  
             if(currentAge < 18){
                 dlText.characters = `Not elligible due to age`;
             }else if(rtoDigits < 10){
@@ -910,7 +994,7 @@ function generateTable(incomingMsg){
             const rcTextFrame = figma.createFrame();
             formatContentFrame(rcTextFrame);
             const rcText = figma.createText();
-            
+            setFont(rcText);  
             if(currentAge < 18){
                 rcText.characters = `Not elligible due to age`;
             }else if(rtoDigits < 10){
@@ -923,35 +1007,48 @@ function generateTable(incomingMsg){
             dataSection.appendChild(rcTextFrame);
         }
 
-        if(incomingMsg.UPIValue === true){
-            const upiTextFrame = figma.createFrame();
-            formatContentFrame(upiTextFrame);
-            const upiText = figma.createText();
-            upiText.characters = `${userUPI}`;
-            formatContentText(upiText);
-            upiTextFrame.appendChild(upiText);
-            dataSection.appendChild(upiTextFrame);
-        }
-
         if(incomingMsg.UIDValue === true){
             const uidTextFrame = figma.createFrame();
             formatContentFrame(uidTextFrame);
             const uidText = figma.createText();
+            setFont(uidText); 
             uidText.characters = `${UID}`;
             formatContentText(uidText);
             uidTextFrame.appendChild(uidText);
             dataSection.appendChild(uidTextFrame);
         }
 
+        if(incomingMsg.UPInValue === true){
+            const upinTextFrame = figma.createFrame();
+            formatContentFrame(upinTextFrame);
+            const upinText = figma.createText();
+            setFont(upinText); 
+            upinText.characters = `${upin}`;
+            formatContentText(upinText);
+            upinTextFrame.appendChild(upinText);
+            dataSection.appendChild(upinTextFrame);
+        }
         
-        if(incomingMsg.VIDValue === true){
-            const vidTextFrame = figma.createFrame();
-            formatContentFrame(vidTextFrame);
-            const vidText = figma.createText();
-            vidText.characters = `${VID}`;
-            formatContentText(vidText);
-            vidTextFrame.appendChild(vidText);
-            dataSection.appendChild(vidTextFrame);
+        if(incomingMsg.UPImValue === true){
+            const upimTextFrame = figma.createFrame();
+            formatContentFrame(upimTextFrame);
+            const upimText = figma.createText();
+            setFont(upimText); 
+            upimText.characters = `${upim}`;
+            formatContentText(upimText);
+            upimTextFrame.appendChild(upimText);
+            dataSection.appendChild(upimTextFrame);
+        }
+
+        if(incomingMsg.PANValue === true){
+            const panTextFrame = figma.createFrame();
+            formatContentFrame(panTextFrame);
+            const panText = figma.createText();
+            setFont(panText); 
+            panText.characters = `${pan}`;
+            formatContentText(panText);
+            panTextFrame.appendChild(panText);
+            dataSection.appendChild(panTextFrame);
         }
         
         const dataSectionWidth = generateTableDataWidth;               //Constant already defined initially
@@ -978,16 +1075,16 @@ function generateTable(incomingMsg){
 
 
 function formatLabelText(inputTextNode){
-    setFont(inputTextNode);
+    setFontLight(inputTextNode);
     inputTextNode.fontSize = 9;
     inputTextNode.fills = [
         {
           type: "SOLID",
-          color: { r: 0.3, g: 0.3, b: 0.3},
+          color: { r: 0.2, g: 0.2, b: 0.2},
         }
       ];
-    inputTextNode.x += 4
-    inputTextNode.resize (generateTableLabelWidth, generateTableCellHeight);
+    inputTextNode.x += 3
+    inputTextNode.resize (generateTableLabelWidth-6, generateTableCellHeight);
     inputTextNode.textAlignHorizontal = "LEFT";
     inputTextNode.textAlignVertical = "CENTER";
 }
@@ -1002,16 +1099,12 @@ function formatContentText(inputTextNode){
         }
       ];
     inputTextNode.x += 4
-    inputTextNode.resize (generateTableDataWidth-4, generateTableCellHeight);
+    inputTextNode.resize (generateTableDataWidth-8, generateTableCellHeight);
     inputTextNode.textAlignHorizontal = "LEFT";
     inputTextNode.textAlignVertical = "CENTER";
-    
-
 }
 
 function formatLabelFrame(inputFrameNode){
-    if(inputFrameNode.type === 'FRAME'){
-
         inputFrameNode.resize(generateTableLabelWidth, generateTableCellHeight);
         inputFrameNode.fills = [
             {
@@ -1027,14 +1120,9 @@ function formatLabelFrame(inputFrameNode){
         ];
         inputFrameNode.strokeWeight = 0.25;
         inputFrameNode.strokeAlign = "CENTER";
-    }else{
-        console.log("No frame error");
-    }
-    
 }
 
 function formatContentFrame(inputFrameNode){
-    if(inputFrameNode.type === 'FRAME'){
         inputFrameNode.resize(generateTableDataWidth, generateTableCellHeight);
         inputFrameNode.strokes = [
             {
@@ -1044,10 +1132,69 @@ function formatContentFrame(inputFrameNode){
         ];
         inputFrameNode.strokeWeight = 0.25;
         inputFrameNode.strokeAlign = "CENTER";
-    }else{
-        console.log("No frame error");
-    }
-    
 }
 
+function formatLabelHeaderFrame(inputFrameNode){
+        inputFrameNode.resize(generateTableLabelWidth, generateTableHeaderHeight);
+        inputFrameNode.fills = [
+            {
+            type: "SOLID",
+            color: { r: 0.87, g: 0.87, b: 0.87 },
+            }
+        ];
+        inputFrameNode.strokes = [
+            {
+            type: "SOLID",
+            color: { r: 0.6, g: 0.6, b: 0.6 },
+            }
+        ];
+        inputFrameNode.strokeWeight = 0.25;
+        inputFrameNode.strokeAlign = "CENTER";
+}
 
+function formatUserHeaderFrame(inputFrameNode){
+    inputFrameNode.resize(generateTableDataWidth, generateTableHeaderHeight);
+    inputFrameNode.fills = [
+        {
+        type: "SOLID",
+        color: { r: 0.87, g: 0.87, b: 0.87 },
+        }
+    ];
+    inputFrameNode.strokes = [
+        {
+        type: "SOLID",
+        color: { r: 0.6, g: 0.6, b: 0.6 },
+        }
+    ];
+    inputFrameNode.strokeWeight = 0.25;
+    inputFrameNode.strokeAlign = "CENTER";
+}
+
+function formatLabelHeaderText(inputTextNode){
+        setFontLight(inputTextNode);
+        inputTextNode.fontSize = 8;
+        inputTextNode.fills = [
+            {
+            type: "SOLID",
+            color: { r: 0.2, g: 0.2, b: 0.2},
+            }
+        ];
+        inputTextNode.x += 4
+        inputTextNode.resize (generateTableLabelWidth-4, generateTableHeaderHeight);
+        inputTextNode.textAlignHorizontal = "LEFT";
+        inputTextNode.textAlignVertical = "CENTER";
+}
+
+function formatUserHeaderText(inputTextNode){
+    setFontLight(inputTextNode);
+    inputTextNode.fontSize = 8;
+    inputTextNode.fills = [
+        {
+        type: "SOLID",
+        color: { r: 0.2, g: 0.2, b: 0.2},
+        }
+    ];
+    inputTextNode.resize (generateTableDataWidth, generateTableHeaderHeight);
+    inputTextNode.textAlignHorizontal = "CENTER";
+    inputTextNode.textAlignVertical = "CENTER";
+}
