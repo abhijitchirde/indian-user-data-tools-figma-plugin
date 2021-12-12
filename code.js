@@ -67,20 +67,20 @@ const generateTableDataWidth = 270;
 const generateTableCellHeight = 26;
 const generateTableHeaderHeight = 16;
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 575, height: 470 });
+figma.showUI(__html__, { width: 500, height: 440 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
     if (msg.type === "generate-random") {
         //Giving notification if no layer is selected
         if (figma.currentPage.selection.length === 0) {
-            figma.notify("Please select a text layer to add data", { timeout: 1000 });
+            figma.notify("Please select text layers to add data", { timeout: 1000 });
         }
         //for all the selected nodes
         for (const node of figma.currentPage.selection) {
             //Giving notification if selected layer is not text
             if (node.type !== 'TEXT') {
-                figma.notify("Please select a text layer to add data", { timeout: 1000 });
+                figma.notify("Please select text layers to add data", { timeout: 1000 });
             }
             generateRandomData(node, msg.inputValue); //Calling function to put requested data on text layer
         }
@@ -275,7 +275,14 @@ function generateRandomAge() {
     return `${age}`;
 }
 function generateRandomPAN() {
-    return "Need to work on PAN function";
+    let letter1 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    let letter2 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    let letter3 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    let letter4 = 'P'; //for individual persons as per rules
+    let letter5 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))]; //Ideally it should be first letter of official name or surname as per rules. Here it can be random
+    let digits = numBetween(1000, 9999);
+    let lastLetter = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+    return `${letter1}${letter2}${letter3}${letter4}${letter5}${digits}${lastLetter}`;
 }
 function generateRandomData(currentNode, input) {
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
@@ -599,6 +606,7 @@ function generateTable(incomingMsg) {
     tableFrameWidth += generateTableLabelWidth;
     const tableFrameHeight = labelSectionHeight; //Height of table will be same as that of label or data section which will be same
     tableFrame.appendChild(labelSection); //Appending label section to the table frame
+    // --------------------------------Labels section defining over---------------------------------------------
     //Creating user data content sections using for-loop for number of users requested from input
     for (let i = 1; i <= userCount; i++) {
         //Generate variables of user data from arryas and create const variables, which are then used in creating data content
@@ -662,7 +670,15 @@ function generateTable(incomingMsg) {
         //UID
         const UID = generateAadhar();
         //PAN
-        const pan = generateRandomPAN();
+        const panLetter1 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+        let panLetter2 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+        let panLetter3 = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+        let panLetter4 = 'P';
+        let panLetter5 = fName[0];
+        let panDigits = numBetween(1000, 9999);
+        let panLastLetter = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
+        const pan = `${panLetter1}${panLetter2}${panLetter3}${panLetter4}${panLetter5}${panDigits}${panLastLetter}`;
+        // --------------------------------Values declaration over---------------------------------------------
         const dataSection = figma.createFrame(); //Section containing data items
         dataSection.layoutMode = "VERTICAL"; //Vertical autolayout
         dataSection.itemSpacing = 0;
