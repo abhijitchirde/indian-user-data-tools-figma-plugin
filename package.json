@@ -1,8 +1,8 @@
 {
-  "name": "Indian-User-Data-Engine-Power-Tool",
+  "name": "Indian-User-Data-Engine",
   "version": "1.0.0",
   "description": "Generate sample data for Indian users",
-  "main": "code.js",
+  "main": "code.min.js",
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },

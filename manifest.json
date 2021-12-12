@@ -1,8 +1,8 @@
 {
-  "name": "Indian User Data Engine (Power Tool)",
+  "name": "Indian User Data Engine",
   "id": "1046328883372627755",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "code.min.js",
   "editorType": [
     "figma"
   ],
