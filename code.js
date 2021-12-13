@@ -62,10 +62,10 @@ const dataSet = {
     "dates": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
     "months": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
 };
-const generateTableLabelWidth = 95;
-const generateTableDataWidth = 270;
-const generateTableCellHeight = 26;
-const generateTableHeaderHeight = 16;
+var generateTableLabelWidth = 95;
+var generateTableDataWidth = 270;
+var generateTableCellHeight = 26;
+var generateTableHeaderHeight = 16;
 //Show UI on figma canvas
 figma.showUI(__html__, { width: 500, height: 440 });
 //Receiving the button inputs from UI
@@ -360,6 +360,13 @@ function generateRandomData(currentNode, input) {
 function generateTable(incomingMsg) {
     const nodes = [];
     const userCount = incomingMsg.noOfUsers; //To be used to create data content in later part
+    //If addresses are not required, reduce the width of data section
+    if (incomingMsg.RurAddressValue === false && incomingMsg.UrbAddressValue === false) {
+        generateTableDataWidth = 150;
+    }
+    else if (incomingMsg.RurAddressValue === true || incomingMsg.UrbAddressValue === true) {
+        generateTableDataWidth = 270;
+    }
     const tableFrame = figma.createFrame(); //Creating larger table frame
     tableFrame.layoutMode = "HORIZONTAL"; //Horizontal autolayout
     tableFrame.itemSpacing = 0;
@@ -928,6 +935,73 @@ function generateTable(incomingMsg) {
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
 }
+function formatLabelFrame(inputFrameNode) {
+    inputFrameNode.resize(generateTableLabelWidth, generateTableCellHeight);
+    inputFrameNode.fills = [
+        {
+            type: "SOLID",
+            color: { r: 0.952, g: 0.968, b: 0.992 },
+            // color: { r: 0.96, g: 0.96, b: 0.96 },
+        }
+    ];
+    inputFrameNode.strokes = [
+        {
+            type: "SOLID",
+            color: { r: 0.58, g: 0.698, b: 0.858 },
+            // color: { r: 0.6, g: 0.6, b: 0.6 },
+        }
+    ];
+    inputFrameNode.strokeWeight = 0.25;
+    inputFrameNode.strokeAlign = "CENTER";
+}
+function formatContentFrame(inputFrameNode) {
+    inputFrameNode.resize(generateTableDataWidth, generateTableCellHeight);
+    inputFrameNode.strokes = [
+        {
+            type: "SOLID",
+            color: { r: 0.58, g: 0.698, b: 0.858 },
+            // color: { r: 0.6, g: 0.6, b: 0.6},
+        }
+    ];
+    inputFrameNode.strokeWeight = 0.25;
+    inputFrameNode.strokeAlign = "CENTER";
+}
+function formatLabelHeaderFrame(inputFrameNode) {
+    inputFrameNode.resize(generateTableLabelWidth, generateTableHeaderHeight);
+    inputFrameNode.fills = [
+        {
+            type: "SOLID",
+            color: { r: 0.87, g: 0.913, b: 0.961 },
+        }
+    ];
+    inputFrameNode.strokes = [
+        {
+            type: "SOLID",
+            color: { r: 0.58, g: 0.698, b: 0.858 },
+            // color: { r: 0.6, g: 0.6, b: 0.6 },
+        }
+    ];
+    inputFrameNode.strokeWeight = 0.25;
+    inputFrameNode.strokeAlign = "CENTER";
+}
+function formatUserHeaderFrame(inputFrameNode) {
+    inputFrameNode.resize(generateTableDataWidth, generateTableHeaderHeight);
+    inputFrameNode.fills = [
+        {
+            type: "SOLID",
+            color: { r: 0.87, g: 0.913, b: 0.961 },
+        }
+    ];
+    inputFrameNode.strokes = [
+        {
+            type: "SOLID",
+            // color: { r: 0.58, g: 0.698, b: 0.858 },
+            color: { r: 0.6, g: 0.6, b: 0.6 },
+        }
+    ];
+    inputFrameNode.strokeWeight = 0.25;
+    inputFrameNode.strokeAlign = "CENTER";
+}
 function formatLabelText(inputTextNode) {
     setFontLight(inputTextNode);
     inputTextNode.fontSize = 9;
@@ -956,68 +1030,6 @@ function formatContentText(inputTextNode) {
     inputTextNode.textAlignHorizontal = "LEFT";
     inputTextNode.textAlignVertical = "CENTER";
 }
-function formatLabelFrame(inputFrameNode) {
-    inputFrameNode.resize(generateTableLabelWidth, generateTableCellHeight);
-    inputFrameNode.fills = [
-        {
-            type: "SOLID",
-            color: { r: 0.96, g: 0.96, b: 0.96 },
-        }
-    ];
-    inputFrameNode.strokes = [
-        {
-            type: "SOLID",
-            color: { r: 0.6, g: 0.6, b: 0.6 },
-        }
-    ];
-    inputFrameNode.strokeWeight = 0.25;
-    inputFrameNode.strokeAlign = "CENTER";
-}
-function formatContentFrame(inputFrameNode) {
-    inputFrameNode.resize(generateTableDataWidth, generateTableCellHeight);
-    inputFrameNode.strokes = [
-        {
-            type: "SOLID",
-            color: { r: 0.6, g: 0.6, b: 0.6 },
-        }
-    ];
-    inputFrameNode.strokeWeight = 0.25;
-    inputFrameNode.strokeAlign = "CENTER";
-}
-function formatLabelHeaderFrame(inputFrameNode) {
-    inputFrameNode.resize(generateTableLabelWidth, generateTableHeaderHeight);
-    inputFrameNode.fills = [
-        {
-            type: "SOLID",
-            color: { r: 0.87, g: 0.87, b: 0.87 },
-        }
-    ];
-    inputFrameNode.strokes = [
-        {
-            type: "SOLID",
-            color: { r: 0.6, g: 0.6, b: 0.6 },
-        }
-    ];
-    inputFrameNode.strokeWeight = 0.25;
-    inputFrameNode.strokeAlign = "CENTER";
-}
-function formatUserHeaderFrame(inputFrameNode) {
-    inputFrameNode.resize(generateTableDataWidth, generateTableHeaderHeight);
-    inputFrameNode.fills = [
-        {
-            type: "SOLID",
-            color: { r: 0.87, g: 0.87, b: 0.87 },
-        }
-    ];
-    inputFrameNode.strokes = [
-        {
-            type: "SOLID",
-            color: { r: 0.6, g: 0.6, b: 0.6 },
-        }
-    ];
-    inputFrameNode.strokeWeight = 0.25;
-    inputFrameNode.strokeAlign = "CENTER";
-}
 function formatLabelHeaderText(inputTextNode) {
     setFontLight(inputTextNode);
     inputTextNode.fontSize = 8;
@@ -1027,8 +1039,8 @@ function formatLabelHeaderText(inputTextNode) {
             color: { r: 0.2, g: 0.2, b: 0.2 },
         }
     ];
-    inputTextNode.x += 4;
-    inputTextNode.resize(generateTableLabelWidth - 4, generateTableHeaderHeight);
+    inputTextNode.x += 3;
+    inputTextNode.resize(generateTableLabelWidth - 6, generateTableHeaderHeight);
     inputTextNode.textAlignHorizontal = "LEFT";
     inputTextNode.textAlignVertical = "CENTER";
 }
@@ -1041,7 +1053,8 @@ function formatUserHeaderText(inputTextNode) {
             color: { r: 0.2, g: 0.2, b: 0.2 },
         }
     ];
-    inputTextNode.resize(generateTableDataWidth, generateTableHeaderHeight);
-    inputTextNode.textAlignHorizontal = "CENTER";
+    inputTextNode.x += 4;
+    inputTextNode.resize(generateTableDataWidth - 8, generateTableHeaderHeight);
+    inputTextNode.textAlignHorizontal = "LEFT";
     inputTextNode.textAlignVertical = "CENTER";
 }
