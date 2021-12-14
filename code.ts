@@ -129,7 +129,7 @@ var generateTableCellHeight = 26;
 var generateTableHeaderHeight = 16;
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 500, height: 440});
+figma.showUI(__html__,{width: 500, height: 430});
 
 
 //Receiving the button inputs from UI
@@ -663,6 +663,54 @@ function generateTable(incomingMsg){
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(passLabelFrame);
     }
+
+    if(incomingMsg.UIDValue === true){
+        const uidLabelFrame = figma.createFrame();
+        formatLabelFrame(uidLabelFrame);
+        const uidLabel = figma.createText();
+        setFont(uidLabel);
+        uidLabel.characters = "Aadhar Number (UID)";
+        formatLabelText(uidLabel);
+        uidLabelFrame.appendChild(uidLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(uidLabelFrame);
+    }
+
+    if(incomingMsg.PANValue === true){
+        const panLabelFrame = figma.createFrame();
+        formatLabelFrame(panLabelFrame);
+        const panLabel = figma.createText();
+        setFont(panLabel);
+        panLabel.characters = "PAN";
+        formatLabelText(panLabel);
+        panLabelFrame.appendChild(panLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(panLabelFrame);
+    }
+
+    if(incomingMsg.UPInValue === true){
+        const upinLabelFrame = figma.createFrame();
+        formatLabelFrame(upinLabelFrame);
+        const upinLabel = figma.createText();
+        setFont(upinLabel);
+        upinLabel.characters = "UPI with name";
+        formatLabelText(upinLabel);
+        upinLabelFrame.appendChild(upinLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(upinLabelFrame);
+    }
+
+    if(incomingMsg.UPImValue === true){
+        const upimLabelFrame = figma.createFrame();
+        formatLabelFrame(upimLabelFrame);
+        const upimLabel = figma.createText();
+        setFont(upimLabel);
+        upimLabel.characters = "UPI with mobile";
+        formatLabelText(upimLabel);
+        upimLabelFrame.appendChild(upimLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(upimLabelFrame);
+    }
     
     if(incomingMsg.DLValue === true){
         const dlLabelFrame = figma.createFrame();
@@ -688,54 +736,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(rcLabelFrame);
     }
 
-    if(incomingMsg.UIDValue === true){
-        const uidLabelFrame = figma.createFrame();
-        formatLabelFrame(uidLabelFrame);
-        const uidLabel = figma.createText();
-        setFont(uidLabel);
-        uidLabel.characters = "Aadhar Number (UID)";
-        formatLabelText(uidLabel);
-        uidLabelFrame.appendChild(uidLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(uidLabelFrame);
-    }
 
-    
-    if(incomingMsg.UPInValue === true){
-        const upinLabelFrame = figma.createFrame();
-        formatLabelFrame(upinLabelFrame);
-        const upinLabel = figma.createText();
-        setFont(upinLabel);
-        upinLabel.characters = "UPI with name";
-        formatLabelText(upinLabel);
-        upinLabelFrame.appendChild(upinLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(upinLabelFrame);
-    }
-
-    if(incomingMsg.UPImValue === true){
-        const upimLabelFrame = figma.createFrame();
-        formatLabelFrame(upimLabelFrame);
-        const upimLabel = figma.createText();
-        setFont(upimLabel);
-        upimLabel.characters = "UPI with mobile";
-        formatLabelText(upimLabel);
-        upimLabelFrame.appendChild(upimLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(upimLabelFrame);
-    }
-
-    if(incomingMsg.PANValue === true){
-        const panLabelFrame = figma.createFrame();
-        formatLabelFrame(panLabelFrame);
-        const panLabel = figma.createText();
-        setFont(panLabel);
-        panLabel.characters = "PAN";
-        formatLabelText(panLabel);
-        panLabelFrame.appendChild(panLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(panLabelFrame);
-    }
 
     labelSection.resize(generateTableLabelWidth, labelSectionHeight);
     labelSection.layoutMode = "NONE";               //Removing autolayout from label section before adding to the table
@@ -1000,6 +1001,51 @@ function generateTable(incomingMsg){
             dataSection.appendChild(passTextFrame);
         }
 
+
+        if(incomingMsg.UIDValue === true){
+            const uidTextFrame = figma.createFrame();
+            formatContentFrame(uidTextFrame);
+            const uidText = figma.createText();
+            setFont(uidText); 
+            uidText.characters = `${UID}`;
+            formatContentText(uidText);
+            uidTextFrame.appendChild(uidText);
+            dataSection.appendChild(uidTextFrame);
+        }
+
+        if(incomingMsg.PANValue === true){
+            const panTextFrame = figma.createFrame();
+            formatContentFrame(panTextFrame);
+            const panText = figma.createText();
+            setFont(panText); 
+            panText.characters = `${pan}`;
+            formatContentText(panText);
+            panTextFrame.appendChild(panText);
+            dataSection.appendChild(panTextFrame);
+        }
+
+        if(incomingMsg.UPInValue === true){
+            const upinTextFrame = figma.createFrame();
+            formatContentFrame(upinTextFrame);
+            const upinText = figma.createText();
+            setFont(upinText); 
+            upinText.characters = `${upin}`;
+            formatContentText(upinText);
+            upinTextFrame.appendChild(upinText);
+            dataSection.appendChild(upinTextFrame);
+        }
+        
+        if(incomingMsg.UPImValue === true){
+            const upimTextFrame = figma.createFrame();
+            formatContentFrame(upimTextFrame);
+            const upimText = figma.createText();
+            setFont(upimText); 
+            upimText.characters = `${upim}`;
+            formatContentText(upimText);
+            upimTextFrame.appendChild(upimText);
+            dataSection.appendChild(upimTextFrame);
+        }
+
         if(incomingMsg.DLValue === true){
             const dlTextFrame = figma.createFrame();
             formatContentFrame(dlTextFrame);
@@ -1034,49 +1080,11 @@ function generateTable(incomingMsg){
             dataSection.appendChild(rcTextFrame);
         }
 
-        if(incomingMsg.UIDValue === true){
-            const uidTextFrame = figma.createFrame();
-            formatContentFrame(uidTextFrame);
-            const uidText = figma.createText();
-            setFont(uidText); 
-            uidText.characters = `${UID}`;
-            formatContentText(uidText);
-            uidTextFrame.appendChild(uidText);
-            dataSection.appendChild(uidTextFrame);
-        }
 
-        if(incomingMsg.UPInValue === true){
-            const upinTextFrame = figma.createFrame();
-            formatContentFrame(upinTextFrame);
-            const upinText = figma.createText();
-            setFont(upinText); 
-            upinText.characters = `${upin}`;
-            formatContentText(upinText);
-            upinTextFrame.appendChild(upinText);
-            dataSection.appendChild(upinTextFrame);
-        }
-        
-        if(incomingMsg.UPImValue === true){
-            const upimTextFrame = figma.createFrame();
-            formatContentFrame(upimTextFrame);
-            const upimText = figma.createText();
-            setFont(upimText); 
-            upimText.characters = `${upim}`;
-            formatContentText(upimText);
-            upimTextFrame.appendChild(upimText);
-            dataSection.appendChild(upimTextFrame);
-        }
 
-        if(incomingMsg.PANValue === true){
-            const panTextFrame = figma.createFrame();
-            formatContentFrame(panTextFrame);
-            const panText = figma.createText();
-            setFont(panText); 
-            panText.characters = `${pan}`;
-            formatContentText(panText);
-            panTextFrame.appendChild(panText);
-            dataSection.appendChild(panTextFrame);
-        }
+
+
+
         
         const dataSectionWidth = generateTableDataWidth;               //Constant already defined initially
         const dataSectionHeight = labelSectionHeight;                   //Already calculated in the label section
@@ -1194,7 +1202,7 @@ function formatContentText(inputTextNode){
     inputTextNode.fills = [
         {
           type: "SOLID",
-          color: { r: 0, g: 0, b: 0 },
+          color: { r: 0.2, g: 0.2, b: 0.2 },
         }
       ];
     inputTextNode.x += 4

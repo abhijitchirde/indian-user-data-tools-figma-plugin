@@ -67,7 +67,7 @@ var generateTableDataWidth = 270;
 var generateTableCellHeight = 26;
 var generateTableHeaderHeight = 16;
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 500, height: 440 });
+figma.showUI(__html__, { width: 500, height: 430 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
@@ -542,28 +542,6 @@ function generateTable(incomingMsg) {
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(passLabelFrame);
     }
-    if (incomingMsg.DLValue === true) {
-        const dlLabelFrame = figma.createFrame();
-        formatLabelFrame(dlLabelFrame);
-        const dlLabel = figma.createText();
-        setFont(dlLabel);
-        dlLabel.characters = "Driving License";
-        formatLabelText(dlLabel);
-        dlLabelFrame.appendChild(dlLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(dlLabelFrame);
-    }
-    if (incomingMsg.RCValue === true) {
-        const rcLabelFrame = figma.createFrame();
-        formatLabelFrame(rcLabelFrame);
-        const rcLabel = figma.createText();
-        setFont(rcLabel);
-        rcLabel.characters = "Vehicle Registration";
-        formatLabelText(rcLabel);
-        rcLabelFrame.appendChild(rcLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(rcLabelFrame);
-    }
     if (incomingMsg.UIDValue === true) {
         const uidLabelFrame = figma.createFrame();
         formatLabelFrame(uidLabelFrame);
@@ -574,6 +552,17 @@ function generateTable(incomingMsg) {
         uidLabelFrame.appendChild(uidLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(uidLabelFrame);
+    }
+    if (incomingMsg.PANValue === true) {
+        const panLabelFrame = figma.createFrame();
+        formatLabelFrame(panLabelFrame);
+        const panLabel = figma.createText();
+        setFont(panLabel);
+        panLabel.characters = "PAN";
+        formatLabelText(panLabel);
+        panLabelFrame.appendChild(panLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(panLabelFrame);
     }
     if (incomingMsg.UPInValue === true) {
         const upinLabelFrame = figma.createFrame();
@@ -597,16 +586,27 @@ function generateTable(incomingMsg) {
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(upimLabelFrame);
     }
-    if (incomingMsg.PANValue === true) {
-        const panLabelFrame = figma.createFrame();
-        formatLabelFrame(panLabelFrame);
-        const panLabel = figma.createText();
-        setFont(panLabel);
-        panLabel.characters = "PAN";
-        formatLabelText(panLabel);
-        panLabelFrame.appendChild(panLabel);
+    if (incomingMsg.DLValue === true) {
+        const dlLabelFrame = figma.createFrame();
+        formatLabelFrame(dlLabelFrame);
+        const dlLabel = figma.createText();
+        setFont(dlLabel);
+        dlLabel.characters = "Driving License";
+        formatLabelText(dlLabel);
+        dlLabelFrame.appendChild(dlLabel);
         labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(panLabelFrame);
+        labelSection.appendChild(dlLabelFrame);
+    }
+    if (incomingMsg.RCValue === true) {
+        const rcLabelFrame = figma.createFrame();
+        formatLabelFrame(rcLabelFrame);
+        const rcLabel = figma.createText();
+        setFont(rcLabel);
+        rcLabel.characters = "Vehicle Registration";
+        formatLabelText(rcLabel);
+        rcLabelFrame.appendChild(rcLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(rcLabelFrame);
     }
     labelSection.resize(generateTableLabelWidth, labelSectionHeight);
     labelSection.layoutMode = "NONE"; //Removing autolayout from label section before adding to the table
@@ -844,6 +844,46 @@ function generateTable(incomingMsg) {
             passTextFrame.appendChild(passText);
             dataSection.appendChild(passTextFrame);
         }
+        if (incomingMsg.UIDValue === true) {
+            const uidTextFrame = figma.createFrame();
+            formatContentFrame(uidTextFrame);
+            const uidText = figma.createText();
+            setFont(uidText);
+            uidText.characters = `${UID}`;
+            formatContentText(uidText);
+            uidTextFrame.appendChild(uidText);
+            dataSection.appendChild(uidTextFrame);
+        }
+        if (incomingMsg.PANValue === true) {
+            const panTextFrame = figma.createFrame();
+            formatContentFrame(panTextFrame);
+            const panText = figma.createText();
+            setFont(panText);
+            panText.characters = `${pan}`;
+            formatContentText(panText);
+            panTextFrame.appendChild(panText);
+            dataSection.appendChild(panTextFrame);
+        }
+        if (incomingMsg.UPInValue === true) {
+            const upinTextFrame = figma.createFrame();
+            formatContentFrame(upinTextFrame);
+            const upinText = figma.createText();
+            setFont(upinText);
+            upinText.characters = `${upin}`;
+            formatContentText(upinText);
+            upinTextFrame.appendChild(upinText);
+            dataSection.appendChild(upinTextFrame);
+        }
+        if (incomingMsg.UPImValue === true) {
+            const upimTextFrame = figma.createFrame();
+            formatContentFrame(upimTextFrame);
+            const upimText = figma.createText();
+            setFont(upimText);
+            upimText.characters = `${upim}`;
+            formatContentText(upimText);
+            upimTextFrame.appendChild(upimText);
+            dataSection.appendChild(upimTextFrame);
+        }
         if (incomingMsg.DLValue === true) {
             const dlTextFrame = figma.createFrame();
             formatContentFrame(dlTextFrame);
@@ -879,46 +919,6 @@ function generateTable(incomingMsg) {
             formatContentText(rcText);
             rcTextFrame.appendChild(rcText);
             dataSection.appendChild(rcTextFrame);
-        }
-        if (incomingMsg.UIDValue === true) {
-            const uidTextFrame = figma.createFrame();
-            formatContentFrame(uidTextFrame);
-            const uidText = figma.createText();
-            setFont(uidText);
-            uidText.characters = `${UID}`;
-            formatContentText(uidText);
-            uidTextFrame.appendChild(uidText);
-            dataSection.appendChild(uidTextFrame);
-        }
-        if (incomingMsg.UPInValue === true) {
-            const upinTextFrame = figma.createFrame();
-            formatContentFrame(upinTextFrame);
-            const upinText = figma.createText();
-            setFont(upinText);
-            upinText.characters = `${upin}`;
-            formatContentText(upinText);
-            upinTextFrame.appendChild(upinText);
-            dataSection.appendChild(upinTextFrame);
-        }
-        if (incomingMsg.UPImValue === true) {
-            const upimTextFrame = figma.createFrame();
-            formatContentFrame(upimTextFrame);
-            const upimText = figma.createText();
-            setFont(upimText);
-            upimText.characters = `${upim}`;
-            formatContentText(upimText);
-            upimTextFrame.appendChild(upimText);
-            dataSection.appendChild(upimTextFrame);
-        }
-        if (incomingMsg.PANValue === true) {
-            const panTextFrame = figma.createFrame();
-            formatContentFrame(panTextFrame);
-            const panText = figma.createText();
-            setFont(panText);
-            panText.characters = `${pan}`;
-            formatContentText(panText);
-            panTextFrame.appendChild(panText);
-            dataSection.appendChild(panTextFrame);
         }
         const dataSectionWidth = generateTableDataWidth; //Constant already defined initially
         const dataSectionHeight = labelSectionHeight; //Already calculated in the label section
@@ -1022,7 +1022,7 @@ function formatContentText(inputTextNode) {
     inputTextNode.fills = [
         {
             type: "SOLID",
-            color: { r: 0, g: 0, b: 0 },
+            color: { r: 0.2, g: 0.2, b: 0.2 },
         }
     ];
     inputTextNode.x += 4;
