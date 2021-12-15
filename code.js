@@ -55,6 +55,7 @@ const dataSet = {
     "RurLandmark": ["Hanuman Mandir", "Radhe Shyam mandir", "Life Hospital", "Pipal Tree", "Old Townhall"],
     "LandmarkConjunction": ["Near", "In front of", "Behind", "Opposite", "Next  to"],
     "RurAddressVillage": ["Rampur", "Tenali", "Vijayapura", "Ner", "Shamal"],
+    "RurVillageSuffix": ["Gram", "Panchayat", "Village", "Gaav", "Bazaar", "Railway", "Bagh", "Pada"],
     "UrbSpotNo": ["Flat No.", "House No.", "Plot No.", "Shop No.", "Office No."],
     "UrbLandmark": ["Town Hall", "Devi Temple", "City School", "Metro Station", "Airport", "Empire Mall", "Shopping Complex", "Bakery", "Soap Factory"],
     "UrbAreaNo": ["Sector", "Ward No.", "Block No.", "Part No.", "Township No.", "Complex No.", "Building No."],
@@ -67,7 +68,7 @@ var generateTableDataWidth = 270;
 var generateTableCellHeight = 26;
 var generateTableHeaderHeight = 16;
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 500, height: 430 });
+figma.showUI(__html__, { width: 500, height: 425 });
 //Receiving the button inputs from UI
 figma.ui.onmessage = msg => {
     //If input button is not generate this flow will work
@@ -191,16 +192,16 @@ function generateCityStatePair() {
     return `${city}, ${state}`;
 }
 function generateRandomRurAddress() {
-    let spotNo = dataSet["RurSpotNo"][Math.floor(Math.random() * (dataSet["RurSpotNo"].length))];
-    let num1 = numBetween(1, 99);
     let landmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random() * (dataSet["LandmarkConjunction"].length))];
     let landmark = dataSet["RurLandmark"][Math.floor(Math.random() * (dataSet["RurLandmark"].length))];
-    let village = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
+    let villageSuffix = dataSet["RurVillageSuffix"][Math.floor(Math.random() * (dataSet["RurVillageSuffix"].length))];
+    let village1 = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
+    let village2 = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
     let state = dataSet["State"][Math.floor(Math.random() * (dataSet["State"].length))];
     let city = dataSet[`${state}`][Math.floor(Math.random() * (dataSet[`${state}`].length - 3)) + 3];
     let pinFirstDigit = dataSet[`${state}`][2];
     let pinRemainingDigits = numBetween(10000, 99999);
-    return `${spotNo} ${num1}, ${landmarkConj} ${landmark}, ${village}, Dist. ${city}, ${state}, Pincode-${pinFirstDigit}${pinRemainingDigits}`;
+    return `${landmarkConj} ${landmark}, ${village1} ${villageSuffix}, Post - ${village2}, Dist - ${city}, ${state}, Pincode - ${pinFirstDigit}${pinRemainingDigits}`;
 }
 function generateRandomUrbAddress() {
     let spotNo = dataSet["UrbSpotNo"][Math.floor(Math.random() * (dataSet["UrbSpotNo"].length))];
@@ -645,12 +646,12 @@ function generateTable(incomingMsg) {
         const subUrb = dataSet["UrbAddressSuburb"][Math.floor(Math.random() * (dataSet["UrbAddressSuburb"].length))];
         const urbanAddress = `${urbSpotNo} ${urbNum1}, ${urbLandmarkConj} ${urbLandmark}, ${urbAreaNo} ${urbNum2}, ${subUrb}, ${cityName}, ${stateName}, Pincode-${pinCode}`;
         //Rural address
-        const rurSpotNo = dataSet["RurSpotNo"][Math.floor(Math.random() * (dataSet["RurSpotNo"].length))];
-        const rurNum1 = numBetween(1, 99);
         const rurLandmarkConj = dataSet["LandmarkConjunction"][Math.floor(Math.random() * (dataSet["LandmarkConjunction"].length))];
         const rurLandmark = dataSet["RurLandmark"][Math.floor(Math.random() * (dataSet["RurLandmark"].length))];
-        const rurVillage = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
-        const ruralAddress = `${rurSpotNo} ${rurNum1}, ${rurLandmarkConj} ${rurLandmark}, ${rurVillage}, Dist. ${cityName}, ${stateName}, Pincode-${pinCode}`;
+        const rurVillageSuffix = dataSet["RurVillageSuffix"][Math.floor(Math.random() * (dataSet["RurVillageSuffix"].length))];
+        const rurVillage1 = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
+        const rurVillage2 = dataSet["RurAddressVillage"][Math.floor(Math.random() * (dataSet["RurAddressVillage"].length))];
+        const ruralAddress = `${rurLandmarkConj} ${rurLandmark}, ${rurVillage1} ${rurVillageSuffix}, Post - ${rurVillage2} Dist - ${cityName}, ${stateName}, Pincode - ${pinCode}`;
         //Email
         const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random() * (dataSet["EmailDomain"].length))];
         const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random() * (dataSet["EmailEnd"].length))];
