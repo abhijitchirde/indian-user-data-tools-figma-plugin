@@ -1,7 +1,7 @@
 {
   "name": "Indian-User-Data-Tools",
   "version": "1.0.0",
-  "description": "Generate data for Indian users",
+  "description": "Generate sample data for Indian users",
   "main": "code.min.js",
   "scripts": {
     "build": "tsc -p tsconfig.json"
