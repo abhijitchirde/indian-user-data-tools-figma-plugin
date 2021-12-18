@@ -123,7 +123,7 @@ const dataSet = {
 
     "RurLandmark" : ["Sanjeevani", "Hanuman", "Village", "Dev", "Devi", "Ram", "Shivaji", "Gandhi", "Vaishnavi", "Samarpan", "Maruti", "Bhajni", "Veer", "Janki", "Shivam", "Lokmanya", "Chintamani", "Chandra", "Surya", "Ganesha", "Mahavir", "Samaj", "Sadguru", "Vijaya", "Ganga", "Ambika", "Narayan", "Krishna", "Sundaram", "Shree", "Swami", "Laxmi", "Shiva", "Sunder", "Suraj", "Devraya", "Mayur", "Kartik", "Mahalaxmi", "Harsh", "Baba", "Gyan", "Matoshri", "Mata", "Sharda", "Guru", "Rashtra", "Anand", "Bansilal", "Radhe", "Shyam", "Radheshyam", "Mahatma", "Gram"],
 
-    "RurLandmarkSuffix" : [" Hall", " Sabhagruh", " Hospital", " Health Centre", " Mandir", " Temple", " Farm", " Mandir", " Village Shop", " Shop", " Chowk", " Centre", " Murti", " Statue", " Tirtha", " Nivas", " Sadan", " Baug", " Garden", " Lane", " Galli", " Building", " House", " Colony", " Hotel", " Restaurant", " School", " Shilpa", " Land", " Mandir", " Devasthan", " Kendra", "Gruh", "Gurukul", "Vidya Mandir"],
+    "RurLandmarkSuffix" : [" Hall", " Sabhagruh", " Hospital", " Health Centre", " Mandir", " Temple", " Farm", " Mandir", " Village Shop", " Shop", " Chowk", " Centre", " Murti", " Statue", " Tirtha", " Nivas", " Sadan", " Baug", " Garden", " Lane", " Galli", " Building", " House", " Colony", " Hotel", " Restaurant", " School", " Shilpa", " Land", " Mandir", " Devasthan", " Kendra", " Gruh", " Gurukul", " Vidya Mandir", " Bhavan", " Institute"],
 
     "LandmarkConjunction" : ["Near ", "Behind ", "Opposite ", "Next to ", "Beside ", "Across ", "Near ", "Near ", "Behind ", "", "", "", "", "", "",],
 
@@ -135,7 +135,7 @@ const dataSet = {
 
     "UrbLandmark" : ["Sanjeevani", "Hanuman", "Devi", "Ram", "Shivaji", "Gandhi", "Vaishnavi", "Samarpan", "Maruti", "Bhajni", "Veer", "Janki", "Shivam", "Lokmanya", "Chintamani", "Chandra", "Surya", "Ganesha", "Mahavir", "Vijaya", "Ganga", "Ambika", "Narayan", "Krishna", "Sundaram", "Shree", "Swami", "Laxmi", "Shiva", "Suraj", "Devraya", "Mayur", "Kartik", "Mahalaxmi", "Baba", "Anand", "Bansilal", "Town", "Village", "Arjun", "Prithvi", "Bharat", "Jeevan"],
 
-    "UrbLandmarkSuffix" : [" Hall", " Sabhagruh", " Hospital", " Health Centre", " Mandir", " Temple", " Mandir", " Shop", " Chowk", " Centre", " Statue", " Baug", " Garden", " Lane", " Galli", " Building", " House", " Colony", " Hotel", " Restaurant", " School", " Devasthan", " Kendra", " Factory", " Metro Station", " Bus Station", " Mall", " Shopping Mall", " Complex", " Bakery", " Market", " Karyalaya", " Cafe", " Computer Centre", " Coaching Classes", " Test Centre", " Sports Club", " Park", " College", " Cinema", " Square", " Bank", " Business Park"," Primary School", " Daily Needs", " Pharmacy", " Goods Centre"],
+    "UrbLandmarkSuffix" : [" Hall", " Sabhagruh", " Hospital", " Health Centre", " Mandir", " Temple", " Shop", " Chowk", " Centre", " Statue", " Baug", " Garden", " Lane", " Galli", " Building", " House", " Colony", " Hotel", " Restaurant", " School", " Devasthan", " Kendra", " Factory", " Metro Station", " Bus Station", " Mall", " Shopping Mall", " Complex", " Bakery", " Market", " Karyalaya", " Cafe", " Computer Centre", " Coaching Classes", " Test Centre", " Sports Club", " Park", " College", " Cinema", " Square", " Bank", " Business Park"," Primary School", " Daily Needs", " Pharmacy", " Goods Centre", " Classes", " Cafe", " Institute", " Bhavan"],
 
     "UrbAreaNo" : ["Sector ", "Ward No. ", "Block No. ", "Part No. ", "Township No. ", "Complex No. ", "Building No. ",  "", "", "", "", "", ""],
 
@@ -1145,6 +1145,7 @@ function generateTable(incomingMsg){
     nodes.push(tableFrame);
     // figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
+    figma.notify(`Table of ${userCount} users generated successfully.`, {timeout:2500});
 }
 
 
