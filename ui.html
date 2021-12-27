@@ -23,7 +23,7 @@ body {
     border-left: none;
     outline: none;
     cursor: pointer;
-    padding: 1% 7.25%;
+    padding: 1% 5%;
     margin: 0%;
     background-color: #fdfdfd;
     text-align: center;
@@ -87,12 +87,11 @@ body {
 
 .button-group {
   text-align: center;
-  margin-bottom: 2%;
   padding-bottom: 2%;
+  margin-bottom: 2%;
   background-color: #fff;
   border: 1px solid #fff;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(200, 200, 210, 0.2);
+  box-shadow: 0 1px 5px rgba(200, 200, 220, 0.3);
 }
 
 .button-group-label {
@@ -101,12 +100,12 @@ body {
   font-weight: 300;
   color: #adadad;
   font-size: 0.9rem;
-  margin: 1% 0%;
+  margin: 2% 0%;
 }
 
 .buttons {
   text-align: left;
-  padding-left: 11%;
+  padding-left: 5%;
   margin: 0%;
 }
 
@@ -115,9 +114,9 @@ body {
 .button {
     font-size: 0.75rem;
     font-weight: 400;
-    margin: 1% 1.2%;
-    padding: 1% 0.2%;
-    width: 26%;
+    margin: 1% 2%;
+    padding: 1% 1%;
+    width: 28%;
     display: inline;
     border: 0.5px solid #adadad;
     background-color: #fff;
@@ -153,8 +152,7 @@ body {
   padding-bottom: 0.5%;
   background-color: #fff;
   border: 1px solid #fff;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(200, 200, 210, 0.2);
+  box-shadow: 0 1px 5px rgba(200, 200, 220, 0.3);
 }
 
 .checkbox-group-label {
@@ -163,17 +161,17 @@ body {
   font-weight: 300;
   color: #adadad;
   font-size: 0.9rem;
-  margin: 1% 0%;
+  margin: 2% 0%;
 }
 
 .checkboxes {
   text-align: left;
-  padding-left: 11%;
+  padding-left: 6%;
   margin: 0%;
 }
 
 .checkbox-div {
-  width: 28%;
+  width: 29%;
   height: 5%;
   display: inline-block;
   margin: 0.67% 1.17%;
@@ -288,7 +286,7 @@ body {
 
 .blank-space-in-footer {
   display: inline-block;
-  width: 74%;
+  width: 72%;
 }
 
 .credit-text {
@@ -363,9 +361,9 @@ body {
             <button class="button" id="Pass">Indian Passport</button>
             <button class="button" id="UID">UID (Aadhar)</button>
             <button class="button" id="PAN">PAN (Tax ID)</button>
-            <button class="button" id="UPIn">UPI (with name)</button>
-            <button class="button" id="UPIm">UPI (with mobile)</button>
-            <button class="button" id="DL">Driving License</button>
+            <button class="button" id="UPIn">UPI (name)</button>
+            <button class="button" id="UPIm">UPI (mobile)</button>
+            <button class="button" id="DL">Driver's License</button>
             <button class="button" id="RC">Vehicle RC</button>
           </div>
         </div>
@@ -462,13 +460,13 @@ body {
               <input class="checkbox" type="checkbox" id="PANChk" name="PANChk" value="PANChk" checked><label class="checkbox-label" for="PANChk">PAN (Tax ID)</label>
             </div>
             <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="UPInChk" name="UPInChk" value="UPInChk"><label class="checkbox-label" for="UPInChk">UPI (with name)</label>
+              <input class="checkbox" type="checkbox" id="UPInChk" name="UPInChk" value="UPInChk"><label class="checkbox-label" for="UPInChk">UPI (name)</label>
             </div>
             <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="UPImChk" name="UPImChk" value="UPImChk"><label class="checkbox-label" for="UPImChk">UPI (with mobile)</label>
+              <input class="checkbox" type="checkbox" id="UPImChk" name="UPImChk" value="UPImChk"><label class="checkbox-label" for="UPImChk">UPI (mobile)</label>
             </div>
             <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="checkbox-label" for="DLChk">Driving License</label>
+              <input class="checkbox" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="checkbox-label" for="DLChk">Driver's License</label>
             </div>
             <div class="checkbox-div">
               <input class="checkbox" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="checkbox-label" for="RCChk">Vehicle RC</label>
@@ -588,6 +586,10 @@ document.getElementById('Mobile').onclick = () => {
   const inputValue = "Mobile";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
+document.getElementById('Prof').onclick = () => {
+  const inputValue = "Prof";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
 document.getElementById('RurAddress').onclick = () => {
   const inputValue = "RurAddress";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
@@ -612,10 +614,7 @@ document.getElementById('PIN').onclick = () => {
   const inputValue = "PIN";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
-document.getElementById('Prof').onclick = () => {
-  const inputValue = "Prof";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
-}
+
 document.getElementById('Pass').onclick = () => {
   const inputValue = "Pass";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
@@ -644,6 +643,18 @@ document.getElementById('RC').onclick = () => {
   const inputValue = "RC";
   parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
 }
+document.getElementById('ETH').onclick = () => {
+  const inputValue = "ETH";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
+document.getElementById('ENS').onclick = () => {
+  const inputValue = "ENS";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
+document.getElementById('BTC').onclick = () => {
+  const inputValue = "BTC";
+  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+}
 
 
 
@@ -657,12 +668,14 @@ document.getElementById('GenerateTable').onclick = () => {
   const AgeValue = AgeChk.checked;
   const EmailValue = EmailChk.checked;
   const MobileValue = MobileChk.checked;
+  const ProfValue = ProfChk.checked;
+
   const RurAddressValue = RurAddressChk.checked;
   const UrbAddressValue= UrbAddressChk.checked; 
   const CityValue = CityChk.checked;
   const StateValue = StateChk.checked;
   const PINValue = PINChk.checked; 
-  const ProfValue = ProfChk.checked;
+
   const PassValue = PassChk.checked;
   const UIDValue = UIDChk.checked;
   const PANValue = PANChk.checked;
@@ -671,9 +684,13 @@ document.getElementById('GenerateTable').onclick = () => {
   const DLValue = DLChk.checked;
   const RCValue = RCChk.checked;
 
+  const ETHValue = ETHChk.checked;
+  const ENSValue = ENSChk.checked;
+  const BTCValue = BTCChk.checked;
+
   const usersInput = document.getElementById('noOfUsers');
   const noOfUsers = parseInt(usersInput.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue}} }, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue, ETHValue, ENSValue, BTCValue}} }, '*');
 }
 
 document.getElementById('disclaimer').onclick = () => {
