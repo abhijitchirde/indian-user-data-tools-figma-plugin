@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 500, height: 425});
+figma.showUI(__html__,{width: 500, height: 600});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -173,9 +173,7 @@ figma.ui.onmessage = msg => {
                 figma.notify("Please select text layers to add data", {timeout: 1000});
             }
             generateRandomData(node, msg.inputValue);       //Calling function to put requested data on text layer
-
-        }
-    
+            }
     }
     
     if(msg.type === "generate-table"){
@@ -190,10 +188,13 @@ figma.ui.onmessage = msg => {
             generateTable(msg.chkInput);    //Calling function to create a user data table and append on canvas
         }                  
     }  
+    
 
     if(msg.type === 'disclaimer'){
         figma.notify("This plugin generates sample user data. Any resemblance to real world entities is just a coincidence.", {timeout:4000});
       }
+
+    
 }
 
 //Setting fontname of selected node
