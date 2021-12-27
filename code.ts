@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 500, height: 600});
+figma.showUI(__html__,{width: 500, height: 580});
 
 //Data space containing arrays of data
 const dataSet = {
