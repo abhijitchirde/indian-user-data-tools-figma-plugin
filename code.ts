@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 500, height: 425});
+figma.showUI(__html__,{width: 440, height: 525});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -14,9 +14,9 @@ const dataSet = {
 
     "LastName" : ["Patil", "Madar", "Nayka", "Hiremath", "Lamani", "Badiger", "Biradar", "Talavar", "Mulla", "Kambale", "Rathod", "Pujari", "Kumar", "Nadaph", "Harijan", "Cavhan", "Kumbar", "Kulakarni", "Pujar", "Jadhav", "Gauda", "Nayak", "Nayik", "Hadapad", "Sekha", "Bhajantri", "Pavar", "Angadi", "Desayi", "Valikar", "Calavadi", "Hosamani", "Dodamani", "Vaddar", "Madivalar", "Setti", "Hugar", "Pujeri", "Jamadar", "Gaudar", "Mujavar", "Mathapati", "Hegade", "Pattar", "Kuri", "Sindhe", "Makanadar", "Kammar", "Sanadi", "Doddamani", "Mali", "Meti", "Patel", "Bandivaddar", "Pathan", "Bagavan", "Hadimani", "Khota", "Attar", "Kambar", "Mane", "Uppar", "Sutar", "Kattimani", "Koli", "Bepari", "Reddy", "Naykar", "Dalavayi", "Singh", "Kadam", "Gurav", "Rao", "Kalal", "Ganiger", "Josi", "Kolakar", "Bhatt", "Metri", "Sunagar", "Hubballi", "Bhat", "Caugule", "Inamadar", "Teli", "Ballari", "Kittur", "Caugal", "Magadumm", "Malagi", "Gowda", "Budihal", "Betageri", "Savanur", "Koppad", "Navi", "Madival", "Jain", "Shetty", "Bajantri", "Katti", "Rajaput", "Dasar", "Mulimani", "Bagevadi", "Banakar", "Raj", "Pujer", "Pattanasetti", "Gaudr", "Prasad", "More", "Ambiger", "Agasar", "Momin", "Manga", "Kambali", "Desapande", "Gupta", "Baraker", "Sharma", "Halli", "Barki", "Karigar", "Bhosale", "Khaji", "Itagi", "Lohar", "Sajjan", "Gavade", "Hosur", "Mathad", "Caugale", "Suryavansi", "Kadakol", "Bhandari", "Kale", "Saudagar", "Yadav", "Disoj", "Salunke", "Natikar", "Naragund", "Savant", "Dharavad", "Sirahatti", "Avati", "Caudhari", "Jamakhandi", "Konnur", "Kori", "Bagali", "Gayakavad", "Olekar", "Annigeri", "Patagar", "Hatti", "Maniyar", "Bhovi", "Sunkad", "Koti", "Naykodi", "Kaladagi", "Prabhu", "Kurubar", "Sinde", "Dodmani", "Gasti", "Killedar", "Matha", "Bilagi", "Huded", "Kamat", "Hegde", "Parit", "Devadig", "Das", "Karadi", "Myageri", "Gadivaddar", "Kulkarni", "Tahasildar", "Sirur", "Naganur", "Jambagi", "Kamate", "Vali", "Jaina", "Acari", "Totad", "Hipparagi", "Babu", "Ullagaddi", "Huddar", "Gollar", "Ganacari", "Saiyad", "Gadad", "Mulagund", "Pai", "Akki", "Athani", "Marathi", "Hallur", "Kallimani", "Dandin", "Havaldar", "Bandi", "Nair", "Bidari", "Yadavad", "Bankapur", "Koravar", "Bijapur", "Pirajade", "Pendari", "Yaligar", "Managuli", "Baligar", "Mullanavar", "Hukkeri", "Magadum", "Gaddi", "Yaragatti", "Navalagund", "Naik", "Naduvinamani", "Kaujalagi", "Aralikatti", "Mokasi", "Alura", "Kademani", "Valmiki", "Pharnandis", "Haveri", "Mirji", "Kurabar", "Murthy", "Mantur", "Nadhaph", "Karjagi", "Ghatage", "Sansi", "Kundagol", "Jadar", "Kalaburgi", "Nadap", "Jakati", "Ahmed", "Hebballi", "Moger", "Galagali", "Khana", "Hittalamani", "Hebbal", "Singe", "Talikoti", "Seta", "Devaramani", "Hosalli", "Mugali", "Savadatti", "Pinjar", "Jogi", "Teradal", "Gaundi", "Belagali", "Kudari", "Krishna", "Ambig", "Harikantr", "Jadav", "Hullur", "Kali", "Javali", "Hadagali", "Nagaral", "Sirol", "Arera", "Rai", "Tigadi", "Navhi", "Mohan", "Ganvakar", "Kallur", "Ingalagi", "Halemani", "Mishra", "Katagi", "Ingale", "Raju", "Badagi", "Melinamani", "Nalaband", "Muragod", "Nandi", "Mudhol", "Helavar", "Sarma", "Balikayi", "Nadhap", "Asangi", "Kolur", "Gauli", "Saha", "Caudari", "Kolekar", "Revanakar", "Bhavikatti", "Mirasi", "Prakash", "Settar", "Kabbur", "Palled", "Salimath", "Kamatagi", "Vastrad", "Hiremani", "Hunagund", "Ambi", "Badami", "Rav", "Iliger", "Eligar", "Hiregaudr", "Nidagundi", "Kundaragi", "Hunasikatti", "Makandar", "Munavalli", "Bennur", "Uppin", "Iti", "Sinha", "Ronad", "Odeyar", "Ankalagi", "Cakrasali", "Ilager", "Sayyad", "Kannur", "Byadagi", "Tamboli", "Gavad", "Dambal", "Kumari", "Menasinakayi", "Sannakki", "Ghorpade", "Timmapur", "Kotagi", "Agadi", "Gonda", "Shankar", "Guggari", "Arakeri", "Hamchinamani", "Tuppad", "Mohite", "Medar", "Acary", "Malladad", "Niralagi", "Hirekurabar", "Jalihal", "Reddi", "Halagi", "Dollin", "Asundi", "Savadi", "Raykar", "Vernekar", "Saba", "Godi", "Savalagi", "Kanavi", "Multani", "Kore", "Hongal", "Gani", "Joshi", "Agasimani", "Mallapur", "Belaganvakar", "Mamadapur", "Balekundri", "Goravar", "Huli", "Mannur", "Mudigaudr", "Sonnad", "Anand", "Kerur", "Hancinamani", "Bhangi", "Nyamagaud", "Avaradi", "Dange", "Sangolli", "Halageri", "Bipatil", "Gurikar", "Gadag", "Mukri", "Indi", "Maradi", "Mesta", "Sing", "Lakkundi", "Joseph", "Hec", "Kalyani", "Ramadurg", "Gokak", "Hulagur", "Ukkali", "Pola", "Hamchinal", "Bendigeri", "Sindagi", "Potadar", "Kankanavadi", "Krishnan", "Korabu", "Chabbi", "Malage", "Benni", "Candaragi", "Laksmesvar", "Kamatar", "Pammar", "Khanapur", "Kolli", "Bani", "Bagi", "Ganager", "Vibhuti", "Honnalli", "Mirajakar", "Dodavad", "Hancinal", "Agarwal", "Abbigeri", "Naidu", "Negalur", "Siraguppi", "Harikant", "Mudalagi", "Adina", "Talageri", "Jagiradar", "Jatagar", "Pyati", "Mayannavar", "Magi", "Hallikeri", "Kakhandaki", "Sahapurakar", "Shaik", "Kharvi", "Karikatti", "Saiyyad", "Masali", "Caudri", "Vijapur", "Hombal", "Byahatti", "Kalakeri", "Hanagandi", "Nalavade", "Banasode", "Kalasannavar", "Svami", "Tahasiladar", "Havaladar", "Bellad", "Hanji", "Kokatanur", "Marigaudr", "Radder", "Alagur", "Thomas", "Talakeri", "Sagar", "Doni", "Jahagiradar", "Roy", "Hirekurubar", "Vaggar", "Gali", "Incal", "Havanur", "Rotti", "Totagi", "Bisanal", "Saravad", "Hulamani", "Teggi", "Muccandi", "Hunasyal", "Pinto", "Siddapur", "Rugi", "Byakod", "Mallur", "Halyal","Jayagiri", "Duggirala", "Mukkapati", "Eedupalli", "Bapatla", "Sambatur", "Tadinada", "Tadanki", "Chinta", "Pabbaraju", "Ventrapragada", "Korimilli", "Gurazada", "Ivaturi", "Tallapaka", "Vankamamidi", "Buddhavarapu", "Gundimeda", "Devarabhotla", "Puvvada", "Chimakurthy", "Chinta", "Bapatla", "Yarrapragada", "Balabhadrapatruni", "Komaravolu", "Chadalawada", "Lakkaraju", "Thungathurthi", "Chodavarapu", "Tadinada", "Arjarapu", "Somayajula", "Gurazada", "Kanchikacharala", "Boyinepalli", "Siddiraju", "Cheemalamarri", "Tamirisa", "Satram", "Kadambari", "Ravulaparti", "Tadanki", "Inumella", "Chimakurthy", "Bhattiprolu", "Poruri", "Vadlamudi", "Durgaraju", "Gaddamanugu", "Vonkamamidi", "Thungathurthi", "Jeedigunta", "Parimi", "Bhupatiraju", "Potharaju", "Vaddadi", "Rupanagunta", "Munimanikyam", "Mynampati", "Tadinada", "Kotichintala", "Neelamraju", "Srikaram", "Kanukollu", "Pagolu", "Timmaraju", "Neelamraju", "Kotichintala", "Vanam", "Vallambhatla", "Pulikanti", "Cheruku", "Khandaladinne", "Gangaravula", "Iragavarapu", "Samudram", "Ravuri", "Vaddadi", "Potturi", "Budharaju", "Muppalla", "Vemula", "Yarrapragada", "Ravuri", "Nadella", "Rayabharam", "Ayinambrolu", "Nadela", "Vedagiri", "Kandukuri", "Gadiraju", "Chittamuri", "Kotharu", "Polavaram", "Tatavarthy", "Nimishakavi", "Paramkusham", "Seethimraju", "Andukuri", "Avatapalli", "Potturi", "Sambaraju", "Turlapaty", "Bapatla", "Ravinutala", "Gundimeda", "Potharaju", "Polamraju", "Bapatla", "Bendapudi", "Tadakamalla", "Devulapalli", "Ayyagari", "Boyinepalli", "Tallapragada", "Vakkalanka", "Duggirala", "Munimanikyam", "Errapragada", "Unnava", "Venuturupalle", "Gangaraju", "Malyala", "Kotichintala", "Seethamraju", "Tadakamalla", "Ayyalaraju", "Kanala", "Ippagunta", "Anumarlapudi", "Somaasi", "Kaligotla", "Dronamraju", "Singam", "Ayinambrolu", "Vonkamamidi", "Nimushakavi", "Somaasi", "Gunnikuntla", "Bhogaraju", "Chatrathi", "Neelamraju", "Turlapati", "Mukkamala", "Lakkavajjula", "Manchikanti", "Josyula", "Gadiraju", "Bhogaraju", "Chimakurthy", "Kesinapalli", "Nadimpalli", "Suraparaju", "Kamaraju", "Gadda", "Pabbaraju", "Vallambhatla", "Bakaraju", "Mulpuri", "Ippagunta", "Singampalli", "Unnava", "Annapragada", "Kanukollu", "Tallapaka", "Pullamaraju", "Devulapalli", "Vadlamannati", "Yabaloori", "Singam", "Challapally", "Samudram", "Suraparaju", "Anantavarapu", "Pulipaka", "Nellutla", "Palutla", "Punyamurthula", "Polavaram", "Rajasekharuni", "Mannem", "Ravinutala", "Pamulaparthi", "Tallapragada", "Nadela", "Adiraju", "Paramatmuni", "Ambarukhana", "Vadlamudi", "Tallapaka", "Palakodety", "Kanchnepalli", "Vahi", "Raghavachari", "Bhograj", "Sannikandlapadu", "Neelamraju", "Potharaju", "Puvvada", "Santapur","Jain", "Sharma", "Bhatia", "Kanojia", "Singh", "Ankata", "Agrawal", "Rathore", "Parihar", "Singhal", "Saini", "Sanpada", "Chhipa", "Kothari", "Mohnot", "Mishra", "Gupta", "Agarwal", "Bhather", "Jangid", "Palod", "Pareek", "Rastogi", "Chaudhary", "Ojha", "Jajoo", "Khandelwal", "Rathi", "Bohra", "Bothra", "Gyanchandani", "Bansal", "Kushwah", "Tilwani", "Vardhan", "Gurbani", "Aggarwal", "Kumar", "Tejwani", "Awasthi", "Mathur", "Tiwari", "Mehta", "Solanki", "Prakash", "Yadav", "Tekwani", "Arora", "Mukesh", "Sarfraz", "Saxena", "Jhalani", "Goyal", "Lathwal", "Saifi", "Mahadi", "Mahawar", "Dubey", "Somani", "Vijay", "Maheshwari", "Gandhi", "Rupani", "Chalana", "Kumawat", "Verma", "Khicher", "Soni", "Chouhan", "Vijayvargiya", "Negi", "Hirani", "Darji", "Bakliwal", "Bhargava", "Jangir", "Pritmani", "Khinchi", "Kumari", "Nankani", "Gaur", "Goswami", "Lakhotiya", "Bagariya", "Joshi", "Agnani", "Parashar", "Gautam", "Madhuwani", "Bhootra", "Rawani", "Pitaliya", "Mehlawat", "Kaur", "Shrimali", "Bagda", "Pandya", "Gauttam", "Tela", "Singhavi", "Dhanotiya", "Raj", "Auti", "Chirde", "Jha", "Sadashiv", "Phadke", "Madugundi", "Karmakar", "Dhomne", "Kmar", "Rana", "Thakur", "Chansoria", "Bhagat", "Nimkar", "Dudhe", "Patel", "Patil", "Datir", "Datar", "Kulkarni", "Doshi", "Dave", "Modi", "Dadhe", "Kasambe", "Tayade", "Tajane", "Dhule", "Kurhade", "Korade", "Karade", "Tarade", "Kadu", "Gode", "Gole", "Borkar", "Gugliya", "Pugliya", "Sangani", "Papalkar", "Nerkar", "Nagpure", "Punekar", "Narawane", "Rawat", "Rawal", "Rajput", "Sisodiya", "Thakkar", "Thaker", "Bele", "Sambe", "Acharya", "Agate", "Ahluwalia", "Ahuja", "Amble", "Anand", "Andra", "Anne", "Apte", "Arya", "Atwal", "Aurora", "Babu", "Badal", "Badami", "Bahl", "Bahri", "Bail", "Bains", "Bajaj", "Bajwa", "Bakshi", "Bal", "Bala", "Balakrishnan", "Balan", "Balasubramanian", "Balay", "Bali", "Bandi", "Banerjee", "Banik", "Barad", "Baral", "Baria", "Barman", "Basak", "Bassi", "Basu", "Bath", "Batra", "Batta", "Bava", "Bawa", "Bedi", "Behl", "Ben", "Bera", "Bhakta", "Bhalla", "Bhandari", "Bhardwaj", "Bhasin", "Bhat", "Bhatnagar", "Bhatt", "Bhattacharyya", "Bhatti", "Bhavsar", "Bir", "Biswas", "Boase", "Bobal", "Bora", "Borah", "Borde", "Borra", "Bose", "Brahmbhatt", "Brar", "Buch", "Bumb", "Butala", "Chacko", "Chad", "Chada", "Chadha", "Chahal", "Chakrabarti", "Chakraborty", "Chana", "Chand", "Chanda", "Chander", "Chandra", "Chandran", "Char", "Chatterjee", "Chaudhari", "Chaudhry", "Chaudhuri", "Chaudry", "Chauhan", "Chawla", "Cheema", "Cherian", "Chhabra", "Chokshi", "Chopra", "Choudhary", "Choudhry", "Choudhury", "Chowdhury", "Comar", "Contractor", "D’Alia", "Dada", "Dalal", "Dani", "Dar", "Dara", "Das", "Dasgupta", "Dash", "Dass", "Date", "Datta", "Dayal", "De", "Deep", "Deo", "Deol", "Desai", "Deshmukh", "Deshpande", "Devan", "Devi", "Dewan", "Dey", "Dhaliwal", "Dhar", "Dhawan", "Dhillon", "Dhingra", "Din", "Divan", "Dixit", "Doctor", "Dora", "Dua", "Dube", "Dugal", "Dugar", "Dutt", "Dutta", "Dyal", "Edwin", "Gaba", "Gade", "Gala", "Ganesan", "Ganesh", "Ganguly", "Gara", "Garde", "Garg", "Gera", "Ghose", "Ghosh", "Gill", "Goda", "Goel", "Gokhale", "Gola", "Golla", "Gopal", "Gour", "Grewal", "Grover", "Guha", "Gulati", "Halder", "Handa", "Hans", "Hari", "Hayer", "Hayre", "Hegde", "Hora", "Issac", "Iyengar", "Iyer", "Jaggi", "Jani", "Jayaraman", "Jhaveri", "Johal", "Kadakia", "Kade", "Kakar", "Kala", "Kale", "Kalita", "Kalla", "Kamdar", "Kanda", "Kannan", "Kant", "Kapadia", "Kapoor", "Kapur", "Kar", "Kara", "Karan", "Kari", "Karnik", "Karpe", "Kashyap", "Kata", "Kaul", "Keer", "Khalsa", "Khanna", "Khare", "Khatri", "Khosla", "Khurana", "Kibe", "Kohli", "Konda", "Korpal", "Koshy", "Kota", "Krish", "Krishna", "Krishnamurthy", "Krishnan", "Kumer", "Kunda", "Kurian", "Kuruvilla", "Lad", "Lal", "Lala", "Lall", "Lalla", "Lanka", "Lata", "Loke", "Loyal", "Luthra", "Madan", "Magar", "Mahajan", "Mahal", "Maharaj", "Majumdar", "Malhotra", "Mall", "Mallick", "Mammen", "Mand", "Manda", "Mandal", "Mander", "Mane", "Mangal", "Mangat", "Mani", "Mann", "Mannan", "Manne", "Master", "Mathai", "Matthai", "Meda", "Mehan", "Mehra", "Mehrotra", "Meka", "Memon", "Menon", "Merchant", "Minhas", "Misra", "Mistry", "Mital", "Mitra", "Mittal", "Mitter", "Mody", "Mohan", "Mohanty", "Morar", "More", "Mukherjee", "Mukhopadhyay", "Muni", "Munshi", "Murthy", "Murty", "Mutti", "Nadig", "Nadkarni", "Nagar", "Nagarajan", "Nagi", "Nagy", "Naidu", "Naik", "Nair", "Nanda", "Narain", "Narang", "Narasimhan", "Narayan", "Narayanan", "Narula", "Natarajan", "Nath", "Natt", "Nayak", "Nayar", "Nazareth", "Nigam", "Nori", "Oak", "Om", "Oommen", "Oza", "Padmanabhan", "Pai", "Pal", "Palan", "Pall", "Palla", "Panchal", "Pandey", "Pandit", "Pant", "Parekh", "Parikh", "Parmar", "Parmer", "Parsa", "Pathak", "Patla", "Pau", "Peri", "Pillai", "Pillay", "Pingle", "Prabhakar", "Prabhu", "Pradhan", "Prasad", "Prashad", "Puri", "Purohit", "Radhakrishnan", "Raghavan", "Rai", "Raja", "Rajagopal", "Rajagopalan", "Rajan", "Raju", "Ram", "Rama", "Ramachandran", "Ramakrishnan", "Raman", "Ramanathan", "Ramaswamy", "Ramesh", "Randhawa", "Ranganathan", "Rao", "Ratta", "Rattan", "Ratti", "Rau", "Raval", "Ravel", "Ravi", "Ray", "Reddy", "Rege", "Rout", "Roy", "Sabharwal", "Sachar", "Sachdev", "Sachdeva", "Sagar", "Saha", "Sahni", "Sahota", "Salvi", "Sama", "Sami", "Sampath", "Samra", "Sandal", "Sandhu", "Sane", "Sangha", "Sanghvi", "Sani", "Sankar", "Sankaran", "Sant", "Saraf", "Saran", "Sarin", "Sarkar", "Sarma", "Sarna", "Sarraf", "Sastry", "Sathe", "Savant", "Sawhney", "Sehgal", "Sekhon", "Sem", "Sen", "Sengupta", "Seshadri", "Seth", "Sethi", "Setty", "Sha", "Shah", "Shan", "Shankar", "Shanker", "Sharaf", "Shenoy", "Shere", "Sheth", "Shetty", "Shroff", "Shukla", "Sibal", "Sidhu", "Sinha", "Sodhi", "Som", "Soman", "Sood", "Sridhar", "Srinivas", "Srinivasan", "Srivastava", "Subramaniam", "Subramanian", "Sule", "Sundaram", "Sunder", "Sur", "Sura", "Suresh", "Suri", "Swaminathan", "Swamy", "Tailor", "Tak", "Talwar", "Tandon", "Taneja", "Tank", "Tara", "Tata", "Tella", "Thaman", "Toor", "Tripathi", "Trivedi", "Upadhyay", "Uppal", "Vaidya", "Vala", "Varghese", "Varkey", "Varma", "Varty", "Varughese", "Vasa", "Venkataraman", "Venkatesh", "Vig", "Virk", "Viswanathan", "Vohra", "Vora", "Vyas", "Wable", "Wadhwa", "Wagle", "Wali", "Walia", "Walla", "Warrior", "Wason", "Yogi", "Yohannan", "Zacharia", "Zachariah", "Vashishta", "Laghari", "Anthony", "Ramayanam", "Burman", "Varman", "Vasu", "Tahore", "Thakore", "Chowdhary", "Chabra", "Chaddha", "Amin", "Pande", "Ayyar", "Haldar", "Surya", "Chavan", "Pawar", "Panwar", "Dayawan", "Malik", "Bahuguna", "Jan", "Vishwas", "Sukhdev", "Dev", "Kovind", "Nishad", "Jamsenpa", "Thokchom", "Laishram", "Swuro", "Boro", "Kom", "Chanu", "Murti", "Yadav", "Shah"],
 
-    "EmailDomain" : ["gmail", "googlemail", "example", "company", "example", "company","example", "company","mail", "email", "domain","domain","domain", "example", "company", "email", "domain", "india","network","yahoo", "rediff", "outlook", "metaverse", "miniverse", "worldmail", "times", "hotmail", "msn", "yupmail", "live", "me", "telecom", "mac", "century", "digital", "aim", "skynet", "symbol", "email", "workplace", "timber", "bharat", "digital","workplace","workplace","bharat"],
+    "EmailDomain" : ["gmail", "googlemail", "example", "company", "example", "company", "example", "company","mail", "email", "domain", "domain","domain", "example", "company", "email", "domain", "india","network", "yahoo", "rediff", "outlook", "metaverse", "miniverse", "worldmail", "times", "hotmail", "msn", "yupmail", "live", "me", "telecom", "mac", "century", "digital", "aim", "skynet", "symbol", "email", "workplace", "timber", "bharat", "digital", "workplace","workplace","bharat", "computer", "market"],
     
-    "EmailEnd" : ["com", "in", "co.in", "net", "org", "com", "net", "com", "com", "net", "org", "in","com","com","com","com","org","org","in","in"],
+    "EmailEnd" : ["com", "in", "net", "org", "com", "net", "com", "com", "net", "org", "in","com","com","com","com","org","org","in","in"],
 
     "State" : ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Lakshadweep","Puducherry", "Ladakh"],
 
@@ -146,6 +146,9 @@ const dataSet = {
     "dates" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
 
     "months" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+
+    "hexRef" : ["0", "1", "2", "3","4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+
 }
 
 
@@ -173,9 +176,7 @@ figma.ui.onmessage = msg => {
                 figma.notify("Please select text layers to add data", {timeout: 1000});
             }
             generateRandomData(node, msg.inputValue);       //Calling function to put requested data on text layer
-
-        }
-    
+            }
     }
     
     if(msg.type === "generate-table"){
@@ -190,10 +191,13 @@ figma.ui.onmessage = msg => {
             generateTable(msg.chkInput);    //Calling function to create a user data table and append on canvas
         }                  
     }  
+    
 
     if(msg.type === 'disclaimer'){
         figma.notify("This plugin generates sample user data. Any resemblance to real world entities is just a coincidence.", {timeout:4000});
       }
+
+    
 }
 
 //Setting fontname of selected node
@@ -221,7 +225,7 @@ function generateRandomLastName(){
     return `${lastName}`;
 }
 
-//Defining function for finding a number in range
+//Defining function for finding a number in range (incl low and high)
 function numBetween(low, high){
     return Math.floor(Math.random() * (high-low+1)) + low;
 }
@@ -262,12 +266,30 @@ function generateRandomUPIm(){
 }
 
 //Define function for generating email
-function generateRandomEmail(){
-    let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    let email = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
-    let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-    return `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
+function generateEmail(fn, ln, em, end){
+    let forRandom = ["1", "1", "1", "1", "1", "2", "2", "2", "2", "2", "3", "3", "3", "3", "4", "4"];
+    let toss = forRandom[Math.floor(Math.random()*forRandom.length)];
+    let email = "";
+
+    if(toss === "1"){
+        email = `${fn}.${ln}`;
+    }else if(toss === "2"){
+        email = `${ln}.${fn}`;
+    }else if(toss === "3"){
+        email = `${fn}${ln}`;
+    }else if(toss === "4"){
+        if(fn.length <= 5 && ln.length <= 5){
+            email = `${ln}${fn}`; 
+        }else if(fn.length <= 5 && ln.length > 5){
+            email = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }else if(fn.length > 5 && ln.length <= 5){
+            email = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+        }else if(fn.length > 5 && ln.length > 5){
+            email = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }
+    }
+
+    return `${email}@${em}.${end}`.toLowerCase();
 }
 
 function generateRandomPINCode(){
@@ -409,6 +431,110 @@ function generateRandomPAN(){
     return `${letter1}${letter2}${letter3}${letter4}${letter5}${digits}${lastLetter}`;
 }
 
+function generateRandomETH(){
+    let result = [];
+    let bitSize = 42;
+    let forRandom = ["1", "2", "1"];
+
+    for(let i=0; i<bitSize-2; i++){
+        let ranToss = forRandom[Math.floor(Math.random()*3)];
+        if(ranToss === "1"){
+            result.push(dataSet["hexRef"][Math.floor(Math.random()*16)].toLowerCase());
+        }else{
+            result.push(dataSet["hexRef"][Math.floor(Math.random()*16)]);
+        }
+    }
+    return `0x${result.join('')}`;
+}
+
+function generateENS(fn, ln){
+    let forRandom = ["1", "2", "2","1", "1", "1", "1", "3", "3"];
+    let toss = forRandom[Math.floor(Math.random()*forRandom.length)];
+    let ensName = "";
+    if(toss === "1"){
+        ensName = fn;
+    }else if(toss === "2"){
+        ensName = ln;
+    }else if(toss === "3"){
+        if(fn.length <= 5 && ln.length <= 5){
+            ensName = `${fn}${ln}`; 
+        }else if(fn.length <= 5 && ln.length > 5){
+            ensName = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }else if(fn.length > 5 && ln.length <= 5){
+            ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+        }else if(fn.length > 5 && ln.length > 5){
+            ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }
+    }
+
+    return `${ensName}.eth`.toLowerCase();
+}
+
+function generateRandomBTC(){
+    let btcInitArray = ["1", "3", "bc1"];
+    let btcInit = btcInitArray[Math.floor(Math.random()*3)];
+    let forRandom = ["1", "2", "1"];
+    let result = [];
+    let size = 0;
+
+    if(btcInit === "bc1"){
+
+        size = numBetween(24,31);           //making total 27-34   
+        for(let i=0; i<size; i++){
+            let alphNumToss = forRandom[Math.floor(Math.random()*3)];
+    
+            if(alphNumToss === "1"){
+                    result.push(btcLowLetter());
+            }else{ 
+                    result.push(`${numBetween(1,9)}`);
+            }
+        }
+
+        return `bc1${result.join('')}`;
+
+    }else{
+        size = numBetween(26,33);           //making total 27-34
+        for(let i=0; i<size; i++){
+            let ranToss = forRandom[Math.floor(Math.random()*3)];
+            let alphNumToss = forRandom[Math.floor(Math.random()*3)];
+    
+            if(alphNumToss === "1"){
+                    result.push(`${numBetween(1,9)}`);
+            }else{
+                if(ranToss === "1"){
+                    result.push(btcCapLetter());
+                }else{
+                    result.push(btcLowLetter());
+                }
+            }
+        }
+
+        return `${btcInit}${result.join('')}`;
+
+    }
+
+}
+
+function btcCapLetter(){
+    let letter = dataSet["Alphabets"][Math.floor(Math.random()*dataSet["Alphabets"].length)];
+    if(letter !== "O" && letter !== "I"){
+        return `${letter}`;
+    }else{
+        btcCapLetter();
+    }
+}
+
+
+function btcLowLetter(){
+    let letter = dataSet["Alphabets"][Math.floor(Math.random()*dataSet["Alphabets"].length)].toLowerCase();
+    if(letter !== "l"){
+        return `${letter}`;
+    }else{
+        btcLowLetter();
+    }
+}
+
+
 function generateRandomData(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
@@ -437,7 +563,11 @@ function generateRandomData(currentNode, input){
             currentNode.characters = generateRandomUPIm();
         }
         else if(input === "Email"){
-            currentNode.characters = generateRandomEmail();
+            let fn = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
+            let ln = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
+            let em = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
+            let end = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
+            currentNode.characters = generateEmail(fn, ln, em, end);
         }
         else if(input === "UPIn"){
             currentNode.characters = generateRandomUPIn();
@@ -480,6 +610,17 @@ function generateRandomData(currentNode, input){
         }
         else if(input === "PAN"){
             currentNode.characters = generateRandomPAN();
+        }
+        else if(input === "ETH"){
+            currentNode.characters = generateRandomETH();
+        }
+        else if(input === "ENS"){
+            let fn = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
+            let ln = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
+            currentNode.characters = generateENS(fn, ln);
+        }
+        else if(input === "BTC"){
+            currentNode.characters = generateRandomBTC();
         }
     }
 }
@@ -611,6 +752,18 @@ function generateTable(incomingMsg){
         labelSection.appendChild(mobileLabelFrame);
     }
 
+    if(incomingMsg.ProfValue === true){
+        const profLabelFrame = figma.createFrame();
+        formatLabelFrame(profLabelFrame);
+        const profLabel = figma.createText();
+        setFont(profLabel);
+        profLabel.characters = "Profession";
+        formatLabelText(profLabel);
+        profLabelFrame.appendChild(profLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(profLabelFrame);
+    }
+
     if(incomingMsg.RurAddressValue === true){
         const rurLabelFrame = figma.createFrame();
         formatLabelFrame(rurLabelFrame);
@@ -669,18 +822,6 @@ function generateTable(incomingMsg){
         pinLabelFrame.appendChild(pinLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(pinLabelFrame);
-    }
-
-    if(incomingMsg.ProfValue === true){
-        const profLabelFrame = figma.createFrame();
-        formatLabelFrame(profLabelFrame);
-        const profLabel = figma.createText();
-        setFont(profLabel);
-        profLabel.characters = "Profession";
-        formatLabelText(profLabel);
-        profLabelFrame.appendChild(profLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(profLabelFrame);
     }
 
     if(incomingMsg.PassValue === true){
@@ -767,6 +908,42 @@ function generateTable(incomingMsg){
         labelSection.appendChild(rcLabelFrame);
     }
 
+    if(incomingMsg.ETHValue === true){
+        const ethLabelFrame = figma.createFrame();
+        formatLabelFrame(ethLabelFrame);
+        const ethLabel = figma.createText();
+        setFont(ethLabelFrame);
+        ethLabel.characters = "ETH Wallet";
+        formatLabelText(ethLabel);
+        ethLabelFrame.appendChild(ethLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ethLabelFrame);
+    }
+
+    if(incomingMsg.ENSValue === true){
+        const ensLabelFrame = figma.createFrame();
+        formatLabelFrame(ensLabelFrame);
+        const ensLabel = figma.createText();
+        setFont(ensLabelFrame);
+        ensLabel.characters = "ENS Domain";
+        formatLabelText(ensLabel);
+        ensLabelFrame.appendChild(ensLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ensLabelFrame);
+    }
+
+    if(incomingMsg.BTCValue === true){
+        const btcLabelFrame = figma.createFrame();
+        formatLabelFrame(btcLabelFrame);
+        const btcLabel = figma.createText();
+        setFont(btcLabelFrame);
+        btcLabel.characters = "BTC Wallet";
+        formatLabelText(btcLabel);
+        btcLabelFrame.appendChild(btcLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(btcLabelFrame);
+    }
+
 
 
     labelSection.resize(generateTableLabelWidth, labelSectionHeight);
@@ -830,7 +1007,7 @@ function generateTable(incomingMsg){
         //Email
         const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
         const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-        const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+        const userEmail = generateEmail(fName, lName, emailDomain, emailEnd);
         // Dob and age
         const dobContent = generateRandomDoB();
         const yearContent = dobContent[6] + dobContent[7] + dobContent[8] + dobContent[9];
@@ -861,6 +1038,13 @@ function generateTable(incomingMsg){
         let panDigits = numBetween(1000, 9999);
         let panLastLetter = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
         const pan = `${panLetter1}${panLetter2}${panLetter3}${panLetter4}${panLetter5}${panDigits}${panLastLetter}`;
+        //ETH
+        const ethAddr = generateRandomETH();
+        //ENS
+        const ensDomain = generateENS(fName, lName);
+        //BTC
+        const btcAddr = generateRandomBTC();
+
 
         // --------------------------------Values declaration over---------------------------------------------
 
@@ -958,6 +1142,21 @@ function generateTable(incomingMsg){
             dataSection.appendChild(mobileTextFrame);
         }
 
+        if(incomingMsg.ProfValue === true){
+            const professionTextFrame = figma.createFrame();
+            formatContentFrame(professionTextFrame);
+            const professionText = figma.createText();
+            setFont(professionText); 
+            if(currentAge <= 19){
+                professionText.characters = "Student";
+            }else{
+                professionText.characters = `${userProfession}`;
+            }
+            formatContentText(professionText);
+            professionTextFrame.appendChild(professionText);
+            dataSection.appendChild(professionTextFrame);
+        }
+
         if(incomingMsg.RurAddressValue === true){
             const rurAddressTextFrame = figma.createFrame();
             formatContentFrame(rurAddressTextFrame);
@@ -1012,21 +1211,6 @@ function generateTable(incomingMsg){
             formatContentText(pinText);
             pinTextFrame.appendChild(pinText);
             dataSection.appendChild(pinTextFrame);
-        }
-
-        if(incomingMsg.ProfValue === true){
-            const professionTextFrame = figma.createFrame();
-            formatContentFrame(professionTextFrame);
-            const professionText = figma.createText();
-            setFont(professionText); 
-            if(currentAge <= 19){
-                professionText.characters = "Student";
-            }else{
-                professionText.characters = `${userProfession}`;
-            }
-            formatContentText(professionText);
-            professionTextFrame.appendChild(professionText);
-            dataSection.appendChild(professionTextFrame);
         }
 
         if(incomingMsg.PassValue === true){
@@ -1117,6 +1301,39 @@ function generateTable(incomingMsg){
             formatContentText(rcText);
             rcTextFrame.appendChild(rcText);
             dataSection.appendChild(rcTextFrame);
+        }
+
+        if(incomingMsg.ETHValue === true){
+            const ethTextFrame = figma.createFrame();
+            formatContentFrame(ethTextFrame);
+            const ethText = figma.createText();
+            setFont(ethText); 
+            ethText.characters = `${ethAddr}`;
+            formatContentText(ethText);
+            ethTextFrame.appendChild(ethText);
+            dataSection.appendChild(ethTextFrame);
+        }
+
+        if(incomingMsg.ENSValue === true){
+            const ensTextFrame = figma.createFrame();
+            formatContentFrame(ensTextFrame);
+            const ensText = figma.createText();
+            setFont(ensText); 
+            ensText.characters = `${ensDomain}`;
+            formatContentText(ensText);
+            ensTextFrame.appendChild(ensText);
+            dataSection.appendChild(ensTextFrame);
+        }
+
+        if(incomingMsg.BTCValue === true){
+            const btcTextFrame = figma.createFrame();
+            formatContentFrame(btcTextFrame);
+            const btcText = figma.createText();
+            setFont(btcText); 
+            btcText.characters = `${btcAddr}`;
+            formatContentText(btcText);
+            btcTextFrame.appendChild(btcText);
+            dataSection.appendChild(btcTextFrame);
         }
 
 
