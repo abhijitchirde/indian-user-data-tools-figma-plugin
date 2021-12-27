@@ -3,7 +3,7 @@
 figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
 figma.loadFontAsync({ family: 'Roboto', style: 'Light' });
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 500, height: 580 });
+figma.showUI(__html__, { width: 440, height: 580 });
 //Data space containing arrays of data
 const dataSet = {
     "FirstName": ["Nilanjana", "Sikata", "May", "Hardini", "Yaditasri", "Srividya", "Shirohini", "Rajathi", "Puravi", "Shritha", "Subhangi", "Pratichi", "Abja", "Ucchal", "Theertha", "Janya", "Daevayaani", "Devasena", "Rusham", "Falguni", "Neera", "Obilesh", "Toyakshi", "Ninarika", "Seethalakshmi", "Ponni", "Vibusha", "Iksha", "Druthy", "Dakshita", "Tejshri", "Altthea", "Athidi", "Sikta", "Aapal", "Prarthana", "Ujjwal", "Bhayva", "Samprathi", "Pranshu", "Aayaushi", "Brahmini", "Inimoli", "Suprasanna", "Saija", "Chinnu", "Soukhya", "Perarasi", "Tharunika", "Nihira", "Vanmalli", "Bahugandha", "Indra", "Radhiyaa", "Bhuvaneswari", "Tarpana", "Shree", "Nilima", "Milika", "Siksha", "Velvili", "Ojaswini", "Srivathsavi", "Idhaya", "Althea", "Athalia", "Darsha", "Agampreet", "Sahira", "Nelochan", "Rikin", "Rukm", "Bhoomindra", "Nandlaal", "Devasree", "Jivana", "Satesh", "Advin", "Ranesh", "Abhijay", "Sarat", "Abijah", "Kala", "Vedatman", "Adnan", "Kahini", "Vidyut", "Taneesh", "Gandhar", "Apuroop", "Kushal", "Ehsaas", "Ruchita", "Divyansh", "Sragvibhushan", "Pardhu", "Atmaja", "Karunamaya", "Naumika", "Ekram", "Murari", "Bala Gopal", "Krthik", "Varaahamihir", "Pushpaj", "Vasusen", "Kailashpati", "Bisaj", "Shiya", "Ajani", "Krishnabala", "Sudarshan", "Aadhil", "Srujana", "Varshit", "Satvik", "Veerendra", "Yathavan", "Lokajit", "Neil", "Gadhadhar", "Vaaman", "Mitransh", "Saroj", "Dinesh", "Chinmayee", "Trinetra", "Sutapa", "Bhavbhooti", "Mahaaveer", "Hemal", "Suvarn", "Kshamakaram", "Talin", "Shatrughan", "Kalicharan", "Amitesh", "Ananya", "Banke", "Aakaar", "Anjaneya", "Aatreya", "Advith", "Balan", "Biju", "Bhavyesh", "Chandresh", "Chathresh", "Chiranjeev", "Devarya", "Dhruvan", "Drishith", "Eegaiarasu", "Ekachakra", "Elango", "Elavarasan", "Elisaiyan", "Elilvendan", "Gnanam", "Gunasekaran", "Ilaiyaraja", "Ilakkiyan", "Ilamaran", "Ilanthirayan", "Irumporai", "Jaganath", "Jagath", "Jaithra", "Jegathiswaran", "Jivathran", "Karthav", "Karthik", "Karthikeyan", "Lohith", "Loshith", "Maniraj", "Maaran", "Manikandan", "Martanda", "Matanga", "Maharth", "Mallesh", "Nagulan", "Nallasivan", "Nagarajan", "Nikith", "Nilan", "Nithin", "Nageshwaran", "Oppilan", "Paraman", "Pavalan", "Rameshwar", "Revanth", "Rajanikanta", "Samath", "Sarvanavel", "Saswin", "Senthil", "Thillaivanan", "Thangaraj", "Thirugnanam", "Thevan", "Thirumal", "Trinath", "Ulagan", "Ulagarasan", "Vaidyanathan", "Aadita", "Aakshi", "Abhitha", "Alagi", "Amala", "Arasi", "Bhavi", "Bhrithi", "Chaithra", "Charvitha", "Charusila", "Chinnamani", "Devasree", "Devadarshini", "Dhariyithri", "Dhruvika", "Dharnitha", "Divyasree", "Drithi", "Ektha", "Eelampirai", "Eesvari", "Ekaparnika", "Elavarasi", "Elili", "Eshwaritha", "Gathika", "Gayanthika", "Geethanvitha", "Gomathi", "Gunamaalai", "Gnanavalli", "Gunamalar", "Gunasundari", "Haarathi", "Hanshitha", "Harishini", "Hamsavahini", "Idhithri", "Idhaya", "Inimai", "Ilavalagi", "Kalaiarasi", "Kanayali", "Kanimoli", "Kayalvizhi", "Lakshmika", "Lirthika", "Malaimagal", "Mangai", "Manikuntala", "Nallarasi", "Nallini", "Ojaswitha", "Olimani", "Ovya", "Pavalam", "Prajaktha", "Pranusha", "Sathya", "Shresthi", "Sethuramani", "Thanvi", "Thanya", "Thanmayi", "Tilakavati", "Tvarika", "Umamaheshwari", "Veeramagal", "Viviktha", "Abhijeet", "Aditya", "Akshat", "Amanpreet", "Amitava", "Angad", "Aniruddh", "Anubhav", "Arjun", "Armaan", "Ashish", "Azad", "Bhaskar", "Bhavesh", "Bhavin", "Bipin", "Chetas", "Chirag", "Chiranjeev", "Daanish", "Dalbir", "Daljeet", "Debashish", "Debyendu", "Dhruv", "Dipankar", "Ehsaan", "Emir", "Gagandeep", "Gaurav", "Gautam", "Girish", "Gurdeep", "Harbhajan", "Himmat", "Indranuj", "Jayant", "Jayesh", "Jeet", "Jyotiraditya", "Kabir", "Kartik", "Karun", "Kshitij", "Kuwarjeet", "Lohith", "Madhav", "Mridul", "Navjot", "Nikhil", "Nimit", "Nishith", "Ojas", "Om", "Onkar", "Paramjit", "Paritosh", "Parth", "Pavan", "Pranav", "Purab", "Ramandeep", "Rehaan", "Rohan", "Sahil", "Samarth", "Samir", "Sanchit", "Sanjay", "Sarabjit", "Shahzad", "Shantanu", "Shishir", "Shray", "Siddharth", "Sparsh", "Sumer", "Surjan", "Swapan", "Tarun", "Tejas", "Tushar", "Udit", "Umang", "Varun", "Veer", "Vidur", "Vinay", "Yash", "Aaina", "Aaliyah", "Aasha", "Aditi", "Aishwarya", "Anjali", "Antara", "Aparna", "Arshpreet", "Aruna", "Arunima", "Ayesha", "Bahaar", "Bhagyashree", "Bhavna", "Bhoomi", "Bipasha", "Chaaya", "Chandrika", "Chhavi", "Chitragandha", "Deepika", "Devika", "Diya", "Ekta", "Falguni", "Garima", "Gauhar", "Gayatri", "Geetha", "Gurleen", "Harini", "Harpreet", "Indrani", "Ira", "Jasleen", "Jayanti", "Jyothsna", "Kalyani", "Kanika", "Kavya", "Laila", "Lathika", "Lavanya", "Leela", "Lopamudra", "Malavika", "Maya", "Meera", "Meher", "Naaz", "Nagma", "Nalini", "Nargis", "Nivedita", "Piya", "Pooja", "Prabhjot", "Preet", "Rangana", "Rasika", "Revati", "Ruchika", "Saira", "Sanjana", "Sarah", "Shifa", "Shivani", "Shreya", "Shridevi", "Shweta", "Simran", "Surabhi", "Tanvi", "Tara", "Uma", "Upasana", "Urvashi", "Vaishnavi", "Yamini", "Yoshita", "Aarav", "Aarush", "Aakesh", "Aabir", "Aadav", "Abhir", "Anay", "Arush", "Avik", "Anik", "Ayaan", "Bali", "Braj", "Bavyesh", "Benoy", "Bipin", "Bhawesh", "Binish", "Bivan", "Barun", "Badri", "Balraj", "Charun", "Chetan", "Charmin", "Chahel", "Chirag", "Chandrak", "Danvir", "Divit", "Darshan", "Devansh", "Devashish", "Dhairya", "Eklavya", "Ednit", "Evyavan", "Ekagrah", "Ekaant", "Evan", "Ganak", "Giriraj", "Gaurik", "Geetansh", "Girvaan", "Gupil", "Haadiya", "Hanshal", "Harman", "Havish", "Hiren", "Hriday", "Inesh", "Itish", "Idhant", "Induj", "Iravat", "Ishaan", "Jack", "Jagan", "Jiyaan", "Jeshan", "Jabir", "Jaivardhan", "Kairav", "Kiyansh", "Kavan", "Kaling", "Kaustubh", "Koshin", "Kshitij", "Keyvan", "Lochan", "Lavish", "Lavraj", "Laharish", "Lineesh", "Lohit", "Lokit", "Luvya", "Meer", "Mahant", "Mikul", "Mayur", "Milan", "Mitansh", "Manas", "Magan", "Nirvin", "Nithik", "Nayan", "Nairit", "Nabhya", "Nakshatra", "Neel", "Neelesh", "Onkar", "Omja", "Omav", "Ojayit", "Ogaan", "Parav", "Pahal", "Parth", "Pakshi", "Parijat", "Prabir", "Prayan", "Ruhan", "Ryaan", "Ridhaan", "Rovin", "Rish", "Raul", "Ritvaan", "Subin", "Sachiv", "Sadhil", "Sannith", "Sadhiv", "Saadhik", "Saahan", "Taarush", "Tanip", "Tavish", "Trishan", "Tupil", "Tapan", "Tapasvi", "Vaayu", "Viom", "Vian", "Vihaan", "Vanaj", "Vedank", "Videh", "Yaskhit", "Yaduvir", "Yukt", "Yugant", "Yojith", "Abay", "Atharv", "Aniket", "Amay", "Aryash", "Achit", "Avyan", "Aatish", "Advik", "Amey", "Aneek", "Arnav", "Anvit", "Aboil", "Adhyan", "Ashrith", "Aarsh", "Anmay", "Abhav", "Akshaj", "Ahaan", "Anvay", "Aarshin", "Ayan", "Advay", "Agrim", "Aviraj", "Ayog", "Anishk", "Aabhas", "Aadhav", "Aadhish", "Aadi", "Aadit", "Aadith", "Aaditva", "Aadvay", "Aadvik", "Aagam", "Aahaan", "Aahan", "Aahil", "Aahnik", "Aahva", "Aalam", "Aalap", "Aalekh", "Aan", "Aanav", "Aabhra", "Aangat", "Aanick", "Aapt", "Aaradhy", "Aariket", "Aarish", "Aarit", "Aariv", "Aaryav", "Aarth", "Aahna", "Aakriti", "Aadhya", "Aarohi", "Aamya", "Abhira", "Adhira", "Ambika", "Akira", "Ananya", "Anaya", "Baani", "Bhumi", "Bansuri", "Barkha", "Bhavika", "Bhavya", "Brinda", "Bipasha", "Bishti", "Bhavini", "Bhrithi", "Chaya", "Chayana", "Charil", "Chintanika", "Chaina", "Charvi", "Dhvani", "Darshana", "Daksha", "Diksha", "Dhita", "Divija", "Eshani", "Evani", "Ekaparnika", "Ekani", "Etasha", "Eksha", "Gina", "Gajal", "Gira", "Ganika", "Gayalika", "Geethika", "Hirsha", "Hrithika", "Haryka", "Harusha", "Hanika", "Harnoor", "Ihina", "Ilisha", "Inika", "Ipsa", "Iditri", "Ihitha", "Jenil", "Jhilmil", "Jigyaasa", "Jagruthi", "Jasmine", "Jeevika", "Kavisha", "Krishika", "Kairavi", "Kashika", "Keiyona", "Kanchan", "Kuvira", "Kuvam", "Liza", "Lekisha", "Lipika", "Lahari", "Lasika", "Lavali", "Lorena", "Lona", "Maitreyi", "Manasi", "Manikya", "Manika", "Malavika", "Magadhi", "Madhul", "Mayukhi", "Nivita", "Noshi", "Naila", "Nainika", "Namya", "Nyra", "Naisha", "Nartika", "Ovya", "Oditi", "Odika", "Orpita", "Oorvi", "Panvi", "Parinika", "Preshti", "Pihoo", "Punarvi", "Palomi", "Rhia", "Riti", "Rupasi", "Rajika", "Ramitha", "Ranjana", "Rijuta", "Shanvi", "Saira", "Suvi", "Sriya", "Stuthi", "Sajili", "Sahana", "Twisha", "Toshi", "Turvi", "Tapni", "Tanirika", "Tejal", "Tanvee", "Vivya", "Vachi", "Verna", "Vanhi", "Vedya", "Vaani", "Vahini", "Yashi", "Yagya", "Yahavi", "Yasti", "Yajna", "Areen", "Abhithi", "Achira", "Acira", "Amrusha", "Aditha", "Aditri", "Adrika", "Advaita", "Aboli", "Advika", "Adya", "Anuva", "Ahana", "Ahina", "Aishi", "Aishna", "Aja", "Ajia", "Akhira", "Akita", "Amani", "Aksa", "Aksha", "Akshai", "Akshi", "Akuti", "Alaina", "Aloki", "Amaya", "Amika", "Aadhira", "Aavani", "Aadanya", "Aadita", "Aadvika", "Aadya", "Aahna", "Aakarsha", "Aamani", "Aamaya", "Aanavi", "Aangi", "Aanya", "Aaoka", "Aapti", "Aara", "Aaravi", "Aarin", "Aarna", "Aarvi", "Aashika", "Aashirya", "Aashka", "Aashna", "Aashni", "Aashvi", "Aasia", "Aasmi", "Aasra", "Aasya", "Aathi", "Aayana", "Ansh", "Arhaan", "Arin", "Arjun", "Aryaman", "Aryan", "Atharva", "Avi", "Avyaan", "Ayush", "Ayushman", "Azaan", "Azad", "Bachittar", "Bahadurjit", "Bakhshi", "Balendra", "Balhaar", "Baljiwan", "Balvan", "Balveer", "Banjeet", "Bhaavik", "Bhavin", "Brijesh", "Chaitanya", "Chakradev", "Chakradhar", "Champak", "Chanakya", "Chandran", "Chandresh", "Charan", "Chatresh", "Chatura", "Chitaksh", "Daksh", "Dakshesh", "Dalbir", "Darpan", "Darsh", "Darshit", "Dev", "Dhanuk", "Dhruv", "Divij", "Divyansh", "Eeshan", "Ehsaan", "Ekalinga", "Ekapad", "Ekaraj", "Ekavir", "Gagan", "Gatik", "Gaurang", "Gauransh", "Gaurav", "Gautam", "Girik", "Girindra", "Girish", "Gopal", "Gunbir", "Guneet", "Hardik", "Harish", "Harsh", "Harshil", "Hemang", "Himmat", "Hitesh", "Hridaan", "Hritik", "Hunar", "Ikbal", "Ikshit", "Imaran", "Indrajit", "Isaac", "Ishwar", "Ivaan", "Izaan", "Jagat", "Jagdish", "Jai", "Jainew", "Jaiyush", "Jason", "Jatin", "Jeet", "Jivin", "Kabir", "Kalpit", "Kanav", "Karan", "Kiaan", "Krish", "Krishiv", "Krishna", "Kushagra", "Laban", "Laksh", "Lakshay", "Lakshit", "Lauhit", "Lucky", "Maanas", "Maanav", "Madhav", "Manan", "Manav", "Manbir", "Manthan", "Medhansh", "Mitesh", "Moksh", "Nachiket", "Naksh", "Nakul", "Naveen", "Navodit", "Nihal", "Nimit", "Nirvaan", "Nishith", "Nitesh", "Ohas", "Om", "Omkaar", "Onveer", "Orinder", "Parv", "Pranav", "Pranay", "Praneel", "Pranit", "Pratham", "Pratyush", "Purab", "Rachit", "Raghav", "Ranbir", "Ranveer", "Rehaannew", "Rishi", "Ritvik", "Rohan", "Ronith", "Rudranew", "Rudransh", "Rushil", "Ryan", "Saatvik", "Sahil", "Sai", "Saihaj", "Saksham", "Samaksh", "Samar", "Samarth", "Sarthak", "Sathviknew", "Savar", "Shaan", "Shaurya", "Shayak", "Shivansh", "Shlok", "Shray", "Siddharth", "Stuvan", "Suveer", "Taksh", "Tanay", "Tanish", "Tanmay", "Tanveer", "Tanvik", "Tarak", "Teerth", "Tejas", "Udant", "Udarsh", "Ujjwal", "Umang", "Upkaar", "Uthkarsh", "Utkarsh", "Vaibhav", "Veer", "Viaannew", "Virat", "Vivaan", "Warinder", "Warjas", "Wriddhish", "Wridesh", "Yagnesh", "Yatan", "Yatin", "Yug", "Yuvaan", "Yuvraj", "Ekansh", "Hredhaan", "Jairaj", "Reyansh", "Samesh", "Viraj", "Yash", "Nikita", "Himani", "Rupansh", "Rashi", "Kapil", "Kajal", "Vikas", "Sairam", "Kasak", "Parikshit", "Ankit", "Aditi", "Mohit", "Ashik", "Praveen", "Bharat", "Kriti", "Prachi", "Sourabh", "Kishan", "Ashish", "Pooja", "Chhavi", "Suraj", "Vidushi", "Ritika", "Akshita", "Bulbul", "Amit", "Anupam", "Tanisha", "Gagandeep", "Akshat", "Priyansh", "Dinesh", "Ashita", "Vishal", "Sagar", "Parakh", "Abhishek", "Balvinder", "Shivam", "Nitin", "Tushar", "Suyash", "Shreyansh", "Lakshya", "Swapnil", "Amisha", "Anagh", "Rahul", "Yashwant", "Sharda", "Khushi", "Shweta", "Rajneesh", "Chandra", "Mega", "Mithil", "Prayas", "Deepak", "Aman", "Piyush", "Soumya", "Prateek", "Ayaz", "Namrata", "Visharad", "Surabhi", "Amrish", "Parag", "Rishap", "Ketan", "Ajay", "Pranjali", "Nikhil", "Anuj", "Ajeet", "Ankita", "Neeraj", "Vandana", "Sangita", "Rishabh", "Ravinder", "Mangesh", "Chitranshu", "Malkaus", "Jitendra", "Naman", "Pavan", "Vijay", "Pankaj", "Sumit", "Shubham", "Lokesh", "Palak", "Govind", "Urmila", "Vidit", "Prashant", "Ghanshyam", "Mishant", "Ravi", "Rohit", "Swati", "Divyanshi", "Arun", "Prithviraj", "Nisha", "Parantap", "Lokendra", "Milky", "Vickky", "Mayank", "Niranjan", "Akansha", "Rakesh", "Neha", "Ashok", "Deepika", "Purusottam", "Kamaldeep", "Somesh", "Gunjan", "Pragati", "Nishant", "Divye", "Ronak", "Aditya", "Ankur", "Anshul", "Anuja", "Abhijit", "Deepshikha", "Ganesh", "Madhura", "Kaushik", "Prarabdh", "Sarvani", "Upasna", "Ketaki", "Kusum", "Narmada", "Naveena", "Nishtha", "Nivedita", "Salena", "Sanchali", "Sanchaya", "Sanjana", "Shivani", "Shubhada", "Sumitra", "Tarangini", "Tarjani", "Trilochana", "Mog", "Omprakash", "Prabodh", "Praful", "Som", "Laxman", "Ram", "Jayram", "Motiram", "Tukaram", "Mahadev", "Shiv", "Shiva", "Rudra", "Kanha", "Kanhaiya", "Kisan", "Kisna", "Vishnu", "Hari", "Vitthal", "Laxmi", "Rukhmini", "Narayan", "Namdeo", "Shyam", "Badra", "Bhadra", "Radha", "Radhe", "Radheshyam", "Gokuldas", "Ramdas", "Jnaneshwar", "Mukta", "Sopan", "Nivritti", "Sandhya", "Rupali", "Rupa", "Bhardwaj", "Bhupen", "Arul", "Atul", "Bahadur", "Baldeb", "Baldev", "Bijoy", "Binod", "Vinod", "Biren", "Chamanlal", "Bablu", "Pinki", "Lalla", "Chanda", "Chandan", "Chandragupt", "Dasrath", "Debendra", "Hariram", "Harinarayan", "Kalicharan", "Murugan", "Kartik", "Karuna", "Varuna", "Aruna", "Aparna", "Lakshmikant", "Lalit", "Mukund", "Mohan", "Murali", "Manohar", "Saurabh", "Sorabji", "Nidhi", "Pravin", "Rajni", "Samir", "Aseem", "Suman", "Saroj", "Natwar", "Prithvi", "Pavan", "Shweta", "Urmila", "Vijay", "Mithil", "Mithila", "Saraswati", "Sharda", "Kashi", "Swami", "Baba", "Nal", "Neel", "Damyanti", "Sati", "Parvati"],
@@ -75,6 +75,7 @@ const dataSet = {
     "UrbSuburbSuffix": [" West", " East", " North", " South", " (W)", " (E)", " (N)", " (S)", " Cantt.", " Street", " Road", " Township", " Wada", " Wadi", " Bypass", " Mandal", " Camp", " Garh", "", "", "", "", "", "", "", "", "", "", "", ""],
     "dates": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
     "months": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+    "hexRef": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
 };
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -134,7 +135,7 @@ function generateRandomLastName() {
     let lastName = dataSet["LastName"][Math.floor(Math.random() * (dataSet["LastName"].length))];
     return `${lastName}`;
 }
-//Defining function for finding a number in range
+//Defining function for finding a number in range (incl low and high)
 function numBetween(low, high) {
     return Math.floor(Math.random() * (high - low + 1)) + low;
 }
@@ -305,6 +306,96 @@ function generateRandomPAN() {
     let lastLetter = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
     return `${letter1}${letter2}${letter3}${letter4}${letter5}${digits}${lastLetter}`;
 }
+function generateRandomETH() {
+    let result = [];
+    let bitSize = 42;
+    let forRandom = ["1", "2", "1"];
+    for (let i = 0; i < bitSize - 2; i++) {
+        let ranToss = forRandom[Math.floor(Math.random() * 3)];
+        if (ranToss === "1") {
+            result.push(dataSet["hexRef"][Math.floor(Math.random() * 16)].toLowerCase());
+        }
+        else {
+            result.push(dataSet["hexRef"][Math.floor(Math.random() * 16)]);
+        }
+    }
+    return `0x${result.join('')}`;
+}
+function generateENS(fn, ln) {
+    let forRandom = ["1", "2", "2", "1", "1", "1", "1", "3", "3", "4", "4"];
+    let toss = forRandom[Math.floor(Math.random() * forRandom.length)];
+    let ensName = "";
+    if (toss === "1") {
+        ensName = fn;
+    }
+    else if (toss === "2") {
+        ensName = ln;
+    }
+    else if (toss === "3") {
+        ensName = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+    }
+    else {
+        ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+    }
+    return `${ensName}.eth`.toLowerCase();
+}
+function generateRandomBTC() {
+    let btcInitArray = ["1", "3", "bc1"];
+    let btcInit = btcInitArray[Math.floor(Math.random() * 3)];
+    let forRandom = ["1", "2", "1"];
+    let result = [];
+    let size = 0;
+    if (btcInit === "bc1") {
+        size = numBetween(24, 31); //making total 27-34   
+        for (let i = 0; i < size; i++) {
+            let alphNumToss = forRandom[Math.floor(Math.random() * 3)];
+            if (alphNumToss === "1") {
+                result.push(btcLowLetter());
+            }
+            else {
+                result.push(`${numBetween(1, 9)}`);
+            }
+        }
+        return `bc1${result.join('')}`;
+    }
+    else {
+        size = numBetween(26, 33); //making total 27-34
+        for (let i = 0; i < size; i++) {
+            let ranToss = forRandom[Math.floor(Math.random() * 3)];
+            let alphNumToss = forRandom[Math.floor(Math.random() * 3)];
+            if (alphNumToss === "1") {
+                result.push(`${numBetween(1, 9)}`);
+            }
+            else {
+                if (ranToss === "1") {
+                    result.push(btcCapLetter());
+                }
+                else {
+                    result.push(btcLowLetter());
+                }
+            }
+        }
+        return `${btcInit}${result.join('')}`;
+    }
+}
+function btcCapLetter() {
+    let letter = dataSet["Alphabets"][Math.floor(Math.random() * dataSet["Alphabets"].length)];
+    if (letter !== "O" && letter !== "I") {
+        return `${letter}`;
+    }
+    else {
+        btcCapLetter();
+    }
+}
+function btcLowLetter() {
+    let letter = dataSet["Alphabets"][Math.floor(Math.random() * dataSet["Alphabets"].length)].toLowerCase();
+    if (letter !== "l") {
+        return `${letter}`;
+    }
+    else {
+        btcLowLetter();
+    }
+}
 function generateRandomData(currentNode, input) {
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if (currentNode.type === "TEXT") {
@@ -374,6 +465,17 @@ function generateRandomData(currentNode, input) {
         }
         else if (input === "PAN") {
             currentNode.characters = generateRandomPAN();
+        }
+        else if (input === "ETH") {
+            currentNode.characters = generateRandomETH();
+        }
+        else if (input === "ENS") {
+            let fNamePart = dataSet["FirstName"][Math.floor(Math.random() * dataSet["FirstName"].length)];
+            let lNamePart = dataSet["LastName"][Math.floor(Math.random() * dataSet["LastName"].length)];
+            currentNode.characters = generateENS(fNamePart, lNamePart);
+        }
+        else if (input === "BTC") {
+            currentNode.characters = generateRandomBTC();
         }
     }
 }
@@ -486,6 +588,17 @@ function generateTable(incomingMsg) {
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(mobileLabelFrame);
     }
+    if (incomingMsg.ProfValue === true) {
+        const profLabelFrame = figma.createFrame();
+        formatLabelFrame(profLabelFrame);
+        const profLabel = figma.createText();
+        setFont(profLabel);
+        profLabel.characters = "Profession";
+        formatLabelText(profLabel);
+        profLabelFrame.appendChild(profLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(profLabelFrame);
+    }
     if (incomingMsg.RurAddressValue === true) {
         const rurLabelFrame = figma.createFrame();
         formatLabelFrame(rurLabelFrame);
@@ -540,17 +653,6 @@ function generateTable(incomingMsg) {
         pinLabelFrame.appendChild(pinLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(pinLabelFrame);
-    }
-    if (incomingMsg.ProfValue === true) {
-        const profLabelFrame = figma.createFrame();
-        formatLabelFrame(profLabelFrame);
-        const profLabel = figma.createText();
-        setFont(profLabel);
-        profLabel.characters = "Profession";
-        formatLabelText(profLabel);
-        profLabelFrame.appendChild(profLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(profLabelFrame);
     }
     if (incomingMsg.PassValue === true) {
         const passLabelFrame = figma.createFrame();
@@ -628,6 +730,39 @@ function generateTable(incomingMsg) {
         rcLabelFrame.appendChild(rcLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(rcLabelFrame);
+    }
+    if (incomingMsg.ETHValue === true) {
+        const ethLabelFrame = figma.createFrame();
+        formatLabelFrame(ethLabelFrame);
+        const ethLabel = figma.createText();
+        setFont(ethLabelFrame);
+        ethLabel.characters = "ETH Wallet";
+        formatLabelText(ethLabel);
+        ethLabelFrame.appendChild(ethLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ethLabelFrame);
+    }
+    if (incomingMsg.ENSValue === true) {
+        const ensLabelFrame = figma.createFrame();
+        formatLabelFrame(ensLabelFrame);
+        const ensLabel = figma.createText();
+        setFont(ensLabelFrame);
+        ensLabel.characters = "ENS Domain";
+        formatLabelText(ensLabel);
+        ensLabelFrame.appendChild(ensLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ensLabelFrame);
+    }
+    if (incomingMsg.BTCValue === true) {
+        const btcLabelFrame = figma.createFrame();
+        formatLabelFrame(btcLabelFrame);
+        const btcLabel = figma.createText();
+        setFont(btcLabelFrame);
+        btcLabel.characters = "BTC Wallet";
+        formatLabelText(btcLabel);
+        btcLabelFrame.appendChild(btcLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(btcLabelFrame);
     }
     labelSection.resize(generateTableLabelWidth, labelSectionHeight);
     labelSection.layoutMode = "NONE"; //Removing autolayout from label section before adding to the table
@@ -714,6 +849,12 @@ function generateTable(incomingMsg) {
         let panDigits = numBetween(1000, 9999);
         let panLastLetter = dataSet["Alphabets"][Math.floor(Math.random() * (dataSet["Alphabets"].length))];
         const pan = `${panLetter1}${panLetter2}${panLetter3}${panLetter4}${panLetter5}${panDigits}${panLastLetter}`;
+        //ETH
+        const ethAddr = generateRandomETH();
+        //ENS
+        const ensDomain = generateENS(fName, lName);
+        //BTC
+        const btcAddr = generateRandomBTC();
         // --------------------------------Values declaration over---------------------------------------------
         const dataSection = figma.createFrame(); //Section containing data items
         dataSection.layoutMode = "VERTICAL"; //Vertical autolayout
@@ -798,6 +939,21 @@ function generateTable(incomingMsg) {
             mobileTextFrame.appendChild(mobileText);
             dataSection.appendChild(mobileTextFrame);
         }
+        if (incomingMsg.ProfValue === true) {
+            const professionTextFrame = figma.createFrame();
+            formatContentFrame(professionTextFrame);
+            const professionText = figma.createText();
+            setFont(professionText);
+            if (currentAge <= 19) {
+                professionText.characters = "Student";
+            }
+            else {
+                professionText.characters = `${userProfession}`;
+            }
+            formatContentText(professionText);
+            professionTextFrame.appendChild(professionText);
+            dataSection.appendChild(professionTextFrame);
+        }
         if (incomingMsg.RurAddressValue === true) {
             const rurAddressTextFrame = figma.createFrame();
             formatContentFrame(rurAddressTextFrame);
@@ -847,21 +1003,6 @@ function generateTable(incomingMsg) {
             formatContentText(pinText);
             pinTextFrame.appendChild(pinText);
             dataSection.appendChild(pinTextFrame);
-        }
-        if (incomingMsg.ProfValue === true) {
-            const professionTextFrame = figma.createFrame();
-            formatContentFrame(professionTextFrame);
-            const professionText = figma.createText();
-            setFont(professionText);
-            if (currentAge <= 19) {
-                professionText.characters = "Student";
-            }
-            else {
-                professionText.characters = `${userProfession}`;
-            }
-            formatContentText(professionText);
-            professionTextFrame.appendChild(professionText);
-            dataSection.appendChild(professionTextFrame);
         }
         if (incomingMsg.PassValue === true) {
             const passTextFrame = figma.createFrame();
@@ -948,6 +1089,36 @@ function generateTable(incomingMsg) {
             formatContentText(rcText);
             rcTextFrame.appendChild(rcText);
             dataSection.appendChild(rcTextFrame);
+        }
+        if (incomingMsg.ETHValue === true) {
+            const ethTextFrame = figma.createFrame();
+            formatContentFrame(ethTextFrame);
+            const ethText = figma.createText();
+            setFont(ethText);
+            ethText.characters = `${ethAddr}`;
+            formatContentText(ethText);
+            ethTextFrame.appendChild(ethText);
+            dataSection.appendChild(ethTextFrame);
+        }
+        if (incomingMsg.ENSValue === true) {
+            const ensTextFrame = figma.createFrame();
+            formatContentFrame(ensTextFrame);
+            const ensText = figma.createText();
+            setFont(ensText);
+            ensText.characters = `${ensDomain}`;
+            formatContentText(ensText);
+            ensTextFrame.appendChild(ensText);
+            dataSection.appendChild(ensTextFrame);
+        }
+        if (incomingMsg.BTCValue === true) {
+            const btcTextFrame = figma.createFrame();
+            formatContentFrame(btcTextFrame);
+            const btcText = figma.createText();
+            setFont(btcText);
+            btcText.characters = `${btcAddr}`;
+            formatContentText(btcText);
+            btcTextFrame.appendChild(btcText);
+            dataSection.appendChild(btcTextFrame);
         }
         const dataSectionWidth = generateTableDataWidth; //Constant already defined initially
         const dataSectionHeight = labelSectionHeight; //Already calculated in the label section

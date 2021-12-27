@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 500, height: 580});
+figma.showUI(__html__,{width: 440, height: 580});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -146,6 +146,9 @@ const dataSet = {
     "dates" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
 
     "months" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+
+    "hexRef" : ["0", "1", "2", "3","4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+
 }
 
 
@@ -222,7 +225,7 @@ function generateRandomLastName(){
     return `${lastName}`;
 }
 
-//Defining function for finding a number in range
+//Defining function for finding a number in range (incl low and high)
 function numBetween(low, high){
     return Math.floor(Math.random() * (high-low+1)) + low;
 }
@@ -410,6 +413,103 @@ function generateRandomPAN(){
     return `${letter1}${letter2}${letter3}${letter4}${letter5}${digits}${lastLetter}`;
 }
 
+function generateRandomETH(){
+    let result = [];
+    let bitSize = 42;
+    let forRandom = ["1", "2", "1"];
+
+    for(let i=0; i<bitSize-2; i++){
+        let ranToss = forRandom[Math.floor(Math.random()*3)];
+        if(ranToss === "1"){
+            result.push(dataSet["hexRef"][Math.floor(Math.random()*16)].toLowerCase());
+        }else{
+            result.push(dataSet["hexRef"][Math.floor(Math.random()*16)]);
+        }
+    }
+    return `0x${result.join('')}`;
+}
+
+function generateENS(fn, ln){
+    let forRandom = ["1", "2", "2","1", "1", "1", "1", "3", "3", "4", "4"];
+    let toss = forRandom[Math.floor(Math.random()*forRandom.length)];
+    let ensName = "";
+    if(toss === "1"){
+        ensName = fn;
+    }else if(toss === "2"){
+        ensName = ln;
+    }else if(toss === "3"){
+        ensName = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+    }else{
+        ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+    }
+    return `${ensName}.eth`.toLowerCase();
+}
+
+function generateRandomBTC(){
+    let btcInitArray = ["1", "3", "bc1"];
+    let btcInit = btcInitArray[Math.floor(Math.random()*3)];
+    let forRandom = ["1", "2", "1"];
+    let result = [];
+    let size = 0;
+
+    if(btcInit === "bc1"){
+
+        size = numBetween(24,31);           //making total 27-34   
+        for(let i=0; i<size; i++){
+            let alphNumToss = forRandom[Math.floor(Math.random()*3)];
+    
+            if(alphNumToss === "1"){
+                    result.push(btcLowLetter());
+            }else{ 
+                    result.push(`${numBetween(1,9)}`);
+            }
+        }
+
+        return `bc1${result.join('')}`;
+
+    }else{
+        size = numBetween(26,33);           //making total 27-34
+        for(let i=0; i<size; i++){
+            let ranToss = forRandom[Math.floor(Math.random()*3)];
+            let alphNumToss = forRandom[Math.floor(Math.random()*3)];
+    
+            if(alphNumToss === "1"){
+                    result.push(`${numBetween(1,9)}`);
+            }else{
+                if(ranToss === "1"){
+                    result.push(btcCapLetter());
+                }else{
+                    result.push(btcLowLetter());
+                }
+            }
+        }
+
+        return `${btcInit}${result.join('')}`;
+
+    }
+
+}
+
+function btcCapLetter(){
+    let letter = dataSet["Alphabets"][Math.floor(Math.random()*dataSet["Alphabets"].length)];
+    if(letter !== "O" && letter !== "I"){
+        return `${letter}`;
+    }else{
+        btcCapLetter();
+    }
+}
+
+
+function btcLowLetter(){
+    let letter = dataSet["Alphabets"][Math.floor(Math.random()*dataSet["Alphabets"].length)].toLowerCase();
+    if(letter !== "l"){
+        return `${letter}`;
+    }else{
+        btcLowLetter();
+    }
+}
+
+
 function generateRandomData(currentNode, input){
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
@@ -481,6 +581,17 @@ function generateRandomData(currentNode, input){
         }
         else if(input === "PAN"){
             currentNode.characters = generateRandomPAN();
+        }
+        else if(input === "ETH"){
+            currentNode.characters = generateRandomETH();
+        }
+        else if(input === "ENS"){
+            let fNamePart = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
+            let lNamePart = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
+            currentNode.characters = generateENS(fNamePart, lNamePart);
+        }
+        else if(input === "BTC"){
+            currentNode.characters = generateRandomBTC();
         }
     }
 }
@@ -612,6 +723,18 @@ function generateTable(incomingMsg){
         labelSection.appendChild(mobileLabelFrame);
     }
 
+    if(incomingMsg.ProfValue === true){
+        const profLabelFrame = figma.createFrame();
+        formatLabelFrame(profLabelFrame);
+        const profLabel = figma.createText();
+        setFont(profLabel);
+        profLabel.characters = "Profession";
+        formatLabelText(profLabel);
+        profLabelFrame.appendChild(profLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(profLabelFrame);
+    }
+
     if(incomingMsg.RurAddressValue === true){
         const rurLabelFrame = figma.createFrame();
         formatLabelFrame(rurLabelFrame);
@@ -670,18 +793,6 @@ function generateTable(incomingMsg){
         pinLabelFrame.appendChild(pinLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(pinLabelFrame);
-    }
-
-    if(incomingMsg.ProfValue === true){
-        const profLabelFrame = figma.createFrame();
-        formatLabelFrame(profLabelFrame);
-        const profLabel = figma.createText();
-        setFont(profLabel);
-        profLabel.characters = "Profession";
-        formatLabelText(profLabel);
-        profLabelFrame.appendChild(profLabel);
-        labelSectionHeight += generateTableCellHeight;
-        labelSection.appendChild(profLabelFrame);
     }
 
     if(incomingMsg.PassValue === true){
@@ -766,6 +877,42 @@ function generateTable(incomingMsg){
         rcLabelFrame.appendChild(rcLabel);
         labelSectionHeight += generateTableCellHeight;
         labelSection.appendChild(rcLabelFrame);
+    }
+
+    if(incomingMsg.ETHValue === true){
+        const ethLabelFrame = figma.createFrame();
+        formatLabelFrame(ethLabelFrame);
+        const ethLabel = figma.createText();
+        setFont(ethLabelFrame);
+        ethLabel.characters = "ETH Wallet";
+        formatLabelText(ethLabel);
+        ethLabelFrame.appendChild(ethLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ethLabelFrame);
+    }
+
+    if(incomingMsg.ENSValue === true){
+        const ensLabelFrame = figma.createFrame();
+        formatLabelFrame(ensLabelFrame);
+        const ensLabel = figma.createText();
+        setFont(ensLabelFrame);
+        ensLabel.characters = "ENS Domain";
+        formatLabelText(ensLabel);
+        ensLabelFrame.appendChild(ensLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(ensLabelFrame);
+    }
+
+    if(incomingMsg.BTCValue === true){
+        const btcLabelFrame = figma.createFrame();
+        formatLabelFrame(btcLabelFrame);
+        const btcLabel = figma.createText();
+        setFont(btcLabelFrame);
+        btcLabel.characters = "BTC Wallet";
+        formatLabelText(btcLabel);
+        btcLabelFrame.appendChild(btcLabel);
+        labelSectionHeight += generateTableCellHeight;
+        labelSection.appendChild(btcLabelFrame);
     }
 
 
@@ -862,6 +1009,13 @@ function generateTable(incomingMsg){
         let panDigits = numBetween(1000, 9999);
         let panLastLetter = dataSet["Alphabets"][Math.floor(Math.random()*(dataSet["Alphabets"].length))];
         const pan = `${panLetter1}${panLetter2}${panLetter3}${panLetter4}${panLetter5}${panDigits}${panLastLetter}`;
+        //ETH
+        const ethAddr = generateRandomETH();
+        //ENS
+        const ensDomain = generateENS(fName, lName);
+        //BTC
+        const btcAddr = generateRandomBTC();
+
 
         // --------------------------------Values declaration over---------------------------------------------
 
@@ -959,6 +1113,21 @@ function generateTable(incomingMsg){
             dataSection.appendChild(mobileTextFrame);
         }
 
+        if(incomingMsg.ProfValue === true){
+            const professionTextFrame = figma.createFrame();
+            formatContentFrame(professionTextFrame);
+            const professionText = figma.createText();
+            setFont(professionText); 
+            if(currentAge <= 19){
+                professionText.characters = "Student";
+            }else{
+                professionText.characters = `${userProfession}`;
+            }
+            formatContentText(professionText);
+            professionTextFrame.appendChild(professionText);
+            dataSection.appendChild(professionTextFrame);
+        }
+
         if(incomingMsg.RurAddressValue === true){
             const rurAddressTextFrame = figma.createFrame();
             formatContentFrame(rurAddressTextFrame);
@@ -1013,21 +1182,6 @@ function generateTable(incomingMsg){
             formatContentText(pinText);
             pinTextFrame.appendChild(pinText);
             dataSection.appendChild(pinTextFrame);
-        }
-
-        if(incomingMsg.ProfValue === true){
-            const professionTextFrame = figma.createFrame();
-            formatContentFrame(professionTextFrame);
-            const professionText = figma.createText();
-            setFont(professionText); 
-            if(currentAge <= 19){
-                professionText.characters = "Student";
-            }else{
-                professionText.characters = `${userProfession}`;
-            }
-            formatContentText(professionText);
-            professionTextFrame.appendChild(professionText);
-            dataSection.appendChild(professionTextFrame);
         }
 
         if(incomingMsg.PassValue === true){
@@ -1118,6 +1272,39 @@ function generateTable(incomingMsg){
             formatContentText(rcText);
             rcTextFrame.appendChild(rcText);
             dataSection.appendChild(rcTextFrame);
+        }
+
+        if(incomingMsg.ETHValue === true){
+            const ethTextFrame = figma.createFrame();
+            formatContentFrame(ethTextFrame);
+            const ethText = figma.createText();
+            setFont(ethText); 
+            ethText.characters = `${ethAddr}`;
+            formatContentText(ethText);
+            ethTextFrame.appendChild(ethText);
+            dataSection.appendChild(ethTextFrame);
+        }
+
+        if(incomingMsg.ENSValue === true){
+            const ensTextFrame = figma.createFrame();
+            formatContentFrame(ensTextFrame);
+            const ensText = figma.createText();
+            setFont(ensText); 
+            ensText.characters = `${ensDomain}`;
+            formatContentText(ensText);
+            ensTextFrame.appendChild(ensText);
+            dataSection.appendChild(ensTextFrame);
+        }
+
+        if(incomingMsg.BTCValue === true){
+            const btcTextFrame = figma.createFrame();
+            formatContentFrame(btcTextFrame);
+            const btcText = figma.createText();
+            setFont(btcText); 
+            btcText.characters = `${btcAddr}`;
+            formatContentText(btcText);
+            btcTextFrame.appendChild(btcText);
+            dataSection.appendChild(btcTextFrame);
         }
 
 
