@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 440, height: 580});
+figma.showUI(__html__,{width: 440, height: 525});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -266,12 +266,30 @@ function generateRandomUPIm(){
 }
 
 //Define function for generating email
-function generateRandomEmail(){
-    let fname = dataSet["FirstName"][Math.floor(Math.random()*(dataSet["FirstName"].length))];
-    let lname = dataSet["LastName"][Math.floor(Math.random()*(dataSet["LastName"].length))];
-    let email = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
-    let emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-    return `${fname}.${lname}@${email}.${emailEnd}`.toLowerCase();
+function generateEmail(fn, ln, em, end){
+    let forRandom = ["1", "1", "1", "1", "1", "2", "2", "2", "2", "2", "3", "3", "3", "3", "4", "4"];
+    let toss = forRandom[Math.floor(Math.random()*forRandom.length)];
+    let email = "";
+
+    if(toss === "1"){
+        email = `${fn}.${ln}`;
+    }else if(toss === "2"){
+        email = `${ln}.${fn}`;
+    }else if(toss === "3"){
+        email = `${fn}${ln}`;
+    }else if(toss === "4"){
+        if(fn.length <= 5 && ln.length <= 5){
+            email = `${ln}${fn}`; 
+        }else if(fn.length <= 5 && ln.length > 5){
+            email = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }else if(fn.length > 5 && ln.length <= 5){
+            email = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+        }else if(fn.length > 5 && ln.length > 5){
+            email = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }
+    }
+
+    return `${email}@${em}.${end}`.toLowerCase();
 }
 
 function generateRandomPINCode(){
@@ -430,7 +448,7 @@ function generateRandomETH(){
 }
 
 function generateENS(fn, ln){
-    let forRandom = ["1", "2", "2","1", "1", "1", "1", "3", "3", "4", "4"];
+    let forRandom = ["1", "2", "2","1", "1", "1", "1", "3", "3"];
     let toss = forRandom[Math.floor(Math.random()*forRandom.length)];
     let ensName = "";
     if(toss === "1"){
@@ -438,10 +456,17 @@ function generateENS(fn, ln){
     }else if(toss === "2"){
         ensName = ln;
     }else if(toss === "3"){
-        ensName = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
-    }else{
-        ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+        if(fn.length <= 5 && ln.length <= 5){
+            ensName = `${fn}${ln}`; 
+        }else if(fn.length <= 5 && ln.length > 5){
+            ensName = `${fn}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }else if(fn.length > 5 && ln.length <= 5){
+            ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln}`;
+        }else if(fn.length > 5 && ln.length > 5){
+            ensName = `${fn[0]}${fn[1]}${fn[2]}${fn[3]}${fn[4]}${ln[0]}${ln[1]}${ln[2]}${ln[3]}${ln[4]}`;
+        }
     }
+
     return `${ensName}.eth`.toLowerCase();
 }
 
@@ -538,7 +563,11 @@ function generateRandomData(currentNode, input){
             currentNode.characters = generateRandomUPIm();
         }
         else if(input === "Email"){
-            currentNode.characters = generateRandomEmail();
+            let fn = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
+            let ln = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
+            let em = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
+            let end = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
+            currentNode.characters = generateEmail(fn, ln, em, end);
         }
         else if(input === "UPIn"){
             currentNode.characters = generateRandomUPIn();
@@ -586,9 +615,9 @@ function generateRandomData(currentNode, input){
             currentNode.characters = generateRandomETH();
         }
         else if(input === "ENS"){
-            let fNamePart = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
-            let lNamePart = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
-            currentNode.characters = generateENS(fNamePart, lNamePart);
+            let fn = dataSet["FirstName"][Math.floor(Math.random()*dataSet["FirstName"].length)];
+            let ln = dataSet["LastName"][Math.floor(Math.random()*dataSet["LastName"].length)];
+            currentNode.characters = generateENS(fn, ln);
         }
         else if(input === "BTC"){
             currentNode.characters = generateRandomBTC();
@@ -978,7 +1007,7 @@ function generateTable(incomingMsg){
         //Email
         const emailDomain = dataSet["EmailDomain"][Math.floor(Math.random()*(dataSet["EmailDomain"].length))];
         const emailEnd = dataSet["EmailEnd"][Math.floor(Math.random()*(dataSet["EmailEnd"].length))];
-        const userEmail = `${fName}.${lName}@${emailDomain}.${emailEnd}`.toLowerCase();
+        const userEmail = generateEmail(fName, lName, emailDomain, emailEnd);
         // Dob and age
         const dobContent = generateRandomDoB();
         const yearContent = dobContent[6] + dobContent[7] + dobContent[8] + dobContent[9];
