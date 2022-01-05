@@ -194,7 +194,7 @@ figma.ui.onmessage = msg => {
     
 
     if(msg.type === 'disclaimer'){
-        figma.notify("This plugin generates sample user data. Any resemblance to real world entities is just a coincidence.", {timeout:4000});
+        figma.notify("This plugin generates sample user data. Any resemblances to real world entities are pure coincidences.", {timeout:4000});
       }
 
     
