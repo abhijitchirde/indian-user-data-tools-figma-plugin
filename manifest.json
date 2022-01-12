@@ -2,7 +2,7 @@
   "name": "Indian User Data Tools",
   "id": "1046328883372627755",
   "api": "1.0.0",
-  "main": "code.min.js",
+  "main": "code.js",
   "editorType": [
     "figma"
   ],

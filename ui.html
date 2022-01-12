@@ -4,6 +4,7 @@
   
 body {
     background-color: #fdfdfd;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
     /* tabs related styling */
@@ -109,8 +110,6 @@ body {
   margin: 0%;
 }
 
-
-
 .button {
     font-size: 0.65rem;
     font-weight: 400;
@@ -138,6 +137,40 @@ body {
     color: #fff;
     transition-duration: 0.2s;
     box-shadow: none;
+}
+
+.dropdown-label{
+  display: inline-block;
+  color: #6f6f70;
+  font-weight: 500;
+  font-size: 0.7rem;
+  padding-left: 3.7%;
+  padding-right: 1.5%;
+  vertical-align: middle;
+
+}
+
+.dropdown-main {
+  display: inline-block;
+  border-radius: 3px;
+  width: 38%;
+  height: 3.9%;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+  padding-left: 1%;
+  border: 0.5px solid darkgray;
+  color: #6f6f70;
+  margin-right: 3.2%;
+  vertical-align: middle;
+
+}
+
+.dropdown-item {
+  font-size: 0.7rem;
+  height: 16%;
+  padding: 1% 1%;
+  color: #6f6f70;
 }
 
 /* checkbox elements related styling */
@@ -342,9 +375,33 @@ body {
             <button class="button" id="Age">Age</button>
             <button class="button" id="Email">Email</button>
             <button class="button" id="Mobile">Mobile Number</button>
-            <button class="button" id="Prof">Profession</button>
           </div>
         </div>
+
+        <div class="button-group">
+          <p class="button-group-label">User profession</p>
+          <div class="buttons">
+            <p class="dropdown-label">Select domain</p>
+            <select class="dropdown-main" id="profession-domain" name="">
+              <option id="ran" class="dropdown-item" value="Random" selected>Random</option>
+              <option id="tech" class="dropdown-item" value="Tech and IT">Tech and IT</option>
+              <option id="eng" class="dropdown-item" value="Engineering">Engineering</option>
+              <option id="man" class="dropdown-item" value="Management">Management</option>
+              <option id="heal" class="dropdown-item" value="Healthcare">Healthcare</option>
+              <option id="fin" class="dropdown-item" value="Finance">Finance</option>
+              <option id="sci" class="dropdown-item" value="Science">Science</option>
+              <option id="ed" class="dropdown-item" value="Education">Education</option>
+              <option id="art" class="dropdown-item" value="Art and media">Art and media</option>
+              <option id="hos" class="dropdown-item" value="Hospitality">Hospitality</option>
+              <option id="con" class="dropdown-item" value="Construction">Construction</option>
+              <option id="vol" class="dropdown-item" value="Volunteering">Volunteering</option>
+              <option id="oth" class="dropdown-item" value="Other">Others</option>
+            </select>
+            <button class="button" id="Prof">Add profession</button>
+          </div>
+        </div>
+
+
 
         <div class="button-group">
           <p class="button-group-label">Location details</p>
@@ -563,104 +620,103 @@ function openTab(evt, contentDivID) {
 //Defining button click events to send message to Code
 document.getElementById('FirstName').onclick = () => {
   const inputValue = "FirstName";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('LastName').onclick = () => {
   const inputValue = "LastName";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('FullName').onclick = () => {
   const inputValue = "FullName";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('DoB').onclick = () => {
   const inputValue = "DoB";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('Age').onclick = () => {
   const inputValue = "Age";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('Email').onclick = () => {
   const inputValue = "Email";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('Mobile').onclick = () => {
   const inputValue = "Mobile";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('Prof').onclick = () => {
   const inputValue = "Prof";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  const domain = document.getElementById("profession-domain").selectedOptions;
+  const domainInput = domain[0].value;
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue, domainInput}}}, '*');
 }
 document.getElementById('RurAddress').onclick = () => {
   const inputValue = "RurAddress";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('UrbAddress').onclick = () => {
   const inputValue = "UrbAddress";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('City').onclick = () => {
   const inputValue = "City";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('State').onclick = () => {
   const inputValue = "State";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('CityState').onclick = () => {
   const inputValue = "CityState";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('PIN').onclick = () => {
   const inputValue = "PIN";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 
 document.getElementById('Pass').onclick = () => {
   const inputValue = "Pass";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('UID').onclick = () => {
   const inputValue = "UID";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('PAN').onclick = () => {
   const inputValue = "PAN";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('UPIn').onclick = () => {
   const inputValue = "UPIn";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('UPIm').onclick = () => {
   const inputValue = "UPIm";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('DL').onclick = () => {
   const inputValue = "DL";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('RC').onclick = () => {
   const inputValue = "RC";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('ETH').onclick = () => {
   const inputValue = "ETH";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('ENS').onclick = () => {
   const inputValue = "ENS";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
 document.getElementById('BTC').onclick = () => {
   const inputValue = "BTC";
-  parent.postMessage({ pluginMessage: { type: 'generate-random', inputValue}}, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue}}}, '*');
 }
-
-
-
 
 
 document.getElementById('GenerateTable').onclick = () => {
@@ -693,7 +749,7 @@ document.getElementById('GenerateTable').onclick = () => {
 
   const usersInput = document.getElementById('noOfUsers');
   const noOfUsers = parseInt(usersInput.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'generate-table', chkInput: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue, ETHValue, ENSValue, BTCValue}} }, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-table', data: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue, ETHValue, ENSValue, BTCValue}} }, '*');
 }
 
 document.getElementById('disclaimer').onclick = () => {
