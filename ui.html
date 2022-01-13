@@ -13,7 +13,7 @@ body {
     background-color: #fdfdfd;
     width: 100%;
     text-align: center;
-    margin-bottom: 1.5%;
+    margin-bottom: 0%;
     /* box-shadow: 0 1px 2px rgba(230, 230, 230, 60); */
 }
 
@@ -88,11 +88,12 @@ body {
 
 .button-group {
   text-align: center;
-  padding-bottom: 2%;
-  margin-bottom: 2%;
+  padding-bottom: 1.5%;
+  margin-bottom: 1.5%;
   background-color: #fff;
   border: 1px solid #fff;
   box-shadow: 0 1px 5px rgba(200, 200, 220, 0.3);
+  border-radius: 5px;
 }
 
 .button-group-label {
@@ -101,7 +102,7 @@ body {
   font-weight: 300;
   color: #adadad;
   font-size: 0.7rem;
-  margin: 2% 0%;
+  margin: 1.5% 0%;
 }
 
 .buttons {
@@ -143,19 +144,18 @@ body {
   display: inline-block;
   color: #6f6f70;
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   padding-left: 3.7%;
-  padding-right: 1.5%;
+  padding-right: 3%;
   vertical-align: middle;
-
 }
 
 .dropdown-main {
   display: inline-block;
   border-radius: 3px;
   width: 38%;
-  height: 3.9%;
-  font-size: 0.7rem;
+  height: 3.6%;
+  font-size: 0.65rem;
   font-weight: 500;
   text-align: center;
   padding-left: 1%;
@@ -163,14 +163,50 @@ body {
   color: #6f6f70;
   margin-right: 3.2%;
   vertical-align: middle;
+}
 
+.dropdown-main:disabled {
+  background-color: rgb(235, 235, 235);
 }
 
 .dropdown-item {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   height: 16%;
   padding: 1% 1%;
   color: #6f6f70;
+}
+
+.dropdown-special-label{
+  display: inline-block;
+  color: #6f6f70;
+  font-weight: 500;
+  font-size: 0.65rem;
+  padding-left: 3.7%;
+  padding-right: 3%;
+  margin-bottom: 2.5%;
+  vertical-align: middle;
+}
+
+.dropdown-special {
+  display: inline-block;
+  border-radius: 3px;
+  width: 38%;
+  height: 3.6%;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-align: center;
+  padding-left: 1%;
+  margin-top: 0;
+  margin-bottom: 2.5%;
+  padding-top: 0;  
+  border: 0.5px solid darkgray;
+  color: #6f6f70;
+  margin-right: 3.2%;
+  vertical-align: middle;
+}
+
+.dropdown-special:disabled {
+  background-color: rgb(235, 235, 235);
 }
 
 /* checkbox elements related styling */
@@ -181,11 +217,12 @@ body {
 
 .checkbox-group {
   text-align: center;
-  margin-bottom: 2%;
   padding-bottom: 0%;
+  margin-bottom: 1.5%;
   background-color: #fff;
   border: 1px solid #fff;
   box-shadow: 0 1px 5px rgba(200, 200, 220, 0.3);
+  border-radius: 5px;
 }
 
 .checkbox-group-label {
@@ -194,7 +231,7 @@ body {
   font-weight: 300;
   color: #adadad;
   font-size: 0.7rem;
-  margin: 2% 0%;
+  margin: 1.5% 0%;
 }
 
 .checkboxes {
@@ -205,9 +242,9 @@ body {
 
 .checkbox-div {
   width: 29%;
-  height: 5%;
+  height: 4.5%;
   display: inline-block;
-  margin: 0.2% 1.17%;
+  margin: 0.5% 1.17%;
   text-align: left;
   vertical-align: middle;
 }
@@ -231,11 +268,8 @@ body {
 .separate-button-div {
   display: block;
   width: auto;
-  /* background-color: #fff; */
-  padding-top: 3.5%;
-  /* padding-bottom: 1.5%; */
-  /* box-shadow: 0 -1px 4px rgba(244, 244, 244, 30); */
-  border-radius: 0 0 8px 8px;
+  padding-top: 1.5%;
+  padding-bottom: 0%;
 }
 
 .user-input {
@@ -290,7 +324,7 @@ body {
 
 .bottomContainer{
   background: none repeat scroll 0 0 transparent;
-  bottom: 2.5%;
+  bottom: 1.3%;
   position: fixed;
   width: 100%;
   display: block;
@@ -329,7 +363,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.9rem;
     color: rgb(158, 171, 196);
-    margin: 2% 0 0;
+    margin-bottom: 0;
     text-align: right;
     display: inline-block;
     padding-left: 0;
@@ -360,8 +394,8 @@ body {
     <button class="tablinks" onclick="openTab(event, 'generateTable')">Generate user data table</button>
   </div>
 
-    <!-- Tab content -->
-    <!-- Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
+  <!-- Tab content -->
+  <!-- Tab1: Components to generate individual date points on the selected text layer. Throw an error if text layer is not selected -->
   <div id="generateRandomData" class="tabcontent">
     <div class="tab1-container">
       <div class="buttons-list">
@@ -381,8 +415,8 @@ body {
         <div class="button-group">
           <p class="button-group-label">User profession</p>
           <div class="buttons">
-            <p class="dropdown-label">Select domain</p>
-            <select class="dropdown-main" id="profession-domain" name="">
+            <label class="dropdown-label" for="profession-domain-1">Select domain</label>
+            <select class="dropdown-main" id="profession-domain-1" name="">
               <option id="ran" class="dropdown-item" value="Random" selected>Random</option>
               <option id="tech" class="dropdown-item" value="Tech and IT">Tech and IT</option>
               <option id="eng" class="dropdown-item" value="Engineering">Engineering</option>
@@ -394,13 +428,13 @@ body {
               <option id="art" class="dropdown-item" value="Art and media">Art and media</option>
               <option id="hos" class="dropdown-item" value="Hospitality">Hospitality</option>
               <option id="con" class="dropdown-item" value="Construction">Construction</option>
+              <option id="gov" class="dropdown-item" value="Govt and administration">Govt and administration</option>
               <option id="vol" class="dropdown-item" value="Volunteering">Volunteering</option>
               <option id="oth" class="dropdown-item" value="Other">Others</option>
             </select>
             <button class="button" id="Prof">Add profession</button>
           </div>
         </div>
-
 
 
         <div class="button-group">
@@ -449,7 +483,7 @@ body {
     </div>
   </div>
 
-  <!-- Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
+  <!-- Tab2 : Component to generate a card with all the user information added like an ID card. Create a new frame and place that card on canvas -->
   <div  id="generateTable" class="tabcontent">
 
     <div class="tab2-container">
@@ -459,93 +493,70 @@ body {
         <div class="checkbox-group">
           <p class="checkbox-group-label">User details</p>
           <div class="checkboxes">
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="checkbox-label" for="FirstNameChk">First Name</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="LastNameChk" name="LastNameChk" value="LastNameChk"><label class="checkbox-label" for="LastNameChk">Last Name</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="FullNameChk" name="FullNameChk" value="FullNameChk" checked><label class="checkbox-label" for="FullNameChk">Full Name</label>
-            </div>   
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="DoBChk" name="DoBChk" value="DoBChk" checked><label class="checkbox-label" for="DoBChk">Date of Birth</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="AgeChk" name="AgeChk" value="AgeChk"><label class="checkbox-label" for="AgeChk">Age</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="EmailChk" name="EmailChk" value="EmailChk" checked><label class="checkbox-label" for="EmailChk">Email</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="MobileChk" name="MobileChk" value="MobileChk" checked><label class="checkbox-label" for="MobileChk">Mobile</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="ProfChk" name="ProfChk" value="ProfChk" checked><label class="checkbox-label" for="ProfChk">Profession</label>
-            </div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="FirstNameChk" name="FirstNameChk" value="FirstNameChk"><label class="checkbox-label" for="FirstNameChk">First Name</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="LastNameChk" name="LastNameChk" value="LastNameChk"><label class="checkbox-label" for="LastNameChk">Last Name</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="FullNameChk" name="FullNameChk" value="FullNameChk" checked><label class="checkbox-label" for="FullNameChk">Full Name</label></div>   
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="DoBChk" name="DoBChk" value="DoBChk" checked><label class="checkbox-label" for="DoBChk">Date of Birth</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="AgeChk" name="AgeChk" value="AgeChk"><label class="checkbox-label" for="AgeChk">Age</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="EmailChk" name="EmailChk" value="EmailChk" checked><label class="checkbox-label" for="EmailChk">Email</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="MobileChk" name="MobileChk" value="MobileChk" checked><label class="checkbox-label" for="MobileChk">Mobile</label></div>
           </div>
+        </div>
+
+        <div class="checkbox-group">
+          <p class="checkbox-group-label">User profession</p>
+          <div class="checkboxes">
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="ProfChk" name="ProfChk" value="ProfChk" checked onclick="updateDomainDropdown(this)"><label class="checkbox-label" for="ProfChk">Profession</label></div>
+            <label class="dropdown-special-label" for="profession-domain-2">Select domain</label>
+            <select class="dropdown-special" id="profession-domain-2" name="profession-domain-2">
+              <option id="ran" class="dropdown-item" value="Random" selected>Random</option>
+              <option id="tech" class="dropdown-item" value="Tech and IT">Tech and IT</option>
+              <option id="eng" class="dropdown-item" value="Engineering">Engineering</option>
+              <option id="man" class="dropdown-item" value="Management">Management</option>
+              <option id="heal" class="dropdown-item" value="Healthcare">Healthcare</option>
+              <option id="fin" class="dropdown-item" value="Finance">Finance</option>
+              <option id="sci" class="dropdown-item" value="Science">Science</option>
+              <option id="ed" class="dropdown-item" value="Education">Education</option>
+              <option id="art" class="dropdown-item" value="Art and media">Art and media</option>
+              <option id="hos" class="dropdown-item" value="Hospitality">Hospitality</option>
+              <option id="con" class="dropdown-item" value="Construction">Construction</option>
+              <option id="gov" class="dropdown-item" value="Govt and administration">Govt and administration</option>
+              <option id="vol" class="dropdown-item" value="Volunteering">Volunteering</option>
+              <option id="oth" class="dropdown-item" value="Other">Others</option>
+            </select>
+           </div>
         </div>
 
         <div class="checkbox-group">
           <p class="checkbox-group-label">Location details</p>
           <div class="checkboxes">
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="RurAddressChk" name="RurAddressChk" value="RurAddressChk"><label class="checkbox-label" for="RurAddressChk">Rural Address</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="UrbAddressChk" name="UrbAddressChk" value="UrbAddressChk" checked><label class="checkbox-label" for="UrbAddressChk">Urban Address</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="CityChk" name="CityChk" value="CityChk" checked><label class="checkbox-label" for="CityChk">City</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="StateChk" name="StateChk" value="StateChk" checked><label class="checkbox-label" for="StateChk">State</label>
-            </div>
-            <div class="checkbox-div ">
-              <input class="checkbox" type="checkbox" id="PINChk" name="PINChk" value="PINChk" checked><label class="checkbox-label" for="PINChk">PIN Code</label>
-            </div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="RurAddressChk" name="RurAddressChk" value="RurAddressChk"><label class="checkbox-label" for="RurAddressChk">Rural Address</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="UrbAddressChk" name="UrbAddressChk" value="UrbAddressChk" checked><label class="checkbox-label" for="UrbAddressChk">Urban Address</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="CityChk" name="CityChk" value="CityChk" checked><label class="checkbox-label" for="CityChk">City</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="StateChk" name="StateChk" value="StateChk" checked><label class="checkbox-label" for="StateChk">State</label></div>
+            <div class="checkbox-div "><input class="checkbox" type="checkbox" id="PINChk" name="PINChk" value="PINChk" checked><label class="checkbox-label" for="PINChk">PIN Code</label></div>
           </div>
         </div>
 
         <div class="checkbox-group">
           <p class="checkbox-group-label">User IDs</p>
           <div class="checkboxes">
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="PassChk" name="PassChk" value="PassChk"><label class="checkbox-label" for="PassChk">Indian Passport</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk" checked><label class="checkbox-label" for="UIDChk">UID (Aadhar)</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="PANChk" name="PANChk" value="PANChk" checked><label class="checkbox-label" for="PANChk">PAN (Tax ID)</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="UPInChk" name="UPInChk" value="UPInChk"><label class="checkbox-label" for="UPInChk">UPI (name)</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="UPImChk" name="UPImChk" value="UPImChk"><label class="checkbox-label" for="UPImChk">UPI (mobile)</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="checkbox-label" for="DLChk">Driver's License</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="checkbox-label" for="RCChk">Vehicle RC</label>
-            </div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="PassChk" name="PassChk" value="PassChk"><label class="checkbox-label" for="PassChk">Indian Passport</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="UIDChk" name="UIDChk" value="UIDChk" checked><label class="checkbox-label" for="UIDChk">UID (Aadhar)</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="PANChk" name="PANChk" value="PANChk" checked><label class="checkbox-label" for="PANChk">PAN (Tax ID)</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="UPInChk" name="UPInChk" value="UPInChk"><label class="checkbox-label" for="UPInChk">UPI (name)</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="UPImChk" name="UPImChk" value="UPImChk"><label class="checkbox-label" for="UPImChk">UPI (mobile)</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="DLChk" name="DLChk" value="DLChk"><label class="checkbox-label" for="DLChk">Driver's License</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="RCChk" name="RCChk" value="RCChk"><label class="checkbox-label" for="RCChk">Vehicle RC</label></div>
           </div>
         </div>
 
         <div class="checkbox-group">
           <p class="checkbox-group-label">Blockchain details</p>
           <div class="checkboxes">
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="ETHChk" name="ETHChk" value="ETHChk"><label class="checkbox-label" for="ETHChk">ETH Wallet</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="ENSChk" name="ENSChk" value="ENSChk"><label class="checkbox-label" for="ENSChk">ENS Domain</label>
-            </div>
-            <div class="checkbox-div">
-              <input class="checkbox" type="checkbox" id="BTCChk" name="BTCChk" value="BTCChk"><label class="checkbox-label" for="BTCChk">BTC Wallet</label>
-            </div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="ETHChk" name="ETHChk" value="ETHChk"><label class="checkbox-label" for="ETHChk">ETH Wallet</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="ENSChk" name="ENSChk" value="ENSChk"><label class="checkbox-label" for="ENSChk">ENS Domain</label></div>
+            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="BTCChk" name="BTCChk" value="BTCChk"><label class="checkbox-label" for="BTCChk">BTC Wallet</label></div>
           </div>
         </div>
       </div>
@@ -577,10 +588,6 @@ body {
   </div>
 
 </div>
-
-
-
-
 
 
 
@@ -616,7 +623,6 @@ function openTab(evt, contentDivID) {
   document.getElementById("defaultOpen").click();
 
 
-
 //Defining button click events to send message to Code
 document.getElementById('FirstName').onclick = () => {
   const inputValue = "FirstName";
@@ -648,7 +654,7 @@ document.getElementById('Mobile').onclick = () => {
 }
 document.getElementById('Prof').onclick = () => {
   const inputValue = "Prof";
-  const domain = document.getElementById("profession-domain").selectedOptions;
+  const domain = document.getElementById("profession-domain-1").selectedOptions;
   const domainInput = domain[0].value;
   parent.postMessage({ pluginMessage: { type: 'generate-random', data:{inputValue, domainInput}}}, '*');
 }
@@ -719,37 +725,59 @@ document.getElementById('BTC').onclick = () => {
 }
 
 
+function updateDomainDropdown(ProfChk){
+  //select dropdown html element to act on
+  const profDropdown = document.getElementById("profession-domain-2");
+  profDropdown.disabled = ProfChk.checked ? false : true;
+
+  // if(!profDropdown.disabled){
+  //   profDropdown.focus();
+  // }
+
+  ProfValue = ProfChk.checked;
+}
+
+
 document.getElementById('GenerateTable').onclick = () => {
-  const FirstNameValue = FirstNameChk.checked;
-  const LastNameValue = LastNameChk.checked;
-  const FullNameValue = FullNameChk.checked;
-  const DoBValue = DoBChk.checked;
-  const AgeValue = AgeChk.checked;
-  const EmailValue = EmailChk.checked;
-  const MobileValue = MobileChk.checked;
-  const ProfValue = ProfChk.checked;
 
-  const RurAddressValue = RurAddressChk.checked;
-  const UrbAddressValue= UrbAddressChk.checked; 
-  const CityValue = CityChk.checked;
-  const StateValue = StateChk.checked;
-  const PINValue = PINChk.checked; 
+  //Checkbox variable values to pass
+  var FirstNameValue = FirstNameChk.checked;
+  var LastNameValue = LastNameChk.checked;
+  var FullNameValue = FullNameChk.checked;
+  var DoBValue = DoBChk.checked;
+  var AgeValue = AgeChk.checked;
+  var EmailValue = EmailChk.checked;
+  var MobileValue = MobileChk.checked;
+  var ProfValue = ProfChk.checked;
 
-  const PassValue = PassChk.checked;
-  const UIDValue = UIDChk.checked;
-  const PANValue = PANChk.checked;
-  const UPInValue = UPInChk.checked;
-  const UPImValue = UPImChk.checked;
-  const DLValue = DLChk.checked;
-  const RCValue = RCChk.checked;
+  var RurAddressValue = RurAddressChk.checked;
+  var UrbAddressValue= UrbAddressChk.checked; 
+  var CityValue = CityChk.checked;
+  var StateValue = StateChk.checked;
+  var PINValue = PINChk.checked; 
 
-  const ETHValue = ETHChk.checked;
-  const ENSValue = ENSChk.checked;
-  const BTCValue = BTCChk.checked;
+  var PassValue = PassChk.checked;
+  var UIDValue = UIDChk.checked;
+  var PANValue = PANChk.checked;
+  var UPInValue = UPInChk.checked;
+  var UPImValue = UPImChk.checked;
+  var DLValue = DLChk.checked;
+  var RCValue = RCChk.checked;
+
+  var ETHValue = ETHChk.checked;
+  var ENSValue = ENSChk.checked;
+  var BTCValue = BTCChk.checked;
+
+  var domainInput = "";
+
+  if(ProfValue === true){
+    const domain = document.getElementById("profession-domain-2").selectedOptions;
+    domainInput = domain[0].value;
+  }
 
   const usersInput = document.getElementById('noOfUsers');
   const noOfUsers = parseInt(usersInput.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'generate-table', data: {noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue, ETHValue, ENSValue, BTCValue}} }, '*');
+  parent.postMessage({ pluginMessage: { type: 'generate-table', data: {domainInput, noOfUsers, FirstNameValue, LastNameValue, FullNameValue, DoBValue, AgeValue, EmailValue, MobileValue, RurAddressValue, UrbAddressValue, CityValue, StateValue, PINValue, ProfValue, PassValue, DLValue, RCValue, UIDValue, UPInValue, UPImValue, PANValue, ETHValue, ENSValue, BTCValue}} }, '*');
 }
 
 document.getElementById('disclaimer').onclick = () => {
