@@ -5,7 +5,7 @@ figma.loadFontAsync({family: 'Roboto', style: 'Regular'});
 figma.loadFontAsync({family: 'Roboto', style: 'Light'});
 
 //Show UI on figma canvas
-figma.showUI(__html__,{width: 440, height: 525});
+figma.showUI(__html__,{width: 440, height: 544});
 
 //Data space containing arrays of data
 const dataSet = {
@@ -113,14 +113,49 @@ const dataSet = {
 
     "8villages" : ["Achran", "Adampur", "Ahuta", "Ajgaha", "Aphrail", "Baghar", "Baidol", "Baisbighi", "Baldia", "Balia", "Baliabhag", "Balrampur", "Baluganj", "Bangaon", "Bangradih", "Bankatta", "Bankipur", "Barhat", "Barpokhar", "Basdeopur", "Basole", "Belwa", "Bhatwar", "Bhemial", "Bijaul", "Bijpura", "Binabari", "Birdabani", "Birnagar", "Bishunpur", "Biswaspur", "Bohar", "Chilhapara", "Chilia", "Dahra", "Daitaul", "Daribhita", "Datian", "Deugole", "Dhaltar", "Dhanhara", "Dhokria", "Dhumtola", "Dighal", "Dullahpur", "Fatehpur", "Ghasipura", "Ghatkakola", "Gorra", "Gosainpur", "Hansar", "Haripur", "Hartara", "Ibrahimpur", "Jaipura", "Jajan", "Janki", "Jujharpur", "Kadlabari", "Kallangaon", "Kamat", "Kamra", "Kansoi", "Khairan", "Kirora", "Kishunbhati", "Kismat", "Kotebador", "Lachaur", "Lalpur", "Laucha", "Laur", "Lohagara", "Lutipur", "Madhopur", "Mahesh", "Mahisal", "Mahisampur", "Malaur", "Manikpur", "Mathurapur", "Matian", "Matiari", "Milikpur", "Miliktoli", "Mirzadpur", "Mohadipur", "Mohan", "Moralbadh", "Morangpur", "Nazia", "Nista", "Pachra", "Pahencha", "Palsa", "Pandaul", "Parua", "Parwa", "Pealapur", "Pharsara", "Porabari", "Raipur", "Rajaul", "Rampur", "Rangpur", "Raniganj", "Rautara", "Rukhuamari", "Sadabarat", "Sadipur", "Sahasara", "Sahutola", "Salempur", "Sealpara", "Shahpur", "Sharif", "Sidhua", "Sihagaon", "Sihpur", "Sirampur", "Sirpatol", "Sohar", "Sonitola", "Sultanpur", "Tarapur", "Telta", "Thakurbari", "Thuti", "Amdaul", "Athara", "Babhni", "Baina", "Baliatha", "Bangarua", "Bansnagar", "Barjhala", "Bastaul", "Belgachi", "Bhalgaur", "Bisare", "Budhaili", "Budhnagar", "Chatra", "Chaumukha", "Datranga", "Dhabal", "Dhabaul", "Dharhan", "Dighauneh", "Durgapur", "Gach", "Gajhar", "Ganganagar", "Garail", "Gauripur", "Gidaul", "Gram", "Harphara", "Harsua", "Hundaili", "Jalah", "Jaunia", "Jhauwa", "Kahata", "Kamipur", "Kasht", "Kasundi", "Katghar", "Kebala", "Kehunia", "Keotia", "Keshopur", "Khajuria", "Khojate", "Khusalpur", "Kursanda", "Kusiari", "Lakhpura", "Lalganj", "Machola", "Madansahi", "Mahadeonagar", "Mahadeopur", "Maharampur", "Majgawan", "Majhaili", "Maniknagar", "Marocha", "Mijli", "Mohanpur", "Nand", "Pakaria", "Panki", "Parsa", "Patharwar", "Piritnagar", "Pranpur", "Rahar", "Ramchandarpur", "Sadapur", "Sahja", "Sakraili", "Satare", "Siktia", "Silaur", "Sirauda", "Sonaila", "Sundarmochi", "Tehargaon", "Amahara", "Auraia", "Babhanganwan", "Baghi", "Balgudar", "Barhia", "Bhelaura", "Bihraura", "Bihta", "Bikam", "Bilauri", "Birdaban", "Chak", "chamghara", "Damodarpur", "Dariapur", "Dihra", "Dugai", "Dumrahi", "Ganeshpur", "Gangta", "Garhi", "Gobind", "Gujradih", "Harpur", "Hasanpur", "Jhakhar", "Jhinaura", "Kachhiana", "Kandarpa", "Karihara", "Kesaura", "Khagaur", "Khairi", "Kharagwara", "Khirho", "Koria", "Koriazilla", "Kurauta", "Lachhmipur", "Lakhisarai", "Lodia", "Mahsauna", "Makhdumpur", "Mankattha", "Moranwan", "Nimchak", "Nirpur", "Pachauta", "Panghara", "Patner", "Rahua", "Sabipur", "Salona", "Samandih", "Siswan", "Tilo", "Wofapur", "Akauni", "Aure", "Bakiabad", "Barhara", "Bartara", "Barui", "Bhamaria", "Bigha", "Billo", "Dakra", "Dudi", "garsanda", "Gulni", "Kathautia", "Koli", "Mahsaura", "Nadiawan", "Nandnawan", "Narainpur", "Nongarh", "Parsaman", "Phulaia", "Ramgarh", "Sarma", "Satsanda", "Sawan", "Shahnagar", "Sondhi", "Surari", "Tetarhat", "Ursanwan", "Akhtiarpur", "Amwa", "Anharipur", "Arap", "Baghakol", "Baigawan", "Baliari", "Bara", "Barah", "Barda", "Bauwan", "Beni", "Berar", "Beri", "Bhadsara", "Bikram", "Birdhaur", "Chandni", "Chandri", "Chauthia", "Chichourha", "Chihunta", "Danara", "Datiana", "Donrapur", "Faridpur", "Girwari", "Gona", "Gopalpur", "Gorakhri", "Gulami", "Habaspur", "Hathsar", "Jamalpur", "Janpara", "Kanpa", "Katari", "Lahladpur", "Mahajpura", "Mahammadpur", "Majhanpura", "Majhauli", "Math", "Milki", "Moriawan", "Nagahra", "Nasirpur", "Painapur", "Pakrandha", "Patut", "Raghunathpur", "Rahi", "Saidabad", "Sangrampur", "Sarwan", "Shahjahanpur", "Shivgarh", "Sikaria", "Sundarpur", "Tari", "Wazirpur", "Anaili", "Arazi", "Bahadurpur", "Barhampur", "Barhari", "Barsauni", "Belwabhag", "Bhatgawan", "Bhatoria", "Bhogadehat", "Bhogakariat", "Biarpur", "Bikrampur", "Biloria", "Birpur", "Biru", "Burail", "Chandi", "Chhatia", "Dadaur", "Dagarua", "Dewanganj", "Dhanganwan", "Dilia", "Dimia", "Gangaili", "Gaura", "Hansadah", "Harda", "Himtiarpur", "Hiradhar", "Isruil", "Jiagachhi", "Kadwadangi", "Kalsarkismat", "Kamraili", "Kathua", "Kavaia", "Kishunpur", "Maharajpur", "Mahendrapur", "Maheshpur", "Majhwa", "Mandarpur", "Mathdobh", "Mathia", "Mohankunda", "Nagdehi", "Parmanandpur", "Patilwa", "Phasia", "Pipra", "Pirganj", "Pokharia", "Purnia", "Rajwara", "Ranipatra", "Rasulpur", "Raziganj", "Sahawa", "Sandalpur", "Shekhpura", "Sikandarpur", "Singhia", "Sobhaganj", "Tamaut", "Tariabhag", "Tharha", "Tira", "Uchitpur", "Akbarpur", "Auria", "Babhan", "Basantpur", "Basmanpur", "Bhamet", "Bhandsar", "Bhawanipur", "Bhelwa", "Bhurkunda", "Bhurkundi", "Birnia", "Birsail", "Brahamgani", "Chandaili", "Chethariapir", "Dewhari", "Dumaria", "Dumra", "Dumrail", "Garhia", "Genharia", "Gonwara", "Jabe", "Khagurail", "Khajura", "Kharkatta", "Kodai", "Kusaha", "Lathi", "Laukahi", "Mahabala", "Mahanth", "Mahathua", "Parasbani", "Raipura", "Sahgaura", "Sahiaganj", "Semaria", "Siripur", "Sondiha", "Sondip", "Sonua", "Soraiti", "Supaili", "Suraini", "Telkundar", "Tulshipur", "Ahirpur", "Alimuddinpur", "Anjani", "Asadpur", "Askaranpur", "Asoi", "Bahlolpur", "Bakhra", "Bhagwanpur", "Bhagwatpur", "Bhatauli", "Bihari", "Chakar", "Dohji", "Enayetpur", "Faizpura", "Fatehullah", "Ghataro", "Gorhia", "Hansi", "Harbanspur", "Hussaina", "Jahangirpur", "Jalalpur", "Jankipur", "Kaila", "Kali", "Karhari", "Kazipur", "Khir", "Kiratpur", "Madhupur", "Maksudanpur", "Malahi", "Manganpur", "Mansurapur", "Maricha", "Matiara", "Mian", "Panapur", "Parbodhi", "Partap", "Paterha", "Patrahi", "Patti", "Piru", "Rahsa", "Ratanpura", "Rohua", "Sadhopur", "Sahtha", "Saidpur", "Shambhupatti", "Shambhupur", "Shampur", "Shekhpatti", "Shekhpur", "Shembhupur", "Simra", "Siwan", "Telia", "Wafapur", "Warishpur", "Warispur", "Yukub", "Yusufpur", "Alargo", "Bandhdih", "Bandio", "Bursera", "Chandrapura", "Charri", "Chirudih", "Dugda", "Ghatiari", "Ghutuwai", "Junori", "Karidugedho", "Karmatanr", "Khalcho", "Kurumba", "Narra", "Nasia", "Paplo", "Pipradih", "Raja", "Ratari", "Sijhua", "Taranari", "Taranga", "Telo", "Termi", "Turio", "Achato", "Adhanua", "Agai", "Agiya", "Alkoin", "Ambatari", "Amgachhi", "Amgaria", "Amlawa", "Amruwa", "Amtibahiar", "Anandisar", "Arjuna", "Asanpur", "Athmuria", "Aurabari", "Babudih", "Babupur", "Baghakara", "Baghduba", "Baghmari", "Baijandih", "Baijubasa", "Baijudih", "Bajar", "Bajarmarua", "Baliyachauki", "Baliyadah", "Baliyakol", "Baljora", "Balsara", "Balthar", "Bandh", "Bandra", "Banjhi", "Bank", "Banka", "Banpokhariya", "Bansdiha", "Barajharna", "Barakala", "Barakola", "Barasatighat", "Baratikar", "Bardahiya", "Bargachha", "Bariyodih", "Barmasiya", "Barmuria", "Barsatiya", "Basbutiya", "Basmatakota", "Bela", "Belatanr", "Beltikri", "Bhadwari", "Bhagiapahari", "Bhagtadih", "Bhairwatanr", "Bhaluwabandh", "Bhandaro", "Bhikhoa", "Bhitia", "Bhorajamuan", "Bhuliya", "Bhusuriya", "Biarajpur", "Bichgarha", "Bihroji", "Birajkurumtanr", "Birhabaran", "Biruji", "Bisnotarsatighat", "Bisuwani", "Biyahi", "Budhibari", "Burhwakura", "Butatari", "Buturuadih", "Chakarman", "Chameli", "Chandayan", "Chandraydih", "Charkipahari", "Chauphal", "Chhatakurum", "Chhatmi", "Chhota", "Chhotandih", "Chhotbahiari", "Chigrumanjhidih", "Chiguraydih", "Chihardhandhiya", "Chihutia", "Chihutiya", "Chitarponka", "Chopa", "Chulhiya", "Dahijor", "Dahua", "Daminkol", "Dangri", "Dariadih", "Dasdih", "Debichak", "Debthar", "Dhakodih", "Dharandharpur", "Dharhi", "Dhawaghat", "Dhawatanr", "Dhibrisar", "Digambari", "Domohan", "Donihari", "Dudhani", "Dudhaniya", "Dudhwajor", "Dumabad", "Dumarhar", "Dumariya", "Dumarkola", "Dumarthar", "Dumma", "Dundiya", "Dunidih", "Durdhuajor", "Gadi", "Gadibaliya", "Gadibaliyachhit", "Gajhanda", "Gandhua", "Garbhuadih", "Garihani", "Gauri", "Gauribasar", "Gauriganj", "Ghaghra", "Ghongha", "Ghordaura", "Ghormara", "Ghospur", "Ghutiya", "Gobardaha", "Goedaha", "Gorai", "Gorsingha", "Harila", "Harilajori", "Harkata", "Harodih", "Hathwari", "Heth", "Hidolabaran", "Hirakanali", "Hirna", "Hirnatanr", "Jagarnathi", "Jagatpur", "Jaginitikar", "Jamro", "Jamua", "Jamuniya", "Jamuniyatanr", "Jariya", "Jarwadih", "Jausaghdih", "Jhagrudih", "Jhalar", "Jharkhandi", "Jhilighat", "Jitmahta", "Jiyapani", "Jogikupa", "Jogiyakanali", "Jovi", "Kabilaspur", "Kadrakura", "Kadrasa", "Kairbank", "Kairi", "Kajhiya", "Kamatpalan", "Kamdiha", "Kandraha", "Kaniyaripokhar", "Kanthikanalii", "Karankol", "Katahara", "Katban", "Kathia", "Kesidih", "Khairkhuti", "Khajra", "Khapchua", "Khapchuwa", "Kharagdiha", "Kharaiadih", "Kharwa", "Khaspalag", "Kherwa", "Khobha", "Kindua", "Kisnidih", "Kita", "Kitapalag", "Kolhanipathar", "Kolhariya", "Korabandh", "Kulhariya", "Kumardih", "Kuribank", "Kurmakol", "Kurumtanr", "Kusamha", "Kusmatilha", "Kusumbad", "Kusumdih", "Kusumkanali", "Laharniya", "Lakrakura", "Latasare", "Latwabaran", "Letwa", "Liliabaran", "Lorhia", "Lorhibaran", "Lutiyatari", "Machna", "Madhaiya", "Madhuban", "Madhudinda", "Mahadewa", "Mahat", "Mahuadabar", "Malhara", "Maljhaghar", "Manidih", "Mansaraykurwa", "Marikdih", "Masuriya", "Maswepahar", "Matbara", "Mednidih", "Mejurnach", "Misardih", "Mohiamo", "Mohnakanali", "Morni", "Muspha", "Nabawi", "Nagdah", "Nagpur", "Naiadih", "Nakti", "Narhipakariya", "Nawadih", "Nawadiha", "Nawakurwa", "Nayachitkat", "Nijbagra", "Nokhil", "Pachrukhi", "Padimanraekurwa", "Padumbana", "Paharpur", "Pahridih", "Paisardah", "Pandetari", "Paniya", "Paraiya", "Parihathbandh", "Parodal", "Patakdih", "Patharchapti", "Pathargarha", "Pathri", "Patjor", "Pharkasamra", "Phatepur", "Phursatari", "Phuta", "Phutabandh", "Pilwahi", "Pindra", "Pirhamo", "Piyarjor", "Postbari", "Pujhardih", "Puranabagara", "Puranichitkit", "Purnabathan", "Rajasor", "Rakatrohna", "Raksa", "Ramanthiya", "Ramsingrayjot", "Randhiya", "Ranga", "Rangamodichak", "Rarhiya", "Ratanpur", "Raturaydih", "Rhabi", "Rikhiyahat", "Rohanpur", "Ropni", "Rudarpur", "Rupaidih", "Sabharaydih", "Saharpura", "Salaiya", "Salgati", "Saraia", "Saraiya", "Sarasani", "Sarsa", "Satbahiri", "Semarkhut", "Semra", "Sibnagar", "Siktiya", "Silwe", "Simarjor", "Simrakita", "Simrapoj", "Singardih", "Singhraydih", "Siriya", "Sirsa", "Sirsamantharchhit", "Sirsananthar", "Sirsiya", "Sonbadia", "Sonwan", "Suardahi", "Surangi", "Suthaniya", "Tarabad", "Taran", "Tardiha", "Targachha", "Tasariya", "Teliya", "Tewarikanari", "Tharhi", "Tharhiara", "Thariara", "Tikait", "Tilaiya", "Tilaiyamajhiana", "Tilaiyatanr", "Tilauna", "Tilbhanga", "Tinghara", "Tisua", "Titmo", "Tiurnagar", "Tiurpahar", "Tulsibaran", "Tumbabel", "Turka", "Udaipur", "Udaipura", "Udaypur", "Upar", "Uparbahinga", "Upardih", "Uparlataran", "Aralgoria", "Baludih", "Bardubhi", "Chakphutaha", "Chirudi", "Dhanbad", "Dhandabar", "Dhobni", "Dhokhra", "Dubrajpur", "Gansadih", "Garblaudi", "Gohinathdih", "Jarma", "Jatudih", "Karitanr", "Kurumdaha", "Lakarkhawari", "Majhiladi", "Manidi", "Parasia", "Petia", "Pondarkanali", "Rajasbera", "Sabaldih", "Sansikhara", "Saraidaha", "Sialgudri", "Tetengabad", "Agartoli", "Angara", "Asri", "Badri", "Baheya", "Bakshidih", "Banpur", "Barkigorang", "Barwadag", "Benadag", "Berwari", "Beti", "Bisa", "Bongaibera", "Buki", "Burhibera", "Chaldag", "Cheldagsoso", "Dhurleta", "Dimra", "Dokad", "Dumargarhi", "Getalsud", "Guridih", "Gutidih", "Hahe", "Hapatbera", "Haratu", "Hesal", "Hesatu", "Heslabera", "Hundru", "Id", "Ikarhatu", "Jamuari", "Janum", "Jaradih", "Jaratoli", "Jarga", "Jaspur", "Jidu", "Jonha", "Kamta", "Kashidih", "Koynardih", "Kuchu", "Ladhuptola", "Lalgarh", "Lepsar", "Lupung", "Malghonghsa", "Masniya", "Masu", "Merha", "Mungadih", "Musangu", "Narayansoso", "Nawagarh", "Obar", "Orwabera", "Pahar", "Paika", "Pailada", "Pertol", "Rajadera", "Rangamati", "Resham", "Rupru", "Saheda", "Salhan", "Sarugori", "Simaliya", "Singari", "Sirka", "Sitadih", "Soso", "Sursu", "Tati", "Turup"],
     
-    "Prof" : ["Doctor","Student","School Peon", ,"Havildar", "Traffic Controller", "Air Hostess","Air Traffic Controller","Puppetry Artist","Civil Police", "Toy Repairer","Toy Designer","Terracota Worker","Cobbler","Foam Worker","Gamezone Manager","Gaming Teacher","Compounder","Nurse","Mali","Sutar","Woodworker","Toy Collector","Car Serviceman","Car Washer","Bus Conductor","Truck Driver","Army Officer","Music Composer","Writer","Poet","Story Teller","Software Engineer", "Designer", "3D Animator", "Politician","Ayurvedic Practitioner","Yoga Teacher","Yoga Practitioner","Gym Instructor","Sports Coach","Nutritionist", "Teacher", "Farmer", "Gardener", "Mechanic", "Musician", "Baker", "Glass Manufacturer", "Beautician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Architect", "Builder", "Masonry Worker", "Cable TV Operator", "Trader", "Marketing Professional", "Salesman", "Cane Work", "Carpet Weaver", "Caterer", "Chikankari Worker", "Madhubani Painter","Museum Curator","Cotton Worker","Painter", "Artist", "Cloth Printer", "Artist", "Cultural Artist","Historian","Canteen Owner", "Bartender", "Coaching Service", "Construction Worker", "Courier Manager", "Store Manager", "Dairy Worker", "Data Entry Operator", "Computer Teacher", "Scientist", "Researcher", "Pharmacist", "Physician", "Chemist", "Electrician", "Fireworks Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweller", "Goldsmith", "Handloom Worker", "Health Services", "Driver", "Bus Conductor", "Ticket Collector", "Hotel Manager", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwalla", "Home Worker","Papad Maker", "Petrol Pump Worker", "Potter", "Sculptor", "Murti maker", "Quary Worker", "Rickshaw Owner", "Sawmill Worker", "Shepherd", "Soap Manufacturer", "Perfume Salesman", "Tailor", "Police", "Army Officer", "Navy Officer", "Airforce Officer", "Social Worker", "NGO Volunteer", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Processing", "Furniture Making", "Toddy Tapping", "Toy Making", "Primary Teacher", "Professor", "Welding Service", "Laundry Service", "Tobacco Seller", "Rangoli Maker", "Scrap Services","Municipal Worker","Candle Maker","Diya Maker","Candle Salesman","Architect","Builder","Social Worker"],
+    //Professions
+    "RandomSelector" : ["Tech and IT","Engineering","Management","Healthcare","Finance","Science","Education","Art and media","Hospitality","Construction","Volunteering","Other"],
 
+    "Tech and IT" : ["Computer Technician", "Help Desk Worker", "Help Desk Technician", "IT Support Specialist", "IT Technician", "Technical Specialist", "Technical Support", "Systems Designer", "Senior Systems Analyst", "Support Analyst", "Systems Analyst", "IT Coordinator", "Solutions Architect", "Web Designer", "Web Engineer", "Web Project Manager", "UI Expert", "UX Expert", "Webmaster", "Web Content Manager", "Multimedia Architect", "Web Analytics Developer", "SEO Consultant", "SEO Manager", "Internet Engineer", "Interaction Designer", "Front-End Designer", "Front-End Developer", "Mobile Developer", "Full-Stack Developer", "Technology Manager", "Technology Assistant", "Technology Specialist", "Technical Manager", "IT Sales Executive", "IT Sales Director", "Security Specialist", "IT Security Analyst", "Network Security Engineer", "Information Security Analyst", "Information Security Engineer", "Information Security Manager", "Information Security Consultant", "Security Project Manager", "Cyber Security Specialist", "Cyber Security Manager", "Database Developer", "Database Analyst", "Database Manager", "Database Engineer", "Database Specialist", "Database Coordinator", "Data Quality Manager", "Data Scientist", "Data Architect", "Information Architect", "Computer Data Scientist", "Computer Network Specialist", "Computer Systems Analyst", "Information Research Scientist", "Computer Research Manager", "Network Administrator", "Network Architect", "Network Analyst", "Network Technician", "Network Operations Engineer", "Network Reliability Engineer", "Software Engineer", "Software Architect", "Software Test Engineer", "Software Development Manager", "Software Development Engineer", "Artificial Intelligence Engineer", "Application Developer", "Application Designer", "Application Engineer", "DevOps Engineer", "Computer Programmer", "Lead Programmer", "Iteration Manager", "Financial Planner", "Frameworks Specialist", "Game Developer", "Cloud Systems Engineer", "Cloud Computing Engineer", "Cloud Architect", "Cloud System Administrator", "Cloud Consultant", "Cloud Services Provider", "Cloud Services Developer", "Cloud Product Manager", "IT Manager", "IT Project Manager", "Director Of Technology", "Technical Operations Officer", "Senior IT Consultant", "Technical Lead", "Computer Scientist", "IT Professional", "UX Designer", "SQL Developer", "Web Developer", "Desktop Support", "UI Designer", "UX Researcher", "Product Designer", "Chief Technology Officer", "Android Developer", "iOS Developer", "Flutter Developer", "Swift Developer", "Java Developer", "Python Developer", "UX Architect", "UX Specialist", "Software Developer", "JavaScript Developer", "React Developer", "JavaScript Wizard", "Product Developer", "Director Of Computing", "Scrum Master", "IT Specialist", "DevOps Manager"],
+
+    "Engineering" : ["Engineer", "Mechanical Engineer", "Civil Engineer", "Electrical Engineer", "Assistant Engineer", "Chemical Engineer", "Chief Engineer", "Drafter", "Engineering Technician", "Geological Engineer", "Biological Engineer", "Maintenance Engineer", "Mining Engineer", "Nuclear Engineer", "Petroleum Engineer", "Plant Engineer", "Production Engineer", "Quality Engineer", "Safety Engineer", "Sales Engineer", "Technology Research Analyst", "Structural Engineer", "Electronics Engineer", "Industrial Engineer", "Workshop Manager", "Floor Manager", "Industrial Designer", "Automobile Engineer", "Powertrain Specialist", "Communications Engineer", "IoT Specialist", "Logistics Engineer", "Shipping Engineer"],
+
+    "Management" : ["Office Manager", "Facilities Manager", "Account Executive", "Branch Manager", "Risk Manager", "Business Administrator", "IT Director", "Project Manager", "MIS Director", "Director Of Development", "Technical Services Manager", "Project Executive", "Project Superintendent", "General Manager", "Practice Administrator", "Marketing Director", "Marketing Manager", "Advertising Manager", "Brand Manager", "Promotions Manager", "Account Supervisor", "Content Manager", "Business Development Manager", "Courier Manager", "Store Manager", "Commercial Lines Manager", "Sales Manager", "Account Manager", "Area Sales Manager", "Sales Director", "Sales Supervisor", "Human Resources Director", "Human Resources Manager", "President", "Vice President", "Chief Executive Officer", "Chief Finance Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Information Officer", "Chief Product Officer", "Chief Data Officer", "Operations Manager", "Operations Assistant", "Operations Coordinator", "Operations Analyst", "Operations Director", "VP of Operations", "Operations Professional", "Improvement Lead", "Improvement Consultant", "Virtual Assistant", "Customer Service", "Customer Support", "Customer Service Manager", "Technical Support Specialist", "Account Representative", "Client Service Specialist", "Customer Care Associate", "Accounting Staff", "Marketing Staff", "Purchasing Staff", "Shipping Staff", "Receptionist", "Proprietor", "Administrator", "Director", "Managing Partner", "Managing Member", "Senior Manager", "Program Director", "Total Quality Manager", "Operations Clerk", "Operations Research Manager", "Operations Section Manager", "Operations Supervisor", "Operations Team Leader", "Operations Unit Manager"],
+
+    "Healthcare" : ["Counselor", "Mental Health Counselor", "Speech Pathologist", "Therapist", "Life Coach", "Nurse", "Travel Nurse", "Nurse Practitioner", "Doctor", "Caregiver", "Physical Therapist", "Pharmacist", "Pharmacy Assistant", "Medical Administrator", "Physical Therapy Assistant", "Dental Hygienist", "Massage Therapy", "Phlebotomist", "Medical Transcriptionist", "Telework Doctor", "Reiki Practitioner", "Athletic Trainer", "Clinical Liaison", "Clinical Nurse Manager", "Clinical Research Associate", "Clinical Research Coordinator", "Clinical Reviewer", "Clinical Specialist", "Dental Assistant", "Dietitian", "Exercise Physiologist", "Health Educator", "Home Health Aide", "Hospice Aide", "Nurse Aide", "Nurse Clinical Educator", "Nurse Consultant", "Nurse Informatics Analyst", "Nurse Manager", "Nurse Paralegal", "Nutritionist", "Occupational Therapy Assistant", "Orderly Attendant", "Pharmacy Clerk", "Pharmacy Technician", "Physical Therapist Assistant", "Physician Aide", "Physician Assistant", "Psychiatric Aide", "Radiation Therapist", "Recreational Therapist", "Neonatal Care Nurse", "Nurse Anesthetist", "Nurse Midwife", "Occupational Health Nurse", "Occupational Safety Specialist", "Occupational Therapist", "Office Nurse", "Oncology Nurse", "Operating Room Nurse", "Optician", "Optometrist", "Orthodontist", "Orthotist", "Paramedic", "Pediatrician", "Pediatric Endocrinology Nurse", "Pediatric Care Nurse", "Pediatric Nurse", "Pediatric Nurse Practitioner", "Perioperative Nurse", "Prosthetist", "Physician", "Podiatrist", "Post Anesthesia Nurse", "Postpartum Nurse", "Progressive Care Nurse", "Psychiatric Nurse", "Public Health Nurse", "Restorative Nurse", "Registered Medical Assistant", "Respiration  Therapist", "School Nurse", "Speech Language Pathologist", "Surgeon", "Telemetry Nurse", "Veterinarian", "Veterinary Assistant", "Veterinary Technologist", "Wellness Nurse", "Ambulatory Nurse", "Anesthesiologist", "Audiologist", "Behavioral Health Nurse", "Bereavement Counselor", "Cardiac Catheterization Nurse", "Cardiovascular Operating Nurse", "Cardiovascular Technologist", "Charge Nurse", "Chiropractor", "Dentist", "Dermatology Nurse", "Dialysis Nurse", "Executive Assistant", "Executive Director", "Health Facilities Surveyor", "Health Services Manager", "Healthcare Administrator", "Healthcare Management", "Healthcare Specialist", "Hospice Administrator", "Hospital Administrator", "Medical Administrative", "Medical Assistant", "Medical Receptionist", "Medical Associate", "Medical Billing Specialist", "Medical Coder", "Medical Manager", "Medical Office Assistant", "Medical Office Manager", "Medical Office Specialist", "Medical Records Clerk", "Medical Records Director", "Medical Records Technician", "Medical Sales", "Medical Secretary", "Medical Technologist", "Chemist", "Compounder", "Yoga Teacher", "Yoga Practitioner", "Gym Instructor", "Ayurvedic Practitioner", "Beautician", "Chief physician", "Nursing director", "Nursing manager", "Siddha Practitioner", "Health manager", "Therapeutic Director", "ASHA Worker", "Village Nurse", "AYUSH Practitioner"],
+
+    "Finance" : ["Accountant", "Accounting Clerk", "Auditor", "Controller", "Chief Financial Officer", "Tax Accountant", "Accounting Officer", "Cost Accountant", "General Accountant", "Managerial Accountant", "Bookkeeper", "Accounting Secretary", "Finance Clerk", "Accounting Assistant", "Financial Auditor", "Compliance Auditor", "Audit Manager", "Revenue Tax Specialist", "Income Tax Specialist", "Assurance Manager", "Senior Auditor", "Comptroller", "Corporate Controller", "Director of Accounting", "Finance Manager", "Treasurer", "Business Controller", "Financial Controller", "GST Auditor", "VP of Finances", "Investment Analyst", "Real Estate Analyst", "Trust Officer", "Securities Analyst", "Financial Advisor", "Portfolio Manager", "Account Broker", "Account Manager", "Actuary", "Appraiser", "Credit Analyst", "Equity Analyst", "Finance Specialist", "Financial Analyst", "Financial Consultant", "Financial Manager", "Investment Advisor", "Investor Relations", "Securities Operations", "Underwriter", "Accounting Manager", "Accounting Supervisor", "Chartered Accountant", "Consolidation Accountant", "Contract Administrator", "Corporate Accountant", "Cost Analyst", "Derivatives Accountant", "Financial Accountant", "Financial Reporter", "Fund Accountant", "Asset Accountant", "Intermediate Accountant", "Joint Venture Accountant", "Junior Accountant", "Project Accountant", "Property Accountant", "Senior Accountant", "Staff Accountant", "Assistant Controller", "Cost Controller", "Manufacturing Controller", "Accounting Analyst", "Accounting Assistance", "Accounting Specialist", "Accounts Payable", "Accounts Receivable", "Billing Administrator", "Senior Tax Professional", "Tax Analyst", "Tax Associate", "Tax Compliance Manager", "Tax Specialist", "Audit Associate", "Audit Consultant", "Audit Supervisor", "Compliance Officer", "Fraud Analyst", "Internal Auditor", "Global Treasury Analyst", "Risk Analyst", "Risk Consultant", "Budgeting Manager", "Business Analyst", "Business Systems Analyst", "Economist", "Mergers and Acquisitions Specialist", "Venture Capital Specialist", "Credit Authorizer", "Benefits Manager", "Credit Counselor", "Accounting Director", "Accounts Payable Clerk", "Budget Analyst", "Payroll Manager", "Payroll Clerk", "Financial Services", "Commercial Loan Officer"],
+
+    "Science" : ["Sociologist", "Biologist", "Geologist", "Physicist", "Astronomer", "Atmospheric Scientist", "Molecular Scientist", "Scientist", "Researcher", "Toxicologist", "Structural Biologist", "Statistician", "Stem Cell Researcher", "Molecular Biologist", "Oncology Researcher", "Organic Lab Worker", "Pharmaceutical Assistant", "Research Assistant", "Research Chemist", "Research Team Leader", "Research Technician", "Environmental Scientist", "Field Technician", "Forensic Chemist", "Forensic Scientist", "Gene Editing Manager", "Genetic Counselor", "Grants/Proposal Writer", "Human Factors Engineer", "Immunology Scientist", "Bioanalytical Scientist", "Biochemist", "Chemical Technician", "Climate Data Analyst", "Conservation Technician", "Development Technologist", "Drug Evaluator"],
+
+    "Education" : ["Academic Adviser", "Admissions Assistant", "Adjunct Professor", "Adviser", "Assistant Principal", "Assistant Professor", "Associate Professor", "Career Counselor", "Child Care Assistant", "Child Care Center Teacher", "Coach", "Moderator", "Day Care Assistant", "Dean", "Education Coordinator", "Education Specialist", "Education Technician", "Educator", "Financial Aid Administrator", "Food Service Coordinator", "Food Service Manager", "Guidance Counselor", "Instructor", "Instructional Assistant", "Lead Teacher", "Preschool Assistant Teacher", "Preschool Director", "Preschool Teacher", "Principal", "Program Assistant", "Program Coordinator", "Registrar", "Residence Hall Manager", "Resource Development Coordinator", "School Administrator", "School Bus Driver", "School Counselor", "School Librarian", "School Psychologist", "School Secretary", "School Social Worker", "Special Education Assistant", "Special Education Coordinator", "Substitute Teacher", "Superintendent", "Superintendent of Schools", "Teacher", "Teacher Assistant", "Teaching Assistant", "Tutor", "Youth Care Worker", "School Peon", "Gaming Teacher", "Sports Coach", "Coaching Service", "Computer Teacher", "STEM Career Advisor", "Anganwadi Teacher", "Anganwadi Helper", "Learning Manager", "Development Manager", "Training Manager", "Personal Trainer"],
+
+    "Art and media" : ["Graphic Designer", "Artist", "Interior Designer", "Video Editor", "Film Producer", "Play Writer", "Musician", "Computer Animator", "Photographer", "Camera Operator", "Sound Engineer", "Motion Picture Director", "Actor", "Music Producer", "Director of Photography", "Puppetry Artist", "Toy Repairer", "Toy Designer", "Designer", "3D Animator", "Chikankari Worker", "Madhubani Painter", "Gond Artist", "Classical Singer", "Classical Dancer", "Museum Curator", "Cloth Printer", "Cultural Artist", "Historian", "Sculptor", "Murti Maker", "Toy Maker", "Poet", "Story Teller", "Writer", "Music Composer", "Social Media Specialist", "Travel Writer", "Copywriter", "Film Critic", "Film Director", "Theatre Artist", "Makeup Artist", "Apparel Artist", "Journalist", "Copy Editor", "Editor/Proofreader", "Content Creator", "Speechwriter", "Communications Director", "Screenwriter", "Technical Writer", "Columnist", "Proposal Writer", "Content Strategist", "Grant Writer", "Video Game Writer", "Translator", "Warli Artist", "Terracotta Worker", "Handicraft Artist", "Artisan", "Illustrator"],
+
+    "Hospitality" : ["Waiter", "Server", "Chef", "Fast Food Worker", "Barista", "Line Cook", "Cafeteria Worker", "Restaurant Manager", "Wait Staff Manager", "Housekeeper", "Flight Attendant", "Travel Agent", "Front Door Greeter", "Cruise Director", "Entertainment Specialist", "Hotel Manager", "Front Desk Associate", "Front Desk Manager", "Concierge", "Event Planner", "Porter", "Spa Manager", "Cruise Ship Attendant", "Casino Host", "Hotel Receptionist", "Reservationist", "Events Manager", "Meeting Planner", "Lodging Manager", "Director of Maintenance", "Valet", "Air Hostess", "Caterer", "Catering manager", "Food-Beverage Director", "Kitchen Manager", "Banquet Manager", "Food Service Supervisor", "Food Service Director"],
+
+    "Construction" : ["Construction Worker", "Taper", "Plumber", "Heavy Equipment Operator", "Equipment Cleaner", "Carpenter", "Electrician", "Painter", "Welder", "Handyman", "Boilermaker", "Crane Operator", "Building Inspector", "Pipefitter", "Sheet Metal Worker", "Iron Worker", "Mason", "Roofer", "Solar Photovoltaic Installer", "Well Driller", "Architect", "Builder", "Masonry Worker", "Landscaping Assistant", "Construction Area Manager", "General Contractor Manager", "Brick Kiln Worker", "Sand Mine Worker", "Stone Worker"],
+
+    "Govt and administration" : ["Havildar", "Traffic Controller", "Civil Police", "Army Officer", "Fireman", "Ticket Collector", "Railway Police", "Railway Ticket Examiner", "Income Tax Officer", "Revenue Officer", "Passport Officer", "IFS Officer", "IPS Officer", "IAS Officer", "PWD Clerk", "PWD Officer", "Pilot", "Municipal Worker", "Court Officer", "Stenographer", "Railway Clerk", "Municipal Clerk", "Police Officer", "Police Inspector", "Navy Officer", "Airforce Officer", "Health Officer", "Council Member", "Corporation Member", "Panchayat Member", "Forest Officer", "Bank Clerk", "Board Engineer", "Agriculture Officer", "Food Controller", "Drug Officer", "Army Driver", "NDMA Officer"],
+
+    "Volunteering" : ["Animal Shelter Member", "Office Volunteer", "Animal Shelter Volunteer", "Hospital Volunteer", "Youth Volunteer", "Food Kitchen Worker", "Homeless Shelter Worker", "Conservation Volunteer", "Meals on Wheels Driver", "Emergency Relief Worker", "Red Cross Volunteer", "Food Project Worker", "Women’s Shelter Worker", "Suicide Hotline Volunteer", "School Volunteer", "Community Volunteer", "Sports Volunteer", "Mandir Volunteer", "Church Volunteer", "Social Worker", "NGO Volunteer", "WFP Volunteer"],
+
+    "Other" : ["Cobbler", "Foam Worker", "Mali", "Sutar", "Wood Worker", "Toy Collector", "Car Serviceman", "Car Washer", "Bus Conductor", "Truck Driver", "Cotton Worker", "Canteen Owner", "Bartender", "Dairy Worker", "Fireworks Production", "Fisherman", "Flour Mill Owner", "Diamond Cutter", "Jeweler", "Goldsmith", "Handloom Worker", "Driver", "Farmer", "Gardener", "Baker", "Glass Manufacturer", "Politician", "Bangle Maker", "Beads Maker", "Bicycle Repairer", "Blacksmith", "Ferry Conductor", "Book Binder", "Cable TV Operator", "Trader", "Cane Worker", "Carpet Weaver", "Masala Maker", "House Worker", "Miner", "Newspaper Distributor", "Panwala", "Home Worker", "Papad Maker", "Petrol Pump Worker", "Potter", "Perfume Salesman", "Tailor", "Rickshaw Owner", "Soap Manufacturer", "Welding Service", "Laundry Service", "Tobacco Seller", "Rangoli Maker", "Scrap Services", "Candle Maker", "Diya Maker", "Candle Salesman", "Sports Shop Owner", "Sportsman", "Mobile Repairer", "Timber Worker", "Furniture Maker", "Toddy Tapping Service", "Warehouse Worker", "Mover", "Mechanic", "Quarry Worker", "Sawmill Worker", "Shepherd", "Vegetable Vendor", "Fruit Vendor", "Lorry Driver", "Tannery Worker", "Horticulture Worker", "Sericulture Worker", "Bodyguard", "Domestic Worker"],
+
+    //Other arrays
     "PassPrefix" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "Y"],     //Doesnt have Q, X, Z from eng letters
 
     "Alphabets" : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
     
     "UPISuffix" : ["jio", "upi", "apl","okhdfcbank", "oksbi", "okaxis", "airtel", "yesbank", "icici", "fbl", "axisb", "okicici", "ikwik", "ibl", "axl", "idfcbank", "waaxis", "wasbi", "hsbc", "kmbl", "paytm", "pnb", "hdfc", "mahb", "kotak", "ubi", "idbi", "cbin", "cnrb", "utbi", "rbl", "aubank", "federal", "uco", "citi", "dbs", "sib", "db", "psb"],
 
+    "dates" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
+
+    "months" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+
+    "hexRef" : ["0", "1", "2", "3","4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"],
+
+    //Address specific arrays
     "RurLandmark" : ["Sanjeevani", "Hanuman", "Venkat", "Appa", "Village", "Dev", "Devi", "Ram", "Shivaji", "Gandhi", "Sardar","Vaishnavi", "Samarpan", "Maruti", "Bhajni", "Veer", "Janki", "Shivam", "Lokmanya", "Chintamani", "Chandra", "Surya", "Ganesha", "Mahavir", "Samaj", "Sadguru", "Vijaya", "Ganga", "Ambika", "Narayan", "Krishna", "Sundaram", "Shree", "Swami", "Laxmi", "Shiva", "Sunder", "Suraj", "Devraya", "Mayur", "Kartik", "Mahalaxmi", "Harsh", "Baba", "Gyan", "Matoshri", "Mata", "Sharda", "Guru", "Rashtra", "Anand", "Bansilal", "Radhe", "Shyam", "Radheshyam", "Mahatma", "Gram"],
 
     "RurLandmarkSuffix" : [" Hall", " Sabhagruh", " Hospital", " Health Centre", " Mandir", " Temple", " Farm", " Palacee", " Village Shop", " Shop", " Chowk", " Centre", " Statue", " Tirtha", " Nivas", " Sadan", " Baug", " Garden", " Lane", " Galli", " Building", " House", " Colony", " Hotel", " Restaurant", " School", " Shilpa", " Land", " Devasthanam", " Kendra", " Gruh", " Gurukul", " Vidya Mandir", " Bhavan", " Institute"],
@@ -141,13 +176,7 @@ const dataSet = {
 
     "UrbAreaSuffix" : [" Avenue", " Nagar", " Layout", " Colony", " Garden", " Park", " Enclave", " Co-Op. Society", " City", " Complex", " Plot", " C. H. Society", " Chowk"," Palace", " Square", " Market", " Bazaar", " Line", " Galli", "", "", "", "", "", "", "",],
 
-    "UrbSuburbSuffix" : [" West", " East", " North", " South", " (W)", " (E)", " (N)", " (S)", " Cantt."," Street", " Road", " Township", " Wada", " Wadi", " Bypass", " Mandal", " Camp", " Garh", "", "", "", "", "", "", "","", "", "", "", ""],
-    
-    "dates" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
-
-    "months" : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
-
-    "hexRef" : ["0", "1", "2", "3","4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+    "UrbSuburbSuffix" : [" West", " East", " North", " South", " (W)", " (E)", " (N)", " (S)", " Cantt."," Street", " Road", " Township", " Wada", " Wadi", " Bypass", " Mandal", " Camp", " Garh", "", "", "", "", "", "", "","", "", "", "", ""]
 
 }
 
@@ -175,20 +204,20 @@ figma.ui.onmessage = msg => {
             if(node.type !== 'TEXT'){
                 figma.notify("Please select text layers to add data", {timeout: 1000});
             }
-            generateRandomData(node, msg.inputValue);       //Calling function to put requested data on text layer
+                generateRandomData(node, msg.data);       //Calling function to put requested data on text layer
             }
     }
     
     if(msg.type === "generate-table"){
 
-        let num = msg.chkInput.noOfUsers;
+        let num = msg.data.noOfUsers;
         
         if(isNaN(num)){
             figma.notify("Please enter a number", {timeout:1000});
         }else if(num <= 0){
             figma.notify("Please enter a number greater than 0", {timeout:1000});
         }else{
-            generateTable(msg.chkInput);    //Calling function to create a user data table and append on canvas
+            generateTable(msg.data);    //Calling function to create a user data table and append on canvas
         }                  
     }  
     
@@ -359,9 +388,15 @@ function generateRandomUrbAddress(){
     return `${spotNo}${num1}, ${landmarkConj}${landmark}${landmarkSuffix}, ${areaName}${areaSuffix}, ${areaNo}${num2}, ${subUrb}${suburbSuffix}, ${city}, ${state}, Pincode-${stateZone}${pinRemainingDigits}`;
 }
 
-function generateRandomProf(){
-    let prof = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
-    return `${prof}`;
+function generateRandomProf(domain){
+    if(domain === "Random"){
+        let domainRan = dataSet["RandomSelector"][Math.floor(Math.random()*(dataSet["RandomSelector"].length))];
+        let prof = dataSet[`${domainRan}`][Math.floor(Math.random()*(dataSet[`${domainRan}`].length))];
+        return `${prof}`;
+    }else{
+        let prof = dataSet[`${domain}`][Math.floor(Math.random()*(dataSet[`${domain}`].length))];
+        return `${prof}`;
+    }
 }
 
 
@@ -393,7 +428,7 @@ function generateRandomRC(){
 }
 
 function generateRandomDoB(){
-    let year = numBetween(1935, 2006);
+    let year = numBetween(1935, 2004);
     let month = dataSet["months"][Math.floor(Math.random()*12)];
     let date = "";
     
@@ -415,7 +450,7 @@ function generateRandomDoB(){
 }
 
 function generateRandomAge(){
-    let age = numBetween(15,86);
+    let age = numBetween(18,86);
     return `${age}`;
 }
 
@@ -535,7 +570,10 @@ function btcLowLetter(){
 }
 
 
-function generateRandomData(currentNode, input){
+function generateRandomData(currentNode, msgData){
+
+    let input = msgData.inputValue;
+
     //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
     if(currentNode.type === "TEXT"){
 
@@ -591,7 +629,8 @@ function generateRandomData(currentNode, input){
             currentNode.characters = generateRandomState();
         }
         else if(input === "Prof"){
-            currentNode.characters = generateRandomProf();
+            let profDomain = msgData.domainInput;
+            currentNode.characters = generateRandomProf(profDomain);
         }
         else if(input === "CityState"){
             currentNode.characters = generateCityStatePair();
@@ -626,16 +665,16 @@ function generateRandomData(currentNode, input){
 }
 
 //Function for generating a new card with user details and appending it on the canvas
-function generateTable(incomingMsg){
+function generateTable(msgData){
 
     const nodes: SceneNode[] = [];
 
-    const userCount = incomingMsg.noOfUsers;        //To be used to create data content in later part
+    const userCount = msgData.noOfUsers;        //To be used to create data content in later part
 
     //If addresses are not required, reduce the width of data section
-    if (incomingMsg.RurAddressValue === false && incomingMsg.UrbAddressValue === false) {
+    if (msgData.RurAddressValue === false && msgData.UrbAddressValue === false) {
         generateTableDataWidth = 135;
-    }else if(incomingMsg.RurAddressValue === true || incomingMsg.UrbAddressValue === true){
+    }else if(msgData.RurAddressValue === true || msgData.UrbAddressValue === true){
         generateTableDataWidth = 275;
     }
 
@@ -667,7 +706,7 @@ function generateTable(incomingMsg){
 
 
     //Code block to generate user details labels as it needs to be generated at least once
-    if(incomingMsg.FirstNameValue === true){
+    if(msgData.FirstNameValue === true){
         const firstnameLabelFrame = figma.createFrame();
         formatLabelFrame(firstnameLabelFrame);
         const firstnameLabel = figma.createText();
@@ -680,7 +719,7 @@ function generateTable(incomingMsg){
 
     }
 
-    if(incomingMsg.LastNameValue === true){
+    if(msgData.LastNameValue === true){
         const lastnameLabelFrame = figma.createFrame();
         formatLabelFrame(lastnameLabelFrame);
         const lastnameLabel = figma.createText();
@@ -692,7 +731,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(lastnameLabelFrame);
     }
 
-    if(incomingMsg.FullNameValue === true){
+    if(msgData.FullNameValue === true){
         const fullnameLabelFrame = figma.createFrame();
         formatLabelFrame(fullnameLabelFrame);
         const fullnameLabel = figma.createText();
@@ -704,7 +743,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(fullnameLabelFrame);
     }
     
-    if(incomingMsg.DoBValue === true){
+    if(msgData.DoBValue === true){
         const dobLabelFrame = figma.createFrame();
         formatLabelFrame(dobLabelFrame);
         const dobLabel = figma.createText();
@@ -716,7 +755,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(dobLabelFrame);
     }
 
-    if(incomingMsg.AgeValue === true){
+    if(msgData.AgeValue === true){
         const ageLabelFrame = figma.createFrame();
         formatLabelFrame(ageLabelFrame);
         const ageLabel = figma.createText();
@@ -728,7 +767,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(ageLabelFrame);
     }
 
-    if(incomingMsg.EmailValue === true){
+    if(msgData.EmailValue === true){
         const emailLabelFrame = figma.createFrame();
         formatLabelFrame(emailLabelFrame);
         const emailLabel = figma.createText();
@@ -740,7 +779,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(emailLabelFrame);
      }
 
-    if(incomingMsg.MobileValue === true){
+    if(msgData.MobileValue === true){
         const mobileLabelFrame = figma.createFrame();
         formatLabelFrame(mobileLabelFrame);
         const mobileLabel = figma.createText();
@@ -752,7 +791,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(mobileLabelFrame);
     }
 
-    if(incomingMsg.ProfValue === true){
+    if(msgData.ProfValue === true){
         const profLabelFrame = figma.createFrame();
         formatLabelFrame(profLabelFrame);
         const profLabel = figma.createText();
@@ -764,7 +803,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(profLabelFrame);
     }
 
-    if(incomingMsg.RurAddressValue === true){
+    if(msgData.RurAddressValue === true){
         const rurLabelFrame = figma.createFrame();
         formatLabelFrame(rurLabelFrame);
         const rurLabel = figma.createText();
@@ -776,7 +815,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(rurLabelFrame);
     }
 
-    if(incomingMsg.UrbAddressValue === true){
+    if(msgData.UrbAddressValue === true){
         const urbLabelFrame = figma.createFrame();
         formatLabelFrame(urbLabelFrame);
         const urbLabel = figma.createText();
@@ -788,7 +827,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(urbLabelFrame);
     }
 
-    if(incomingMsg.CityValue === true){
+    if(msgData.CityValue === true){
         const cityLabelFrame = figma.createFrame();
         formatLabelFrame(cityLabelFrame);
         const cityLabel = figma.createText();
@@ -800,7 +839,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(cityLabelFrame);
     }
 
-    if(incomingMsg.StateValue === true){
+    if(msgData.StateValue === true){
         const stateLabelFrame = figma.createFrame();
         formatLabelFrame(stateLabelFrame);
         const stateLabel = figma.createText();
@@ -812,7 +851,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(stateLabelFrame);
     }
 
-    if(incomingMsg.PINValue === true){
+    if(msgData.PINValue === true){
         const pinLabelFrame = figma.createFrame();
         formatLabelFrame(pinLabelFrame);
         const pinLabel = figma.createText();
@@ -824,7 +863,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(pinLabelFrame);
     }
 
-    if(incomingMsg.PassValue === true){
+    if(msgData.PassValue === true){
         const passLabelFrame = figma.createFrame();
         formatLabelFrame(passLabelFrame);
         const passLabel = figma.createText();
@@ -836,7 +875,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(passLabelFrame);
     }
 
-    if(incomingMsg.UIDValue === true){
+    if(msgData.UIDValue === true){
         const uidLabelFrame = figma.createFrame();
         formatLabelFrame(uidLabelFrame);
         const uidLabel = figma.createText();
@@ -848,7 +887,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(uidLabelFrame);
     }
 
-    if(incomingMsg.PANValue === true){
+    if(msgData.PANValue === true){
         const panLabelFrame = figma.createFrame();
         formatLabelFrame(panLabelFrame);
         const panLabel = figma.createText();
@@ -860,7 +899,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(panLabelFrame);
     }
 
-    if(incomingMsg.UPInValue === true){
+    if(msgData.UPInValue === true){
         const upinLabelFrame = figma.createFrame();
         formatLabelFrame(upinLabelFrame);
         const upinLabel = figma.createText();
@@ -872,7 +911,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(upinLabelFrame);
     }
 
-    if(incomingMsg.UPImValue === true){
+    if(msgData.UPImValue === true){
         const upimLabelFrame = figma.createFrame();
         formatLabelFrame(upimLabelFrame);
         const upimLabel = figma.createText();
@@ -884,7 +923,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(upimLabelFrame);
     }
     
-    if(incomingMsg.DLValue === true){
+    if(msgData.DLValue === true){
         const dlLabelFrame = figma.createFrame();
         formatLabelFrame(dlLabelFrame);
         const dlLabel = figma.createText();
@@ -896,7 +935,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(dlLabelFrame);
     }
 
-    if(incomingMsg.RCValue === true){
+    if(msgData.RCValue === true){
         const rcLabelFrame = figma.createFrame();
         formatLabelFrame(rcLabelFrame);
         const rcLabel = figma.createText();
@@ -908,7 +947,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(rcLabelFrame);
     }
 
-    if(incomingMsg.ETHValue === true){
+    if(msgData.ETHValue === true){
         const ethLabelFrame = figma.createFrame();
         formatLabelFrame(ethLabelFrame);
         const ethLabel = figma.createText();
@@ -920,7 +959,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(ethLabelFrame);
     }
 
-    if(incomingMsg.ENSValue === true){
+    if(msgData.ENSValue === true){
         const ensLabelFrame = figma.createFrame();
         formatLabelFrame(ensLabelFrame);
         const ensLabel = figma.createText();
@@ -932,7 +971,7 @@ function generateTable(incomingMsg){
         labelSection.appendChild(ensLabelFrame);
     }
 
-    if(incomingMsg.BTCValue === true){
+    if(msgData.BTCValue === true){
         const btcLabelFrame = figma.createFrame();
         formatLabelFrame(btcLabelFrame);
         const btcLabel = figma.createText();
@@ -1016,7 +1055,12 @@ function generateTable(incomingMsg){
         const currentYear = curretTime.getFullYear();
         const currentAge = currentYear - birthYear;
         //Profession
-        const userProfession = dataSet["Prof"][Math.floor(Math.random()*(dataSet["Prof"].length))];
+        let userProfession = "";
+        if(msgData.ProfValue === true){
+            let profDomain = msgData.domainInput;
+            userProfession = generateRandomProf(profDomain);
+        }
+
         //DL, RC related
         const stateInitials = dataSet[`${stateName}`][0];
         const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
@@ -1065,7 +1109,7 @@ function generateTable(incomingMsg){
         dataSection.appendChild(userHeaderFrame);
 
 
-        if(incomingMsg.FirstNameValue === true){
+        if(msgData.FirstNameValue === true){
             const firstnameTextFrame = figma.createFrame();
             formatContentFrame(firstnameTextFrame);
             const firstnameText = figma.createText();
@@ -1076,7 +1120,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(firstnameTextFrame);
         }
 
-        if(incomingMsg.LastNameValue === true){
+        if(msgData.LastNameValue === true){
             const lastnameTextFrame = figma.createFrame();
             formatContentFrame(lastnameTextFrame);
             const lastnameText = figma.createText();
@@ -1087,7 +1131,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(lastnameTextFrame);
        }
 
-        if(incomingMsg.FullNameValue === true){
+        if(msgData.FullNameValue === true){
             const fullnameTextFrame = figma.createFrame();
             formatContentFrame(fullnameTextFrame);
             const fullnameText = figma.createText();
@@ -1098,7 +1142,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(fullnameTextFrame);
         }
 
-        if(incomingMsg.DoBValue === true){
+        if(msgData.DoBValue === true){
             const dobTextFrame = figma.createFrame();
             formatContentFrame(dobTextFrame);
             const dobText = figma.createText();
@@ -1109,7 +1153,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(dobTextFrame);
         }
 
-        if(incomingMsg.AgeValue === true){
+        if(msgData.AgeValue === true){
             const ageTextFrame = figma.createFrame();
             formatContentFrame(ageTextFrame);
             const ageText = figma.createText();   
@@ -1120,7 +1164,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(ageTextFrame);
         }
 
-        if(incomingMsg.EmailValue === true){
+        if(msgData.EmailValue === true){
             const emailTextFrame = figma.createFrame();
             formatContentFrame(emailTextFrame);
             const emailText = figma.createText();
@@ -1131,7 +1175,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(emailTextFrame);
         }
 
-        if(incomingMsg.MobileValue === true){
+        if(msgData.MobileValue === true){
             const mobileTextFrame = figma.createFrame();
             formatContentFrame(mobileTextFrame);
             const mobileText = figma.createText();
@@ -1142,22 +1186,18 @@ function generateTable(incomingMsg){
             dataSection.appendChild(mobileTextFrame);
         }
 
-        if(incomingMsg.ProfValue === true){
+        if(msgData.ProfValue === true){
             const professionTextFrame = figma.createFrame();
             formatContentFrame(professionTextFrame);
             const professionText = figma.createText();
             setFont(professionText); 
-            if(currentAge <= 19){
-                professionText.characters = "Student";
-            }else{
-                professionText.characters = `${userProfession}`;
-            }
+            professionText.characters = `${userProfession}`;
             formatContentText(professionText);
             professionTextFrame.appendChild(professionText);
             dataSection.appendChild(professionTextFrame);
         }
 
-        if(incomingMsg.RurAddressValue === true){
+        if(msgData.RurAddressValue === true){
             const rurAddressTextFrame = figma.createFrame();
             formatContentFrame(rurAddressTextFrame);
             const rurAddressText = figma.createText();
@@ -1168,7 +1208,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(rurAddressTextFrame);
         }
 
-        if(incomingMsg.UrbAddressValue === true){
+        if(msgData.UrbAddressValue === true){
             const urbAddressTextFrame = figma.createFrame();
             formatContentFrame(urbAddressTextFrame);
             const urbAddressText = figma.createText();
@@ -1179,7 +1219,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(urbAddressTextFrame);
         }
 
-        if(incomingMsg.CityValue === true){
+        if(msgData.CityValue === true){
             const cityTextFrame = figma.createFrame();
             formatContentFrame(cityTextFrame);
             const cityText = figma.createText();
@@ -1191,7 +1231,7 @@ function generateTable(incomingMsg){
         }
 
         
-        if(incomingMsg.StateValue === true){
+        if(msgData.StateValue === true){
             const stateTextFrame = figma.createFrame();
             formatContentFrame(stateTextFrame);
             const stateText = figma.createText();
@@ -1202,7 +1242,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(stateTextFrame);
         }
 
-        if(incomingMsg.PINValue === true){
+        if(msgData.PINValue === true){
             const pinTextFrame = figma.createFrame();
             formatContentFrame(pinTextFrame);
             const pinText = figma.createText();
@@ -1213,7 +1253,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(pinTextFrame);
         }
 
-        if(incomingMsg.PassValue === true){
+        if(msgData.PassValue === true){
             const passTextFrame = figma.createFrame();
             formatContentFrame(passTextFrame);
             const passText = figma.createText();
@@ -1225,7 +1265,7 @@ function generateTable(incomingMsg){
         }
 
 
-        if(incomingMsg.UIDValue === true){
+        if(msgData.UIDValue === true){
             const uidTextFrame = figma.createFrame();
             formatContentFrame(uidTextFrame);
             const uidText = figma.createText();
@@ -1236,7 +1276,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(uidTextFrame);
         }
 
-        if(incomingMsg.PANValue === true){
+        if(msgData.PANValue === true){
             const panTextFrame = figma.createFrame();
             formatContentFrame(panTextFrame);
             const panText = figma.createText();
@@ -1247,7 +1287,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(panTextFrame);
         }
 
-        if(incomingMsg.UPInValue === true){
+        if(msgData.UPInValue === true){
             const upinTextFrame = figma.createFrame();
             formatContentFrame(upinTextFrame);
             const upinText = figma.createText();
@@ -1258,7 +1298,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(upinTextFrame);
         }
         
-        if(incomingMsg.UPImValue === true){
+        if(msgData.UPImValue === true){
             const upimTextFrame = figma.createFrame();
             formatContentFrame(upimTextFrame);
             const upimText = figma.createText();
@@ -1269,14 +1309,12 @@ function generateTable(incomingMsg){
             dataSection.appendChild(upimTextFrame);
         }
 
-        if(incomingMsg.DLValue === true){
+        if(msgData.DLValue === true){
             const dlTextFrame = figma.createFrame();
             formatContentFrame(dlTextFrame);
             const dlText = figma.createText();   
             setFont(dlText);  
-            if(currentAge < 18){
-                dlText.characters = `Not elligible due to age`;
-            }else if(rtoDigits < 10){
+            if(rtoDigits < 10){
                 dlText.characters = `${stateInitials}0${rtoDigits}${dlYear}${dlLastDigits}`;
             }else{
                 dlText.characters = `${stateInitials}${rtoDigits}${dlYear}${dlLastDigits}`;
@@ -1286,14 +1324,12 @@ function generateTable(incomingMsg){
             dataSection.appendChild(dlTextFrame);
         }
 
-        if(incomingMsg.RCValue === true){
+        if(msgData.RCValue === true){
             const rcTextFrame = figma.createFrame();
             formatContentFrame(rcTextFrame);
             const rcText = figma.createText();
             setFont(rcText);  
-            if(currentAge < 18){
-                rcText.characters = `Not elligible due to age`;
-            }else if(rtoDigits < 10){
+            if(rtoDigits < 10){
                 rcText.characters = `${stateInitials}0${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
             }else{
                 rcText.characters = `${stateInitials}${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
@@ -1303,7 +1339,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(rcTextFrame);
         }
 
-        if(incomingMsg.ETHValue === true){
+        if(msgData.ETHValue === true){
             const ethTextFrame = figma.createFrame();
             formatContentFrame(ethTextFrame);
             const ethText = figma.createText();
@@ -1314,7 +1350,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(ethTextFrame);
         }
 
-        if(incomingMsg.ENSValue === true){
+        if(msgData.ENSValue === true){
             const ensTextFrame = figma.createFrame();
             formatContentFrame(ensTextFrame);
             const ensText = figma.createText();
@@ -1325,7 +1361,7 @@ function generateTable(incomingMsg){
             dataSection.appendChild(ensTextFrame);
         }
 
-        if(incomingMsg.BTCValue === true){
+        if(msgData.BTCValue === true){
             const btcTextFrame = figma.createFrame();
             formatContentFrame(btcTextFrame);
             const btcText = figma.createText();
