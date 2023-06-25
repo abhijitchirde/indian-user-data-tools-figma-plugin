@@ -1,10 +1,11 @@
 {
-  "name": "Indian User Data Tools",
+  "name": "Indian User Data Generator",
   "id": "1046328883372627755",
   "api": "1.0.0",
-  "main": "code.min.js",
-  "editorType": [
-    "figma"
-  ],
-  "ui": "ui.html"
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma", "figjam"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }
