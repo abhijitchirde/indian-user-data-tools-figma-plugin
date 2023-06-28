@@ -5,20 +5,24 @@ const BottomSection = () => {
     parent.postMessage({ pluginMessage: { type: "disclaimer" } }, "*");
   };
   return (
-    <div className="bottomContainer">
-      <button
-        className="disclaimer-text"
-        id="disclaimer"
-        onClick={onDisclaimer}
-      >
-        Disclaimer
-      </button>
+    <div className="bottom-wrapper">
+      <div className="disclaimer-container">
+        <button
+          className="disclaimer-text"
+          id="disclaimer"
+          onClick={onDisclaimer}
+        >
+          Disclaimer
+        </button>
+      </div>
 
-      <p className="credit-text">
-        <a href="https://abhijitchirde.com" target="_blank">
-          by Abhijit
-        </a>
-      </p>
+      <div className="credit-container">
+        <p className="credit-text">
+          <a href="https://abhijitchirde.com" target="_blank">
+            by Abhijit
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const FirstTab = ({ onClick }) => {
         <div className="tab-container">
           <div className="buttons-list">
             <div className="button-group">
-              <p className="group-label">User details</p>
+              <p className="group-label">Personal details</p>
               <div className="buttons-div">
                 <DataButton
                   name="First Name"
@@ -57,7 +57,7 @@ const FirstTab = ({ onClick }) => {
             </div>
 
             <div className="button-group">
-              <p className="group-label">User profession</p>
+              <p className="group-label">Profession</p>
               <div className="buttons-div">
                 <label className="dropdown-label" htmlFor="profession-domain-1">
                   Domain
@@ -149,13 +149,13 @@ const FirstTab = ({ onClick }) => {
                   value="Prof"
                   onClick={clickHandler}
                 >
-                  Add profession
+                  Add
                 </button>
               </div>
             </div>
 
             <div className="button-group">
-              <p className="group-label">Location details</p>
+              <p className="group-label">Location</p>
               <div className="buttons-div">
                 <DataButton
                   name="Rural Address"
@@ -170,7 +170,7 @@ const FirstTab = ({ onClick }) => {
                 <DataButton name="City" value="City" action={clickHandler} />
                 <DataButton name="State" value="State" action={clickHandler} />
                 <DataButton
-                  name="City, State (Pair)"
+                  name="City & State"
                   value="CityState"
                   action={clickHandler}
                 />
@@ -183,7 +183,7 @@ const FirstTab = ({ onClick }) => {
             </div>
 
             <div className="button-group">
-              <p className="group-label">User IDs</p>
+              <p className="group-label">Identity</p>
               <div className="buttons-div">
                 <DataButton
                   name="Indian Passport"
@@ -211,7 +211,7 @@ const FirstTab = ({ onClick }) => {
                   action={clickHandler}
                 />
                 <DataButton
-                  name="Driver's License"
+                  name="Driving Lic."
                   value="DL"
                   action={clickHandler}
                 />
@@ -224,6 +224,11 @@ const FirstTab = ({ onClick }) => {
             </div>
           </div>
         </div>
+        <p
+          style={{ textAlign: "center", fontSize: "0.8rem", color: "#6f6f70" }}
+        >
+          Please use individual buttons to generate data
+        </p>
       </div>
     </>
   );

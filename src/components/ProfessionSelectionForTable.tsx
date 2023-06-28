@@ -15,24 +15,24 @@ const ProfessionSelectionForTable = () => {
 
   return (
     <>
-      <div className="checkbox-div">
-        <input
-          className="checkbox"
-          type="checkbox"
-          name="ProfChk"
-          value="ProfChk"
-          checked={isChecked}
-          onChange={() => {
-            setIsChecked((prev) => !prev);
-            onProfChkChange();
-          }}
-        />
-        <label className="checkbox-label" htmlFor="ProfChk">
-          Profession
+      <div className="checkbox">
+        <label>
+          <input
+            type="checkbox"
+            value="ProfChk"
+            name="ProfChk"
+            checked={isChecked}
+            onChange={() => {
+              setIsChecked((prev) => !prev);
+              onProfChkChange();
+            }}
+          />
+          <span>Profession</span>
         </label>
       </div>
+
       <label className="dropdown-label" htmlFor="profession-domain-2">
-        Select domain
+        Domain
       </label>
       <select
         className="dropdown-main"

@@ -11,6 +11,7 @@ const SecondTab = ({ onClick }) => {
     AgeValue: false,
     EmailValue: true,
     MobileValue: true,
+    MobileISDValue: false,
     ProfValue: true,
     RurAddressValue: false,
     UrbAddressValue: true,
@@ -49,7 +50,7 @@ const SecondTab = ({ onClick }) => {
         <div className="tab-container">
           <div className="checkboxes-list">
             <div className="checkbox-group">
-              <p className="group-label">User details</p>
+              <p className="group-label">Personal details</p>
               <div className="checkboxes">
                 <DataCheckbox
                   name="FirstNameChk"
@@ -100,18 +101,25 @@ const SecondTab = ({ onClick }) => {
                   id="MobileValue"
                   onChange={updateCheckbox}
                 />
+                <DataCheckbox
+                  name="MobileISDChk"
+                  label="Mobile (+91)"
+                  checked={chkData.MobileISDValue}
+                  id="MobileISDValue"
+                  onChange={updateCheckbox}
+                />
               </div>
             </div>
 
             <div className="checkbox-group">
-              <p className="group-label">User profession</p>
+              <p className="group-label">Profession</p>
               <div className="checkboxes">
                 <ProfessionSelectionForTable />
               </div>
             </div>
 
             <div className="checkbox-group">
-              <p className="group-label">Location details</p>
+              <p className="group-label">Location</p>
               <div className="checkboxes">
                 <DataCheckbox
                   name="RurAddressChk"
@@ -152,7 +160,7 @@ const SecondTab = ({ onClick }) => {
             </div>
 
             <div className="checkbox-group">
-              <p className="group-label">User IDs</p>
+              <p className="group-label">Identity</p>
               <div className="checkboxes">
                 <DataCheckbox
                   name="PassChk"
@@ -209,7 +217,7 @@ const SecondTab = ({ onClick }) => {
 
           <div className="separate-button-div text-center">
             <label className="input-label" htmlFor="noOfUsers">
-              Number of Users
+              No. of Users
             </label>
             <input
               className="user-input"
@@ -222,7 +230,7 @@ const SecondTab = ({ onClick }) => {
             />
 
             <button className="button-large" onClick={clickHandler}>
-              Generate
+              Create
             </button>
           </div>
         </div>
