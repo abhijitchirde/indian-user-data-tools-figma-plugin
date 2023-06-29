@@ -8,10 +8,8 @@ const SecondTab = ({ onClick }) => {
     LastNameValue: false,
     FullNameValue: true,
     DoBValue: true,
-    AgeValue: false,
     EmailValue: true,
     MobileValue: true,
-    MobileISDValue: false,
     ProfValue: true,
     RurAddressValue: false,
     UrbAddressValue: true,
@@ -37,6 +35,13 @@ const SecondTab = ({ onClick }) => {
 
   const updateDomain = (domain) => {
     setProfDomain(domain);
+  };
+
+  const isDomain = (value) => {
+    // console.log(value);
+    setChkData((prev) => {
+      return { ...prev, ["ProfValue"]: value };
+    });
   };
 
   const clickHandler = () => {
@@ -87,13 +92,6 @@ const SecondTab = ({ onClick }) => {
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox
-                  name="AgeChk"
-                  label="Age"
-                  checked={chkData.AgeValue}
-                  id="AgeValue"
-                  onChange={updateCheckbox}
-                />
-                <DataCheckbox
                   name="EmailChk"
                   label="Email"
                   checked={chkData.EmailValue}
@@ -107,20 +105,16 @@ const SecondTab = ({ onClick }) => {
                   id="MobileValue"
                   onChange={updateCheckbox}
                 />
-                <DataCheckbox
-                  name="MobileISDChk"
-                  label="Mobile (+91)"
-                  checked={chkData.MobileISDValue}
-                  id="MobileISDValue"
-                  onChange={updateCheckbox}
-                />
               </div>
             </div>
 
             <div className="checkbox-group">
               <p className="group-label">Profession</p>
               <div className="checkboxes">
-                <ProfessionSelectionForTable domain={updateDomain} />
+                <ProfessionSelectionForTable
+                  getDomain={updateDomain}
+                  isDomain={isDomain}
+                />
               </div>
             </div>
 
@@ -222,18 +216,20 @@ const SecondTab = ({ onClick }) => {
           </div>
 
           <div className="separate-button-div text-center">
-            <label className="input-label" htmlFor="noOfUsers">
-              No. of Users
-            </label>
-            <input
-              className="user-input"
-              type="number"
-              name="noOfUsers"
-              id="noOfUsers"
-              value={usersInput}
-              min={1}
-              onInput={inputChangeHandler}
-            />
+            <div className="input-div">
+              <label className="input-label" htmlFor="noOfUsers">
+                No. of Users
+              </label>
+              <input
+                className="user-input"
+                type="number"
+                name="noOfUsers"
+                id="noOfUsers"
+                value={usersInput}
+                min={1}
+                onInput={inputChangeHandler}
+              />
+            </div>
 
             <button className="button-large" onClick={clickHandler}>
               Create users

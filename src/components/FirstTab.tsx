@@ -41,16 +41,10 @@ const FirstTab = ({ onClick }) => {
                   value="DoB"
                   action={clickHandler}
                 />
-                <DataButton name="Age" value="Age" action={clickHandler} />
                 <DataButton name="Email" value="Email" action={clickHandler} />
                 <DataButton
                   name="Mobile"
                   value="Mobile"
-                  action={clickHandler}
-                />
-                <DataButton
-                  name="Mobile (+91)"
-                  value="MobileISD"
                   action={clickHandler}
                 />
               </div>
@@ -225,7 +219,12 @@ const FirstTab = ({ onClick }) => {
           </div>
         </div>
         <p
-          style={{ textAlign: "center", fontSize: "0.8rem", color: "#6f6f70" }}
+          style={{
+            textAlign: "center",
+            fontSize: "0.8rem",
+            color: "#6f6f70",
+            paddingTop: "0.5rem",
+          }}
         >
           Please use individual buttons to generate data
         </p>

@@ -15,12 +15,12 @@ function App() {
     setCurrentTab(input);
   };
 
-  const onGenerate = (inputValue, domainInput) => {
+  const onGenerate = (inputValue, profDomain) => {
     parent.postMessage(
       {
         pluginMessage: {
           type: "generate-random",
-          data: { inputValue, domainInput },
+          data: { inputValue, profDomain },
         },
       },
       "*"

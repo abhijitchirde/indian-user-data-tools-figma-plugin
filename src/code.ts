@@ -7,7 +7,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 340, height: 600 });
+figma.showUI(__html__, { width: 370, height: 615 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -35,6 +35,7 @@ figma.ui.onmessage = (msg) => {
       figma.notify("Please select text layers to add data", { timeout: 1000 });
     } else {
       for (const node of figma.currentPage.selection) {
+        setAndLoadFont(node);
         generateRandomData(node, msg.data); //Calling function to put requested data on text layer
       }
     }
@@ -72,6 +73,20 @@ function setFontLight(currentNode) {
   //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
   if (currentNode.type === "TEXT") {
     currentNode.fontName = { family: "Roboto", style: "Light" };
+  }
+}
+
+// Set font equal to existing value
+async function setAndLoadFont(currentNode) {
+  const font = currentNode.fontName;
+
+  figma.loadFontAsync({
+    family: `${font.family}`,
+    style: `${font.style}`,
+  });
+
+  if (currentNode.type === "TEXT") {
+    currentNode.fontName = { family: `${font.family}`, style: `${font.style}` };
   }
 }
 
@@ -402,11 +417,6 @@ function generateRandomDoB() {
   }
 }
 
-function generateRandomAge() {
-  let age = numBetween(18, 86);
-  return `${age}`;
-}
-
 function generateRandomPAN() {
   let letter1 =
     dataSet["Alphabets"][
@@ -434,13 +444,11 @@ function generateRandomPAN() {
   return `${letter1}${letter2}${letter3}${letter4}${letter5}${digits}${lastLetter}`;
 }
 
-function generateRandomData(currentNode, msgData) {
+async function generateRandomData(currentNode, msgData) {
   let input = msgData.inputValue;
 
   //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
   if (currentNode.type === "TEXT") {
-    setFont(currentNode);
-
     //If requirement is full-name, we need to attach elements for output
     if (input === "FullName") {
       let first = generateRandomFirstName();
@@ -448,12 +456,8 @@ function generateRandomData(currentNode, msgData) {
       currentNode.characters = `${first} ${last}`;
     } else if (input === "DoB") {
       currentNode.characters = generateRandomDoB();
-    } else if (input === "Age") {
-      currentNode.characters = generateRandomAge();
     } else if (input === "Mobile") {
       currentNode.characters = generateMobileNumber();
-    } else if (input === "MobileISD") {
-      currentNode.characters = "+91" + generateMobileNumber();
     } else if (input === "UID") {
       currentNode.characters = generateAadhar();
     } else if (input === "UPIm") {
@@ -603,18 +607,6 @@ function generateTable(msgData) {
     labelSection.appendChild(dobLabelFrame);
   }
 
-  if (dataContent.AgeValue === true) {
-    const ageLabelFrame = figma.createFrame();
-    formatLabelFrame(ageLabelFrame);
-    const ageLabel = figma.createText();
-    setFont(ageLabelFrame);
-    ageLabel.characters = "Age";
-    formatLabelText(ageLabel);
-    ageLabelFrame.appendChild(ageLabel);
-    labelSectionHeight += generateTableCellHeight;
-    labelSection.appendChild(ageLabelFrame);
-  }
-
   if (dataContent.EmailValue === true) {
     const emailLabelFrame = figma.createFrame();
     formatLabelFrame(emailLabelFrame);
@@ -637,17 +629,6 @@ function generateTable(msgData) {
     mobileLabelFrame.appendChild(mobileLabel);
     labelSectionHeight += generateTableCellHeight;
     labelSection.appendChild(mobileLabelFrame);
-  }
-  if (dataContent.MobileISDValue === true) {
-    const mobileISDLabelFrame = figma.createFrame();
-    formatLabelFrame(mobileISDLabelFrame);
-    const mobileISDLabel = figma.createText();
-    setFont(mobileISDLabel);
-    mobileISDLabel.characters = "Mobile (+91)";
-    formatLabelText(mobileISDLabel);
-    mobileISDLabelFrame.appendChild(mobileISDLabel);
-    labelSectionHeight += generateTableCellHeight;
-    labelSection.appendChild(mobileISDLabelFrame);
   }
 
   if (dataContent.ProfValue === true) {
@@ -830,7 +811,6 @@ function generateTable(msgData) {
     //Mobile
     const mobileDigits = generateMobileNumber();
     const mobile = `${mobileDigits}`;
-    const mobileISD = `+91${mobileDigits}`;
     //Upi related
     const upiEnd1 =
       dataSet["UPISuffix"][
@@ -937,14 +917,10 @@ function generateTable(msgData) {
         Math.floor(Math.random() * dataSet["EmailEnd"].length)
       ];
     const userEmail = generateEmail(fName, lName, emailDomain, emailEnd);
-    // Dob and age
+
+    // Dob
     const dobContent = generateRandomDoB();
-    const yearContent =
-      dobContent[6] + dobContent[7] + dobContent[8] + dobContent[9];
-    const birthYear = parseInt(yearContent, 10);
-    const curretTime = new Date();
-    const currentYear = curretTime.getFullYear();
-    const currentAge = currentYear - birthYear;
+
     //Profession
     let userProfession = "";
     if (dataContent.ProfValue === true) {
@@ -1053,17 +1029,6 @@ function generateTable(msgData) {
       dataSection.appendChild(dobTextFrame);
     }
 
-    if (dataContent.AgeValue === true) {
-      const ageTextFrame = figma.createFrame();
-      formatContentFrame(ageTextFrame);
-      const ageText = figma.createText();
-      setFont(ageText);
-      ageText.characters = `${currentAge}`;
-      formatContentText(ageText);
-      ageTextFrame.appendChild(ageText);
-      dataSection.appendChild(ageTextFrame);
-    }
-
     if (dataContent.EmailValue === true) {
       const emailTextFrame = figma.createFrame();
       formatContentFrame(emailTextFrame);
@@ -1084,17 +1049,6 @@ function generateTable(msgData) {
       formatContentText(mobileText);
       mobileTextFrame.appendChild(mobileText);
       dataSection.appendChild(mobileTextFrame);
-    }
-
-    if (dataContent.MobileISDValue === true) {
-      const mobileISDTextFrame = figma.createFrame();
-      formatContentFrame(mobileISDTextFrame);
-      const mobileISDText = figma.createText();
-      setFont(mobileISDText);
-      mobileISDText.characters = `${mobileISD}`;
-      formatContentText(mobileISDText);
-      mobileISDTextFrame.appendChild(mobileISDText);
-      dataSection.appendChild(mobileISDTextFrame);
     }
 
     if (dataContent.ProfValue === true) {
