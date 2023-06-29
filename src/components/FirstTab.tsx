@@ -226,7 +226,7 @@ const FirstTab = ({ onClick }) => {
             paddingTop: "0.5rem",
           }}
         >
-          Please use individual buttons to generate data
+          Note: In case of an error, please restart the plugin.
         </p>
       </div>
     </>
