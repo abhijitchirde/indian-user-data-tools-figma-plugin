@@ -29,18 +29,24 @@ const SecondTab = ({ onClick }) => {
 
   const [usersInput, setUsersInput] = React.useState(1);
 
+  const [profDomain, setProfDomain] = React.useState("Random");
+
   const inputChangeHandler = (e) => {
     setUsersInput(e.target.value);
   };
 
+  const updateDomain = (domain) => {
+    setProfDomain(domain);
+  };
+
   const clickHandler = () => {
-    onClick(chkData);
+    onClick(chkData, usersInput, profDomain);
   };
 
   const updateCheckbox = (e) => {
     const id = e.target.id;
     setChkData((prev) => {
-      return { ...prev, [id]: e.taget.value };
+      return { ...prev, [`${id}`]: e.target.checked };
     });
   };
 
@@ -114,7 +120,7 @@ const SecondTab = ({ onClick }) => {
             <div className="checkbox-group">
               <p className="group-label">Profession</p>
               <div className="checkboxes">
-                <ProfessionSelectionForTable />
+                <ProfessionSelectionForTable domain={updateDomain} />
               </div>
             </div>
 
@@ -230,7 +236,7 @@ const SecondTab = ({ onClick }) => {
             />
 
             <button className="button-large" onClick={clickHandler}>
-              Create
+              Create users
             </button>
           </div>
         </div>

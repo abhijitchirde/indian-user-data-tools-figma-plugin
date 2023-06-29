@@ -1,12 +1,13 @@
 import * as React from "react";
 
-const ProfessionSelectionForTable = () => {
+const ProfessionSelectionForTable = ({ domain }) => {
   const [dropdownEnabled, setDropdownEnabled] = React.useState(true);
   const [isChecked, setIsChecked] = React.useState(true);
   const [dropdownSelect, setDropdownSelect] = React.useState("Random");
 
   const handleDropdownInput = (e) => {
     setDropdownSelect(e.target.value);
+    domain(e.target.value);
   };
 
   const onProfChkChange = () => {

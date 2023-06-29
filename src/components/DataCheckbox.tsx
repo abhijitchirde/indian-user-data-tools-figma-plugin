@@ -8,10 +8,15 @@ interface Props {
   onChange: any;
 }
 
-const DataCheckbox = ({ name, label, checked, id }: Props) => {
+const DataCheckbox = ({ name, label, checked, id, onChange }: Props) => {
   const defaultChecked = checked ? checked : false;
 
   const [isChecked, setIsChecked] = React.useState(defaultChecked);
+
+  const changeHandler = (e) => {
+    setIsChecked((prev) => !prev);
+    onChange(e);
+  };
 
   return (
     <>
@@ -22,7 +27,7 @@ const DataCheckbox = ({ name, label, checked, id }: Props) => {
             id={id}
             name={name}
             checked={isChecked}
-            onChange={() => setIsChecked((prev) => !prev)}
+            onChange={changeHandler}
             value={name}
           />
           <span>{label}</span>

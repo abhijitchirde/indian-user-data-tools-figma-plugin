@@ -27,14 +27,17 @@ function App() {
     );
   };
 
-  const onCreateTable = (contentType) => {
-    // parent.postMessage({
-    //   pluginMessage: {
-    //     type: "generate-table",
-    //     data: { contentType },
-    //   },
-    // });
-    console.log("create table action");
+  const onCreateTable = (chkData, users, profDomain) => {
+    let noOfUsers = +users;
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "generate-table",
+          data: { chkData, noOfUsers, profDomain },
+        },
+      },
+      "*"
+    );
   };
 
   return (

@@ -7,7 +7,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 300, height: 600 });
+figma.showUI(__html__, { width: 340, height: 600 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -491,7 +491,7 @@ function generateRandomData(currentNode, msgData) {
     } else if (input === "State") {
       currentNode.characters = generateRandomState();
     } else if (input === "Prof") {
-      let profDomain = msgData.domainInput;
+      let profDomain = msgData.profDomain;
       currentNode.characters = generateRandomProf(profDomain);
     } else if (input === "CityState") {
       currentNode.characters = generateCityStatePair();
@@ -513,14 +513,19 @@ function generateRandomData(currentNode, msgData) {
 function generateTable(msgData) {
   const nodes: SceneNode[] = [];
 
+  const dataContent = msgData.chkData;
+
   const userCount = msgData.noOfUsers; //To be used to create data content in later part
 
   //If addresses are not required, reduce the width of data section
-  if (msgData.RurAddressValue === false && msgData.UrbAddressValue === false) {
+  if (
+    dataContent.RurAddressValue === false &&
+    dataContent.UrbAddressValue === false
+  ) {
     generateTableDataWidth = 135;
   } else if (
-    msgData.RurAddressValue === true ||
-    msgData.UrbAddressValue === true
+    dataContent.RurAddressValue === true ||
+    dataContent.UrbAddressValue === true
   ) {
     generateTableDataWidth = 275;
   }
@@ -550,7 +555,7 @@ function generateTable(msgData) {
   labelSection.appendChild(labelHeaderFrame);
 
   //Code block to generate user details labels as it needs to be generated at least once
-  if (msgData.FirstNameValue === true) {
+  if (dataContent.FirstNameValue === true) {
     const firstnameLabelFrame = figma.createFrame();
     formatLabelFrame(firstnameLabelFrame);
     const firstnameLabel = figma.createText();
@@ -562,7 +567,7 @@ function generateTable(msgData) {
     labelSection.appendChild(firstnameLabelFrame);
   }
 
-  if (msgData.LastNameValue === true) {
+  if (dataContent.LastNameValue === true) {
     const lastnameLabelFrame = figma.createFrame();
     formatLabelFrame(lastnameLabelFrame);
     const lastnameLabel = figma.createText();
@@ -574,7 +579,7 @@ function generateTable(msgData) {
     labelSection.appendChild(lastnameLabelFrame);
   }
 
-  if (msgData.FullNameValue === true) {
+  if (dataContent.FullNameValue === true) {
     const fullnameLabelFrame = figma.createFrame();
     formatLabelFrame(fullnameLabelFrame);
     const fullnameLabel = figma.createText();
@@ -586,7 +591,7 @@ function generateTable(msgData) {
     labelSection.appendChild(fullnameLabelFrame);
   }
 
-  if (msgData.DoBValue === true) {
+  if (dataContent.DoBValue === true) {
     const dobLabelFrame = figma.createFrame();
     formatLabelFrame(dobLabelFrame);
     const dobLabel = figma.createText();
@@ -598,7 +603,7 @@ function generateTable(msgData) {
     labelSection.appendChild(dobLabelFrame);
   }
 
-  if (msgData.AgeValue === true) {
+  if (dataContent.AgeValue === true) {
     const ageLabelFrame = figma.createFrame();
     formatLabelFrame(ageLabelFrame);
     const ageLabel = figma.createText();
@@ -610,7 +615,7 @@ function generateTable(msgData) {
     labelSection.appendChild(ageLabelFrame);
   }
 
-  if (msgData.EmailValue === true) {
+  if (dataContent.EmailValue === true) {
     const emailLabelFrame = figma.createFrame();
     formatLabelFrame(emailLabelFrame);
     const emailLabel = figma.createText();
@@ -622,19 +627,30 @@ function generateTable(msgData) {
     labelSection.appendChild(emailLabelFrame);
   }
 
-  if (msgData.MobileValue === true) {
+  if (dataContent.MobileValue === true) {
     const mobileLabelFrame = figma.createFrame();
     formatLabelFrame(mobileLabelFrame);
     const mobileLabel = figma.createText();
     setFont(mobileLabel);
-    mobileLabel.characters = "Mobile Number";
+    mobileLabel.characters = "Mobile";
     formatLabelText(mobileLabel);
     mobileLabelFrame.appendChild(mobileLabel);
     labelSectionHeight += generateTableCellHeight;
     labelSection.appendChild(mobileLabelFrame);
   }
+  if (dataContent.MobileISDValue === true) {
+    const mobileISDLabelFrame = figma.createFrame();
+    formatLabelFrame(mobileISDLabelFrame);
+    const mobileISDLabel = figma.createText();
+    setFont(mobileISDLabel);
+    mobileISDLabel.characters = "Mobile (+91)";
+    formatLabelText(mobileISDLabel);
+    mobileISDLabelFrame.appendChild(mobileISDLabel);
+    labelSectionHeight += generateTableCellHeight;
+    labelSection.appendChild(mobileISDLabelFrame);
+  }
 
-  if (msgData.ProfValue === true) {
+  if (dataContent.ProfValue === true) {
     const profLabelFrame = figma.createFrame();
     formatLabelFrame(profLabelFrame);
     const profLabel = figma.createText();
@@ -646,7 +662,7 @@ function generateTable(msgData) {
     labelSection.appendChild(profLabelFrame);
   }
 
-  if (msgData.RurAddressValue === true) {
+  if (dataContent.RurAddressValue === true) {
     const rurLabelFrame = figma.createFrame();
     formatLabelFrame(rurLabelFrame);
     const rurLabel = figma.createText();
@@ -658,7 +674,7 @@ function generateTable(msgData) {
     labelSection.appendChild(rurLabelFrame);
   }
 
-  if (msgData.UrbAddressValue === true) {
+  if (dataContent.UrbAddressValue === true) {
     const urbLabelFrame = figma.createFrame();
     formatLabelFrame(urbLabelFrame);
     const urbLabel = figma.createText();
@@ -670,7 +686,7 @@ function generateTable(msgData) {
     labelSection.appendChild(urbLabelFrame);
   }
 
-  if (msgData.CityValue === true) {
+  if (dataContent.CityValue === true) {
     const cityLabelFrame = figma.createFrame();
     formatLabelFrame(cityLabelFrame);
     const cityLabel = figma.createText();
@@ -682,7 +698,7 @@ function generateTable(msgData) {
     labelSection.appendChild(cityLabelFrame);
   }
 
-  if (msgData.StateValue === true) {
+  if (dataContent.StateValue === true) {
     const stateLabelFrame = figma.createFrame();
     formatLabelFrame(stateLabelFrame);
     const stateLabel = figma.createText();
@@ -694,7 +710,7 @@ function generateTable(msgData) {
     labelSection.appendChild(stateLabelFrame);
   }
 
-  if (msgData.PINValue === true) {
+  if (dataContent.PINValue === true) {
     const pinLabelFrame = figma.createFrame();
     formatLabelFrame(pinLabelFrame);
     const pinLabel = figma.createText();
@@ -706,7 +722,7 @@ function generateTable(msgData) {
     labelSection.appendChild(pinLabelFrame);
   }
 
-  if (msgData.PassValue === true) {
+  if (dataContent.PassValue === true) {
     const passLabelFrame = figma.createFrame();
     formatLabelFrame(passLabelFrame);
     const passLabel = figma.createText();
@@ -718,7 +734,7 @@ function generateTable(msgData) {
     labelSection.appendChild(passLabelFrame);
   }
 
-  if (msgData.UIDValue === true) {
+  if (dataContent.UIDValue === true) {
     const uidLabelFrame = figma.createFrame();
     formatLabelFrame(uidLabelFrame);
     const uidLabel = figma.createText();
@@ -730,7 +746,7 @@ function generateTable(msgData) {
     labelSection.appendChild(uidLabelFrame);
   }
 
-  if (msgData.PANValue === true) {
+  if (dataContent.PANValue === true) {
     const panLabelFrame = figma.createFrame();
     formatLabelFrame(panLabelFrame);
     const panLabel = figma.createText();
@@ -742,7 +758,7 @@ function generateTable(msgData) {
     labelSection.appendChild(panLabelFrame);
   }
 
-  if (msgData.UPInValue === true) {
+  if (dataContent.UPInValue === true) {
     const upinLabelFrame = figma.createFrame();
     formatLabelFrame(upinLabelFrame);
     const upinLabel = figma.createText();
@@ -754,7 +770,7 @@ function generateTable(msgData) {
     labelSection.appendChild(upinLabelFrame);
   }
 
-  if (msgData.UPImValue === true) {
+  if (dataContent.UPImValue === true) {
     const upimLabelFrame = figma.createFrame();
     formatLabelFrame(upimLabelFrame);
     const upimLabel = figma.createText();
@@ -766,7 +782,7 @@ function generateTable(msgData) {
     labelSection.appendChild(upimLabelFrame);
   }
 
-  if (msgData.DLValue === true) {
+  if (dataContent.DLValue === true) {
     const dlLabelFrame = figma.createFrame();
     formatLabelFrame(dlLabelFrame);
     const dlLabel = figma.createText();
@@ -778,7 +794,7 @@ function generateTable(msgData) {
     labelSection.appendChild(dlLabelFrame);
   }
 
-  if (msgData.RCValue === true) {
+  if (dataContent.RCValue === true) {
     const rcLabelFrame = figma.createFrame();
     formatLabelFrame(rcLabelFrame);
     const rcLabel = figma.createText();
@@ -813,7 +829,8 @@ function generateTable(msgData) {
     const fullName = `${fName} ${lName}`;
     //Mobile
     const mobileDigits = generateMobileNumber();
-    const mobile = `+91-${mobileDigits}`;
+    const mobile = `${mobileDigits}`;
+    const mobileISD = `+91${mobileDigits}`;
     //Upi related
     const upiEnd1 =
       dataSet["UPISuffix"][
@@ -930,9 +947,9 @@ function generateTable(msgData) {
     const currentAge = currentYear - birthYear;
     //Profession
     let userProfession = "";
-    if (msgData.ProfValue === true) {
-      let profDomain = msgData.domainInput;
-      userProfession = generateRandomProf(profDomain);
+    if (dataContent.ProfValue === true) {
+      let domain = msgData.profDomain;
+      userProfession = generateRandomProf(domain);
     }
 
     //DL, RC related
@@ -992,7 +1009,7 @@ function generateTable(msgData) {
     userHeaderFrame.appendChild(userHeaderText);
     dataSection.appendChild(userHeaderFrame);
 
-    if (msgData.FirstNameValue === true) {
+    if (dataContent.FirstNameValue === true) {
       const firstnameTextFrame = figma.createFrame();
       formatContentFrame(firstnameTextFrame);
       const firstnameText = figma.createText();
@@ -1003,7 +1020,7 @@ function generateTable(msgData) {
       dataSection.appendChild(firstnameTextFrame);
     }
 
-    if (msgData.LastNameValue === true) {
+    if (dataContent.LastNameValue === true) {
       const lastnameTextFrame = figma.createFrame();
       formatContentFrame(lastnameTextFrame);
       const lastnameText = figma.createText();
@@ -1014,7 +1031,7 @@ function generateTable(msgData) {
       dataSection.appendChild(lastnameTextFrame);
     }
 
-    if (msgData.FullNameValue === true) {
+    if (dataContent.FullNameValue === true) {
       const fullnameTextFrame = figma.createFrame();
       formatContentFrame(fullnameTextFrame);
       const fullnameText = figma.createText();
@@ -1025,7 +1042,7 @@ function generateTable(msgData) {
       dataSection.appendChild(fullnameTextFrame);
     }
 
-    if (msgData.DoBValue === true) {
+    if (dataContent.DoBValue === true) {
       const dobTextFrame = figma.createFrame();
       formatContentFrame(dobTextFrame);
       const dobText = figma.createText();
@@ -1036,7 +1053,7 @@ function generateTable(msgData) {
       dataSection.appendChild(dobTextFrame);
     }
 
-    if (msgData.AgeValue === true) {
+    if (dataContent.AgeValue === true) {
       const ageTextFrame = figma.createFrame();
       formatContentFrame(ageTextFrame);
       const ageText = figma.createText();
@@ -1047,7 +1064,7 @@ function generateTable(msgData) {
       dataSection.appendChild(ageTextFrame);
     }
 
-    if (msgData.EmailValue === true) {
+    if (dataContent.EmailValue === true) {
       const emailTextFrame = figma.createFrame();
       formatContentFrame(emailTextFrame);
       const emailText = figma.createText();
@@ -1058,7 +1075,7 @@ function generateTable(msgData) {
       dataSection.appendChild(emailTextFrame);
     }
 
-    if (msgData.MobileValue === true) {
+    if (dataContent.MobileValue === true) {
       const mobileTextFrame = figma.createFrame();
       formatContentFrame(mobileTextFrame);
       const mobileText = figma.createText();
@@ -1069,7 +1086,18 @@ function generateTable(msgData) {
       dataSection.appendChild(mobileTextFrame);
     }
 
-    if (msgData.ProfValue === true) {
+    if (dataContent.MobileISDValue === true) {
+      const mobileISDTextFrame = figma.createFrame();
+      formatContentFrame(mobileISDTextFrame);
+      const mobileISDText = figma.createText();
+      setFont(mobileISDText);
+      mobileISDText.characters = `${mobileISD}`;
+      formatContentText(mobileISDText);
+      mobileISDTextFrame.appendChild(mobileISDText);
+      dataSection.appendChild(mobileISDTextFrame);
+    }
+
+    if (dataContent.ProfValue === true) {
       const professionTextFrame = figma.createFrame();
       formatContentFrame(professionTextFrame);
       const professionText = figma.createText();
@@ -1080,7 +1108,7 @@ function generateTable(msgData) {
       dataSection.appendChild(professionTextFrame);
     }
 
-    if (msgData.RurAddressValue === true) {
+    if (dataContent.RurAddressValue === true) {
       const rurAddressTextFrame = figma.createFrame();
       formatContentFrame(rurAddressTextFrame);
       const rurAddressText = figma.createText();
@@ -1091,7 +1119,7 @@ function generateTable(msgData) {
       dataSection.appendChild(rurAddressTextFrame);
     }
 
-    if (msgData.UrbAddressValue === true) {
+    if (dataContent.UrbAddressValue === true) {
       const urbAddressTextFrame = figma.createFrame();
       formatContentFrame(urbAddressTextFrame);
       const urbAddressText = figma.createText();
@@ -1102,7 +1130,7 @@ function generateTable(msgData) {
       dataSection.appendChild(urbAddressTextFrame);
     }
 
-    if (msgData.CityValue === true) {
+    if (dataContent.CityValue === true) {
       const cityTextFrame = figma.createFrame();
       formatContentFrame(cityTextFrame);
       const cityText = figma.createText();
@@ -1113,7 +1141,7 @@ function generateTable(msgData) {
       dataSection.appendChild(cityTextFrame);
     }
 
-    if (msgData.StateValue === true) {
+    if (dataContent.StateValue === true) {
       const stateTextFrame = figma.createFrame();
       formatContentFrame(stateTextFrame);
       const stateText = figma.createText();
@@ -1124,7 +1152,7 @@ function generateTable(msgData) {
       dataSection.appendChild(stateTextFrame);
     }
 
-    if (msgData.PINValue === true) {
+    if (dataContent.PINValue === true) {
       const pinTextFrame = figma.createFrame();
       formatContentFrame(pinTextFrame);
       const pinText = figma.createText();
@@ -1135,7 +1163,7 @@ function generateTable(msgData) {
       dataSection.appendChild(pinTextFrame);
     }
 
-    if (msgData.PassValue === true) {
+    if (dataContent.PassValue === true) {
       const passTextFrame = figma.createFrame();
       formatContentFrame(passTextFrame);
       const passText = figma.createText();
@@ -1146,7 +1174,7 @@ function generateTable(msgData) {
       dataSection.appendChild(passTextFrame);
     }
 
-    if (msgData.UIDValue === true) {
+    if (dataContent.UIDValue === true) {
       const uidTextFrame = figma.createFrame();
       formatContentFrame(uidTextFrame);
       const uidText = figma.createText();
@@ -1157,7 +1185,7 @@ function generateTable(msgData) {
       dataSection.appendChild(uidTextFrame);
     }
 
-    if (msgData.PANValue === true) {
+    if (dataContent.PANValue === true) {
       const panTextFrame = figma.createFrame();
       formatContentFrame(panTextFrame);
       const panText = figma.createText();
@@ -1168,7 +1196,7 @@ function generateTable(msgData) {
       dataSection.appendChild(panTextFrame);
     }
 
-    if (msgData.UPInValue === true) {
+    if (dataContent.UPInValue === true) {
       const upinTextFrame = figma.createFrame();
       formatContentFrame(upinTextFrame);
       const upinText = figma.createText();
@@ -1179,7 +1207,7 @@ function generateTable(msgData) {
       dataSection.appendChild(upinTextFrame);
     }
 
-    if (msgData.UPImValue === true) {
+    if (dataContent.UPImValue === true) {
       const upimTextFrame = figma.createFrame();
       formatContentFrame(upimTextFrame);
       const upimText = figma.createText();
@@ -1190,7 +1218,7 @@ function generateTable(msgData) {
       dataSection.appendChild(upimTextFrame);
     }
 
-    if (msgData.DLValue === true) {
+    if (dataContent.DLValue === true) {
       const dlTextFrame = figma.createFrame();
       formatContentFrame(dlTextFrame);
       const dlText = figma.createText();
@@ -1205,7 +1233,7 @@ function generateTable(msgData) {
       dataSection.appendChild(dlTextFrame);
     }
 
-    if (msgData.RCValue === true) {
+    if (dataContent.RCValue === true) {
       const rcTextFrame = figma.createFrame();
       formatContentFrame(rcTextFrame);
       const rcText = figma.createText();
