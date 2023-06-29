@@ -14,9 +14,14 @@ var generateTableDataWidth = 275;
 var generateTableCellHeight = 26;
 var generateTableHeaderHeight = 16;
 
+loadUserFont();
+
+figma.on("selectionchange", () => {
+  loadUserFont();
+});
+
 //Receiving the button inputs from UI
 figma.ui.onmessage = (msg) => {
-  //If input button is not generate this flow will work
   if (msg.type === "generate-random") {
     //Giving notification if no layer is selected
     if (figma.currentPage.selection.length === 0) {
@@ -35,7 +40,7 @@ figma.ui.onmessage = (msg) => {
       figma.notify("Please select text layers to add data", { timeout: 1000 });
     } else {
       for (const node of figma.currentPage.selection) {
-        setAndLoadFont(node);
+        setUserFont(node);
         generateRandomData(node, msg.data); //Calling function to put requested data on text layer
       }
     }
@@ -61,6 +66,22 @@ figma.ui.onmessage = (msg) => {
   }
 };
 
+// Loading fonts from the nodes
+function loadUserFont() {
+  if (figma.currentPage.selection.length !== 0) {
+    for (const node of figma.currentPage.selection) {
+      if (node.type === "TEXT") {
+        const family = node.fontName["family"];
+        const style = node.fontName["style"];
+        figma.loadFontAsync({
+          family: `${family}`,
+          style: `${style}`,
+        });
+      }
+    }
+  }
+}
+
 //Setting fontname of selected node
 function setFont(currentNode) {
   //Checking if node is text for defining the new font (for putting text). Need to check node type as fontName is not available on Scenenode etc (error)
@@ -77,14 +98,9 @@ function setFontLight(currentNode) {
 }
 
 // Set font equal to existing value
-async function setAndLoadFont(currentNode) {
+async function setUserFont(currentNode) {
+  loadUserFont();
   const font = currentNode.fontName;
-
-  figma.loadFontAsync({
-    family: `${font.family}`,
-    style: `${font.style}`,
-  });
-
   if (currentNode.type === "TEXT") {
     currentNode.fontName = { family: `${font.family}`, style: `${font.style}` };
   }
