@@ -1,4 +1,5 @@
 import * as React from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const BottomSection = () => {
   const onDisclaimer = () => {
@@ -16,9 +17,13 @@ const BottomSection = () => {
         </button>
       </div>
 
+      <div className="theme-toggle-container">
+        <ThemeToggle />
+      </div>
+
       <div className="credit-container">
         <p className="credit-text">
-          <a href="https://abhijitchirde.com" target="_blank">
+          <a href="https://x.com/abhichirde" target="_blank">
             by Abhijit
           </a>
         </p>

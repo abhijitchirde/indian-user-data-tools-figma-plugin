@@ -5,11 +5,13 @@ import BottomSection from "./components/BottomSection";
 import FirstTab from "./components/FirstTab";
 import SecondTab from "./components/SecondTab";
 import Tabs from "./components/Tabs";
+import { useFigmaTheme } from "./hooks/useFigmaTheme";
 
 declare function require(path: string): any;
 
 function App() {
   const [currentTab, setCurrentTab] = React.useState("1");
+  const { theme, isDark } = useFigmaTheme();
 
   const getTab = (input) => {
     setCurrentTab(input);

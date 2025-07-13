@@ -1,8 +1,101 @@
+/* Figma Design System Tokens */
+:root {
+  /* Light theme colors */
+  --figma-color-bg: #ffffff;
+  --figma-color-bg-secondary: #f5f5f5;
+  --figma-color-bg-tertiary: #f0f0f0;
+  --figma-color-bg-brand: #18a0fb;
+  --figma-color-bg-brand-hover: #0d8ce0;
+  --figma-color-bg-brand-pressed: #0b7bc7;
+  --figma-color-bg-danger: #ff3b30;
+  --figma-color-bg-danger-hover: #e6352b;
+  --figma-color-bg-danger-pressed: #cc2e26;
+  --figma-color-bg-success: #34c759;
+  --figma-color-bg-warning: #ff9500;
+
+  /* Light theme text colors */
+  --figma-color-text: #000000;
+  --figma-color-text-secondary: #333333;
+  --figma-color-text-tertiary: #666666;
+  --figma-color-text-disabled: #999999;
+  --figma-color-text-brand: #18a0fb;
+  --figma-color-text-danger: #ff3b30;
+  --figma-color-text-success: #34c759;
+
+  /* Light theme border colors */
+  --figma-color-border: #e5e5e5;
+  --figma-color-border-strong: #cccccc;
+  --figma-color-border-focus: #18a0fb;
+  --figma-color-border-danger: #ff3b30;
+
+  /* Light theme shadow */
+  --figma-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  --figma-shadow-medium: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --figma-shadow-large: 0px 4px 8px rgba(0, 0, 0, 0.15);
+
+  /* Typography */
+  --figma-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --figma-font-size-xs: 11px;
+  --figma-font-size-sm: 12px;
+  --figma-font-size-md: 14px;
+  --figma-font-size-lg: 16px;
+  --figma-font-size-xl: 18px;
+
+  /* Spacing */
+  --figma-space-xs: 4px;
+  --figma-space-sm: 8px;
+  --figma-space-md: 12px;
+  --figma-space-lg: 16px;
+  --figma-space-xl: 24px;
+  --figma-space-xxl: 32px;
+
+  /* Border radius */
+  --figma-radius-sm: 2px;
+  --figma-radius-md: 4px;
+  --figma-radius-lg: 6px;
+  --figma-radius-xl: 8px;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --figma-color-bg: #2c2c2c;
+  --figma-color-bg-secondary: #383838;
+  --figma-color-bg-tertiary: #484848;
+  --figma-color-bg-brand: #18a0fb;
+  --figma-color-bg-brand-hover: #0d8ce0;
+  --figma-color-bg-brand-pressed: #0b7bc7;
+  --figma-color-bg-danger: #ff453a;
+  --figma-color-bg-danger-hover: #ff375f;
+  --figma-color-bg-danger-pressed: #ff2d55;
+  --figma-color-bg-success: #30d158;
+  --figma-color-bg-warning: #ff9f0a;
+
+  --figma-color-text: #ffffff;
+  --figma-color-text-secondary: #e5e5e5;
+  --figma-color-text-tertiary: #b3b3b3;
+  --figma-color-text-disabled: #666666;
+  --figma-color-text-brand: #18a0fb;
+  --figma-color-text-danger: #00ffff;
+  --figma-color-text-success: #30d158;
+
+  --figma-color-border: #484848;
+  --figma-color-border-strong: #666666;
+  --figma-color-border-focus: #18a0fb;
+  --figma-color-border-danger: #00ffff;
+
+  --figma-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --figma-shadow-medium: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  --figma-shadow-large: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 body {
-  background-color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--figma-color-bg);
+  font-family: var(--figma-font-family);
   margin: 0;
   padding: 0;
+  color: var(--figma-color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* tabs related styling */
@@ -13,54 +106,54 @@ body {
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: 0 1px 5px rgba(200, 200, 220, 0.5);
+  box-shadow: var(--figma-shadow-small);
 }
 
 .tab button {
-  border-bottom: 1px solid #fdfdfd;
+  border-bottom: 1px solid var(--figma-color-border);
   border-top: none;
   border-right: none;
   border-left: none;
-  /* border-radius: 0.5rem 0.5rem 0 0; */
   outline: none;
   cursor: pointer;
-  padding: 0.7rem 0.5rem;
+  padding: var(--figma-space-md) var(--figma-space-sm);
   background-color: transparent;
   text-align: center;
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: rgb(158, 171, 196);
+  font-size: var(--figma-font-size-sm);
+  font-weight: 400;
+  color: var(--figma-color-text-tertiary);
   display: inline-block;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .tab button:hover {
-  background-color: #fdfdfd;
+  background-color: var(--figma-color-bg-secondary);
 }
 
 .tab button.active {
-  background-color: #fdfdfd;
-  color: rgb(79, 84, 107);
-  transition-duration: 0.4s;
-  font-weight: 300;
+  background-color: var(--figma-color-bg-secondary);
+  color: var(--figma-color-text);
+  transition-duration: 0.2s;
+  font-weight: 500;
 }
 
 .tab button:disabled {
-  background: #fff;
-  color: #df5e5e;
+  background: var(--figma-color-bg);
+  color: var(--figma-color-text-danger);
   font-weight: 500;
-  border-bottom: 1px solid #ff5c58;
+  border-bottom: 1px solid var(--figma-color-border-danger);
 }
 
 .tab-info {
-  padding: 0 0.5rem;
+  padding: 0 var(--figma-space-sm);
 }
 
 .tab-infotext {
-  margin-top: 1rem;
+  margin-top: var(--figma-space-lg);
   text-align: center;
-  font-size: 0.8rem;
-  color: #b3b3b3;
+  font-size: var(--figma-font-size-sm);
+  color: var(--figma-color-text-tertiary);
 }
 
 .tabcontent {
@@ -87,66 +180,68 @@ body {
 
 .button-group {
   text-align: center;
-  padding: 0 0.5rem 0.5rem;
-  margin: 0 0.7rem 0.7rem;
-  background-color: #fff;
-  border: 0.5px solid #ebebeb;
-  border-radius: 5px;
+  padding: 0 var(--figma-space-sm) var(--figma-space-sm);
+  margin: 0 var(--figma-space-md) var(--figma-space-md);
+  background-color: var(--figma-color-bg);
+  border: 1px solid var(--figma-color-border);
+  border-radius: var(--figma-radius-md);
+  box-shadow: var(--figma-shadow-small);
 }
 
 .group-label {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-  color: #1b6b93;
+  font-family: var(--figma-font-family);
   font-weight: 500;
-  font-size: 0.9rem;
-  margin: 0.7rem 0;
+  color: var(--figma-color-text-brand);
+  font-size: var(--figma-font-size-md);
+  margin: var(--figma-space-md) 0;
 }
 
 .buttons-div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.6rem;
+  gap: var(--figma-space-sm);
   width: 100%;
   align-items: center;
 }
 
 .button-pri {
-  font-size: 0.7rem;
+  font-family: var(--figma-font-family);
+  font-size: var(--figma-font-size-xs);
   font-weight: 400;
-  padding: 0.3rem;
+  padding: var(--figma-space-xs);
   min-width: 5rem;
   height: 1.4rem;
   width: auto;
-  border: 0.5px solid #c7c7c7;
-  background-color: #fff;
-  border-radius: 4px;
-  color: #6f6f70;
+  border: 1px solid var(--figma-color-border-strong);
+  background-color: var(--figma-color-bg);
+  border-radius: var(--figma-radius-sm);
+  color: var(--figma-color-text-secondary);
   cursor: pointer;
-  /* box-shadow: 0 2px 3px rgba(19, 103, 230, 0.2); */
+  transition: all 0.2s ease;
+  line-height: 1.2;
 }
 
 .button-pri:hover {
-  background-color: #1471fd; /* #396EB0 */
-  border: 0.5px solid #1471fd;
+  background-color: var(--figma-color-bg-brand);
+  border: 1px solid var(--figma-color-bg-brand);
   color: #fff;
-  transition-duration: 0.1s;
+  transition-duration: 0.2s;
 }
 
 .button-pri:active {
-  background-color: #074aaf;
-  border: 0.5px solid #074aaf;
+  background-color: var(--figma-color-bg-brand-pressed);
+  border: 1px solid var(--figma-color-bg-brand-pressed);
   color: #fff;
-  transition-duration: 0.1s;
+  transition-duration: 0.2s;
   box-shadow: none;
 }
 
 .dropdown-label {
   display: inline-block;
-  color: #6f6f70;
+  color: var(--figma-color-text-secondary);
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: var(--figma-font-size-xs);
   padding-left: 3.7%;
   padding-right: 3%;
   vertical-align: middle;
@@ -154,28 +249,31 @@ body {
 
 .dropdown-main {
   display: inline-block;
-  border-radius: 3px;
+  border-radius: var(--figma-radius-sm);
   width: auto;
   height: 1.4rem;
-  font-size: 0.7rem;
+  font-size: var(--figma-font-size-xs);
   font-weight: 500;
   text-align: left;
   padding-left: 1%;
-  border: 0.5px solid #c7c7c7;
-  color: #6f6f70;
+  border: 1px solid var(--figma-color-border-strong);
+  color: var(--figma-color-text-secondary);
   margin-right: 3.2%;
   vertical-align: middle;
+  background-color: var(--figma-color-bg);
+  transition: all 0.2s ease;
 }
 
 .dropdown-main:disabled {
-  background-color: rgb(226, 226, 226);
+  background-color: var(--figma-color-bg-tertiary);
+  color: var(--figma-color-text-disabled);
 }
 
 .dropdown-item {
-  font-size: 0.65rem;
+  font-size: var(--figma-font-size-xs);
   height: 16%;
   padding: 1% 1%;
-  color: #6f6f70;
+  color: var(--figma-color-text-secondary);
 }
 
 /* checkbox elements for generating table related styling */
@@ -186,34 +284,35 @@ body {
 
 .checkbox-group {
   text-align: center;
-  padding: 0 0.5rem 0.5rem;
-  margin: 0 0.7rem 0.7rem;
-  background-color: #fff;
-  border: 0.5px solid #ebebeb;
-  /* box-shadow: 0 1px 5px rgba(200, 200, 220, 0.3); */
-  border-radius: 5px;
+  padding: 0 var(--figma-space-sm) var(--figma-space-sm);
+  margin: 0 var(--figma-space-md) var(--figma-space-md);
+  background-color: var(--figma-color-bg);
+  border: 1px solid var(--figma-color-border);
+  border-radius: var(--figma-radius-md);
+  box-shadow: var(--figma-shadow-small);
 }
 
 .checkboxes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.6rem;
+  gap: var(--figma-space-sm);
   width: 100%;
   align-items: center;
 }
 
 div label input:checked + span {
-  background-color: rgb(20, 113, 253, 0.15);
-  /* color: #000; */
-  border-color: #074aaf;
+  background-color: var(--figma-color-bg-brand);
+  color: #fff;
+  border-color: var(--figma-color-bg-brand);
 }
 
 .checkbox {
-  background-color: #fff;
-  border-radius: 4px;
-  border: 0.5px solid #c7c7c7;
+  background-color: var(--figma-color-bg);
+  border-radius: var(--figma-radius-sm);
+  border: 1px solid var(--figma-color-border-strong);
   overflow: hidden;
   min-width: 5rem;
+  transition: all 0.2s ease;
 }
 
 .checkbox label {
@@ -225,9 +324,12 @@ div label input:checked + span {
 .checkbox label span {
   text-align: center;
   display: block;
-  color: #6f6f70;
-  font-size: 0.7rem;
-  padding: 0.27rem;
+  color: var(--figma-color-text-secondary);
+  font-family: var(--figma-font-family);
+  font-size: var(--figma-font-size-xs);
+  font-weight: 400;
+  padding: var(--figma-space-xs);
+  line-height: 1.2;
 }
 
 .checkbox label input {
@@ -236,7 +338,7 @@ div label input:checked + span {
 }
 /* selects all of the text within the input element and changes the color of the text */
 .checkbox label input + span {
-  color: #6f6f70;
+  color: var(--figma-color-text-secondary);
 }
 
 /* Generate table button area */
@@ -255,55 +357,58 @@ div label input:checked + span {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0 1rem;
+  gap: var(--figma-space-sm);
+  padding: 0 var(--figma-space-lg);
 }
 
 .user-input {
   display: inline-block;
   height: 1.8rem;
   width: 3rem;
-  font-size: 0.8rem;
-  border: 1px solid #adadad;
-  border-radius: 3px;
-  color: #747474;
+  font-size: var(--figma-font-size-sm);
+  border: 1px solid var(--figma-color-border-strong);
+  border-radius: var(--figma-radius-sm);
+  color: var(--figma-color-text-secondary);
   margin-left: 2%;
   margin-right: 3.2%;
   text-align: center;
+  background-color: var(--figma-color-bg);
+  transition: all 0.2s ease;
 }
 
 .input-label {
   display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.8rem;
-  color: #6f6f70;
+  font-family: var(--figma-font-family);
+  font-size: var(--figma-font-size-sm);
+  color: var(--figma-color-text-secondary);
 }
 
 .button-large {
-  font-size: 0.8rem;
+  font-size: var(--figma-font-size-sm);
   font-weight: 400;
-  margin: 0 1rem;
+  margin: 0 var(--figma-space-lg);
   height: 1.8rem;
   width: 80%;
-  border: 0.5px solid #c7c7c7;
-  background-color: #fdfdfd;
-  border-radius: 4px;
-  color: #6f6f70;
+  border: 1px solid var(--figma-color-border-strong);
+  background-color: var(--figma-color-bg-secondary);
+  border-radius: var(--figma-radius-sm);
+  color: var(--figma-color-text-secondary);
   cursor: pointer;
   vertical-align: middle;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .button-large:hover {
-  background-color: #1471fd;
-  border: 0.5px solid #1471fd;
+  background-color: var(--figma-color-bg-brand);
+  border: 1px solid var(--figma-color-bg-brand);
   color: #fff;
   transition-duration: 0.2s;
 }
 
 .button-large:active {
-  background-color: #074aaf;
-  border: 0.5px solid #0b5ed7;
+  background-color: var(--figma-color-bg-brand-pressed);
+  border: 1px solid var(--figma-color-bg-brand-pressed);
   color: #fff;
   transition-duration: 0.2s;
 }
@@ -315,17 +420,27 @@ div label input:checked + span {
   bottom: 0;
   top: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   width: 100%;
-  background-color: #fafafa;
+  background-color: var(--figma-color-bg-secondary);
   padding: 0;
+  border-top: 1px solid var(--figma-color-border);
 }
 
 .disclaimer-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 0 1rem;
+  padding: 0 var(--figma-space-lg);
+  width: auto;
+}
+
+.theme-toggle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--figma-space-sm);
   width: auto;
 }
 
@@ -333,43 +448,45 @@ div label input:checked + span {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 0 1rem;
+  padding: 0 var(--figma-space-lg);
   width: auto;
 }
 
 .disclaimer-text {
   border: none;
-  font-size: 0.6rem;
+  font-size: var(--figma-font-size-xs);
   background: none;
-  color: rgb(158, 171, 196);
+  color: var(--figma-color-text-tertiary);
   cursor: pointer;
   display: inline-block;
   padding: 0;
+  transition: all 0.2s ease;
 }
 
 .disclaimer-text:hover {
-  color: rgb(108, 125, 155);
-  transition-duration: 0.3s;
+  color: var(--figma-color-text-secondary);
+  transition-duration: 0.2s;
 }
 
 .credit-text {
-  font-size: 0.6rem;
-  color: rgb(158, 171, 196);
+  font-size: var(--figma-font-size-xs);
+  color: var(--figma-color-text-tertiary);
   display: inline-block;
   padding: 0;
 }
 
 a:link,
 a:visited {
-  color: rgb(158, 171, 196);
+  color: var(--figma-color-text-tertiary);
   cursor: pointer;
   text-decoration: none;
   padding: 0;
+  transition: all 0.2s ease;
 }
 
 a:hover {
-  color: rgb(108, 125, 155);
-  transition-duration: 0.3s;
+  color: var(--figma-color-text-secondary);
+  transition-duration: 0.2s;
 }
 
 /* For checkbox buttons */
