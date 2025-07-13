@@ -7,7 +7,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 370, height: 615 });
+figma.showUI(__html__, { width: 380, height: 650 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -22,6 +22,14 @@ figma.on("selectionchange", () => {
 
 //Receiving the button inputs from UI
 figma.ui.onmessage = (msg) => {
+  if (msg.type === "get-theme") {
+    // Send current Figma theme to UI
+    figma.ui.postMessage({
+      type: "theme-changed",
+      theme: figma.editorType === "figma" ? "light" : "dark", // Figma uses light theme, FigJam uses dark
+    });
+  }
+
   if (msg.type === "generate-random") {
     //Giving notification if no layer is selected
     if (figma.currentPage.selection.length === 0) {
