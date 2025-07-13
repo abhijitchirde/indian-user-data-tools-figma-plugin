@@ -4013,10 +4013,7 @@ export const dataSet = {
     "Sundergarh",
   ],
 
-  /*************  ✨ Windsurf Command 🌟  *************/
   Puducherry: ["PY", "5", "6", "Karaikal", "Mahe", "Pondicherry", "Yanam"],
-
-  /*******  d31fbc32-13c7-4f53-a2dc-becdcd06cb24  *******/
 
   Punjab: [
     "PB",
