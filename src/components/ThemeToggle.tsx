@@ -22,10 +22,10 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
         color: "var(--figma-color-text)",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        minWidth: "60px",
+        minWidth: "20px",
       }}
     >
-      {isDark ? "☀️ Switch to Light" : "🌙 Switch to Dark"}
+      {isDark ? "☀️" : "🌙"}
     </button>
   );
 }
