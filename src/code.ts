@@ -42,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 380, height: 720 });
+figma.showUI(__html__, { width: 320, height: 670 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -129,23 +129,7 @@ async function generateRandomData(currentNode, msgData) {
     } else if (input === "UPIm") {
       currentNode.characters = generateUPIm();
     } else if (input === "Email") {
-      let fn =
-        dataSet["FirstName"][
-          Math.floor(Math.random() * dataSet["FirstName"].length)
-        ];
-      let ln =
-        dataSet["LastName"][
-          Math.floor(Math.random() * dataSet["LastName"].length)
-        ];
-      let em =
-        dataSet["EmailDomain"][
-          Math.floor(Math.random() * dataSet["EmailDomain"].length)
-        ];
-      let end =
-        dataSet["EmailEnd"][
-          Math.floor(Math.random() * dataSet["EmailEnd"].length)
-        ];
-      currentNode.characters = generateEmail(fn, ln, em, end);
+      currentNode.characters = generateEmail();
     } else if (input === "UPIn") {
       currentNode.characters = generateRandomUPIn();
     } else if (input === "Pass") {
@@ -182,7 +166,6 @@ async function generateRandomData(currentNode, msgData) {
     } else if (input === "GSTIN") {
       currentNode.characters = generateGSTIN();
     } else if (input === "DIN") {
-      // currentNode.characters = generateRandomDIN();
       currentNode.characters = generateDIN();
     } else if (input === "LLPIN") {
       currentNode.characters = generateLLPIN();
@@ -413,7 +396,7 @@ function generateTable(msgData) {
     formatLabelFrame(panLabelFrame);
     const panLabel = figma.createText();
     setFont(panLabel);
-    panLabel.characters = "PAN";
+    panLabel.characters = "PAN (Personal)";
     formatLabelText(panLabel);
     panLabelFrame.appendChild(panLabel);
     labelSectionHeight += generateTableCellHeight;
@@ -480,18 +463,17 @@ function generateTable(msgData) {
     labelSection.appendChild(voterLabelFrame);
   }
 
-  if (dataContent.CINValue === true) {
-    const CINLabelFrame = figma.createFrame();
-    formatLabelFrame(CINLabelFrame);
-    const CINLabel = figma.createText();
-    setFont(CINLabel);
-    CINLabel.characters = "CIN";
-    formatLabelText(CINLabel);
-    CINLabelFrame.appendChild(CINLabel);
+  if (dataContent.PANiValue === true) {
+    const PANiLabelFrame = figma.createFrame();
+    formatLabelFrame(PANiLabelFrame);
+    const PANiLabel = figma.createText();
+    setFont(PANiLabel);
+    PANiLabel.characters = "PAN (Corp)";
+    formatLabelText(PANiLabel);
+    PANiLabelFrame.appendChild(PANiLabel);
     labelSectionHeight += generateTableCellHeight;
-    labelSection.appendChild(CINLabelFrame);
+    labelSection.appendChild(PANiLabelFrame);
   }
-
   if (dataContent.GSTINValue === true) {
     const GSTINLabelFrame = figma.createFrame();
     formatLabelFrame(GSTINLabelFrame);
@@ -502,6 +484,18 @@ function generateTable(msgData) {
     GSTINLabelFrame.appendChild(GSTINLabel);
     labelSectionHeight += generateTableCellHeight;
     labelSection.appendChild(GSTINLabelFrame);
+  }
+
+  if (dataContent.CINValue === true) {
+    const CINLabelFrame = figma.createFrame();
+    formatLabelFrame(CINLabelFrame);
+    const CINLabel = figma.createText();
+    setFont(CINLabel);
+    CINLabel.characters = "CIN";
+    formatLabelText(CINLabel);
+    CINLabelFrame.appendChild(CINLabel);
+    labelSectionHeight += generateTableCellHeight;
+    labelSection.appendChild(CINLabelFrame);
   }
 
   if (dataContent.DINValue === true) {
@@ -546,12 +540,11 @@ function generateTable(msgData) {
   const tableFrameHeight = labelSectionHeight; //Height of table will be same as that of label or data section which will be same
   tableFrame.appendChild(labelSection); //Appending label section to the table frame
 
-  // --------------------------------Labels section defining over---------------------------------------------
+  // ------------Labels section defining over---------------------
 
   //Creating user data content sections using for-loop for number of users requested from input
   for (let i = 1; i <= userCount; i++) {
-    //Generate variables of user data from arryas and create const variables, which are then used in creating data content
-    //Name related
+    //Personal details
     const fName =
       dataSet["FirstName"][
         Math.floor(Math.random() * dataSet["FirstName"].length)
@@ -561,10 +554,44 @@ function generateTable(msgData) {
         Math.floor(Math.random() * dataSet["LastName"].length)
       ];
     const fullName = `${fName} ${lName}`;
-    //Mobile
-    const mobileDigits = generateMobile();
-    const mobile = `${mobileDigits}`;
-    //Upi related
+    const mobile = generateMobile();
+    const userEmail = generateEmail(fName, lName);
+    const dobContent = generateDoB();
+
+    //City, state
+    const stateName =
+      dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+    const cityName =
+      dataSet[`${stateName}`][
+        Math.floor(Math.random() * (dataSet[`${stateName}`].length - 3)) + 3
+      ];
+
+    // PIN
+    const stateZone = dataSet[`${stateName}`][2];
+    const pinRemainingDigits = numBetween(10000, 99999);
+    const pinCode = `${stateZone}${pinRemainingDigits}`;
+
+    //Urban Address
+    const urbanAddress = generateUrbAddress(stateName, cityName);
+
+    //Rural address
+    const ruralAddress = generateRurAddress(stateName, cityName);
+
+    //Profession
+    let userProfession = "";
+    if (dataContent.ProfValue === true) {
+      let domain = msgData.profDomain;
+      userProfession = generateProf(domain);
+    }
+
+    //Personal IDs
+    const dl = generateDL(stateName);
+    const rc = generateRC(stateName);
+    const passport = generatePassport();
+    const UID = generateAadhar();
+    const pan = generatePAN(fName);
+    const voterId = generateVoterID();
+    //Upi
     const upiEnd1 =
       dataSet["UPISuffix"][
         Math.floor(Math.random() * dataSet["UPISuffix"].length)
@@ -574,177 +601,15 @@ function generateTable(msgData) {
         Math.floor(Math.random() * dataSet["UPISuffix"].length)
       ];
     const upin = `${fName}${lName}@${upiEnd1}`.toLowerCase();
-    const upim = `${mobileDigits}@${upiEnd2}`.toLowerCase();
-    //City, state related
-    const stateName =
-      dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
-    const cityName =
-      dataSet[`${stateName}`][
-        Math.floor(Math.random() * (dataSet[`${stateName}`].length - 3)) + 3
-      ];
-    const stateZone = dataSet[`${stateName}`][2];
-    const pinRemainingDigits = numBetween(10000, 99999);
-    const pinCode = `${stateZone}${pinRemainingDigits}`;
-    //Urban Address
-    const urbSpotNo =
-      dataSet["UrbSpotNo"][
-        Math.floor(Math.random() * dataSet["UrbSpotNo"].length)
-      ];
-    const urbNum1 = numBetween(1, 99);
-    const urbLandmarkConj =
-      dataSet["LandmarkConjunction"][
-        Math.floor(Math.random() * dataSet["LandmarkConjunction"].length)
-      ];
-    const urbLandmark =
-      dataSet["UrbLandmark"][
-        Math.floor(Math.random() * dataSet["UrbLandmark"].length)
-      ];
-    const urbLandmarkSuffix =
-      dataSet["UrbLandmarkSuffix"][
-        Math.floor(Math.random() * dataSet["UrbLandmarkSuffix"].length)
-      ];
-    const urbAreaNameSelectorArray = ["FirstName", "LastName"];
-    const urbAreaNameSelector =
-      urbAreaNameSelectorArray[
-        Math.floor(Math.random() * urbAreaNameSelectorArray.length)
-      ];
-    const urbAreaName =
-      dataSet[`${urbAreaNameSelector}`][
-        Math.floor(Math.random() * dataSet[`${urbAreaNameSelector}`].length)
-      ];
-    const urbAreaSuffix =
-      dataSet["UrbAreaSuffix"][
-        Math.floor(Math.random() * dataSet["UrbAreaSuffix"].length)
-      ];
-    const urbAreaNo =
-      dataSet["UrbAreaNo"][
-        Math.floor(Math.random() * dataSet["UrbAreaNo"].length)
-      ];
-    const urbNum2 = numBetween(1, 99);
-    const subUrb =
-      dataSet[`${stateZone}villages`][
-        Math.floor(Math.random() * dataSet[`${stateZone}villages`].length)
-      ];
-    const subUrbSuffix =
-      dataSet["UrbSuburbSuffix"][
-        Math.floor(Math.random() * dataSet["UrbSuburbSuffix"].length)
-      ];
-    const urbanAddress = `${urbSpotNo}${urbNum1}, ${urbLandmarkConj}${urbLandmark}${urbLandmarkSuffix}, ${urbAreaName}${urbAreaSuffix}, ${urbAreaNo}${urbNum2}, ${subUrb}${subUrbSuffix}, ${cityName}`;
-    //Rural address
-    const rurLandmarkConj =
-      dataSet["LandmarkConjunction"][
-        Math.floor(Math.random() * dataSet["LandmarkConjunction"].length)
-      ];
-    const rurLandmark =
-      dataSet["RurLandmark"][
-        Math.floor(Math.random() * dataSet["RurLandmark"].length)
-      ];
-    const rurLandmarkSuffix =
-      dataSet["RurLandmarkSuffix"][
-        Math.floor(Math.random() * dataSet["RurLandmarkSuffix"].length)
-      ];
-    const rurVillageSuffix =
-      dataSet["RurVillageSuffix"][
-        Math.floor(Math.random() * dataSet["RurVillageSuffix"].length)
-      ];
-    const rurVillage1 =
-      dataSet[`${stateZone}villages`][
-        Math.floor(Math.random() * dataSet[`${stateZone}villages`].length)
-      ];
-    const rurVillage2 =
-      dataSet[`${stateZone}villages`][
-        Math.floor(Math.random() * dataSet[`${stateZone}villages`].length)
-      ];
-    const rurVillageNearbySffix =
-      dataSet["RurVillageNearbySuffix"][
-        Math.floor(Math.random() * dataSet["RurVillageNearbySuffix"].length)
-      ];
-    const ruralAddress = `${rurLandmarkConj}${rurLandmark}${rurLandmarkSuffix}, ${rurVillage1}${rurVillageSuffix}, ${rurVillage2}${rurVillageNearbySffix}, Dist-${cityName}`;
-    //Email
-    const emailDomain =
-      dataSet["EmailDomain"][
-        Math.floor(Math.random() * dataSet["EmailDomain"].length)
-      ];
-    const emailEnd =
-      dataSet["EmailEnd"][
-        Math.floor(Math.random() * dataSet["EmailEnd"].length)
-      ];
-    const userEmail = generateEmail(fName, lName, emailDomain, emailEnd);
-
-    // Dob
-    const dobContent = generateDoB();
-
-    //Profession
-    let userProfession = "";
-    if (dataContent.ProfValue === true) {
-      let domain = msgData.profDomain;
-      userProfession = generateProf(domain);
-    }
-
-    //DL, RC related
-    const stateInitials = dataSet[`${stateName}`][0];
-    const rtoDigits = numBetween(1, parseInt(dataSet[`${stateName}`][1], 10));
-    const dlYear = numBetween(1980, 2021);
-    const dlLastDigits = numBetween(1000000, 9999999);
-    const rcLetter1 =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    const rcLetter2 =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    const rcEndDigits = numBetween(1000, 9999);
-    //Passport
-    const passport = generatePassport();
-    //UID
-    const UID = generateAadhar();
-    //PAN
-    const panLetter1 =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    let panLetter2 =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    let panLetter3 =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    let panLetter4 = "P";
-    let panLetter5 = fName[0];
-    let panDigits = numBetween(1000, 9999);
-    let panLastLetter =
-      dataSet["Alphabets"][
-        Math.floor(Math.random() * dataSet["Alphabets"].length)
-      ];
-    const pan = `${panLetter1}${panLetter2}${panLetter3}${panLetter4}${panLetter5}${panDigits}${panLastLetter}`;
-
-    //Voter ID
-    const voterId = generateVoterID();
+    const upim = `${mobile}@${upiEnd2}`.toLowerCase();
 
     // Business IDs
-    // CIN
-    const listingStatus = ["L", "U"][Math.floor(Math.random() * 2)];
-    const industryCode = Math.random().toString().slice(2, 7);
-    const year = Math.floor(Math.random() * (2024 - 1900 + 1)) + 1900;
-    const companyTypes = ["PLC", "PTC", "OPC"];
-    const companyType =
-      companyTypes[Math.floor(Math.random() * companyTypes.length)];
-    const registrationNumber = Math.random().toString().slice(2, 8);
-    const cin = `${listingStatus}${industryCode}${stateInitials}${year}${companyType}${registrationNumber}`;
-
-    // GSTIN
-    const stateCode = dataSet[`${stateName}`]; //add statecode here from dataset
+    const cin = generateCIN(stateName);
     const pani = generatePANi();
-    const entityNumber = "1";
-    const defaultChar = "Z";
-    const checksumChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const checksum = checksumChars.charAt(
-      Math.floor(Math.random() * checksumChars.length)
-    );
-    const gstin = `${stateCode}${pani}${entityNumber}${defaultChar}${checksum}`;
+    const gstin = generateGSTIN(stateName, pani);
+    const din = generateDIN();
+    const llpin = generateLLPIN();
+    const tan = generateTAN();
 
     // --------------------------------Values declaration over---------------------------------------------
 
@@ -955,11 +820,7 @@ function generateTable(msgData) {
       formatContentFrame(dlTextFrame);
       const dlText = figma.createText();
       setFont(dlText);
-      if (rtoDigits < 10) {
-        dlText.characters = `${stateInitials}0${rtoDigits}${dlYear}${dlLastDigits}`;
-      } else {
-        dlText.characters = `${stateInitials}${rtoDigits}${dlYear}${dlLastDigits}`;
-      }
+      dlText.characters = `${dl}`;
       formatContentText(dlText);
       dlTextFrame.appendChild(dlText);
       dataSection.appendChild(dlTextFrame);
@@ -970,14 +831,87 @@ function generateTable(msgData) {
       formatContentFrame(rcTextFrame);
       const rcText = figma.createText();
       setFont(rcText);
-      if (rtoDigits < 10) {
-        rcText.characters = `${stateInitials}0${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
-      } else {
-        rcText.characters = `${stateInitials}${rtoDigits}${rcLetter1}${rcLetter2}${rcEndDigits}`;
-      }
+      rcText.characters = `${rc}`;
       formatContentText(rcText);
       rcTextFrame.appendChild(rcText);
       dataSection.appendChild(rcTextFrame);
+    }
+
+    if (dataContent.VoterValue === true) {
+      const voterTextFrame = figma.createFrame();
+      formatContentFrame(voterTextFrame);
+      const voterText = figma.createText();
+      setFont(voterText);
+      voterText.characters = `${voterId}`;
+      formatContentText(voterText);
+      voterTextFrame.appendChild(voterText);
+      dataSection.appendChild(voterTextFrame);
+    }
+
+    if (dataContent.PANiValue === true) {
+      const PANiTextFrame = figma.createFrame();
+      formatContentFrame(PANiTextFrame);
+      const PANiText = figma.createText();
+      setFont(PANiText);
+      PANiText.characters = `${pani}`;
+      formatContentText(PANiText);
+      PANiTextFrame.appendChild(PANiText);
+      dataSection.appendChild(PANiTextFrame);
+    }
+
+    if (dataContent.GSTINValue === true) {
+      const GSTINTextFrame = figma.createFrame();
+      formatContentFrame(GSTINTextFrame);
+      const GSTINText = figma.createText();
+      setFont(GSTINText);
+      GSTINText.characters = `${gstin}`;
+      formatContentText(GSTINText);
+      GSTINTextFrame.appendChild(GSTINText);
+      dataSection.appendChild(GSTINTextFrame);
+    }
+
+    if (dataContent.CINValue === true) {
+      const CINTextFrame = figma.createFrame();
+      formatContentFrame(CINTextFrame);
+      const CINText = figma.createText();
+      setFont(CINText);
+      CINText.characters = `${cin}`;
+      formatContentText(CINText);
+      CINTextFrame.appendChild(CINText);
+      dataSection.appendChild(CINTextFrame);
+    }
+
+    if (dataContent.DINValue === true) {
+      const DINTextFrame = figma.createFrame();
+      formatContentFrame(DINTextFrame);
+      const DINText = figma.createText();
+      setFont(DINText);
+      DINText.characters = `${din}`;
+      formatContentText(DINText);
+      DINTextFrame.appendChild(DINText);
+      dataSection.appendChild(DINTextFrame);
+    }
+
+    if (dataContent.LLPINValue === true) {
+      const LLPINTextFrame = figma.createFrame();
+      formatContentFrame(LLPINTextFrame);
+      const LLPINText = figma.createText();
+      setFont(LLPINText);
+      LLPINText.characters = `${llpin}`;
+      formatContentText(LLPINText);
+      LLPINTextFrame.appendChild(LLPINText);
+      dataSection.appendChild(LLPINTextFrame);
+    }
+
+    if (dataContent.TANValue === true) {
+      const TANTextFrame = figma.createFrame();
+      formatContentFrame(TANTextFrame);
+      const TANText = figma.createText();
+      setFont(TANText);
+      TANText.characters = `${tan}`;
+      formatContentText(TANText);
+      TANTextFrame.appendChild(TANText);
+      dataSection.appendChild(TANTextFrame);
     }
 
     const dataSectionWidth = generateTableDataWidth; //Constant already defined initially

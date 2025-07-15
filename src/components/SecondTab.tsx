@@ -137,7 +137,7 @@ const SecondTab = ({ onClick }) => {
                 />
                 <DataCheckbox
                   name="UrbAddressChk"
-                  label="Urban Address"
+                  label="City Address"
                   checked={chkData.UrbAddressValue}
                   id="UrbAddressValue"
                   onChange={updateCheckbox}
@@ -171,7 +171,7 @@ const SecondTab = ({ onClick }) => {
               <div className="checkboxes">
                 <DataCheckbox
                   name="PassChk"
-                  label="Indian Passport"
+                  label="Passport"
                   checked={chkData.PassValue}
                   id="PassValue"
                   onChange={updateCheckbox}
@@ -206,7 +206,7 @@ const SecondTab = ({ onClick }) => {
                 />
                 <DataCheckbox
                   name="DLChk"
-                  label="Driver's License"
+                  label="DL"
                   checked={chkData.DLValue}
                   id="DLValue"
                   onChange={updateCheckbox}
@@ -231,10 +231,10 @@ const SecondTab = ({ onClick }) => {
               <p className="group-label">Business IDs</p>
               <div className="checkboxes">
                 <DataCheckbox
-                  name="CINChk"
-                  label="CIN"
-                  checked={chkData.CINValue}
-                  id="CINValue"
+                  name="PANi"
+                  label="PAN (Corp)"
+                  checked={chkData.PANiValue}
+                  id="PANiValue"
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox
@@ -242,6 +242,13 @@ const SecondTab = ({ onClick }) => {
                   label="GSTIN"
                   checked={chkData.GSTINValue}
                   id="GSTINValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="CINChk"
+                  label="CIN"
+                  checked={chkData.CINValue}
+                  id="CINValue"
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox
@@ -256,13 +263,6 @@ const SecondTab = ({ onClick }) => {
                   label="LLPIN"
                   checked={chkData.LLPINValue}
                   id="LLPINValue"
-                  onChange={updateCheckbox}
-                />
-                <DataCheckbox
-                  name="PANi"
-                  label="PAN (Corp)"
-                  checked={chkData.PANiValue}
-                  id="PANiValue"
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox

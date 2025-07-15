@@ -157,7 +157,7 @@ const FirstTab = ({ onClick }) => {
                   action={clickHandler}
                 />
                 <DataButton
-                  name="Urban Address"
+                  name="City Address"
                   value="UrbAddress"
                   action={clickHandler}
                 />
@@ -180,7 +180,7 @@ const FirstTab = ({ onClick }) => {
               <p className="group-label">Personal IDs</p>
               <div className="buttons-div">
                 <DataButton
-                  name="Indian Passport"
+                  name="Passport"
                   value="Pass"
                   action={clickHandler}
                 />
@@ -204,11 +204,7 @@ const FirstTab = ({ onClick }) => {
                   value="UPIm"
                   action={clickHandler}
                 />
-                <DataButton
-                  name="Driving Lic."
-                  value="DL"
-                  action={clickHandler}
-                />
+                <DataButton name="DL" value="DL" action={clickHandler} />
                 <DataButton
                   name="Vehicle RC"
                   value="RC"
@@ -225,15 +221,15 @@ const FirstTab = ({ onClick }) => {
             <div className="button-group">
               <p className="group-label">Business IDs</p>
               <div className="buttons-div">
-                <DataButton name="CIN" value="CIN" action={clickHandler} />
-                <DataButton name="GSTIN" value="GSTIN" action={clickHandler} />
-                <DataButton name="DIN" value="DIN" action={clickHandler} />
-                <DataButton name="LLPIN" value="LLPIN" action={clickHandler} />
                 <DataButton
                   name="PAN (Corp)"
                   value="PANi"
                   action={clickHandler}
                 />
+                <DataButton name="GSTIN" value="GSTIN" action={clickHandler} />
+                <DataButton name="CIN" value="CIN" action={clickHandler} />
+                <DataButton name="DIN" value="DIN" action={clickHandler} />
+                <DataButton name="LLPIN" value="LLPIN" action={clickHandler} />
                 <DataButton name="TAN" value="TAN" action={clickHandler} />
               </div>
             </div>
