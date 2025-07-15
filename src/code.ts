@@ -545,26 +545,16 @@ function generateTable(msgData) {
   //Creating user data content sections using for-loop for number of users requested from input
   for (let i = 1; i <= userCount; i++) {
     //Personal details
-    const fName =
-      dataSet["FirstName"][
-        Math.floor(Math.random() * dataSet["FirstName"].length)
-      ];
-    const lName =
-      dataSet["LastName"][
-        Math.floor(Math.random() * dataSet["LastName"].length)
-      ];
+    const fName = generateFirstName();
+    const lName = generateLastName();
     const fullName = `${fName} ${lName}`;
     const mobile = generateMobile();
     const userEmail = generateEmail(fName, lName);
     const dobContent = generateDoB();
 
     //City, state
-    const stateName =
-      dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
-    const cityName =
-      dataSet[`${stateName}`][
-        Math.floor(Math.random() * (dataSet[`${stateName}`].length - 3)) + 3
-      ];
+    const stateName = generateState();
+    const cityName = generateCity(stateName);
 
     // PIN
     const stateZone = dataSet[`${stateName}`][2];

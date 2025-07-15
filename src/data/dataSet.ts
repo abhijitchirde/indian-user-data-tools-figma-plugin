@@ -3426,7 +3426,7 @@ export const dataSet = {
     "Ladakh",
   ],
 
-  //In states arrays: first element is short name useful for driving license. Second element is total number of RTOs to be used for getting max value of driving license RTO. Third element is a postal zone number to use as first letter of that state's PINcode series
+  //In states arrays: 1st element is short name useful for driving license. 2nd element is total number of RTOs to be used for getting max value of driving license RTO. 3rd element is a postal zone number to use as first letter of that state's PINcode series. 4th element is a statecode for GSTIN
 
   "Andhra Pradesh": [
     "AP",
