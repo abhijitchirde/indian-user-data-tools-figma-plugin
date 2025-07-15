@@ -23,6 +23,13 @@ const SecondTab = ({ onClick }) => {
     UPImValue: false,
     DLValue: false,
     RCValue: false,
+    VoterValue: false,
+    CINValue: false,
+    GSTINValue: true,
+    DINValue: false,
+    LLPINValue: false,
+    PANiValue: false,
+    TANValue: false,
   });
 
   const [usersInput, setUsersInput] = React.useState(1);
@@ -160,7 +167,7 @@ const SecondTab = ({ onClick }) => {
             </div>
 
             <div className="checkbox-group">
-              <p className="group-label">Identity</p>
+              <p className="group-label">Personal IDs</p>
               <div className="checkboxes">
                 <DataCheckbox
                   name="PassChk"
@@ -209,6 +216,60 @@ const SecondTab = ({ onClick }) => {
                   label="Vehicle RC"
                   checked={chkData.RCValue}
                   id="RCValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="VoterChk"
+                  label="Voter ID"
+                  checked={chkData.VoterValue}
+                  id="VoterValue"
+                  onChange={updateCheckbox}
+                />
+              </div>
+            </div>
+            <div className="checkbox-group">
+              <p className="group-label">Business IDs</p>
+              <div className="checkboxes">
+                <DataCheckbox
+                  name="CINChk"
+                  label="CIN"
+                  checked={chkData.CINValue}
+                  id="CINValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="GSTINChk"
+                  label="GSTIN"
+                  checked={chkData.GSTINValue}
+                  id="GSTINValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="DINChk"
+                  label="DIN"
+                  checked={chkData.DINValue}
+                  id="DINValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="LLPINChk"
+                  label="LLPIN"
+                  checked={chkData.LLPINValue}
+                  id="LLPINValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="PANi"
+                  label="PAN (Corp)"
+                  checked={chkData.PANiValue}
+                  id="PANiValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
+                  name="TAN"
+                  label="TAN"
+                  checked={chkData.TANValue}
+                  id="TANValue"
                   onChange={updateCheckbox}
                 />
               </div>

@@ -194,7 +194,7 @@ body {
   font-weight: 500;
   color: var(--figma-color-text-brand);
   font-size: var(--figma-font-size-md);
-  margin: var(--figma-space-md) 0;
+  margin: 5px 0 var(--figma-space-md) 0;
 }
 
 .buttons-div {
@@ -487,6 +487,14 @@ a:visited {
 a:hover {
   color: var(--figma-color-text-secondary);
   transition-duration: 0.2s;
+}
+
+.error-note {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 2.2rem;
 }
 
 /* For checkbox buttons */
