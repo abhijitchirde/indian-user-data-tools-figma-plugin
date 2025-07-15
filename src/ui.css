@@ -96,6 +96,7 @@ body {
   padding: 0;
   color: var(--figma-color-text);
   transition: background-color 0.2s ease, color 0.2s ease;
+  /* background-color: #fafafa; */
 }
 
 /* tabs related styling */
@@ -181,7 +182,7 @@ body {
 .button-group {
   text-align: center;
   padding: 0 var(--figma-space-sm) var(--figma-space-sm);
-  margin: 0 var(--figma-space-md) var(--figma-space-md);
+  margin: 0 var(--figma-space-xs) var(--figma-space-xs);
   background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
   border-radius: var(--figma-radius-md);
@@ -194,7 +195,7 @@ body {
   font-weight: 500;
   color: var(--figma-color-text-brand);
   font-size: var(--figma-font-size-md);
-  margin: var(--figma-space-md) 0;
+  margin: 5px 0 var(--figma-space-md) 0;
 }
 
 .buttons-div {
@@ -211,8 +212,8 @@ body {
   font-weight: 400;
   padding: var(--figma-space-xs);
   min-width: 5rem;
-  height: 1.4rem;
-  width: auto;
+  height: 1.3rem;
+  width: 5.4rem;
   border: 1px solid var(--figma-color-border-strong);
   background-color: var(--figma-color-bg);
   border-radius: var(--figma-radius-sm);
@@ -285,7 +286,7 @@ body {
 .checkbox-group {
   text-align: center;
   padding: 0 var(--figma-space-sm) var(--figma-space-sm);
-  margin: 0 var(--figma-space-md) var(--figma-space-md);
+  margin: 0 var(--figma-space-xs) var(--figma-space-xs);
   background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
   border-radius: var(--figma-radius-md);
@@ -312,6 +313,8 @@ div label input:checked + span {
   border: 1px solid var(--figma-color-border-strong);
   overflow: hidden;
   min-width: 5rem;
+  width: 5.4rem;
+  height: 1.3rem;
   transition: all 0.2s ease;
 }
 
@@ -487,6 +490,14 @@ a:visited {
 a:hover {
   color: var(--figma-color-text-secondary);
   transition-duration: 0.2s;
+}
+
+.error-note {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 2.2rem;
 }
 
 /* For checkbox buttons */

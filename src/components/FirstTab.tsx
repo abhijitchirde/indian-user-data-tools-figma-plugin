@@ -157,7 +157,7 @@ const FirstTab = ({ onClick }) => {
                   action={clickHandler}
                 />
                 <DataButton
-                  name="Urban Address"
+                  name="City Address"
                   value="UrbAddress"
                   action={clickHandler}
                 />
@@ -177,10 +177,10 @@ const FirstTab = ({ onClick }) => {
             </div>
 
             <div className="button-group">
-              <p className="group-label">Identity</p>
+              <p className="group-label">Personal IDs</p>
               <div className="buttons-div">
                 <DataButton
-                  name="Indian Passport"
+                  name="Passport"
                   value="Pass"
                   action={clickHandler}
                 />
@@ -204,30 +204,48 @@ const FirstTab = ({ onClick }) => {
                   value="UPIm"
                   action={clickHandler}
                 />
-                <DataButton
-                  name="Driving Lic."
-                  value="DL"
-                  action={clickHandler}
-                />
+                <DataButton name="DL" value="DL" action={clickHandler} />
                 <DataButton
                   name="Vehicle RC"
                   value="RC"
                   action={clickHandler}
                 />
+                <DataButton
+                  name="Voter ID"
+                  value="Voter"
+                  action={clickHandler}
+                />
+              </div>
+            </div>
+
+            <div className="button-group">
+              <p className="group-label">Business IDs</p>
+              <div className="buttons-div">
+                <DataButton
+                  name="PAN (Corp)"
+                  value="PANi"
+                  action={clickHandler}
+                />
+                <DataButton name="GSTIN" value="GSTIN" action={clickHandler} />
+                <DataButton name="CIN" value="CIN" action={clickHandler} />
+                <DataButton name="DIN" value="DIN" action={clickHandler} />
+                <DataButton name="LLPIN" value="LLPIN" action={clickHandler} />
+                <DataButton name="TAN" value="TAN" action={clickHandler} />
               </div>
             </div>
           </div>
         </div>
-        <p
-          style={{
-            textAlign: "center",
-            fontSize: "0.8rem",
-            color: "#6f6f70",
-            paddingTop: "0.5rem",
-          }}
-        >
-          Note: In case of an error, please restart the plugin.
-        </p>
+        <div className="error-note">
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "0.7rem",
+              color: "#6f6f70",
+            }}
+          >
+            Note: In case of an error, please restart the plugin.
+          </p>
+        </div>
       </div>
     </>
   );
