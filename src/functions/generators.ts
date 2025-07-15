@@ -145,12 +145,13 @@ export function generatePINCode() {
 }
 
 // City
-export function generateCity() {
+export function generateCity(stateName?: string) {
   let state =
+    stateName ??
     dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
   let city =
     dataSet[`${state}`][
-      Math.floor(Math.random() * (dataSet[`${state}`].length - 3)) + 3
+      Math.floor(Math.random() * (dataSet[`${state}`].length - 4)) + 4
     ];
   return `${city}`;
 }
