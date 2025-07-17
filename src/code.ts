@@ -21,12 +21,12 @@ import {
   generatePassport,
   generatePINCode,
   generateProf,
-  generateRandomUPIn,
   generateRC,
   generateRurAddress,
   generateState,
   generateTAN,
   generateUPIm,
+  generateUPIn,
   generateUrbAddress,
   generateVoterID,
 } from "./functions/generators";
@@ -131,7 +131,7 @@ async function generateRandomData(currentNode, msgData) {
     } else if (input === "Email") {
       currentNode.characters = generateEmail();
     } else if (input === "UPIn") {
-      currentNode.characters = generateRandomUPIn();
+      currentNode.characters = generateUPIn();
     } else if (input === "Pass") {
       currentNode.characters = generatePassport();
     } else if (input === "DL") {
@@ -581,17 +581,8 @@ function generateTable(msgData) {
     const UID = generateAadhar();
     const pan = generatePAN(fName);
     const voterId = generateVoterID();
-    //Upi
-    const upiEnd1 =
-      dataSet["UPISuffix"][
-        Math.floor(Math.random() * dataSet["UPISuffix"].length)
-      ];
-    const upiEnd2 =
-      dataSet["UPISuffix"][
-        Math.floor(Math.random() * dataSet["UPISuffix"].length)
-      ];
-    const upin = `${fName}${lName}@${upiEnd1}`.toLowerCase();
-    const upim = `${mobile}@${upiEnd2}`.toLowerCase();
+    const upin = generateUPIn(fName, lName);
+    const upim = generateUPIm(mobile);
 
     // Business IDs
     const cin = generateCIN(stateName);
