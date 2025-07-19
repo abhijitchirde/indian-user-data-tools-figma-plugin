@@ -32,7 +32,6 @@ import {
 } from "./functions/generators";
 import {
   loadUserFont,
-  numBetween,
   setFont,
   setFontLight,
   setUserFont,
@@ -115,7 +114,6 @@ async function generateRandomData(currentNode, msgData) {
   //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
 
   if (currentNode.type === "TEXT") {
-    //If requirement is full-name, we need to attach elements for output
     if (input === "FullName") {
       let first = generateFirstName();
       let last = generateLastName();
@@ -180,10 +178,8 @@ async function generateRandomData(currentNode, msgData) {
 //Function for generating a new card with user details and appending it on the canvas
 function generateTable(msgData) {
   const nodes: SceneNode[] = [];
-
   const dataContent = msgData.chkData;
-
-  const userCount = msgData.noOfUsers; //To be used to create data content in later part
+  const userCount = msgData.noOfUsers; //To be used to create user sets
 
   //If addresses are not required, reduce the width of data section
   if (
@@ -552,19 +548,11 @@ function generateTable(msgData) {
     const userEmail = generateEmail(fName, lName);
     const dobContent = generateDoB();
 
-    //City, state
+    // Location details
     const stateName = generateState();
     const cityName = generateCity(stateName);
-
-    // PIN
-    const stateZone = dataSet[`${stateName}`][2];
-    const pinRemainingDigits = numBetween(10000, 99999);
-    const pinCode = `${stateZone}${pinRemainingDigits}`;
-
-    //Urban Address
+    const pinCode = generatePINCode(stateName);
     const urbanAddress = generateUrbAddress(stateName, cityName);
-
-    //Rural address
     const ruralAddress = generateRurAddress(stateName, cityName);
 
     //Profession
@@ -592,7 +580,7 @@ function generateTable(msgData) {
     const llpin = generateLLPIN();
     const tan = generateTAN();
 
-    // --------------------------------Values declaration over---------------------------------------------
+    // ----------Values declaration over--------------
 
     const dataSection = figma.createFrame(); //Section containing data items
     dataSection.layoutMode = "VERTICAL"; //Vertical autolayout

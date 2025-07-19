@@ -131,13 +131,6 @@ export function generateProf(domain) {
 }
 
 // Location-------------------------------------------
-// Pincode
-export function generatePINCode() {
-  let pinFirst = Math.floor(Math.random() * 8 + 1);
-  let pinRemaining = numBetween(10000, 99999); //Finding a random 5 digit number for remaining part of PIN
-  return `${pinFirst}${pinRemaining}`;
-}
-
 // State
 export function generateState() {
   let state =
@@ -160,6 +153,14 @@ export function generateCityStatePair() {
   let state = generateState();
   let city = generateCity(state);
   return `${city}, ${state}`;
+}
+
+// Pincode
+export function generatePINCode(stateName?: string) {
+  let state = stateName ?? generateState();
+  const stateZone = dataSet[`${state}`][2];
+  let pinRemaining = numBetween(10000, 99999); //random 5 digits for remaining part
+  return `${stateZone}${pinRemaining}`;
 }
 
 // Rural address
