@@ -204,6 +204,11 @@ const FirstTab = ({ onClick }) => {
                   value="UPIm"
                   action={clickHandler}
                 />
+                <DataButton
+                  name="Voter ID"
+                  value="Voter"
+                  action={clickHandler}
+                />
                 <DataButton name="DL" value="DL" action={clickHandler} />
                 <DataButton
                   name="Vehicle RC"
@@ -211,8 +216,8 @@ const FirstTab = ({ onClick }) => {
                   action={clickHandler}
                 />
                 <DataButton
-                  name="Voter ID"
-                  value="Voter"
+                  name="RC (BH series)"
+                  value="RCBH"
                   action={clickHandler}
                 />
               </div>

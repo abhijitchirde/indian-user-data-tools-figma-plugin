@@ -22,6 +22,7 @@ import {
   generatePINCode,
   generateProf,
   generateRC,
+  generateRCBH,
   generateRurAddress,
   generateState,
   generateTAN,
@@ -41,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 320, height: 670 });
+figma.showUI(__html__, { width: 320, height: 680 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -136,6 +137,8 @@ async function generateRandomData(currentNode, msgData) {
       currentNode.characters = generateDL();
     } else if (input === "RC") {
       currentNode.characters = generateRC();
+    } else if (input === "RCBH") {
+      currentNode.characters = generateRCBH();
     } else if (input === "PIN") {
       currentNode.characters = generatePINCode();
     } else if (input === "City") {
@@ -446,6 +449,17 @@ function generateTable(msgData) {
     labelSectionHeight += generateTableCellHeight;
     labelSection.appendChild(rcLabelFrame);
   }
+  if (dataContent.RCBHValue === true) {
+    const rcbhLabelFrame = figma.createFrame();
+    formatLabelFrame(rcbhLabelFrame);
+    const rcbhLabel = figma.createText();
+    setFont(rcbhLabel);
+    rcbhLabel.characters = "Vehicle Reg. (BH series)";
+    formatLabelText(rcbhLabel);
+    rcbhLabelFrame.appendChild(rcbhLabel);
+    labelSectionHeight += generateTableCellHeight;
+    labelSection.appendChild(rcbhLabelFrame);
+  }
 
   if (dataContent.VoterValue === true) {
     const voterLabelFrame = figma.createFrame();
@@ -565,6 +579,7 @@ function generateTable(msgData) {
     //Personal IDs
     const dl = generateDL(stateName);
     const rc = generateRC(stateName);
+    const rcbh = generateRCBH();
     const passport = generatePassport();
     const UID = generateAadhar();
     const pan = generatePAN(fName);
@@ -804,6 +819,16 @@ function generateTable(msgData) {
       formatContentText(rcText);
       rcTextFrame.appendChild(rcText);
       dataSection.appendChild(rcTextFrame);
+    }
+    if (dataContent.RCBHValue === true) {
+      const rcbhTextFrame = figma.createFrame();
+      formatContentFrame(rcbhTextFrame);
+      const rcbhText = figma.createText();
+      setFont(rcbhText);
+      rcbhText.characters = `${rcbh}`;
+      formatContentText(rcbhText);
+      rcbhTextFrame.appendChild(rcbhText);
+      dataSection.appendChild(rcbhTextFrame);
     }
 
     if (dataContent.VoterValue === true) {

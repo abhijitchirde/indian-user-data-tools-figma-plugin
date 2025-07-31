@@ -335,6 +335,29 @@ export function generateRC(stateName?: string) {
   }
 }
 
+// BH Series RC (Bharat Series)
+export function generateRCBH() {
+  //year
+  const allyears = ["22", "23", "24", "25", "22", "23", "24", "25", "26"];
+  let year = allyears[Math.floor(Math.random() * allyears.length)];
+
+  //4 digits
+  let middigits = numBetween(1000, 9999);
+
+  //random letters (excluding I and O)
+  let availableLetters = dataSet["Alphabets"].filter(
+    (letter) => letter !== "I" && letter !== "O"
+  );
+  let letter1 =
+    availableLetters[Math.floor(Math.random() * availableLetters.length)];
+  let letter2 =
+    dataSet["Alphabets"][
+      Math.floor(Math.random() * dataSet["Alphabets"].length)
+    ];
+
+  return `${year}BH${middigits}${letter1}${letter2}`;
+}
+
 // PAN
 export function generatePAN(fName?: string) {
   let letter1 =

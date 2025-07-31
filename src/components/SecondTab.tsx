@@ -23,6 +23,7 @@ const SecondTab = ({ onClick }) => {
     UPImValue: false,
     DLValue: false,
     RCValue: false,
+    RCBHValue: false,
     VoterValue: false,
     CINValue: false,
     GSTINValue: true,
@@ -45,7 +46,6 @@ const SecondTab = ({ onClick }) => {
   };
 
   const isDomain = (value) => {
-    // console.log(value);
     setChkData((prev) => {
       return { ...prev, ["ProfValue"]: value };
     });
@@ -205,6 +205,13 @@ const SecondTab = ({ onClick }) => {
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox
+                  name="VoterChk"
+                  label="Voter ID"
+                  checked={chkData.VoterValue}
+                  id="VoterValue"
+                  onChange={updateCheckbox}
+                />
+                <DataCheckbox
                   name="DLChk"
                   label="DL"
                   checked={chkData.DLValue}
@@ -219,10 +226,10 @@ const SecondTab = ({ onClick }) => {
                   onChange={updateCheckbox}
                 />
                 <DataCheckbox
-                  name="VoterChk"
-                  label="Voter ID"
-                  checked={chkData.VoterValue}
-                  id="VoterValue"
+                  name="RCBHChk"
+                  label="RC (BH series)"
+                  checked={chkData.RCValue}
+                  id="RCBHValue"
                   onChange={updateCheckbox}
                 />
               </div>
