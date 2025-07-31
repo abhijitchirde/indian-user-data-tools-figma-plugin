@@ -21,18 +21,18 @@ import {
   generatePassport,
   generatePINCode,
   generateProf,
-  generateRandomUPIn,
   generateRC,
+  generateRCBH,
   generateRurAddress,
   generateState,
   generateTAN,
   generateUPIm,
+  generateUPIn,
   generateUrbAddress,
   generateVoterID,
 } from "./functions/generators";
 import {
   loadUserFont,
-  numBetween,
   setFont,
   setFontLight,
   setUserFont,
@@ -42,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 320, height: 670 });
+figma.showUI(__html__, { width: 320, height: 680 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -115,7 +115,6 @@ async function generateRandomData(currentNode, msgData) {
   //Also adding a TEXT node check initially as characters is only available on that, otherwise it will throw an error
 
   if (currentNode.type === "TEXT") {
-    //If requirement is full-name, we need to attach elements for output
     if (input === "FullName") {
       let first = generateFirstName();
       let last = generateLastName();
@@ -131,13 +130,15 @@ async function generateRandomData(currentNode, msgData) {
     } else if (input === "Email") {
       currentNode.characters = generateEmail();
     } else if (input === "UPIn") {
-      currentNode.characters = generateRandomUPIn();
+      currentNode.characters = generateUPIn();
     } else if (input === "Pass") {
       currentNode.characters = generatePassport();
     } else if (input === "DL") {
       currentNode.characters = generateDL();
     } else if (input === "RC") {
       currentNode.characters = generateRC();
+    } else if (input === "RCBH") {
+      currentNode.characters = generateRCBH();
     } else if (input === "PIN") {
       currentNode.characters = generatePINCode();
     } else if (input === "City") {
@@ -180,10 +181,8 @@ async function generateRandomData(currentNode, msgData) {
 //Function for generating a new card with user details and appending it on the canvas
 function generateTable(msgData) {
   const nodes: SceneNode[] = [];
-
   const dataContent = msgData.chkData;
-
-  const userCount = msgData.noOfUsers; //To be used to create data content in later part
+  const userCount = msgData.noOfUsers; //To be used to create user sets
 
   //If addresses are not required, reduce the width of data section
   if (
@@ -450,6 +449,17 @@ function generateTable(msgData) {
     labelSectionHeight += generateTableCellHeight;
     labelSection.appendChild(rcLabelFrame);
   }
+  if (dataContent.RCBHValue === true) {
+    const rcbhLabelFrame = figma.createFrame();
+    formatLabelFrame(rcbhLabelFrame);
+    const rcbhLabel = figma.createText();
+    setFont(rcbhLabel);
+    rcbhLabel.characters = "Vehicle Reg. (BH series)";
+    formatLabelText(rcbhLabel);
+    rcbhLabelFrame.appendChild(rcbhLabel);
+    labelSectionHeight += generateTableCellHeight;
+    labelSection.appendChild(rcbhLabelFrame);
+  }
 
   if (dataContent.VoterValue === true) {
     const voterLabelFrame = figma.createFrame();
@@ -552,19 +562,11 @@ function generateTable(msgData) {
     const userEmail = generateEmail(fName, lName);
     const dobContent = generateDoB();
 
-    //City, state
+    // Location details
     const stateName = generateState();
     const cityName = generateCity(stateName);
-
-    // PIN
-    const stateZone = dataSet[`${stateName}`][2];
-    const pinRemainingDigits = numBetween(10000, 99999);
-    const pinCode = `${stateZone}${pinRemainingDigits}`;
-
-    //Urban Address
+    const pinCode = generatePINCode(stateName);
     const urbanAddress = generateUrbAddress(stateName, cityName);
-
-    //Rural address
     const ruralAddress = generateRurAddress(stateName, cityName);
 
     //Profession
@@ -577,21 +579,13 @@ function generateTable(msgData) {
     //Personal IDs
     const dl = generateDL(stateName);
     const rc = generateRC(stateName);
+    const rcbh = generateRCBH();
     const passport = generatePassport();
     const UID = generateAadhar();
     const pan = generatePAN(fName);
     const voterId = generateVoterID();
-    //Upi
-    const upiEnd1 =
-      dataSet["UPISuffix"][
-        Math.floor(Math.random() * dataSet["UPISuffix"].length)
-      ];
-    const upiEnd2 =
-      dataSet["UPISuffix"][
-        Math.floor(Math.random() * dataSet["UPISuffix"].length)
-      ];
-    const upin = `${fName}${lName}@${upiEnd1}`.toLowerCase();
-    const upim = `${mobile}@${upiEnd2}`.toLowerCase();
+    const upin = generateUPIn(fName, lName);
+    const upim = generateUPIm(mobile);
 
     // Business IDs
     const cin = generateCIN(stateName);
@@ -601,7 +595,7 @@ function generateTable(msgData) {
     const llpin = generateLLPIN();
     const tan = generateTAN();
 
-    // --------------------------------Values declaration over---------------------------------------------
+    // ----------Values declaration over--------------
 
     const dataSection = figma.createFrame(); //Section containing data items
     dataSection.layoutMode = "VERTICAL"; //Vertical autolayout
@@ -825,6 +819,16 @@ function generateTable(msgData) {
       formatContentText(rcText);
       rcTextFrame.appendChild(rcText);
       dataSection.appendChild(rcTextFrame);
+    }
+    if (dataContent.RCBHValue === true) {
+      const rcbhTextFrame = figma.createFrame();
+      formatContentFrame(rcbhTextFrame);
+      const rcbhText = figma.createText();
+      setFont(rcbhText);
+      rcbhText.characters = `${rcbh}`;
+      formatContentText(rcbhText);
+      rcbhTextFrame.appendChild(rcbhText);
+      dataSection.appendChild(rcbhTextFrame);
     }
 
     if (dataContent.VoterValue === true) {

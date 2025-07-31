@@ -27,14 +27,8 @@ export function generateMobile() {
 
 // Email
 export function generateEmail(fName?: string, lName?: string) {
-  let fn =
-    fName ??
-    dataSet["FirstName"][
-      Math.floor(Math.random() * dataSet["FirstName"].length)
-    ];
-  let ln =
-    lName ??
-    dataSet["LastName"][Math.floor(Math.random() * dataSet["LastName"].length)];
+  let fn = fName ?? generateFirstName();
+  let ln = lName ?? generateLastName();
 
   let em =
     dataSet["EmailDomain"][
@@ -137,25 +131,6 @@ export function generateProf(domain) {
 }
 
 // Location-------------------------------------------
-// Pincode
-export function generatePINCode() {
-  let pinFirst = Math.floor(Math.random() * 8 + 1);
-  let pinRemaining = numBetween(10000, 99999); //Finding a random 5 digit number for remaining part of PIN
-  return `${pinFirst}${pinRemaining}`;
-}
-
-// City
-export function generateCity(stateName?: string) {
-  let state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
-  let city =
-    dataSet[`${state}`][
-      Math.floor(Math.random() * (dataSet[`${state}`].length - 4)) + 4
-    ];
-  return `${city}`;
-}
-
 // State
 export function generateState() {
   let state =
@@ -163,27 +138,35 @@ export function generateState() {
   return `${state}`;
 }
 
-// City state pair
-export function generateCityStatePair() {
-  let state =
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+// City
+export function generateCity(stateName?: string) {
+  let state = stateName ?? generateState();
   let city =
     dataSet[`${state}`][
-      Math.floor(Math.random() * (dataSet[`${state}`].length - 3)) + 3
+      Math.floor(Math.random() * (dataSet[`${state}`].length - 4)) + 4
     ];
+  return `${city}`;
+}
+
+// City state pair
+export function generateCityStatePair() {
+  let state = generateState();
+  let city = generateCity(state);
   return `${city}, ${state}`;
+}
+
+// Pincode
+export function generatePINCode(stateName?: string) {
+  let state = stateName ?? generateState();
+  const stateZone = dataSet[`${state}`][2];
+  let pinRemaining = numBetween(10000, 99999); //random 5 digits for remaining part
+  return `${stateZone}${pinRemaining}`;
 }
 
 // Rural address
 export function generateRurAddress(stateName?: string, cityName?: string) {
-  let state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
-  let city =
-    cityName ??
-    dataSet[`${state}`][
-      Math.floor(Math.random() * (dataSet[`${state}`].length - 3)) + 3
-    ];
+  let state = stateName ?? generateState();
+  let city = cityName ?? generateCity(state);
   let landmarkConj =
     dataSet["LandmarkConjunction"][
       Math.floor(Math.random() * dataSet["LandmarkConjunction"].length)
@@ -219,14 +202,8 @@ export function generateRurAddress(stateName?: string, cityName?: string) {
 
 // Urban address
 export function generateUrbAddress(stateName?: string, cityName?: string) {
-  let state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
-  let city =
-    cityName ??
-    dataSet[`${state}`][
-      Math.floor(Math.random() * (dataSet[`${state}`].length - 3)) + 3
-    ];
+  let state = stateName ?? generateState();
+  let city = cityName ?? generateCity(state);
   let spotNo =
     dataSet["UrbSpotNo"][
       Math.floor(Math.random() * dataSet["UrbSpotNo"].length)
@@ -302,8 +279,9 @@ export function generateAadhar() {
 }
 
 //UPIm
-export function generateUPIm() {
-  let mobileNum = numBetween(6000000000, 9999999999);
+
+export function generateUPIm(mobile?: string) {
+  let mobileNum = mobile ?? generateMobile();
   let upiEnd =
     dataSet["UPISuffix"][
       Math.floor(Math.random() * dataSet["UPISuffix"].length)
@@ -312,13 +290,9 @@ export function generateUPIm() {
 }
 
 // UPIn
-export function generateRandomUPIn() {
-  let fname =
-    dataSet["FirstName"][
-      Math.floor(Math.random() * dataSet["FirstName"].length)
-    ];
-  let lname =
-    dataSet["LastName"][Math.floor(Math.random() * dataSet["LastName"].length)];
+export function generateUPIn(fName?: string, lName?: string) {
+  let fname = fName ?? generateFirstName();
+  let lname = lName ?? generateLastName();
   let upiEnd =
     dataSet["UPISuffix"][
       Math.floor(Math.random() * dataSet["UPISuffix"].length)
@@ -328,9 +302,7 @@ export function generateRandomUPIn() {
 
 // Driving license
 export function generateDL(stateName?: string) {
-  let state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+  let state = stateName ?? generateState();
   let stateInitials = dataSet[`${state}`][0];
   let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
   let year = numBetween(1980, 2021);
@@ -344,9 +316,7 @@ export function generateDL(stateName?: string) {
 
 // Vehicle registration
 export function generateRC(stateName?: string) {
-  let state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+  let state = stateName ?? generateState();
   let stateInitials = dataSet[`${state}`][0];
   let rtoDigits = numBetween(1, parseInt(dataSet[`${state}`][1], 10));
   let letter1 =
@@ -363,6 +333,29 @@ export function generateRC(stateName?: string) {
   } else {
     return `${stateInitials}${rtoDigits}${letter1}${letter2}${lastDigits}`;
   }
+}
+
+// BH Series RC (Bharat Series)
+export function generateRCBH() {
+  //year
+  const allyears = ["22", "23", "24", "25", "22", "23", "24", "25", "26"];
+  let year = allyears[Math.floor(Math.random() * allyears.length)];
+
+  //4 digits
+  let middigits = numBetween(1000, 9999);
+
+  //random letters (excluding I and O)
+  let availableLetters = dataSet["Alphabets"].filter(
+    (letter) => letter !== "I" && letter !== "O"
+  );
+  let letter1 =
+    availableLetters[Math.floor(Math.random() * availableLetters.length)];
+  let letter2 =
+    dataSet["Alphabets"][
+      Math.floor(Math.random() * dataSet["Alphabets"].length)
+    ];
+
+  return `${year}BH${middigits}${letter1}${letter2}`;
 }
 
 // PAN
@@ -387,8 +380,6 @@ export function generatePAN(fName?: string) {
       : dataSet["Alphabets"][
           Math.floor(Math.random() * dataSet["Alphabets"].length)
         ];
-
-  console.log(fNameCharacter);
 
   let letter5 = fNameCharacter;
 
@@ -424,9 +415,7 @@ export function generateDIN() {
 export function generateCIN(stateName?: string) {
   const listingStatus = ["L", "U"][Math.floor(Math.random() * 2)];
   const industryCode = Math.random().toString().slice(2, 7);
-  const state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+  const state = stateName ?? generateState();
   const stateInitials = dataSet[`${state}`][0];
   const year = Math.floor(Math.random() * (2024 - 1900 + 1)) + 1900;
   const companyTypes = ["PLC", "PTC", "OPC"];
@@ -468,9 +457,7 @@ export function generatePANi() {
 
 // GSTIN
 export function generateGSTIN(stateName?: string, pani?: string) {
-  const state =
-    stateName ??
-    dataSet["State"][Math.floor(Math.random() * dataSet["State"].length)];
+  const state = stateName ?? generateState();
   const stateCode = dataSet[`${state}`][3];
   const panCompany = pani ?? generatePANi();
   const entityNumber = "1";
