@@ -42,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 320, height: 680 });
+figma.showUI(__html__, { width: 360, height: 520 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;

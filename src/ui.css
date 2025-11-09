@@ -1,7 +1,8 @@
 /* Figma Design System Tokens */
 :root {
   /* Light theme colors */
-  --figma-color-bg: #ffffff;
+  /* --figma-color-bg: #f8fafc; */
+  --figma-color-bg: #f8fafc;
   --figma-color-bg-secondary: #f5f5f5;
   --figma-color-bg-tertiary: #f0f0f0;
   --figma-color-bg-brand: #18a0fb;
@@ -96,18 +97,27 @@ body {
   padding: 0;
   color: var(--figma-color-text);
   transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+  box-sizing: border-box;
   /* background-color: #fafafa; */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /* tabs related styling */
 .tab {
   overflow: hidden;
-  background-color: transparent;
   width: 100%;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  box-shadow: var(--figma-shadow-small);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--figma-space-md);
+  box-sizing: border-box;
+  padding-top: 0.5rem;
 }
 
 .tab button {
@@ -120,11 +130,12 @@ body {
   padding: var(--figma-space-md) var(--figma-space-sm);
   background-color: transparent;
   text-align: center;
-  font-size: var(--figma-font-size-sm);
-  font-weight: 400;
+  font-size: var(--figma-font-size-md);
+  font-weight: 600;
   color: var(--figma-color-text-tertiary);
-  display: inline-block;
-  text-align: center;
+  margin: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
@@ -133,16 +144,14 @@ body {
 }
 
 .tab button.active {
-  background-color: var(--figma-color-bg-secondary);
-  color: var(--figma-color-text);
+  /* background-color: var(--figma-color-bg-secondary); */
+  color: var(--figma-color-bg-brand);
   transition-duration: 0.2s;
-  font-weight: 500;
 }
 
 .tab button:disabled {
   background: var(--figma-color-bg);
   color: var(--figma-color-text-danger);
-  font-weight: 500;
   border-bottom: 1px solid var(--figma-color-border-danger);
 }
 
@@ -161,8 +170,8 @@ body {
   display: block;
   border-top: none;
   align-items: center;
-  width: 100%;
-  margin: 0;
+  width: 94%;
+  margin: auto;
   padding: 0;
 }
 
@@ -181,7 +190,7 @@ body {
 
 .button-group {
   text-align: center;
-  padding: 0 var(--figma-space-sm) var(--figma-space-sm);
+  padding: 0 var(--figma-space-md) var(--figma-space-md);
   margin: 0 var(--figma-space-xs) var(--figma-space-xs);
   background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
@@ -189,11 +198,64 @@ body {
   box-shadow: var(--figma-shadow-small);
 }
 
+/* Accordion styling */
+.accordion {
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--figma-color-bg);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--figma-space-sm) var(--figma-space-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+/* .accordion-header:hover {
+  background-color: var(--figma-color-bg-secondary);
+} */
+
+.accordion-header .group-label {
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.accordion-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--figma-color-text-secondary);
+  margin-left: var(--figma-space-sm);
+  flex-shrink: 0;
+}
+
+.accordion-content {
+  padding: var(--figma-space-md) var(--figma-space-md);
+  animation: slideDown 0.2s ease-out;
+  background-color: var(--figma-color-bg);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
 .group-label {
   text-align: center;
   font-family: var(--figma-font-family);
   font-weight: 500;
-  color: var(--figma-color-text-brand);
+  color: var(--figma-color-text);
   font-size: var(--figma-font-size-md);
   margin: 5px 0 var(--figma-space-md) 0;
 }
@@ -201,22 +263,22 @@ body {
 .buttons-div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--figma-space-sm);
+  gap: var(--figma-space-md);
   width: 100%;
   align-items: center;
 }
 
 .button-pri {
   font-family: var(--figma-font-family);
-  font-size: var(--figma-font-size-xs);
-  font-weight: 400;
-  padding: var(--figma-space-xs);
+  font-size: var(--figma-font-size-sm);
+  font-weight: 500;
+  padding: 0.5rem var(--figma-space-sm);
   min-width: 5rem;
-  height: 1.3rem;
-  width: 5.4rem;
+  height: auto;
+  width: 100%;
   border: 1px solid var(--figma-color-border-strong);
   background-color: var(--figma-color-bg);
-  border-radius: var(--figma-radius-sm);
+  border-radius: var(--figma-radius-md);
   color: var(--figma-color-text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -242,18 +304,19 @@ body {
   display: inline-block;
   color: var(--figma-color-text-secondary);
   font-weight: 500;
-  font-size: var(--figma-font-size-xs);
+  font-size: var(--figma-font-size-sm);
   padding-left: 3.7%;
-  padding-right: 3%;
+  padding-right: 0.5rem;
   vertical-align: middle;
 }
 
 .dropdown-main {
   display: inline-block;
-  border-radius: var(--figma-radius-sm);
+  border-radius: var(--figma-radius-md);
   width: auto;
-  height: 1.4rem;
-  font-size: var(--figma-font-size-xs);
+  height: auto;
+  padding: 0.5rem var(--figma-space-sm);
+  font-size: var(--figma-font-size-sm);
   font-weight: 500;
   text-align: left;
   padding-left: 1%;
@@ -263,6 +326,7 @@ body {
   vertical-align: middle;
   background-color: var(--figma-color-bg);
   transition: all 0.2s ease;
+  line-height: 1.2;
 }
 
 .dropdown-main:disabled {
