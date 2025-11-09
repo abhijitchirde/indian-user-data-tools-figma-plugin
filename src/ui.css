@@ -190,7 +190,7 @@ body {
 
 .button-group {
   text-align: center;
-  padding: 0 var(--figma-space-md) var(--figma-space-md);
+  padding: 0 var(--figma-space-sm) var(--figma-space-sm);
   margin: 0 var(--figma-space-xs) var(--figma-space-xs);
   background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
@@ -225,12 +225,18 @@ body {
   text-align: left;
 }
 
+.accordion-right {
+  display: flex;
+  align-items: center;
+  gap: var(--figma-space-sm);
+  flex-shrink: 0;
+}
+
 .accordion-chevron {
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--figma-color-text-secondary);
-  margin-left: var(--figma-space-sm);
   flex-shrink: 0;
 }
 
@@ -260,10 +266,18 @@ body {
   margin: 5px 0 var(--figma-space-md) 0;
 }
 
+.selection-count {
+  color: var(--figma-color-text-secondary);
+  font-weight: 400;
+  font-size: var(--figma-font-size-sm);
+  margin: 0;
+  white-space: nowrap;
+}
+
 .buttons-div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--figma-space-md);
+  gap: var(--figma-space-sm);
   width: 100%;
   align-items: center;
 }
@@ -349,7 +363,7 @@ body {
 
 .checkbox-group {
   text-align: center;
-  padding: 0 var(--figma-space-sm) var(--figma-space-sm);
+  padding: 0;
   margin: 0 var(--figma-space-xs) var(--figma-space-xs);
   background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
@@ -360,7 +374,7 @@ body {
 .checkboxes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--figma-space-sm);
+  gap: var(--figma-space-xs);
   width: 100%;
   align-items: center;
 }
@@ -373,18 +387,18 @@ div label input:checked + span {
 
 .checkbox {
   background-color: var(--figma-color-bg);
-  border-radius: var(--figma-radius-sm);
+  border-radius: var(--figma-radius-md);
   border: 1px solid var(--figma-color-border-strong);
   overflow: hidden;
   min-width: 5rem;
-  width: 5.4rem;
-  height: 1.3rem;
+  width: 100%;
+  height: auto;
   transition: all 0.2s ease;
 }
 
 .checkbox label {
-  width: auto;
-  height: 1.4rem;
+  width: 100%;
+  height: auto;
   cursor: pointer;
 }
 
@@ -393,9 +407,9 @@ div label input:checked + span {
   display: block;
   color: var(--figma-color-text-secondary);
   font-family: var(--figma-font-family);
-  font-size: var(--figma-font-size-xs);
-  font-weight: 400;
-  padding: var(--figma-space-xs);
+  font-size: var(--figma-font-size-sm);
+  font-weight: 500;
+  padding: 0.5rem var(--figma-space-sm);
   line-height: 1.2;
 }
 
@@ -414,8 +428,8 @@ div label input:checked + span {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  padding-top: 0.2rem;
-  padding-bottom: 0;
+  padding-top: 0.7rem;
+  padding-bottom: 1rem;
 }
 
 .input-div {
@@ -478,6 +492,43 @@ div label input:checked + span {
   border: 1px solid var(--figma-color-bg-brand-pressed);
   color: #fff;
   transition-duration: 0.2s;
+}
+
+.reset-selections-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--figma-space-md);
+  padding-top: var(--figma-space-sm);
+  padding-bottom: var(--figma-space-sm);
+}
+
+.reset-selections-link {
+  color: var(--figma-color-text-secondary);
+  text-decoration: underline !important;
+  font-size: var(--figma-font-size-sm);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--figma-font-family);
+}
+
+.reset-selections-link:link,
+.reset-selections-link:visited {
+  color: var(--figma-color-text-secondary);
+  text-decoration: underline !important;
+}
+
+.reset-selections-link:hover {
+  color: var(--figma-color-text);
+  text-decoration: underline !important;
+  transition: color 0.2s ease;
+}
+
+.reset-selections-link:active {
+  color: var(--figma-color-text-secondary);
+  text-decoration: underline !important;
 }
 
 /* Footer styling */

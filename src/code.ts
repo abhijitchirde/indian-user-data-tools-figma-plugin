@@ -42,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 360, height: 520 });
+figma.showUI(__html__, { width: 360, height: 560 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -59,9 +59,12 @@ figma.on("selectionchange", () => {
 figma.ui.onmessage = (msg) => {
   if (msg.type === "get-theme") {
     // Send current Figma theme to UI
+    // Figma and Slides use light theme, FigJam and Buzz use dark theme
+    const isLightTheme =
+      figma.editorType === "figma" || figma.editorType === "slides";
     figma.ui.postMessage({
       type: "theme-changed",
-      theme: figma.editorType === "figma" ? "light" : "dark", // Figma uses light theme, FigJam uses dark
+      theme: isLightTheme ? "light" : "dark",
     });
   }
 
@@ -924,7 +927,7 @@ function generateTable(msgData) {
   //Putting the created frame on figma currentpage. Other parameters are used to add card to the scene, and also scroll and zoom to that card
   figma.currentPage.appendChild(tableFrame);
   nodes.push(tableFrame);
-  // figma.currentPage.selection = nodes;
+  figma.currentPage.selection = nodes;
   figma.viewport.scrollAndZoomIntoView(nodes);
   figma.notify(`Table of ${userCount} users generated successfully.`, {
     timeout: 2500,

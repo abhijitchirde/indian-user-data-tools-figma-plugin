@@ -9,12 +9,9 @@ interface Props {
 }
 
 const DataCheckbox = ({ name, label, checked, id, onChange }: Props) => {
-  const defaultChecked = checked ? checked : false;
-
-  const [isChecked, setIsChecked] = React.useState(defaultChecked);
+  const isChecked = checked !== undefined ? checked : false;
 
   const changeHandler = (e) => {
-    setIsChecked((prev) => !prev);
     onChange(e);
   };
 
