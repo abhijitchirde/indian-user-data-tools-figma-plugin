@@ -1,9 +1,14 @@
 import * as React from "react";
 
-const ProfessionSelectionForTable = ({ getDomain, isDomain }) => {
+const ProfessionSelectionForTable = ({ getDomain, isDomain, checked }) => {
   const [dropdownEnabled, setDropdownEnabled] = React.useState(true);
-  const [isChecked, setIsChecked] = React.useState(true);
   const [dropdownSelect, setDropdownSelect] = React.useState("Random");
+
+  const isChecked = checked !== undefined ? checked : true;
+
+  React.useEffect(() => {
+    setDropdownEnabled(isChecked);
+  }, [isChecked]);
 
   const handleDropdownInput = (e) => {
     setDropdownSelect(e.target.value);
@@ -11,8 +16,9 @@ const ProfessionSelectionForTable = ({ getDomain, isDomain }) => {
   };
 
   const onProfChkChange = () => {
-    isChecked === false ? setDropdownEnabled(true) : setDropdownEnabled(false);
-    isDomain(!isChecked);
+    const newChecked = !isChecked;
+    setDropdownEnabled(newChecked);
+    isDomain(newChecked);
   };
 
   return (
@@ -25,7 +31,6 @@ const ProfessionSelectionForTable = ({ getDomain, isDomain }) => {
             name="ProfChk"
             checked={isChecked}
             onChange={() => {
-              setIsChecked((prev) => !prev);
               onProfChkChange();
             }}
           />
