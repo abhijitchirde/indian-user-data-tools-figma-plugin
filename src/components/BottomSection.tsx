@@ -23,8 +23,8 @@ const BottomSection = () => {
 
       <div className="credit-container">
         <p className="credit-text">
-          <a href="https://x.com/abhichirde" target="_blank">
-            by Abhijit
+          <a href="https://abhijitchirde.com" target="_blank">
+            by Abhijit Chirde
           </a>
         </p>
       </div>
