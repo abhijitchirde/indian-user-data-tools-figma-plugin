@@ -192,7 +192,6 @@ body {
   text-align: center;
   padding: 0 var(--figma-space-sm) var(--figma-space-sm);
   margin: 0 var(--figma-space-xs) var(--figma-space-xs);
-  background-color: var(--figma-color-bg);
   border: 1px solid var(--figma-color-border);
   border-radius: var(--figma-radius-md);
   box-shadow: var(--figma-shadow-small);
@@ -202,7 +201,7 @@ body {
 .accordion {
   padding: 0;
   overflow: hidden;
-  background-color: var(--figma-color-bg);
+  background-color: var(--figma-color-bg-secondary);
 }
 
 .accordion-header {
@@ -243,7 +242,6 @@ body {
 .accordion-content {
   padding: var(--figma-space-md) var(--figma-space-md);
   animation: slideDown 0.2s ease-out;
-  background-color: var(--figma-color-bg);
 }
 
 @keyframes slideDown {
@@ -365,7 +363,7 @@ body {
   text-align: center;
   padding: 0;
   margin: 0 var(--figma-space-xs) var(--figma-space-xs);
-  background-color: var(--figma-color-bg);
+
   border: 1px solid var(--figma-color-border);
   border-radius: var(--figma-radius-md);
   box-shadow: var(--figma-shadow-small);
@@ -608,11 +606,13 @@ a:hover {
 }
 
 .error-note {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  position: absolute;
-  bottom: 2.2rem;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* For checkbox buttons */
