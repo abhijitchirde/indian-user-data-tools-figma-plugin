@@ -366,11 +366,24 @@ const FirstTab = ({ onClick }) => {
           <p
             style={{
               textAlign: "center",
-              fontSize: "0.7rem",
+              fontSize: "0.8rem",
               color: "#6f6f70",
+              fontWeight: "bold",
             }}
           >
-            Note: In case of an error, please restart the plugin.
+            Using Figma Buzz?
+          </p>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "0.8rem",
+              color: "#6f6f70",
+              padding: "0 var(--figma-space-sm) 0.5rem",
+              width: "100%",
+            }}
+          >
+            Please click the "Open in a modal" icon above for a better
+            experience.
           </p>
         </div>
       </div>
