@@ -42,7 +42,7 @@ figma.loadFontAsync({ family: "Roboto", style: "Regular" });
 figma.loadFontAsync({ family: "Roboto", style: "Light" });
 
 //Show UI on figma canvas
-figma.showUI(__html__, { width: 360, height: 560 });
+figma.showUI(__html__, { width: 360, height: 620 });
 
 var generateTableLabelWidth = 78;
 var generateTableDataWidth = 275;
@@ -104,9 +104,47 @@ figma.ui.onmessage = (msg) => {
     }
   }
 
+  if (msg.type === "export-json") {
+    let num = msg.data.noOfUsers;
+
+    if (isNaN(num)) {
+      figma.notify("Please enter a number", { timeout: 1000 });
+    } else if (num <= 0) {
+      figma.notify("Please enter a number greater than 0", { timeout: 1000 });
+    } else {
+      const jsonData = generateJSON(msg.data);
+      figma.ui.postMessage({
+        type: "json-export-ready",
+        data: jsonData,
+      });
+      figma.notify(`JSON export for ${num} user(s) generated successfully.`, {
+        timeout: 2500,
+      });
+    }
+  }
+
+  if (msg.type === "export-csv") {
+    let num = msg.data.noOfUsers;
+
+    if (isNaN(num)) {
+      figma.notify("Please enter a number", { timeout: 1000 });
+    } else if (num <= 0) {
+      figma.notify("Please enter a number greater than 0", { timeout: 1000 });
+    } else {
+      const csvData = generateCSV(msg.data);
+      figma.ui.postMessage({
+        type: "csv-export-ready",
+        data: csvData,
+      });
+      figma.notify(`CSV export for ${num} user(s) generated successfully.`, {
+        timeout: 2500,
+      });
+    }
+  }
+
   if (msg.type === "disclaimer") {
     figma.notify(
-      "This plugin generates sample user data. Any resemblances to real world entities are pure coincidences.",
+      "This plugin generates sample user data offline. Any resemblances to real world entities are pure unintentional coincidences.",
       { timeout: 4000 }
     );
   }
@@ -932,6 +970,337 @@ function generateTable(msgData) {
   figma.notify(`Table of ${userCount} users generated successfully.`, {
     timeout: 2500,
   });
+}
+
+//Function for generating JSON data from user details
+function generateJSON(msgData) {
+  const dataContent = msgData.chkData;
+  const userCount = msgData.noOfUsers;
+  const users: any[] = [];
+
+  //Creating user data content sections using for-loop for number of users requested from input
+  for (let i = 1; i <= userCount; i++) {
+    //Personal details
+    const fName = generateFirstName();
+    const lName = generateLastName();
+    const fullName = `${fName} ${lName}`;
+    const mobile = generateMobile();
+    const userEmail = generateEmail(fName, lName);
+    const dobContent = generateDoB();
+
+    // Location details
+    const stateName = generateState();
+    const cityName = generateCity(stateName);
+    const pinCode = generatePINCode(stateName);
+    const urbanAddress = generateUrbAddress(stateName, cityName);
+    const ruralAddress = generateRurAddress(stateName, cityName);
+
+    //Profession
+    let userProfession = "";
+    if (dataContent.ProfValue === true) {
+      let domain = msgData.profDomain;
+      userProfession = generateProf(domain);
+    }
+
+    //Personal IDs
+    const dl = generateDL(stateName);
+    const rc = generateRC(stateName);
+    const rcbh = generateRCBH();
+    const passport = generatePassport();
+    const UID = generateAadhar();
+    const pan = generatePAN(fName);
+    const voterId = generateVoterID();
+    const upin = generateUPIn(fName, lName);
+    const upim = generateUPIm(mobile);
+
+    // Business IDs
+    const cin = generateCIN(stateName);
+    const pani = generatePANi();
+    const gstin = generateGSTIN(stateName, pani);
+    const din = generateDIN();
+    const llpin = generateLLPIN();
+    const tan = generateTAN();
+
+    // Create user object with only selected fields
+    const user: any = {};
+
+    if (dataContent.FirstNameValue === true) {
+      user["First Name"] = fName;
+    }
+    if (dataContent.LastNameValue === true) {
+      user["Last Name"] = lName;
+    }
+    if (dataContent.FullNameValue === true) {
+      user["Full Name"] = fullName;
+    }
+    if (dataContent.DoBValue === true) {
+      user["Date of Birth"] = dobContent;
+    }
+    if (dataContent.EmailValue === true) {
+      user["Email"] = userEmail;
+    }
+    if (dataContent.MobileValue === true) {
+      user["Mobile"] = mobile;
+    }
+    if (dataContent.ProfValue === true) {
+      user["Profession"] = userProfession;
+    }
+    if (dataContent.RurAddressValue === true) {
+      user["Rural Address"] = ruralAddress;
+    }
+    if (dataContent.UrbAddressValue === true) {
+      user["Urban Address"] = urbanAddress;
+    }
+    if (dataContent.CityValue === true) {
+      user["City"] = cityName;
+    }
+    if (dataContent.StateValue === true) {
+      user["State"] = stateName;
+    }
+    if (dataContent.PINValue === true) {
+      user["PIN Code"] = pinCode;
+    }
+    if (dataContent.PassValue === true) {
+      user["Passport"] = passport;
+    }
+    if (dataContent.UIDValue === true) {
+      user["UID (Aadhar)"] = UID;
+    }
+    if (dataContent.PANValue === true) {
+      user["PAN (Personal)"] = pan;
+    }
+    if (dataContent.UPInValue === true) {
+      user["UPI (name)"] = upin;
+    }
+    if (dataContent.UPImValue === true) {
+      user["UPI (mobile)"] = upim;
+    }
+    if (dataContent.DLValue === true) {
+      user["Driving License"] = dl;
+    }
+    if (dataContent.RCValue === true) {
+      user["Vehicle Reg. (RC)"] = rc;
+    }
+    if (dataContent.RCBHValue === true) {
+      user["Vehicle Reg. (BH series)"] = rcbh;
+    }
+    if (dataContent.VoterValue === true) {
+      user["Voter ID"] = voterId;
+    }
+    if (dataContent.PANiValue === true) {
+      user["PAN (Corp)"] = pani;
+    }
+    if (dataContent.GSTINValue === true) {
+      user["GSTIN"] = gstin;
+    }
+    if (dataContent.CINValue === true) {
+      user["CIN"] = cin;
+    }
+    if (dataContent.DINValue === true) {
+      user["DIN"] = din;
+    }
+    if (dataContent.LLPINValue === true) {
+      user["LLPIN"] = llpin;
+    }
+    if (dataContent.TANValue === true) {
+      user["TAN"] = tan;
+    }
+
+    users.push(user);
+  }
+
+  return users;
+}
+
+//Function for generating CSV data from user details
+function generateCSV(msgData) {
+  const dataContent = msgData.chkData;
+  const userCount = msgData.noOfUsers;
+  const users: any[] = [];
+  const headers: string[] = [];
+
+  //Creating user data content sections using for-loop for number of users requested from input
+  for (let i = 1; i <= userCount; i++) {
+    //Personal details
+    const fName = generateFirstName();
+    const lName = generateLastName();
+    const fullName = `${fName} ${lName}`;
+    const mobile = generateMobile();
+    const userEmail = generateEmail(fName, lName);
+    const dobContent = generateDoB();
+
+    // Location details
+    const stateName = generateState();
+    const cityName = generateCity(stateName);
+    const pinCode = generatePINCode(stateName);
+    const urbanAddress = generateUrbAddress(stateName, cityName);
+    const ruralAddress = generateRurAddress(stateName, cityName);
+
+    //Profession
+    let userProfession = "";
+    if (dataContent.ProfValue === true) {
+      let domain = msgData.profDomain;
+      userProfession = generateProf(domain);
+    }
+
+    //Personal IDs
+    const dl = generateDL(stateName);
+    const rc = generateRC(stateName);
+    const rcbh = generateRCBH();
+    const passport = generatePassport();
+    const UID = generateAadhar();
+    const pan = generatePAN(fName);
+    const voterId = generateVoterID();
+    const upin = generateUPIn(fName, lName);
+    const upim = generateUPIm(mobile);
+
+    // Business IDs
+    const cin = generateCIN(stateName);
+    const pani = generatePANi();
+    const gstin = generateGSTIN(stateName, pani);
+    const din = generateDIN();
+    const llpin = generateLLPIN();
+    const tan = generateTAN();
+
+    // Create user object with only selected fields
+    const user: any = {};
+
+    if (dataContent.FirstNameValue === true) {
+      user["First Name"] = fName;
+      if (i === 1) headers.push("First Name");
+    }
+    if (dataContent.LastNameValue === true) {
+      user["Last Name"] = lName;
+      if (i === 1) headers.push("Last Name");
+    }
+    if (dataContent.FullNameValue === true) {
+      user["Full Name"] = fullName;
+      if (i === 1) headers.push("Full Name");
+    }
+    if (dataContent.DoBValue === true) {
+      user["Date of Birth"] = dobContent;
+      if (i === 1) headers.push("Date of Birth");
+    }
+    if (dataContent.EmailValue === true) {
+      user["Email"] = userEmail;
+      if (i === 1) headers.push("Email");
+    }
+    if (dataContent.MobileValue === true) {
+      user["Mobile"] = mobile;
+      if (i === 1) headers.push("Mobile");
+    }
+    if (dataContent.ProfValue === true) {
+      user["Profession"] = userProfession;
+      if (i === 1) headers.push("Profession");
+    }
+    if (dataContent.RurAddressValue === true) {
+      user["Rural Address"] = ruralAddress;
+      if (i === 1) headers.push("Rural Address");
+    }
+    if (dataContent.UrbAddressValue === true) {
+      user["Urban Address"] = urbanAddress;
+      if (i === 1) headers.push("Urban Address");
+    }
+    if (dataContent.CityValue === true) {
+      user["City"] = cityName;
+      if (i === 1) headers.push("City");
+    }
+    if (dataContent.StateValue === true) {
+      user["State"] = stateName;
+      if (i === 1) headers.push("State");
+    }
+    if (dataContent.PINValue === true) {
+      user["PIN Code"] = pinCode;
+      if (i === 1) headers.push("PIN Code");
+    }
+    if (dataContent.PassValue === true) {
+      user["Passport"] = passport;
+      if (i === 1) headers.push("Passport");
+    }
+    if (dataContent.UIDValue === true) {
+      user["UID (Aadhar)"] = UID;
+      if (i === 1) headers.push("UID (Aadhar)");
+    }
+    if (dataContent.PANValue === true) {
+      user["PAN (Personal)"] = pan;
+      if (i === 1) headers.push("PAN (Personal)");
+    }
+    if (dataContent.UPInValue === true) {
+      user["UPI (name)"] = upin;
+      if (i === 1) headers.push("UPI (name)");
+    }
+    if (dataContent.UPImValue === true) {
+      user["UPI (mobile)"] = upim;
+      if (i === 1) headers.push("UPI (mobile)");
+    }
+    if (dataContent.DLValue === true) {
+      user["Driving License"] = dl;
+      if (i === 1) headers.push("Driving License");
+    }
+    if (dataContent.RCValue === true) {
+      user["Vehicle Reg. (RC)"] = rc;
+      if (i === 1) headers.push("Vehicle Reg. (RC)");
+    }
+    if (dataContent.RCBHValue === true) {
+      user["Vehicle Reg. (BH series)"] = rcbh;
+      if (i === 1) headers.push("Vehicle Reg. (BH series)");
+    }
+    if (dataContent.VoterValue === true) {
+      user["Voter ID"] = voterId;
+      if (i === 1) headers.push("Voter ID");
+    }
+    if (dataContent.PANiValue === true) {
+      user["PAN (Corp)"] = pani;
+      if (i === 1) headers.push("PAN (Corp)");
+    }
+    if (dataContent.GSTINValue === true) {
+      user["GSTIN"] = gstin;
+      if (i === 1) headers.push("GSTIN");
+    }
+    if (dataContent.CINValue === true) {
+      user["CIN"] = cin;
+      if (i === 1) headers.push("CIN");
+    }
+    if (dataContent.DINValue === true) {
+      user["DIN"] = din;
+      if (i === 1) headers.push("DIN");
+    }
+    if (dataContent.LLPINValue === true) {
+      user["LLPIN"] = llpin;
+      if (i === 1) headers.push("LLPIN");
+    }
+    if (dataContent.TANValue === true) {
+      user["TAN"] = tan;
+      if (i === 1) headers.push("TAN");
+    }
+
+    users.push(user);
+  }
+
+  // Convert to CSV format
+  // Escape CSV values (handle commas, quotes, newlines)
+  const escapeCSV = (value: string): string => {
+    if (value === null || value === undefined) return "";
+    const stringValue = String(value);
+    if (
+      stringValue.includes(",") ||
+      stringValue.includes('"') ||
+      stringValue.includes("\n")
+    ) {
+      return `"${stringValue.replace(/"/g, '""')}"`;
+    }
+    return stringValue;
+  };
+
+  // Build CSV string
+  let csvString = headers.map(escapeCSV).join(",") + "\n";
+
+  for (const user of users) {
+    const row = headers.map((header) => escapeCSV(user[header] || ""));
+    csvString += row.join(",") + "\n";
+  }
+
+  return csvString;
 }
 
 function formatLabelFrame(inputFrameNode) {

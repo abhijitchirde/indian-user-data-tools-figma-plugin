@@ -44,6 +44,18 @@ const FirstTab = ({ onClick }) => {
     <>
       <div className="tabcontent">
         <div className="tab-container">
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "0.8rem",
+              color: "var(--figma-color-text-brand)",
+              padding: "0 var(--figma-space-sm) 0.5rem",
+              width: "100%",
+            }}
+          >
+            Please select the text layers to add user data to and click below to
+            generate.
+          </p>
           <div className="buttons-list">
             <div className="button-group accordion">
               <div
@@ -362,6 +374,7 @@ const FirstTab = ({ onClick }) => {
             </div>
           </div>
         </div>
+
         <div className="error-note">
           <p
             style={{

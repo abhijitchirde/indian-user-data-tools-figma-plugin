@@ -6,7 +6,7 @@ const Tabs = ({ tabID }) => {
   const tabs = [
     {
       id: "1",
-      tabTitle: "Generate data",
+      tabTitle: "Generate random data",
       content: "Add data to selected text layers",
     },
     {
@@ -38,13 +38,13 @@ const Tabs = ({ tabID }) => {
         })}
       </div>
 
-      {tabs.map((tab, i) => (
+      {/* {tabs.map((tab, i) => (
         <div className="tab-info" key={i}>
           {currentTab === `${tab.id}` && (
             <p className="tab-infotext">{tab.content}</p>
           )}
         </div>
-      ))}
+      ))} */}
     </>
   );
 };
