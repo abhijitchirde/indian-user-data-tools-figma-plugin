@@ -2,7 +2,7 @@ import * as React from "react";
 import DataCheckbox from "./DataCheckbox";
 import ProfessionSelectionForTable from "./ProfessionSelectionForTable";
 
-const SecondTab = ({ onClick }) => {
+const SecondTab = ({ onClick, onExportJSON, onExportCSV }) => {
   const [chkData, setChkData] = React.useState({
     FirstNameValue: false,
     LastNameValue: false,
@@ -43,6 +43,20 @@ const SecondTab = ({ onClick }) => {
     setUsersInput(e.target.value);
   };
 
+  const incrementUsers = () => {
+    setUsersInput((prev) => {
+      const newValue = Number(prev) + 1;
+      return newValue;
+    });
+  };
+
+  const decrementUsers = () => {
+    setUsersInput((prev) => {
+      const newValue = Math.max(1, Number(prev) - 1);
+      return newValue;
+    });
+  };
+
   const updateDomain = (domain) => {
     setProfDomain(domain);
   };
@@ -54,7 +68,21 @@ const SecondTab = ({ onClick }) => {
   };
 
   const clickHandler = () => {
-    onClick(chkData, usersInput, profDomain);
+    if (isAnyCheckboxSelected) {
+      onClick(chkData, usersInput, profDomain);
+    }
+  };
+
+  const jsonExportHandler = () => {
+    if (isAnyCheckboxSelected) {
+      onExportJSON(chkData, usersInput, profDomain);
+    }
+  };
+
+  const csvExportHandler = () => {
+    if (isAnyCheckboxSelected) {
+      onExportCSV(chkData, usersInput, profDomain);
+    }
   };
 
   const resetSelections = () => {
@@ -87,6 +115,40 @@ const SecondTab = ({ onClick }) => {
       PANiValue: false,
       TANValue: false,
     });
+  };
+
+  const resetToDefault = () => {
+    setChkData({
+      FirstNameValue: false,
+      LastNameValue: false,
+      FullNameValue: true,
+      DoBValue: true,
+      EmailValue: true,
+      MobileValue: true,
+      ProfValue: true,
+      RurAddressValue: false,
+      UrbAddressValue: true,
+      CityValue: true,
+      StateValue: true,
+      PINValue: true,
+      PassValue: false,
+      UIDValue: true,
+      PANValue: true,
+      UPInValue: false,
+      UPImValue: false,
+      DLValue: false,
+      RCValue: false,
+      RCBHValue: false,
+      VoterValue: false,
+      CINValue: false,
+      GSTINValue: true,
+      DINValue: false,
+      LLPINValue: false,
+      PANiValue: false,
+      TANValue: false,
+    });
+    setProfDomain("Random");
+    setUsersInput(1);
   };
 
   const selectAll = () => {
@@ -135,6 +197,39 @@ const SecondTab = ({ onClick }) => {
   const countSelected = (keys) => {
     return keys.filter((key) => chkData[key]).length;
   };
+
+  const isAnyCheckboxSelected = React.useMemo(() => {
+    const allKeys = [
+      "FirstNameValue",
+      "LastNameValue",
+      "FullNameValue",
+      "DoBValue",
+      "EmailValue",
+      "MobileValue",
+      "ProfValue",
+      "RurAddressValue",
+      "UrbAddressValue",
+      "CityValue",
+      "StateValue",
+      "PINValue",
+      "PassValue",
+      "UIDValue",
+      "PANValue",
+      "UPInValue",
+      "UPImValue",
+      "DLValue",
+      "RCValue",
+      "RCBHValue",
+      "VoterValue",
+      "CINValue",
+      "GSTINValue",
+      "DINValue",
+      "LLPINValue",
+      "PANiValue",
+      "TANValue",
+    ];
+    return countSelected(allKeys) > 0;
+  }, [chkData]);
 
   const getSectionCount = (sectionName) => {
     switch (sectionName) {
@@ -209,7 +304,39 @@ const SecondTab = ({ onClick }) => {
     <>
       <div className="tabcontent">
         <div className="tab-container">
-          <div className="checkboxes-list">
+          <div className="reset-selections-container">
+            <a
+              href="#"
+              className="reset-selections-link"
+              onClick={(e) => {
+                e.preventDefault();
+                selectAll();
+              }}
+            >
+              Select all
+            </a>
+            <a
+              href="#"
+              className="reset-selections-link"
+              onClick={(e) => {
+                e.preventDefault();
+                resetSelections();
+              }}
+            >
+              Deselect all
+            </a>
+            <a
+              href="#"
+              className="reset-selections-link"
+              onClick={(e) => {
+                e.preventDefault();
+                resetToDefault();
+              }}
+            >
+              Default
+            </a>
+          </div>
+          <div className="checkboxes-list scrollable-content">
             <div className="checkbox-group accordion">
               <div
                 className="accordion-header"
@@ -513,12 +640,36 @@ const SecondTab = ({ onClick }) => {
               )}
             </div>
           </div>
-
-          <div className="separate-button-div text-center">
-            <div className="input-div">
-              <label className="input-label" htmlFor="noOfUsers">
-                No. of Users
-              </label>
+        </div>
+      </div>
+      <div className="fixed-bottom-section">
+        <div className="separate-button-div text-center">
+          <div className="input-div">
+            <label className="input-label" htmlFor="noOfUsers">
+              Number of users
+            </label>
+            <div className="user-input-wrapper">
+              <button
+                className="user-input-button"
+                type="button"
+                onClick={decrementUsers}
+                aria-label="Decrease number of users"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 6H10"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
               <input
                 className="user-input"
                 type="number"
@@ -528,34 +679,101 @@ const SecondTab = ({ onClick }) => {
                 min={1}
                 onInput={inputChangeHandler}
               />
+              <button
+                className="user-input-button"
+                type="button"
+                onClick={incrementUsers}
+                aria-label="Increase number of users"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 2V10M2 6H10"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
             </div>
-
-            <button className="button-large" onClick={clickHandler}>
-              Create users
-            </button>
           </div>
 
-          <div className="reset-selections-container">
-            <a
-              href="#"
-              className="reset-selections-link"
-              onClick={(e) => {
-                e.preventDefault();
-                selectAll();
-              }}
+          <div className="buttons-container">
+            <button
+              className="button-large"
+              onClick={clickHandler}
+              disabled={!isAnyCheckboxSelected}
+              title={
+                !isAnyCheckboxSelected
+                  ? "Please select data types above to generate"
+                  : ""
+              }
             >
-              Select All
-            </a>
-            <a
-              href="#"
-              className="reset-selections-link"
-              onClick={(e) => {
-                e.preventDefault();
-                resetSelections();
-              }}
+              Add table to Figma
+            </button>
+            <button
+              className="button-large button-json"
+              onClick={jsonExportHandler}
+              disabled={!isAnyCheckboxSelected}
+              title={
+                !isAnyCheckboxSelected
+                  ? "Please select data types above to generate"
+                  : ""
+              }
             >
-              Reset Selections
-            </a>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  display: "inline-block",
+                  marginRight: "6px",
+                  verticalAlign: "middle",
+                }}
+              >
+                <path
+                  d="M7 9.5L4.5 7L5.2 6.3L6.25 7.35V2.5H7.75V7.35L8.8 6.3L9.5 7L7 9.5ZM3.5 11.5C3.225 11.5 2.9875 11.4 2.7875 11.2C2.5875 11 2.4875 10.7625 2.4875 10.4875V9H3.5V10.5H10.5V9H11.5V10.4875C11.5 10.7625 11.4 11 11.2 11.2C11 11.4 10.7625 11.5 10.4875 11.5H3.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+              JSON
+            </button>
+            <button
+              className="button-large button-json"
+              onClick={csvExportHandler}
+              disabled={!isAnyCheckboxSelected}
+              title={
+                !isAnyCheckboxSelected
+                  ? "Please select data types above to generate"
+                  : ""
+              }
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  display: "inline-block",
+                  marginRight: "6px",
+                  verticalAlign: "middle",
+                }}
+              >
+                <path
+                  d="M7 9.5L4.5 7L5.2 6.3L6.25 7.35V2.5H7.75V7.35L8.8 6.3L9.5 7L7 9.5ZM3.5 11.5C3.225 11.5 2.9875 11.4 2.7875 11.2C2.5875 11 2.4875 10.7625 2.4875 10.4875V9H3.5V10.5H10.5V9H11.5V10.4875C11.5 10.7625 11.4 11 11.2 11.2C11 11.4 10.7625 11.5 10.4875 11.5H3.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+              CSV
+            </button>
           </div>
         </div>
       </div>

@@ -13,6 +13,41 @@ function App() {
   const [currentTab, setCurrentTab] = React.useState("1");
   const { theme, isDark } = useFigmaTheme();
 
+  React.useEffect(() => {
+    // Listen for JSON and CSV data from plugin
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.pluginMessage?.type === "json-export-ready") {
+        const jsonData = event.data.pluginMessage.data;
+        const jsonString = JSON.stringify(jsonData, null, 2);
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `indian-user-data-${new Date().getTime()}.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } else if (event.data.pluginMessage?.type === "csv-export-ready") {
+        const csvData = event.data.pluginMessage.data;
+        const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `indian-user-data-${new Date().getTime()}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
   const getTab = (input) => {
     setCurrentTab(input);
   };
@@ -42,6 +77,32 @@ function App() {
     );
   };
 
+  const onExportJSON = (chkData, users, profDomain) => {
+    let noOfUsers = +users;
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "export-json",
+          data: { chkData, noOfUsers, profDomain },
+        },
+      },
+      "*"
+    );
+  };
+
+  const onExportCSV = (chkData, users, profDomain) => {
+    let noOfUsers = +users;
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "export-csv",
+          data: { chkData, noOfUsers, profDomain },
+        },
+      },
+      "*"
+    );
+  };
+
   return (
     <main>
       <Tabs tabID={getTab} />
@@ -49,7 +110,11 @@ function App() {
       {currentTab === "1" ? (
         <FirstTab onClick={onGenerate} />
       ) : (
-        <SecondTab onClick={onCreateTable} />
+        <SecondTab
+          onClick={onCreateTable}
+          onExportJSON={onExportJSON}
+          onExportCSV={onExportCSV}
+        />
       )}
 
       <BottomSection />
