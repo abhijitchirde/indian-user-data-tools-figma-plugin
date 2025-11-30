@@ -379,7 +379,7 @@ const FirstTab = ({ onClick }) => {
           <p
             style={{
               textAlign: "center",
-              fontSize: "0.8rem",
+              fontSize: "var(--figma-font-size-xs)",
               color: "#6f6f70",
               fontWeight: "bold",
             }}
@@ -389,7 +389,7 @@ const FirstTab = ({ onClick }) => {
           <p
             style={{
               textAlign: "center",
-              fontSize: "0.8rem",
+              fontSize: "var(--figma-font-size-xs)",
               color: "#6f6f70",
               padding: "0 var(--figma-space-sm) 0.5rem",
               width: "100%",

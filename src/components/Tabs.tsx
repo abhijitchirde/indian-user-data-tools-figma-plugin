@@ -6,7 +6,7 @@ const Tabs = ({ tabID }) => {
   const tabs = [
     {
       id: "1",
-      tabTitle: "Generate random data",
+      tabTitle: "Add to text layers",
       content: "Add data to selected text layers",
     },
     {

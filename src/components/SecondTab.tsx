@@ -714,7 +714,7 @@ const SecondTab = ({ onClick, onExportJSON, onExportCSV }) => {
                   : ""
               }
             >
-              Add on Figma canvas
+              Add table to Figma
             </button>
             <button
               className="button-large button-json"
